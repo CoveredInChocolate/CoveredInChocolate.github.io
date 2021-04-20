@@ -11,3 +11,26 @@
 h3 {
     background-color: #d8daf5;
 }
+.thm {
+    font-variant: small-caps;
+}
+
+/* Link styling */
+ a:link {
+    color: blue;
+  }
+  
+  /* visited link */
+  a:visited {
+    color: blue;
+  }
+  
+  /* mouse over link */
+  a:hover {
+    color: red;
+  }
+  
+  /* selected link */
+  a:active {
+    color: red;
+  } 
