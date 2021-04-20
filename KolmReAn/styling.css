@@ -3,7 +3,9 @@
 }
 
 .proofend {
-    background-color: #f9f9f9;
+    text-align: right;
+    font-size: large;
+    background-color: #ffffff;
 }
 
 h3 {
