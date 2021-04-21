@@ -113,8 +113,13 @@ contains a subset $B_1$ equivalent to $A$. Then $A$ and $B$ are equivalent.
 A set with an uncountable subset is itself uncountable.
 <br /><br />
 <i>Proof</i>.<br />
-Call the set $A$ and the subset $S$ and assume $S$ is uncountable. If $A=S$ then $A$ is uncountable
-by our assumption. If $S$ is a proper subset of $A$, then by Theorem 4, $A$ is uncountable.
+A set $A$ is countable if there is a one-to-one correspondence between the elements
+of $A$ and $\N$, or in other words, if there exists an injective function $f: A\rightarrow \N$.
+<br /><br />
+Let us call the set $A$ and the subset $S$ and assume $S$ is uncountable. Let us assume for contradiction
+that $A$ is countable, so there exists an injective function $f: A\rightarrow \N$. Since $S\subset A$,
+we can define the function $g(x) = \{f(x)\;|\; x\in S\}$ which is an injective function $g:S\rightarrow\N$.
+But this is impossible since $S$ is uncountable. Hence, $A$ must be uncountable.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
@@ -122,7 +127,43 @@ by our assumption. If $S$ is a proper subset of $A$, then by Theorem 4, $A$ is u
 Let $M$ be any infinite set and $A$ any countable set. Prove that $M\sim M\cup A$.
 <br /><br />
 <i>Proof</i>.<br />
-asd
+Assume first that $M$ is a countable. By Theorem 2, $M\cup A$ is countable, so $M\sim M\cup A$.
+<br /><br />
+Assume now that $M$ is uncountable. Since $M$ is an uncountable subset of $M\cup A$, then $M\cup A$
+is uncountable by Problem 1, so $M\sim M\cup A$.
+<div class="proofend">&#9632;</div>
+<br /><br />
+
+<h3>Problem 3</h3>
+Prove that the following sets are countable. As shown in Example 4, the set of rational numbers, $\Q$,
+is a countable set which we will use.
+<br /><br />
+a) The set of all numbers with two distinct decimal expansions (like $0.5000\ldots$ and $0.4999\ldots$).
+<br /><br />
+<i>Proof</i>.<br />
+Let us call the set of numbers with two distinct decimal expansions $D$.
+<br /><br />
+Any number with two distinct decimal expansions terminates in an infinite number of 0s, which means
+there are a finite number of non-zero decimals. This in turn means that it can be represented as
+a fraction and is therefore rational.
+<br /><br />
+Since there are rational numbers that do not have two distinct decimal expansions, such as
+$1/3$ or $4/7$, the set $D$ is a proper subset of $\Q$. By Theorem 4, 
+<div class="proofend">&#9632;</div>
+<br /><br />
+b) The set of all rational points in the plane (points with rational coordinates).
+<br /><br />
+<i>Proof</i>.<br />
+<div class="proofend">&#9632;</div>
+<br /><br />
+c) The set of all rational intervals (intervals with rational endpoints).
+<br /><br />
+<i>Proof</i>.<br />
+<div class="proofend">&#9632;</div>
+<br /><br />
+d) The set of all polynomials with rational coefficients.
+<br /><br />
+<i>Proof</i>.<br />
 <div class="proofend">&#9632;</div>
 <br /><br />
 
