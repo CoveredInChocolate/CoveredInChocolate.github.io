@@ -23,6 +23,7 @@
    \def\N{\mathbb{N}}
    \def\Z{\mathbb{Z}}
    \def\Q{\mathbb{Q}}
+   \def\C{\mathbb{C}}
    \def\eps{\varepsilon}
    \def\epsilon{\varepsilon}
    \renewcommand{\geq}{\geqslant}
@@ -109,6 +110,9 @@ Given two sets $A$ and $B$, suppose $A$ contains a subset $A_1$ equivalent to $B
 contains a subset $B_1$ equivalent to $A$. Then $A$ and $B$ are equivalent.
 <br /><br /><br /><br />
 
+
+<!-- ########################### PROBLEMS ########################### -->
+
 <h3>Problem 1</h3>
 A set with an uncountable subset is itself uncountable.
 <br /><br />
@@ -122,6 +126,12 @@ we can define the function $g(x) = \{f(x)\;|\; x\in S\}$ which is an injective f
 But this is impossible since $S$ is uncountable. Hence, $A$ must be uncountable.
 <div class="proofend">&#9632;</div>
 <br /><br />
+<i>Alternative Proof</i>.<br />
+The statement we want to prove is: if the set $S\subset A$ is uncountable, then $A$ is uncountable.
+<br /><br />
+The contrapositive statement is: if $A$ is countable, then $S\subset A$ is a countable. This follows
+from Theorem 1. It follows that if $S\subset A$ is uncountable, then $A$ is uncountable.
+<div class="proofend">&#9632;</div>
 
 <h3>Problem 2</h3>
 Let $M$ be any infinite set and $A$ any countable set. Prove that $M\sim M\cup A$.
@@ -135,35 +145,171 @@ is uncountable by Problem 1, so $M\sim M\cup A$.
 <br /><br />
 
 <h3>Problem 3</h3>
-Prove that the following sets are countable. As shown in Example 4, the set of rational numbers, $\Q$,
-is a countable set which we will use.
+Prove that the following sets are countable. As shown in Example 4, the set of rational numbers $\Q$
+is countable.
 <br /><br />
 a) The set of all numbers with two distinct decimal expansions (like $0.5000\ldots$ and $0.4999\ldots$).
 <br /><br />
 <i>Proof</i>.<br />
 Let us call the set of numbers with two distinct decimal expansions $D$.
 <br /><br />
-Any number with two distinct decimal expansions terminates in an infinite number of 0s, which means
-there are a finite number of non-zero decimals. This in turn means that it can be represented as
-a fraction and is therefore rational.
-<br /><br />
+Any number with two distinct decimal expansions has a representation that terminates with an infinite
+number of 0s, which means there are a finite number of non-zero decimals. This in turn means that it
+can be represented as a fraction and is therefore rational.
 Since there are rational numbers that do not have two distinct decimal expansions, such as
-$1/3$ or $4/7$, the set $D$ is a proper subset of $\Q$. By Theorem 4, 
+$1/3$ or $4/7$, the set $D$ is a proper subset of $\Q$. For every $n\in\N$, $n + 1/2 \in D$
+so it is an infinite set.
+<br /><br />
+We assume for contradiction that $D$ is uncountable. Since it is a proper subset of $\Q$, then
+by Problem 1, $\Q$ must be uncountable. This is a contradiction, so we conclude that $D$ is a
+countable set.
 <div class="proofend">&#9632;</div>
 <br /><br />
 b) The set of all rational points in the plane (points with rational coordinates).
 <br /><br />
 <i>Proof</i>.<br />
+Since $\Q$ is a countable set, we can write $\Q = \{q_1, q_2, q_3, \ldots\}$. If we fix $q_1$
+we get the following set:
+$$
+Q_1 = \{(q_1, p)\;|\; p\in\Q\},
+$$
+which are all rational points in the plane with $q_1$ in the $x$ position. We can create a one-to-one
+correspondence with $\Q$ by simply setting $p\leftrightarrow (q_1, p)$ for each $p\in\Q$, which shows
+that $Q_1$ is countable. For every $q_i\in\Q$ we define the following sets which are countable by the
+same argument.
+$$
+Q_i = \{(q_i, p)\;|\; p\in\Q\},
+$$
+We can now define the following union which are all rational points in the plane:
+$$
+\mathcal{Q} = \bigcup_{n=1}^\infty Q_n,
+$$
+which is a countable union of countable sets. By Theorem 2, $\mathcal{Q}$ is a countable set.
 <div class="proofend">&#9632;</div>
 <br /><br />
 c) The set of all rational intervals (intervals with rational endpoints).
 <br /><br />
 <i>Proof</i>.<br />
-<div class="proofend">&#9632;</div>
+Define $\mathscr{Q}_1$ to be the set of all open intervals with rational endpoints.
+$$
+\mathscr{Q}_1 = \{(p,q)\;|\; p,q\in\Q\}.
+$$
+Using $\mathcal{Q}$ from (b), we can create a bijection from $\mathcal{Q}$ to $\mathscr{Q}_1$
+by setting $(p,q)\leftrightarrow(p,q)$ which shows that $\mathscr{Q}_1$ is a countable set.
 <br /><br />
-d) The set of all polynomials with rational coefficients.
+In a similar way, we can define the following three sets of half-open and closed intervals
+$$
+\mathscr{Q}_2 = \{[p,q)\;|\; p,q\in\Q\}.
+$$
+$$
+\mathscr{Q}_3 = \{(p,q]\;|\; p,q\in\Q\}.
+$$
+$$
+\mathscr{Q}_4 = \{[p,q]\;|\; p,q\in\Q\}.
+$$
+which are all countable sets by the same argument as for $\mathscr{Q}_1$. We have
+four countable sets, and by Theorem 2 their union is a countable set.
+<div class="proofend">&#9632;</div>
+<br /><br /><br /><br />
+Will use a theorem not mentioned in the book.
+<br /><br />
+<div class="thm">Theorem A.1</div><br />
+A finite cartesian product of countable sets is countable.<br />
+<br /><br />
+<br /><br />
+d) The set of all polynomials with rational coefficients.<br />
+(<b>Note</b>: this has to be the set of
+all <i>finite</i> polynomials with rational coefficients, otherwise it isn't true. Will
+also try to prove this without cartesian ).
 <br /><br />
 <i>Proof</i>.<br />
+Finite polynomials with rational coefficients are on the following form
+$$
+p_0 + p_1x + p_2x^2 + p_3x^3 + \ldots + p_nx^n
+$$
+where $p_i\in\Q$ for all $i$. We define the set of all rational polynomials as follows:
+$$
+P = \{p_0 + p_1x + \ldots + p_nx^n\;|\; p_0,p_1,\ldots, p_n\in\Q\}
+$$
+For any rational polynomial, we can create the following bijection.
+$$
+p_0 + p_1x + p_2x^2 + \ldots + p_nx^n \leftrightarrow
+(p_0, p_1, p_2, \ldots, p_n)\in\Q\times\Q\times\Q\times\ldots\times\Q = \textbf{Q}^n.
+$$
+Since $\Q$ is countable and this is a finite cartesian product, then by Theorem A.1,
+$\textbf{Q}^n$ is countable. Since we have a bijection between $P$ and $\textbf{Q}^n$,
+it follows that $P$ is countable.
+<!-- ################# Attempt 2 ################# -->
+<!-- Finite polynomials with rational coefficients are on the following form
+$$
+P = p_0 + p_1x + p_2x^2 + p_3x^3 + \ldots + p_nx^n
+$$
+where $p_i\in\Q$ for all $i$. Let $P_0$ denote the set of all 0th degree polynomials,
+i.e. constant rationals.
+$$
+P_0 = \{p_0\,|\,p_0\in\Q\}
+$$
+Obviously, $P_0 = \Q$, so it is countable.
+<br /><br />
+Let $P_1$ denote the set of all first degree polynomials,
+$$
+P_1 = \{p_0 + p_1\cdot x\;|\; p_0,p_1\in\Q\}.
+$$
+Similarly to the argument from (b), we fix $p_n\in\Q$, and define the sets
+$$
+\mathcal{Z}_{n} = \{(p_n, q)\,|\, q\in\Q\}
+$$ -->
+
+<!-- ################# Attempt 1 ################# -->
+<!-- Polynomials with rational coefficients are on the following form
+$$
+P = p_0 + p_1x + p_2x^2 + p_3x^3 + \ldots
+$$
+where $p_i\in\Q$ for all $i$. Let $P_0$ denote the set of all rational $p_0$.
+Then $P_0 = \Q$ which is countable. If $P_1$ is the set of all rational coefficients
+for $x$, then $P_1 = \Q$, which is also countable. For all possible rational coefficients
+for a first degree polynomial, $p_0 + xp_1$ we get:
+$$
+P_0\cup P_1 = \Q\cup\Q 
+$$
+which is a finite union of countable sets which by Theorem 2 is countable. Continuing this way,
+we define $P_k$ to be the set of all rational coefficients associated with $x^k$ and the set of
+all possible polynomials coefficients become:
+$$
+%\{P\,|\, p_i\in\Q\;\text{for all}\;i\} =
+\bigcup_{n=0}^\infty P_n
+$$
+which is a countable union of countable sets, and by Theorem 2 this is countable. -->
+<div class="proofend">&#9632;</div>
+<br /><br />
+
+<h3>Problem 4</h3>
+A number $\alpha$ is said to be <i>algebraic</i> if it is a root of a polynomial equation
+with rational coefficients. Prove that the set of all algebraic numbers is countable.
+<br /><br />
+From the fundamental theorem of algebra, any non-constant, $n$th degree polynomial can be split up into $n$
+first degree polynomials. For instance, a second degree polynomial can be factored into
+two first degree polynomials:
+$$
+p_0 + p_1x + p_2x^2 = r_2(x - r_0)(x - r_1)
+$$
+where $r_2 = p_2$. The roots $r_0$ and $r_1$ can be irrational or even complex, and they can be
+equal to each other, but for our purposes that doesn't matter.
+<br /><br />
+<i>Proof</i>.<br />
+Define $R$ as the set of all roots of polynomials with rational coefficients.
+From the fundamental theorem of algebra, non-constant $n$th degree polynomial can be factored into
+$n$ first degree polynomials.
+$$
+p_0 + p_1x + p_2x^2 + p_3x^3 + \ldots + p_nx^n = r_n(x-r_0)(x-r_1)\ldots(x-r_{n-1})
+$$
+where $p_0,\ldots, p_n\in\Q$ and $r_0,\ldots,r_n\in\C$. Using this, we can create a one-to-one
+correspondence from the set of all polynomials $P$, to the set of all roots $R$ as
+$$
+(q_0, q_1, q_2, \ldots, q_n) \leftrightarrow (r_0, r_1, r_2, \ldots, r_n).
+$$
+Since we have a bijection from the countable set $P$ to $R$ and from 3(d) $P$ is countable,
+the set $R$ is countable.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
