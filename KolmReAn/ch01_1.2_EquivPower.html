@@ -428,23 +428,95 @@ has power $c$. The finite case follows by setting $A_m = \emptyset$ for all $m\g
 <div class="proofend">&#9632;</div>
 <br /><br />
 
+
+<br /><br /><br /><br />
+Will use a theorem not mentioned in the book.
+<br /><br />
+<div class="thm">Theorem A.2 <b>Schröder-Bernstein</b></div><br />
+If there exists an injection $f$: $A\rightarrow B$ and an injection $g: B\rightarrow A$,
+then there exists a bijection $h: A\rightarrow B$.<br />
+<br /><br />
+<br /><br />
+
 <h3>Problem 9</h3>
 We will prove that the following three sets have power of $c$.
 <br /><br />
 (a) The set of all infinite sequences of positive integers. 
 <br /><br />
 <i>Proof</i>.<br />
+Let $\mathcal{S}$ be the set of infinite sequences.
+We can create a bijection between $\mathcal{S}$ and $[0,1]$. We do this
+by finding an injection in both directions. For the sequence
+$$
+d_1, d_2, d_3, \ldots
+$$
+we could define the number $0.d_1d_2d_3\ldots\in[0,1]$, but this is not unique, since
+$$
+1, 2, 3, 0, 0, \ldots
+$$
+$$
+12, 3, 0, 0, \ldots
+$$
+$$
+1, 23, 0, 0, \ldots
+$$
+$$
+123, 0, 0, \ldots
+$$
+would all point to $0.123000\ldots$. Instead, we define $b_i$ to be the binary representation of
+$d_i$ and replace $,$ with $2$. This will give an injection from the set $\mathcal{S}\rightarrow[0,1]$.
+$$
+1, 2, 3, 0, 0, \ldots \rightarrow 0.12102112020\ldots
+$$
+$$
+12, 3, 0, 0, \ldots \rightarrow 0.11002112020\ldots
+$$
+$$
+1, 23, 0, 0, \ldots \rightarrow 0.12101112020\ldots
+$$
+$$
+123, 0, 0, \ldots \rightarrow 0.11110112020\ldots
+$$
+Now to find an injection from $[0,1]$ to $\mathcal{S}$. This can be done by simply setting
+$$
+0.d_1d_2d_3\ldots \rightarrow d_1, d_2, d_3, \ldots.
+$$
+By Theorem A.2 (Schröder-Bernstein), there exists a bijection between $[0,1]$ and
+$\mathcal{S}$ which means they are equivalent sets and $\mathcal{S}$ has the power $c$.
 <div class="proofend">&#9632;</div>
 <br /><br />
 (b) The set of all ordered $n$-tuples of real numbers.
 <br /><br />
 <i>Proof</i>.<br />
+Will show that we can make an injection from $(x_1, \ldots, x_n)\rightarrow\R$ and
+from $\R\rightarrow(x_1, \ldots, x_n)$ where $x_i\in\R$ and then apply Theorem A.2.
+<br /><br />
+Injection $\R\rightarrow(x_1, \ldots, x_n)$. For any $x\in\R$ just place this in
+the first spot and set all others to 0: $(x, 0, \ldots, 0)$ and we have an injection.
+<br /><br />
+Injection $(x_1, \ldots, x_n)\rightarrow\R$. In this case the numbers $x_i$ are on the form
+$$
+x_i = d^i.d_1^id_2^id_3^i\ldots.
+$$
+For the integral part, we use the binary $b^i$ of $d^i$ and separate the different numbers
+with 2, as we did in part (a). Then for the decimals, we run through each in turn, so we get:
+$$
+b^12b^22\ldots 2b^n.d_1^1d_1^2\ldots d_1^nd_2^1d_2^2\ldots d_2^nd_3^1\ldots
+$$
+which creates an injection.
+<br /><br />
+By injection both ways, we have a bijection by Theorem A.2. This shows that the set of $n$-tuples
+has the same power as $\R$; the continuum $c$. 
 <div class="proofend">&#9632;</div>
 <br /><br />
 (c) The set of all infinite sequences of real numbers.
 <br /><br />
+<i>This proof seems to be based on some more advanced set theoretic concepts. Will skip for now.</i>
+<!--
+https://math.stackexchange.com/questions/413836/cardinality-of-all-real-sequences
 <i>Proof</i>.<br />
 <div class="proofend">&#9632;</div>
+-->
 <br /><br />
 
 <h3>Problem 10</h3>
