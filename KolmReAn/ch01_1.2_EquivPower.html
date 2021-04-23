@@ -24,6 +24,7 @@
    \def\Z{\mathbb{Z}}
    \def\Q{\mathbb{Q}}
    \def\C{\mathbb{C}}
+   \def\1{\textbf{1}}
    \def\eps{\varepsilon}
    \def\epsilon{\varepsilon}
    \renewcommand{\geq}{\geqslant}
@@ -41,7 +42,7 @@
 
 <h3>Results</h3>
 
-There are two types of infinite sets: countable such as $\N$, and uncountable sets such as $(0,1)$.
+There are two types of infinite sets: countable sets such as $\N$, and uncountable sets such as $(0,1)$.
 By definition, the elements of a set are unique.
 <br /><br /><br />
 
@@ -105,7 +106,12 @@ each element $x\in M-A$. But $M-A_2$ is a proper subset of $M$.
 The set of real numbers in the closed unit interval $[0,1]$ is uncountable.
 <br /><br /><br /><br />
 
-<div class="thm">Theorem 7</div> <b>Cantor-Bernstein</b><br />
+<div class="thm">Theorem 6</div><br />
+Given any set $M$, let $\mathscr{M}$ be the set whose elements are all possible subsets
+of $M$. Then the power of $\mathscr{M}$ is greater than the power of the original set $M$.
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 7 (<b>Cantor-Bernstein</b>)</div>
 Given two sets $A$ and $B$, suppose $A$ contains a subset $A_1$ equivalent to $B$, while $B$
 contains a subset $B_1$ equivalent to $A$. Then $A$ and $B$ are equivalent.
 <br /><br /><br /><br />
@@ -287,34 +293,176 @@ which is a countable union of countable sets, and by Theorem 2 this is countable
 A number $\alpha$ is said to be <i>algebraic</i> if it is a root of a polynomial equation
 with rational coefficients. Prove that the set of all algebraic numbers is countable.
 <br /><br />
-From the fundamental theorem of algebra, any non-constant, $n$th degree polynomial can be split up into $n$
-first degree polynomials. For instance, a second degree polynomial can be factored into
-two first degree polynomials:
-$$
-p_0 + p_1x + p_2x^2 = r_2(x - r_0)(x - r_1)
-$$
-where $r_2 = p_2$. The roots $r_0$ and $r_1$ can be irrational or even complex, and they can be
-equal to each other, but for our purposes that doesn't matter.
-<br /><br />
 <i>Proof</i>.<br />
-Define $R$ as the set of all roots of polynomials with rational coefficients.
-From the fundamental theorem of algebra, non-constant $n$th degree polynomial can be factored into
-$n$ first degree polynomials.
+From the fundamental theorem of algebra, any non-constant $n$th degree polynomial can be factored into
+$n$ first degree polynomials,
 $$
 p_0 + p_1x + p_2x^2 + p_3x^3 + \ldots + p_nx^n = r_n(x-r_0)(x-r_1)\ldots(x-r_{n-1})
 $$
-where $p_0,\ldots, p_n\in\Q$ and $r_0,\ldots,r_n\in\C$. Using this, we can create a one-to-one
-correspondence from the set of all polynomials $P$, to the set of all roots $R$ as
+where $p_0,\ldots, p_n\in\Q$ and $r_0,\ldots,r_n\in\C$.
+Define $R$ as the set of all roots of polynomials with rational coefficients.
 $$
-(q_0, q_1, q_2, \ldots, q_n) \leftrightarrow (r_0, r_1, r_2, \ldots, r_n).
+R = \{r_n(x-r_0)(x-r_1)\ldots(x-r_{n-1})\;|\; r_0, r_1, r_2, \ldots, r_n\in\C\}
 $$
-Since we have a bijection from the countable set $P$ to $R$ and from 3(d) $P$ is countable,
-the set $R$ is countable.
+Using the fundamental theorem, we can create a one-to-one
+correspondence from the set of all polynomials $P$ to the set of all roots $R$,
+since the roots are uniquely determined by the coefficients.
+$$
+(p_0, p_1, p_2, \ldots, p_n)
+\leftrightarrow
+(r_0, r_1, r_2, \ldots, r_n)
+\leftrightarrow
+r_n(x-r_0)(x-r_1)\ldots(x-r_{n-1})
+$$
+Since we have a bijection from the countable set $P$ to $R$,
+the set $R$ is countable. To find the set of all algebraic numbers, we take the union of all
+sets $r\in (r_0, r_1, r_2, \ldots, r_n)$ and call it $\mathcal{A}$.
+$$
+\mathcal{A} = \bigcup_{r\in R} r.
+$$
+Since this is a countable union of countable sets, the set of all algebraic numbers $\mathcal{A}$
+is countable by Theorem 2.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
-
+<h3>Problem 5</h3>
+We introduce the following Lemma.
 <br /><br />
+<b>Lemma</b><br />
+If $M$ is an uncountable set and $A\subset M$ is a countable set, then $M-A$ is uncountable.
+<br /><br />
+<i>Proof</i>.<br />
+Assume $M$ is uncountable and $A\subset M$ is countable. Assume for contradiction that $M-A$ is countable.
+Since $A$ and $M-A$ are countable, then by Theorem 2, $A\cup(M-A) = M$ is countable. But this is
+a contradiction, since $M$ is uncountable. Hence, $M-A$ must be countable.
+<div class="proofend">&#9632;</div>
+<br />
+<i>Comment: $A\cup(M-A) = M$ since $A\subset M$. This was used in the proof of Theorem 4</i>.
+<br /><br /><br /><br />
+
+Prove the existence of uncountably many <i>transcedental</i> numbers, i.e. numbers which are
+not algebraic.
+<br /><br />
+<i>Proof</i>.<br />
+Define the set of transcedental numbers as $\R$ minus the algebraic numbers:
+$\mathcal{T} = \R - \mathcal{A}$. By Theorem 5, $[0,1]$ is uncountable, and since $[0,1]\subset\R$
+then by Problem 1, $\R$ is uncountable.
+<br /><br />
+Since $\R$ is uncountable and $\mathcal{A}\subset\R$ is countable, then $\mathcal{T}=\R-\mathcal{A}$
+is uncountable by the previous Lemma. Therefore there are uncountably many transcedental numbers.
+<div class="proofend">&#9632;</div>
+<br /><br />
+
+<h3>Problem 6</h3>
+Prove that the set of all real functions (more generally, functions taking the values in a
+set containing at least two elements) defined on a set $M$ is of power geater than the
+power of $M$. In particular, prove that the power of the set of <i>all</i> real functions
+(continuous and discontinuous) defined in the interval $[0, 1]$ is greater than $c$.
+<br /><br />
+<i>Hint</i>: Use the fact that the set of all characteristic functions/identity functions
+(i.e functions taking only the values 0 and 1) on $M$ is equivalent to the set of all subsets
+of $M$.
+<br /><br /><br /><br />
+<b>Claim</b>: The set of all real functions defined on a set $M$ is of power geater than the
+power of $M$.
+<br /><br />
+<i>Proof</i>.<br />
+For any subset $A\subset M$ we can define the corresponding identity function $\1_A(x)$, such that
+$$
+\1_A(x) = \left\{
+    \begin{matrix}
+    1 & x\in A, \\
+    0 & x\not\in A.
+    \end{matrix}
+\right.
+$$
+If we define $\mathscr{M} = \{A \,|\, A\subset M\}$ we get a one-to-one correspondence
+$\mathscr{M} = \{A \,|\, A\subset M\}\leftrightarrow \{\1_A \,|\, A\subset M\}$ which shows that
+these sets are equivalent: $\mathscr{M}\sim \{\1_A \,|\, A\subset M\}$. By Theorem 6, $\mathscr{M}$
+has a power greater than $M$ and since it is equivalent to $\mathscr{M}$, so does the set of indicatior
+functions which is a subset of all possible functions.
+<div class="proofend">&#9632;</div>
+<br /><br /><br />
+<b>Claim</b>: The set of all real functions defined on a set $[0,1]$ is of power geater than the
+continuum $c$.
+<br /><br />
+<i>Proof</i>.<br />
+The set $[0,1]$ is uncountable and has the power of the continuum. But by the previous result,
+the set of real functions defined on $[0,1]$ has a greater power.
+<div class="proofend">&#9632;</div>
+<br /><br />
+
+<h3>Problem 7</h3>
+Give an indirect proof of the equivalence of the closed interval $[a, b]$, the open interval
+$(a,b)$ and the half-open interval $[a, b)$ or $(a, b]$.
+<br /><br />
+<i>Proof</i>.<br />
+Repeated use of the Theorem 7 (Cantor-Bernstein). Assume $c,d\in\R$ such that $a < c < d < b$.
+Now we define the intervals $(c,d)\subset[a, b]$ and $[c,d]\subset(a, b)$. Since
+$(c, d)\sim (a, b)$ and $[c, d]\sim[a, b]$, then by Theorem 7, $[a, b]\sim (a, b)$.
+The same argument can be used to show that all the intervals are equivalent.
+<div class="proofend">&#9632;</div>
+<br /><br />
+
+<h3>Problem 8</h3>
+Prove that the union of a finite or countable number of sets, each of power $c$ is itself of power $c$.
+<br /><br />
+<i>Proof</i>.<br />
+Let $A_1, A_2, A_3, \ldots$ be sets of power $c$. Since intervals of type $[a, b)$ also have
+power $c$, we can construct a bijection between the sets $A_i$ and the interval $[i-1, i)$ for
+$i\in\N$.
+<br /><br />
+For $A_1$ there is a bijection with $[0, 1)$ and for $A_2$ there is a bijection with $[1, 2)$.
+It follows that we get a bijection from $A_1\cup A_2$ to $[0, 2)$, and since $[0, 2)$ has
+power $c$, so does $A_1\cup A_2$.
+<br /><br />
+We will use proof by induction. Assume $A_1\cup\ldots A_k$ has a bijection to $[0, k)$
+which means both sets have power $c$. There is a bijection between $A_{k+1}$ and $[k, k+1)$.
+The union $A_1\cup\ldots\cup A_k\cup A_{k+1}$ has power $c$ since it has a bijection with $[0, k+1)$.
+<br /><br />
+By induction the countable union
+$$
+\bigcup_{n=1}^\infty A_n
+$$
+has power $c$. The finite case follows by setting $A_m = \emptyset$ for all $m\geq N$ for some $N\in\N$.
+<div class="proofend">&#9632;</div>
+<br /><br />
+
+<h3>Problem 9</h3>
+We will prove that the following three sets have power of $c$.
+<br /><br />
+(a) The set of all infinite sequences of positive integers. 
+<br /><br />
+<i>Proof</i>.<br />
+<div class="proofend">&#9632;</div>
+<br /><br />
+(b) The set of all ordered $n$-tuples of real numbers.
+<br /><br />
+<i>Proof</i>.<br />
+<div class="proofend">&#9632;</div>
+<br /><br />
+(c) The set of all infinite sequences of real numbers.
+<br /><br />
+<i>Proof</i>.<br />
+<div class="proofend">&#9632;</div>
+<br /><br />
+
+<h3>Problem 10</h3>
+Develop a contradiction inherent in the notion of the 'set of all sets
+which are not members of themselves'.
+<br /><br />
+Define this set as:
+$$
+X = \{A\,|\, A\not\in A\}.
+$$
+<br /><br />
+This is a set of sets, such as $Y = \{B, C, D\}$. In this case $Y\not\in Y$ so $Y\in X$.
+<br /><br />
+From the hint we will try to answer if $X$ is in $X$. Assume that $X\not\in X$. By the
+membership condition $X\not\in X\Rightarrow X\in X$ which is a contradiction.
+If we assume $X\in X$, this cannot be true since $X$ is the set of all sets that don't contain
+themselves so we violate the membership condition $A\not\in A$. Another contradiction.
+As such, this set cannot exist. 
 <br /><br />
 <br /><br />
 <br /><br />
