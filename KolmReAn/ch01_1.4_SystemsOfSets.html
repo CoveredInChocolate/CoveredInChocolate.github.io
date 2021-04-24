@@ -316,6 +316,9 @@ A nonempty family of sets $\mathcal{R}$ is a ring, if<br />
 $\bullet$ It contains the empty set. $\emptyset\in\mathcal{R}$.<br />
 $\bullet$ It is closed under set difference. $A,B\in\mathcal{R}\;\Longrightarrow\; A-B\in\mathcal{R}$<br />
 $\bullet$ It is closed under union. $A,B\in\mathcal{R}\;\Longrightarrow\; A\cup B\in\mathcal{R}$
+<br /><br />
+If the ring contains a unit set, i.e. a set that contains all other sets, defined as $E\cap A = A$
+for all $A\in\mathcal{R}$, then it is called an <i>algebra</i>.
 <br />
 <a href="https://proofwiki.org/wiki/Definition:Ring_of_Sets" target="_BLANK"><i>Source</i></a>
 <br /><br /><br /><br />
@@ -421,20 +424,55 @@ The preimage of the union equals the union of the preimages.
 $$
 f^{-1}(A\cup B)\in f^{-1}(\mathscr{N})
 \;\Longrightarrow\;
-f^{-1}(A) \cup f^{-1}(B) f^{-1}(\mathscr{N})
+f^{-1}(A) \cup f^{-1}(B) \in f^{-1}(\mathscr{N})
 $$
 All properties verified, so we can conclude that when $\mathscr{N}$ is a ring, then
-$f(\mathscr{N})$ is a ring.
+$f^{-1}(\mathscr{N})$ is a ring.
 <div class="proofend">&#9632;</div>
 <br /><br />
 (b) If $\mathscr{N}$ is an algebra, so is $f^{-1}(\mathscr{N})$.
 <br /><br />
 <i>Proof</i>.<br />
+An algebra is a ring that contains a unit set $E$, i.e. a set that contains all other sets.
+This does not change the result from (a), so by the same argument,
+if $\mathscr{N}$ is an algebra then $f^{-1}(\mathscr{N})$
+is an algebra.
 <div class="proofend">&#9632;</div>
 <br /><br />
-(c) If $\mathscr{N}$ is an B-algebra, so is $f^{-1}(\mathscr{N})$.
+(c) If $\mathscr{N}$ is a B-algebra, so is $f^{-1}(\mathscr{N})$.
 <br /><br />
 <i>Proof</i>.<br />
+We need to verify the three properties of B-algebras. The first two are exactly the same
+as for rings: containment of the empty set and closure under set difference, which are
+verified above.
+$$
+f^{-1}(\emptyset) = \emptyset\in f^{-1}(\mathscr{N}).
+$$
+$$
+f^{-1}(A), f^{-1}(B)\in f^{-1}(\mathscr{N})
+\;\Longrightarrow\;
+f^{-1}(A) - f^{-1}(B)\in f^{-1}(\mathscr{N})
+$$
+We must also verify the third property, closure under  countable unions.
+Assume we have the following sets:
+$$
+f^{-1}(A_1), f^{-1}(A_2),\ldots \in f^{-1}(\mathscr{N}).
+$$
+They are sets in $\mathscr{N}$ which is closed under countable unions since it is a B-algebra.
+$$
+A_1, A_2,\ldots \in \mathscr{N}
+\;\Longrightarrow\;
+\bigcup_{n=1}^\infty A_n \in \mathscr{N}.
+$$
+If we take the inverse of this set, we can distribute the inverse to the individual sets,
+as mentioned in the 'Functions' theorem.
+$$
+f^{-1}\left(\bigcup_{n=1}^\infty A_n\right)\in f^{-1}(\mathscr{N})
+\;\Longrightarrow\;
+\bigcup_{n=1}^\infty f^{-1}(A_n) \in f^{-1}(\mathscr{N}).
+$$
+This shows that we have closure under countable unions. So we can conclude that if
+$\mathscr{N}$ is a B-algebra, so is $f^{-1}(\mathscr{N})$.
 <div class="proofend">&#9632;</div>
 <br /><br />
 (d) $\mathscr{R}(f^{-1}(\mathscr{N})) = f^{-1}(\mathscr{R(\mathscr{N})})$
@@ -446,7 +484,17 @@ $f(\mathscr{N})$ is a ring.
 <br /><br />
 <i>Proof</i>.<br />
 <div class="proofend">&#9632;</div>
+<br /><br /><br /><br />
+Which of the statements are true if we replace $\mathscr{N}$ with $\mathscr{M}$ and $f^{-1}$ with
+$f$?
 <br /><br />
+The statements (a), (b), (c) all become false for the same reason. Since $A\cap B$ does NOT
+imply $f(A)\cap f(B)$, closure of set difference is lost.
+<br /><br />
+For the same reason, (d) and (e) also become false, since $f(\mathscr{R(\mathscr{M})})$
+is not a ring (and similarly for B-algebra).
+<br /><br />
+So in general, all statements become false.
 
 
 <br /><br />
