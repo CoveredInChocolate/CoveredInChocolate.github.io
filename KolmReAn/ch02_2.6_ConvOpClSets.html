@@ -198,23 +198,41 @@ Prove that every contact point of a set $M$ is either a limit point of $M$ or an
 <br /><br />
 <i>Proof</i>.<br />
 By Theorem 2, for some contact point $y$ for $M$, there exists a sequence $\{x_n\}$ of points in $M$ that
-converges to $y$. By the definition of convergence, there is an epsilon-ball $O_\eps(y)$ and some $N\in\N$
-such that all points in $\{x_n\}$ after $N$ lie inside $O_\eps(y)$. There are two exhaustive possibilities,<br />
-1) All points $x_k$ for $k\geq N$ are the same, in which case $y$ is an isolated point.<br />
-2) The points $x_k$ for $k\geq N$ are not constant, in which case UNSURE
+converges to $y$. By the definition of convergence, for every epsilon-ball $O_\eps(y)$ there is some $N\in\N$
+such that all points in $\{x_n\}$ after $x_N$ lie inside $O_\eps(y)$. There are two exhaustive possibilities,<br />
+1) Every $O_\eps(y)$ contains a single point, in which case $y$ is an isolated point.<br />
+2) Every $O_\eps(y)$ contains an infinite amount of points, in which case $y$ is a limit point.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 3</h3>
 Prove that if $x_n\rightarrow x$ and $y_n\rightarrow y$ as $n\rightarrow \infty$, then
-$\rho(x_n, y_n)\rightarrow\rho(x, y)$
+$\rho(x_n, y_n)\rightarrow\rho(x, y)$.
 <br /><br />
 <i>Proof</i>.<br />
+Using the identity from Problem 1 in section 2.5:
+$$
+|\rho(x, z) - \rho(y, u)| \leq \rho(x, y) + \rho(z, u).
+$$
+In our case, we set $x = x_n$, $z = y_n$, $y = x$ and $u = y$:
+$$
+|\rho(x_n, y_n) - \rho(x, y)| \leq \rho(x_n, x) + \rho(y_n, y).
+$$
+Taking the limit:
+$$
+\lim_{n\rightarrow\infty}|\rho(x_n, y_n) - \rho(x, y)| \leq \lim_{n\rightarrow\infty} \Big(\rho(x_n, x) + \rho(y_n, y)\Big) = 0
+$$
+Which leaves us with:
+$$
+\lim_{n\rightarrow\infty}|\rho(x_n, y_n) - \rho(x, y)| \leq 0
+$$
+which means $\rho(x_n, y_n)\rightarrow\rho(x, y)$ as $n\rightarrow\infty$.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 4</h3>
-asd
+Let $f$ be a mapping from one metric space to another: $f: X\rightarrow Y$. Prove that $f$ is continuous at a point $x_0$
+if and only if the sequence $\{y_n\} = \{f(x_n)\}$ converges to $y = f(x_0)$ when $x_n\rightarrow x_0$.
 <br /><br />
 <i>Proof</i>.<br />
 <div class="proofend">&#9632;</div>
