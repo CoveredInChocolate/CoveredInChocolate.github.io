@@ -45,113 +45,641 @@
     </tr>
     <tr>
         <td><b>Next</b>:</td>
-        <td><a href="_TEMPLATE.html">X.X XXX</a></td>
+        <td><a href="ch02_2.6_ConvOpClSets.html">2.6 Convergence. Open and Closed Sets</a></td>
     </tr>
 </table>
 <br /><br />
 
 <h3>Results</h3>
 
+<div class="thm">Definition 1</div><br />
+A <b>metric space</b> is a pair $(X, \rho)$ consisting of a set $X$ and a <b>distance</b>
+$\rho$, a single-valued, nonnegative, real function $\rho(x,y)$ defined for all $x,y\in X$
+which has the following three properties:
+$$
+\begin{align}
+&\text{1)}\;\; \rho(x, y) = 0 \;\Longleftrightarrow\; x=y
+\\&\\
+&\text{2) Symmetry:}\;\; \rho(x, y) = \rho(y, x)
+\\&\\
+&\text{3) Triangle inequality:}\;\; \rho(x, z) \leq\rho(x, y) +  \rho(y, z)
+\end{align}
+$$
+<br /><br /><br /><br />
+
+<div class="thm">Definition 2</div><br />
+A one-to-one mapping $f$ from one metric space $(X, \rho)$ to another metric space
+$(Y, \rho')$ is said to be an <b>isometric mapping</b> or an <b>isometry</b> if
+$$
+\rho(x_1, x_2) = \rho'(f(x_1), f(x_2))
+$$
+for all $x_1,x_2\in X$. Correspondingly, the spaces are said to be <b>isometric</b>
+to each other.
+<br /><br /><br /><br />
+
 <br /><br /><br /><br />
 
 
 <!-- ########################### PROBLEMS ########################### -->
 
-<h3>Problem 1</h3>
-asd
+<h3>Verification 1</h3>
+Working in $\R^n$ where the points are $n$-tuples $x = (x_1,\ldots,x_n)$
+and $y = (y_1,\ldots,y_n)$. The distance defined by the formula:
+$$
+\rho_0(x, y) = \max_{1\leq k\leq n}|x_k - y_k|,
+$$
+is a metric.
 <br /><br />
 <i>Proof</i>.<br />
+Verifying that the metric satisfies the three defining properties.
+<br /><br />
+(1). If $y = x$ then,
+$$
+\rho_0(x, x) = \max_{1\leq k\leq n}|x_k - x_k|  = \max_{1\leq k\leq n}|0| = 0.
+$$
+If $\rho_0(x, y) = 0$ then,
+$$
+0\leq \max_{1\leq k\leq n}|x_k - y_k| = 0
+\;\Rightarrow\;
+|x_k - y_k| = 0,\,\forall k
+\;\Rightarrow\;
+x_k - y_k = 0,\,\forall k
+\;\Rightarrow\;
+x_k = y_k,\,\forall k
+\;\Rightarrow\;
+x = y.
+$$
+<br /><br />
+(2) Verifying symmetry,
+$$
+\rho_0(x, y) = \max_{1\leq k\leq n}|x_k - y_k| = 
+\max_{1\leq k\leq n}|y_k - x_k| = \rho_0(y, x)
+$$
+<br /><br />
+(3) Verifying the triangle inequality with some point $z = (z_1,\ldots, z_n)$.
+$$
+\rho_0(x, y) = \max_{1\leq k\leq n}|x_k - y_k|
+= \max_{1\leq k\leq n}|x_k - z_k + z_k - y_k|
+$$
+$$
+\leq \max_{1\leq k\leq n}|x_k - z_k| + \max_{1\leq k\leq n}|z_k - y_k|
+= \rho_0(x, z) + \rho_0(z, y).
+$$
+<div class="proofend">&#9632;</div>
+<br /><br />
+
+<h3>Verification 2</h3>
+The set (or function space) $C_{[a,b]}$ of all continuous functions defined
+on the closed interval $[a,b]$, with distance:
+$$
+\rho(f, g) = \max_{a\leq t\leq b}|f(t) - g(t)|,
+$$
+is a metric.
+<br /><br />
+<i>Proof</i>.<br />
+Verifying that the metric satisfies the three defining properties.
+<br /><br />
+(1). If $g = f$ then,
+$$
+\rho(f, f) = \max_{a\leq t\leq b}|f(t) - f(t)|
+= \max_{a\leq t\leq b}|0| = 0
+$$
+If $\rho(f, g) = 0$ then,
+$$
+0\leq \max_{a\leq t\leq b}|f(t) - g(t)| = 0
+\;\Rightarrow\;
+|f(t) - g(t)| = 0,\,\forall t\in[a,b]
+\;\Rightarrow\;
+f(t) - g(t) = 0,\,\forall t\in[a,b]
+$$
+$$
+\;\Rightarrow\;
+f(t) = g(t) ,\,\forall t\in[a,b]
+\;\Rightarrow\;
+f(t) = g(t).
+$$
+<br /><br />
+(2) Verifying symmetry,
+$$
+\rho(f, g) = \max_{a\leq t\leq b}|f(t) - g(t)| = 
+\max_{a\leq t\leq b}|g(t) - f(t)| = \rho(g, f)
+$$
+<br /><br />
+(3) Verifying the triangle inequality with some function $h(t)$.
+$$
+\rho(f, g) = \max_{a\leq t\leq b}|f(t) - g(t)| =
+\max_{a\leq t\leq b}|f(t) - h(t) + h(t) - g(t)|
+ $$
+ $$
+ \leq
+\max_{a\leq t\leq b}|f(t) - h(t)| + \max_{a\leq t\leq b}|h(t) - g(t)| =
+\rho(f, h) + \rho(h, g)
+$$
+<div class="proofend">&#9632;</div>
+<br /><br />
+
+
+
+<h3>Problem 1</h3>
+Given a metric space $(X, \rho)$, prove that:
+<br /><br />
+(a) $|\rho(x,z) - \rho(y, u)|\leq \rho(x,y) + \rho(z, u)$ for $x,y,z,u\in X$.
+<br /><br />
+<i>Proof</i>.<br />
+Verifying with the following steps. Assuming $\rho(x,z) - \rho(y, u) \geq 0$
+which means $\rho(x,z) - \rho(y, u) = |\rho(x,z) - \rho(y, u)|$.
+$$
+\begin{align}
+\rho(x, z) &\leq \rho(x,y) + \rho(y, z)
+\\&\\
+&\leq \rho(x,y) + \rho(y,u) + \rho(u, z)
+\\&\\
+&= \rho(x,y) + \rho(y,u) + \rho(z, u)
+\end{align}
+$$
+Using the symmetric property on the last term. Subtracting gives us:
+$$
+\rho(x, z) - \rho(y,u) \leq \rho(x,y) + \rho(z, u)
+$$
+And since the left hand side is positive;
+$$
+|\rho(x, z) - \rho(y,u)| \leq \rho(x,y) + \rho(z, u).
+$$
+Now assume $\rho(x,z) - \rho(y, u) < 0$, so $\rho(y, u) - \rho(x,z) \geq 0$
+which means:
+$$
+\rho(y, u) - \rho(x, z) = |\rho(y, u) - \rho(x, z)| = |\rho(x,z) - \rho(y, u)|.
+$$
+Now we start by applying the triangle inequality to $\rho(y,u)$.
+\begin{align}
+\rho(y, u) &\leq \rho(y,x) + \rho(x, u)
+\\&\\
+&\leq \rho(y,x) + \rho(x, z) + \rho(z, u)
+\end{align}
+Subtracting:
+$$
+\rho(y, u) - \rho(x, z) \leq \rho(y,x) + \rho(z, u)
+$$
+From our assumption we can conclude that:
+$$
+|\rho(y, u) - \rho(x, z)| \leq \rho(y,x) + \rho(z, u).
+$$
+This holds true in both cases which are exhaustive, which proves the inequality.
+<div class="proofend">&#9632;</div>
+<br /><br />
+(b) $|\rho(x,z) - \rho(y, z)| \leq \rho(x,y)$ for $x,y,z\in X$.
+<br /><br />
+<i>Proof</i>.<br />
+Verifying with the following steps. Start by applying the triangle inequality to $\rho(x,z)$.
+$$
+\begin{align}
+\rho(x, z) &\leq \rho(x, y) + \rho(y, z) \;\Longrightarrow
+\\&\\
+\rho(x, z) - \rho(y, z) &\leq \rho(x, y).
+\end{align}
+$$
+We must consider two cases, first that $\rho(x, z) - \rho(y, z)\geq 0$, in which case:
+$$
+\rho(x, z) - \rho(y, z) = |\rho(x, z) - \rho(y, z)|,
+$$
+which means that:
+$$
+\rho(x, z) - \rho(y, z) \leq \rho(x, y)
+\;\Longrightarrow\;
+|\rho(x, z) - \rho(y, z) | \leq \rho(x, y).
+$$
+The second case is $\rho(x, z) - \rho(y, z) < 0$. Now we apply the triangle inequality to $\rho(y, z)$.
+$$
+\begin{align}
+\rho(y, z) &\leq \rho(y, x) + \rho(x, z) \;\Longrightarrow
+\\&\\
+\rho(y, z) - \rho(x, z) &\leq \rho(x, y).
+\end{align}
+$$
+Since we assumed $\rho(x, z) - \rho(y, z) < 0$, then $\rho(y, z) - \rho(x, z)\geq 0$. Now:
+$$
+\rho(y, z) - \rho(x, z) \leq \rho(x, y)
+\;\Longrightarrow\;
+|\rho(y, z) - \rho(x, z)| \leq \rho(x, y)
+\;\Longrightarrow\;
+|\rho(x, z) - \rho(y, z)| \leq \rho(x, y)
+$$
+In summary, we have shown that:
+$$
+|\rho(x,z) - \rho(y, z)| \leq \rho(x,y).
+$$
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 2</h3>
-asd
+Verify that:
+$$
+\left(\sum_{k=1}^n a_kb_k\right)^2 =
+\sum_{k=1}^n a_k^2\sum_{k=1}^n b_k^2 - \frac{1}{2}\sum_{i=1}^n\sum_{j=1}^n
+(a_ib_j - b_ia_j)^2
+$$
+and deduce the Cauchy-Schwarz inequality.
 <br /><br />
 <i>Proof</i>.<br />
+We will verify this in the case when $n=2$.
+$$
+\begin{align}
+\left(\sum_{k=1}^2 a_kb_k\right)^2 &=
+(a_1b_1 + a_2b_2)(a_1b_1 + a_2b_2)
+\\&\\
+&= a_1^2b_1^2 + a_2^2b_2^2 + 2a_1b_1a_2b_2
+\\&\\
+&= a_1^2b_1^2 + a_2^2b_2^2 + 0 + 2a_1b_1a_2b_2
+\\&\\
+&= a_1^2b_1^2 + a_2^2b_2^2 + (a_1^2b_2^2 + a_2^2b_1^2 - a_1^2b_2^2 - a_2^2b_1^2) + 2a_1b_1a_2b_2
+\\&\\
+&= a_1^2b_1^2 + a_2^2b_2^2 + a_1^2b_2^2 + a_2^2b_1^2 - a_1^2b_2^2 - a_2^2b_1^2 + 2a_1b_1a_2b_2
+\\&\\
+&= a_1^2b_1^2 + a_2^2b_2^2 + a_1^2b_2^2 + a_2^2b_1^2 - \frac{1}{2}(2a_1^2b_2^2 + 2a_2^2b_1^2 - 4a_1b_1a_2b_2)
+\\&\\
+&= a_1^2b_1^2 + a_1^2b_2^2 + a_2^2b_2^2 + a_2^2b_1^2 - \frac{1}{2}(2a_1^2b_2^2 + 2a_2^2b_1^2 - 4a_1b_1a_2b_2)
+\\&\\
+&= S_1 - \frac{1}{2}S_2
+\end{align}
+$$
+We can treat each of these separately.
+$$
+\begin{align}
+S_1 &= a_1^2b_1^2 + a_1^2b_2^2 + a_2^2b_2^2 + a_2^2b_1^2
+\\&\\
+&= a_1^2(b_1^2 + b_2^2) + a_2^2(b_1^2 + b_2^2)
+\\&\\
+&= a_1^2\sum_{k=1}^2b_k^2 + a_2^2\sum_{k=1}^2b_k^2
+\\&\\
+&= (a_1^2 + a_2^2)\left(\sum_{k=1}^2b_k^2\right)
+\\&\\
+&= \sum_{k=1}^2a_k^2\sum_{k=1}^2b_k^2
+\end{align}
+$$
+And for the other part:
+$$
+\begin{align}
+S_2 &= 2a_1^2b_2^2 + 2a_2^2b_1^2 - 4a_1b_1a_2b_2
+\\&\\
+&= a_1^2b_2^2 + a_2^2b_1^2 - 2a_1b_1a_2b_2 + a_1^2b_2^2 + a_2^2b_1^2 - 2a_1b_1a_2b_2
+\\&\\
+&= 0 + a_1^2b_2^2 + a_2^2b_1^2 - 2a_1b_1a_2b_2 + a_1^2b_2^2 + a_2^2b_1^2 - 2a_1b_1a_2b_2 + 0
+\\&\\
+&= a_1^2b_1^2 + a_1^2b_1^2 - 2a_1^2b_1^2 + a_1^2b_2^2 + a_2^2b_1^2 - 2a_1b_1a_2b_2\\
+&\;\;\;\; + a_1^2b_2^2 + a_2^2b_1^2 - 2a_1b_1a_2b_2 + a_2^2b_2^2 + a_2^2b_2^2 - 2a_2^2b_2^2
+\\&\\
+&= \sum_{i=1}^2a_i^2b_1^2 + a_1^2b_i^2 - 2a_ib_ia_1b_1 + a_i^2b_2^2 + a_2^2b_i^2 - 2a_ib_ia_2b_2
+\\&\\
+&= \sum_{i=1}^2\sum_{j=1}^2a_i^2b_j^2 + a_j^2b_i^2 - 2a_ib_ia_jb_j
+\\&\\
+&= \sum_{i=1}^2\sum_{j=1}^2(a_ib_j - a_jb_i)^2
+\end{align}
+$$
+Combining these steps together, we have shown that:
+$$
+\left(\sum_{k=1}^n a_kb_k\right)^2 =
+\sum_{k=1}^n a_k^2\sum_{k=1}^n b_k^2 - \frac{1}{2}\sum_{i=1}^n\sum_{j=1}^n
+(a_ib_j - b_ia_j)^2
+$$
+for $n=2$. The same idea can be expanded to general $n\in\N$. Now, on this form we can see that
+the squared term $(a_ib_j - b_ia_j)^2\geq 0$, so the second term will always be negative. From this
+we can derive the Cauchy-Schwarz inequality:
+$$
+\left(\sum_{k=1}^n a_kb_k\right)^2 =
+\sum_{k=1}^n a_k^2\sum_{k=1}^n b_k^2 - \frac{1}{2}\sum_{i=1}^n\sum_{j=1}^n
+(a_ib_j - b_ia_j)^2
+\leq
+\sum_{k=1}^n a_k^2\sum_{k=1}^n b_k^2.
+$$
+Expressed directly:
+$$
+\left(\sum_{k=1}^n a_kb_k\right)^2
+\leq
+\sum_{k=1}^n a_k^2\sum_{k=1}^n b_k^2.
+$$
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 3</h3>
-asd
+Verify that
+$$
+\left(\int_a^b x(t)y(t)dt\right)^2
+=
+\int_a^b x^2(t)dt\int_a^b y^2(t)dt
+- \frac{1}{2}\int_a^b\int_a^b\big[x(s)y(t) - y(s)x(t)\big]^2dsdt
+$$
+and deduce Schwarz's inequality:
+$$
+\left(\int_a^b x(t)y(t)dt\right)^2 \leq \int_a^b x^2(t)dt\int_a^b y^2(t)dt
+$$
+<br /><br />
+Instead of solving this problem as laid out in the book, we will use a different, direct method.
+We will use the following Theorem not mentioned in the book.
+<br /><br />
+<div><b>Theorem</b> - Sign of quadratic functions between roots.</div><br />
+Let $a\in\R$ be a strictly positive number, and let $\alpha,\beta$ where $\alpha < \beta$
+be roots of the quadratic function:
+$$
+Q(x) = ax^2 + bx + c
+$$
+whose discriminant $b^2 - 4ac > 0$. Then:
+$$
+\left\{
+\begin{matrix}
+Q(x) < 0 & \alpha < x < \beta \\
+Q(x) > 0 & x < \alpha\;\text{or}\; x > \beta
+\end{matrix}
+\right.
+$$
+<i>Comment</i>: Stated without proof. The important part is that a positive discriminant
+implies that the polynomial will have negative values.
 <br /><br />
 <i>Proof</i>.<br />
+The functions $f(t)$ and $g(t)$ are defined on the closed interval $[a,b]$. For any real
+numbers, $0 \leq (xf(t) + g(t))^2$. Since this is always positive:
+\begin{align}
+0&\leq \int_a^b(xf(t) + g(t))^2dt
+\\&\\
+&= \int_a^b(x^2f^2(t) + 2xf(t)g(t) + g^2(t)dt
+\\&\\
+&= x^2\int_a^b(f(t))^2dt + 2x\int_a^b f(t)g(t)dt + \int_a^b (g(t))^2dt
+\\&\\
+&= Ax^2 + Bx + C.
+\end{align}
+We define the polynomial $P(x) = Ax^2 + Bx + C$, where
+$$
+A = \int_a^b(f(t))^2dt
+$$
+$$
+B = 2\int_a^b f(t)g(t)dt
+$$
+$$
+C = \int_a^b (g(t))^2dt.
+$$
+and from the definition $P(x)\geq 0$ for all $x\in\R$. Assume now for contradiction
+that the discriminant $B^2 - 4AC > 0$. Then there will be two roots such that
+$P(x) > 0$ and $P(x) < 0$ for certain values. But since $P(x) \geq 0$, this is a contradiction.
+Hence $B^2 - 4AC\leq 0$ which implies $B^2\leq 4AC$ and that gives us:
+$$
+\left(2\int_a^b f(t)g(t)dt\right)^2 \leq 4\left(\int_a^b(f(t))^2dt\right)\left(\int_a^b (g(t))^2dt\right)
+$$
+$$
+\left(\int_a^b f(t)g(t)dt\right)^2 \leq
+\int_a^b(f(t))^2dt\int_a^b (g(t))^2dt
+$$
+which is the Schwarz inequality.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 4</h3>
-asd
+<!-- What goes wrong in the following example, if $p < 1$. Hint: Minkowski's inequality fails for $p < 1$. -->
+Working with $n$-tuples, $x = (x_1,\ldots, x_n)$ and $y = (y_1,\ldots, y_n)$ and the distance:
+$$
+\rho_p(x, y) = \left(\sum_{k=1}^n|x_k - y_k|^p\right)^{1/p}.
+$$
+Show that Minkowski's inequality fails for $p < 1$ (and because of that so does the triangle inequality).
+Minkowski's inequality:
+$$
+\left(\sum_{k=1}^n|a_k + b_k|^pdt\right)^{1/p}
+\leq
+\left(\sum_{k=1}^n|a_k|^p\right)^{1/p} + \left(\sum_{k=1}^n|b_k|^p\right)^{1/p}
+$$
 <br /><br />
 <i>Proof</i>.<br />
+Will show a counterexample using $n=2$ and $p=1/2$.
+Let $x = (1, 2)$, $y = (3, 5)$ and $z = (6, 6)$. We define:
+$$
+a = x - y = (-2, -3),
+\quad
+b = y - z = (-3, -1)
+$$
+<br /><br />
+First showing that it works for $p=1$. We can calculate the left hand side:
+$$
+\left(\sum_{k=1}^n|a_k + b_k|^pdt\right)^{1/p}
+= (|-2 - 3| + |-3 - 1|) = |-5| + |-4| = 5 + 4 = 9
+$$
+Now, each of the sums on the right hand side:
+$$
+\left(\sum_{k=1}^n|a_k|^p\right)^{1/p}
+= |-2| + |-3| = 2 + 3 = 5
+$$
+$$
+\left(\sum_{k=1}^n|b_k|^p\right)^{1/p}
+= |-3| + |-1| = 3 + 1 = 4
+$$
+In this case the right hand side sums to 9 which gives us equality.
+<br /><br />
+Now, we set $p=1/2$, so $1/p = 2$. We can calculate the left hand side:
+$$
+\left(\sum_{k=1}^n|a_k + b_k|^pdt\right)^{1/p}
+= \left(\sqrt{|-2 - 3|} + \sqrt{|-3 - 1|}\right)^2 = \left(\sqrt{|-5|} + \sqrt{|-4|}\right)^2 = (\sqrt{5} + 2)^2 \approx 17.944
+$$
+Now, each of the sums on the right hand side:
+$$
+\left(\sum_{k=1}^n|a_k|^p\right)^{1/p}
+= \left(\sqrt{|-2|} + \sqrt{|-3|}\right)^2 = (\sqrt{2} + \sqrt{3})^2 \approx 9.898
+$$
+$$
+\left(\sum_{k=1}^n|b_k|^p\right)^{1/p}
+= \left(\sqrt{|-3|} + \sqrt{|-1|}\right)^2 = (\sqrt{3} + 1)^2 \approx 7.464
+$$
+Now the right hand sums up to 17.363 < 17.944, which shows that Minkowski's inequality fails for $p = 1/2$.
+(In fact, for $p < 1$ the reverse inequality holds and can be proved).
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 5</h3>
-asd
+Prove that the following metric:
+$$
+\rho_0(x, y) = \max_{1\leq k\leq n}|x_k - y_k|
+$$
+is the limiting case of this metric:
+$$
+\rho_p(x, y) = \left(\sum_{k=1}^n|x_k - y_k|^p\right)^{1/p}
+$$
+in the sense that:
+$$
+\rho_0(x, y) = \max_{1\leq k\leq n}|x_k - y_k| = \lim_{p\rightarrow\infty}\left(\sum_{k=1}^n|x_k - y_k|^p\right)^{1/p}
+$$
 <br /><br />
 <i>Proof</i>.<br />
+Let $1\leq M\leq n$ be the index such that $|x_M-y_M|$ is the largest value. Calculating the limit:
+\begin{align}
+\lim_{p\rightarrow\infty}\left(\sum_{k=1}^n|x_k - y_k|^p\right)^{1/p} &=
+\lim_{p\rightarrow\infty}\left(|x_1-y_1|^p+|x_2-y_2|^p+\ldots+|x_n-y_n|^p\right)^{1/p}
+\\&\\
+&= \lim_{p\rightarrow\infty}\left(|x_M-y_M|^p\bigg[\frac{|x_1-y_1|^p}{|x_M-y_M|^p}+\frac{|x_2-y_2|^p}{|x_M-y_M|^p}
++\ldots+\frac{|x_n-y_n|^p}{|x_M-y_M|^p}\bigg]\right)^{1/p}
+\\&\\
+&= \lim_{p\rightarrow\infty}\left(|x_M-y_M|^p\bigg[\left(\frac{|x_1-y_1|}{|x_M-y_M|}\right)^p
++\left(\frac{|x_2-y_2|}{|x_M-y_M|}\right)^p
++\ldots + \left(\frac{|x_n-y_n|}{|x_M-y_M|}\right)^p\bigg]\right)^{1/p}
+\\&\\
+&= \lim_{p\rightarrow\infty}\left(|x_M-y_M|^p\left[
+\alpha_1^p
++\alpha_2^p
++\ldots + 1 + \ldots + \alpha_n^p\right]\right)^{1/p}
+\\&\\
+&= \lim_{p\rightarrow\infty}\left(|x_M-y_M|^p\right)^{1/p}
+\cdot
+\lim_{p\rightarrow\infty}\left(
+\alpha_1^p
++\alpha_2^p
++\ldots + 1 + \ldots + \alpha_n^p\right)^{1/p}
+\\&\\
+&= |x_M-y_M|\cdot 1
+\\&\\
+&= |x_M-y_M|
+\end{align}
+which can also be expressed as $\max_{1\leq k\leq n}|x_k - y_k|$.
+(All the terms $\alpha^p_i < 1$ and so tend to 0 as $p\rightarrow\infty$).
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 6</h3>
-asd
+Starting from <a href="https://proofwiki.org/wiki/Young%27s_Inequality_for_Products" target="_blank">Young's inequality</a>:
+$$
+ab\leq \frac{a^p}{p} + \frac{b^q}{q},
+$$
+which applies to arbitrary positive $a$ and $b$ whenever $p>1$ and $q>1$ and
+$$
+\frac{1}{p} + \frac{1}{q} = 1,
+$$
+deduce Hölder's integral inequality:
+$$
+\int_a^b x(t)y(t)dt \leq \left(\int_a^b|x(t)|^pdt\right)^{1/p}\left(\int_a^b|y(t)|^qdt\right)^{1/q}
+$$
+which is valid for any functions $x(t)$ and $y(t)$ such that the integrals on the right exist.
 <br /><br />
 <i>Proof</i>.<br />
+Define:
+$$
+a = \frac{|x(t)|}{\left(\int_a^b |x(t)|^p dt\right)^{1/p}},
+\quad
+b = \frac{|y(t)|}{\left(\int_a^b |y(t)|^q dt\right)^{1/q}}
+$$
+which are both positive values. Applying Young's inequality:
+$$
+ab = \frac{|x(t)y(t)|}{\left(\int_a^b |x(t)|^p dt\right)^{1/p}\left(\int_a^b |y(t)|^q dt\right)^{1/q}}
+\leq \frac{|x(t)|^p}{p\int_a^b |x(t)|^p dt}
++ \frac{|y(t)|^q}{q\int_a^b |y(t)|^q dt}
+$$
+Using a property not mentioned in the book, but for positive, measurable functions, integrals are monotone,
+i.e. they preserve inequalities. We take the integral on both sides, and note that the denominators are
+constants with regard to the integrals, so we get:
+$$
+\frac{\int_a^b|x(t)y(t)|dt}{\left(\int_a^b |x(t)|^p dt\right)^{1/p}\left(\int_a^b |y(t)|^q dt\right)^{1/q}}
+\leq \frac{\int_a^b|x(t)|^pdt}{p\int_a^b |x(t)|^p dt}
++ \frac{\int_a^b|y(t)|^qdt}{q\int_a^b |y(t)|^q dt}
+= \frac{1}{p} + \frac{1}{q} = 1
+$$
+From this inequality, we get:
+$$
+\int_a^b|x(t)y(t)|dt \leq \left(\int_a^b |x(t)|^p dt\right)^{1/p}\left(\int_a^b |y(t)|^q dt\right)^{1/q}
+$$
+Since $x(t)y(t)\leq|x(t)y(t)|$ and by the monotoncity of integrals, we get Hölder's inequality as stated in the book:
+$$
+\int_a^b x(t)y(t) dt \leq \left(\int_a^b |x(t)|^p dt\right)^{1/p}\left(\int_a^b |y(t)|^q dt\right)^{1/q}
+$$
+which holds when:
+$$
+\frac{1}{p} + \frac{1}{q} = 1.
+$$
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 7</h3>
-asd
+Use Hölder's integral inequality to prove Minkowski's integral inequality.
+$$
+\left(\int_a^b|x(t) + y(t)|^pdt\right)^{1/p}
+\leq
+\left(\int_a^b|x(t)|^p\right)^{1/p} + \left(\int_a^b|y(t)|^p\right)^{1/p},\quad (p\geq 1).
+$$
 <br /><br />
 <i>Proof</i>.<br />
+For Hölder's inequality, note that if we fix $1/p$, then:
+$$
+\frac{1}{q} = 1 - \frac{1}{p}
+\;\;\Longrightarrow\;\;
+q = \frac{p}{p-1}.
+$$
+Taking the $p$-th power of the integral.
+\begin{align}
+I^p = \int_a^b|x(t) + y(t)|^pdt &= \int_a^b|x(t) + y(t)||x(t) + y(t)|^{p-1}dt
+\\&\\
+&\leq \int_a^b\Big(|x(t)| + |y(t)|\Big)|x(t) + y(t)|^{p-1}dt
+\\&\\
+&= \int_a^b |x(t)||x(t) + y(t)|^{p-1}dt + \int_a^b |y(t)||x(t) + y(t)|^{p-1}dt
+\\&\\
+&\leq
+\left(\int_a^b|x(t)|^pdt\right)^{1/p}
+\left(\int_a^b|x(t) + y(t)|^p\right)^{1-1/p}
+\tag{Hölder's ineq.} \\
+&\;\;\;+ 
+\left(\int_a^b|y(t)|^pdt\right)^{1/p}
+\left(\int_a^b|x(t) + y(t)|^p\right)^{1-1/p}
+\end{align}
+When applying Hölder's inequality, we get
+$$
+\left(|x(t) + y(t)|^{p-1}\right)^q =
+\left(|x(t) + y(t)|^{p-1}\right)^{\frac{p}{p-1}} = 
+|x(t) + y(t)|^p
+$$
+We have shown:
+$$
+\int_a^b|x(t) + y(t)|^pdt
+\leq
+\left(\int_a^b|x(t) + y(t)|^p\right)^{1-1/p}
+\Bigg(
+\left(\int_a^b|x(t)|^pdt\right)^{1/p}
++ 
+\left(\int_a^b|y(t)|^pdt\right)^{1/p}
+\Bigg)
+$$
+Rewriting the integral as a fraction.
+$$
+\int_a^b|x(t) + y(t)|^pdt
+\leq
+\frac{\int_a^b|x(t) + y(t)|^pdt}{\left(\int_a^b|x(t) + y(t)|^p\right)^{1/p}}
+\Bigg(
+\left(\int_a^b|x(t)|^pdt\right)^{1/p}
++ 
+\left(\int_a^b|y(t)|^pdt\right)^{1/p}
+\Bigg)
+$$
+From this, Minkowski's inequality follows immediately.
+$$
+\left(\int_a^b|x(t) + y(t)|^pdt\right)^{1/p}
+\leq
+\left(\int_a^b|x(t)|^p\right)^{1/p} + \left(\int_a^b|y(t)|^p\right)^{1/p}
+$$
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 8</h3>
-asd
+Exhibit an isometry between spaces $C_{[0,1]}$ and $C_{[1,2]}$.
 <br /><br />
-<i>Proof</i>.<br />
-<div class="proofend">&#9632;</div>
-<br /><br />
-
-<h3>Problem 9</h3>
-asd
-<br /><br />
-<i>Proof</i>.<br />
-<div class="proofend">&#9632;</div>
-<br /><br />
-
-<h3>Problem 10</h3>
-asd
-<br /><br />
-<i>Proof</i>.<br />
-<div class="proofend">&#9632;</div>
-<br /><br />
-
-<h3>Problem 11</h3>
-asd
-<br /><br />
-<i>Proof</i>.<br />
-<div class="proofend">&#9632;</div>
+<i>Answer</i>.<br />
+Recall that the metric for function spaces is:
+$$
+\rho_A(h,g) = \max_{t\in[0,1]}|h(t) - g(t)|
+$$
+$$
+\rho_B(h,g) = \max_{t\in[1,2]}|h(t) - g(t)|
+$$
+We need to find some function $f$ such that
+$$
+\rho_A(h,g) = \rho_B(f(h),f(g))
+$$
+for all functions $h,g\in C_{[1,2]}$. If we define:
+$$
+f(k(t)) = k(t-1),
+$$
+for any continuous function $k(t)$, we map all function values from
+$C_{[1,2]}$ back to $C_{[0,1]}$ and get an isometry.
 <br /><br />
 
-<h3>Problem 12</h3>
-asd
-<br /><br />
-<i>Proof</i>.<br />
-<div class="proofend">&#9632;</div>
-<br /><br />
-
-
-<br /><br />
-<br /><br />
-<br /><br />
-<br /><br />
-<br /><br />
-<br /><br />
-<br /><br />
-<br /><br />
-<br /><br />
-<br /><br />
 <br /><br />
 <br /><br />
 <br /><br />
