@@ -52,27 +52,162 @@
 
 <h3>Results</h3>
 
+<b>Open Ball</b><br />
+An open sphere/ball $S(x_0, r)$ is the set of points $x\in X$ satisfying the inequality:
+$$
+\rho(x_0, x) < r.
+$$
+where $\rho$ is a metric. The fixed point $x_0$ is the center of the sphere, and $r$ is the radius.
+<br /><br /><br /><br />
+
+<b>Closed Ball</b><br />
+An closed sphere/ball $S[x_0, r]$ is the set of points $x\in X$ satisfying the inequality:
+$$
+\rho(x_0, x) \leq r.
+$$
+where $\rho$ is a metric. The fixed point $x_0$ is the center of the sphere, and $r$ is the radius.
+<br /><br /><br /><br />
+
+<b>Contact Point and Closure</b><br />
+A point $x\in X$ is a contact point for a set $M\subset X$ if every neighborhood of $x$ (epsilon-ball around $x$)
+contains at least one point of $M$. (For instance, the point 1 is a contact point for $(0,1)$).
+<br /><br />
+The set of all contact points is called the closure of $M$ and denoted by $[M]$. For instance, $[(0,1)] = [0,1]$.
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 1</div><br />
+The closure operator $[\cdot]$ has the following properties:
+<br /><br />
+1) If $M\subset N$ then $[M]\subset[N]$<br />
+2) $[[M]] = [M]$<br />
+3) $[M\cup N] = [M]\cup[N]$<br />
+4) $[\emptyset] = \emptyset$
+<!-- <br /><br />
+<i>Proof</i>.<br />
+1) This is obvious.
+<br /><br />
+2) Let $x\in[[M]]$. Then any given neighborhood $O_\eps(x)$ contains a point $x_1\in[M]$. Consider the sphere
+$O_{\eps_1}(x_1)$ of radius:
+$$
+\eps_1 = \eps - \rho(x, x_1).
+$$
+Clearly, $O_{\eps_1}$ is contained in $O_\eps(x)$. In fact, if $z\in O_{\eps_1}$ then $\rho(z, x_1)<\eps_1$
+and hence, since $\rho(x, x_1) = \eps-\eps_1$, it follows from the triangle inequality that
+$$
+\rho(z, x) < \eps_1 + (\eps - \eps_1) = \eps,
+$$
+i.e., $z\in O_\eps(x)$.
+<br /><br />
+3) asd
+<br /><br />
+4) asd
+<br /><br />
+<div class="proofend">&#9632;</div> -->
+<br /><br /><br /><br />
+
+<b>Convergence</b><br />
+A sequence $\{x_n\}$ in a metric space converges to a point $x\in X$ if every neighborhood $O_\eps(x)$
+contains all points of the sequence after some $N\in\N$. The point $x$ is called the limit of the
+sequence $\{x_n\}$.
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 2</div><br />
+A necessary and sufficient condition for a point $x$ to be a contact point of a set $M$ is that there
+exist a sequence $\{x_n\}$ of points of $M$ converging to $x$.
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 2'</div><br />
+A necessary and sufficient condition for a point $x$ to be a limit point of a set $M$ is that there
+exist a sequence $\{x_n\}$ of distinct points of $M$ converging to $x$.
+<br /><br /><br /><br />
+
+<b>Dense subset</b><br />
+Let $A$ and $B$ be two subsets of $X$. $A$ is dense in $B$ if $[A]\supset B$. And $A$ is said to be
+dense everywhere if $[A] = X$.<br />
+(Example: $\Q$ is dense everywhere in $\R$.)
+<br /><br /><br /><br />
+
+<div class="thm">Definition</div><br />
+A metric space is said to be <b>separable</b> if it has a countable everywhere dense subset.
+<br /><br /><br /><br />
+
+<b>Closed Sets</b><br />
+A subset $M$ of a metric space $(X,\rho)$ is <i>closed</i> if it coincides with its own closure,
+that is, $[M] = M$. Or in other words, it is closed if it contains all it's limit points.
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 3</div><br />
+The intersection of an arbitrary number of closed sets is closed. The union of a <b>finite</b> number of
+closed sets is closed.
+<br /><br /><br /><br />
+
+<b>Open Sets</b><br />
+A point $x$ is called an interior point of a set $M$ if $x$ has a neighborhood $O_\eps(x)\subset M$, i.e.
+it has a neighborhood consisting entirely of points of $M$. A set is said to be <i>open</i> if all its
+points are interior points.
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 4</div><br />
+A subset $M$ of a metric space $(X, \rho)$ is open if and only if its complement $X-M$ is closed.
+<br /><br /><br /><br />
+
+<div class="thm">Corollary</div><br />
+The empty set $\emptyset$ and the whole space $X$ are open sets. (Note: they also satisfy the conditions
+for being closed sets, so they are both).
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 5</div><br />
+The union of an arbitrary number of open sets is open. The intersection of a <b>finite</b> number of open sets is open.
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 6</div><br />
+Every open set $G$ on the real line is the union of a finite or countable system of pairwise disjoint open intervals.
+<br /><br /><br /><br />
+
+<div class="thm">Corollary</div><br />
+Every closed set on the real line can be obtained by deleting a finite or coutnable system of pairwise disjoint
+intervals from the line.
+<br /><br /><br /><br />
+<!-- $$
+S\in\N^D, n\cup d\in S
+$$ -->
+
+
 <br /><br /><br /><br />
 
 
 <!-- ########################### PROBLEMS ########################### -->
 
 <h3>Problem 1</h3>
-asd
+Give an example of a metric space $(X, \rho)$ and two open spheres $S(x, r_1)$ and $S(y, r_2)$ in $X$ such
+that $S(x,r_1)\subset S(y, r_2)$ although $r_1 > r_2$.
 <br /><br />
-<i>Proof</i>.<br />
+<i>Solution</i>.<br />
+Let $X = U(1)\subset\R^2$ where $U(1)$ denotes the unit circle, i.e. the set $\{(x,y)\in\R\,|\, x^2 + y^2 < 1\}$.
+The distance is the standard Euclidean metric:
+$$
+\rho(x,y) = \sqrt{x^2 + y^2}
+$$
+Now, select two points $x = y = (0,0)$, and set $r_1 = 2$ and $r_2 = 1$. Then $r_1 > r_2$, but
+$S(x,r_1)\subset S(y, r_2)$. (The sets are restricted to a subspace, and in that subspace they are the same).
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 2</h3>
-asd
+Prove that every contact point of a set $M$ is either a limit point of $M$ or an isolated point of $M$.
 <br /><br />
 <i>Proof</i>.<br />
+By Theorem 2, for some contact point $y$ for $M$, there exists a sequence $\{x_n\}$ of points in $M$ that
+converges to $y$. By the definition of convergence, there is an epsilon-ball $O_\eps(y)$ and some $N\in\N$
+such that all points in $\{x_n\}$ after $N$ lie inside $O_\eps(y)$. There are two exhaustive possibilities,<br />
+1) All points $x_k$ for $k\geq N$ are the same, in which case $y$ is an isolated point.<br />
+2) The points $x_k$ for $k\geq N$ are not constant, in which case UNSURE
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 3</h3>
-asd
+Prove that if $x_n\rightarrow x$ and $y_n\rightarrow y$ as $n\rightarrow \infty$, then
+$\rho(x_n, y_n)\rightarrow\rho(x, y)$
 <br /><br />
 <i>Proof</i>.<br />
 <div class="proofend">&#9632;</div>
