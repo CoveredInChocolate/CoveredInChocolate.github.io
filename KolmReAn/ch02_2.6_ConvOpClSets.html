@@ -231,10 +231,17 @@ which means $\rho(x_n, y_n)\rightarrow\rho(x, y)$ as $n\rightarrow\infty$.
 <br /><br />
 
 <h3>Problem 4</h3>
-Let $f$ be a mapping from one metric space to another: $f: X\rightarrow Y$. Prove that $f$ is continuous at a point $x_0$
+Let $f$ be a mapping from one metric $(X,\rho)$ space to another $(Y,\rho')$, $f: X\rightarrow Y$. Prove that $f$ is continuous at a point $x_0$
 if and only if the sequence $\{y_n\} = \{f(x_n)\}$ converges to $y = f(x_0)$ when $x_n\rightarrow x_0$.
 <br /><br />
 <i>Proof</i>.<br />
+Showing implication both ways.
+<br /><br />
+$\Rightarrow$) Assume $f$ is continuous at $x_0$: for any $\eps>0$ there exists some $\delta > 0$ such that
+$\rho'(f(x), f(x_0)) < \eps$ when $\rho(x, x_0) < \delta$. Now we assume that $x_n\rightarrow x$, so for every $\eps > 0$
+there exists some $N\in\N$ such that $\rho(x_n, x_0) < \eps$ when $n\geq N$.
+<br /><br />
+$\Leftarrow$) Assume that $x_n\rightarrow x_0$ and that $f(x_n)\rightarrow f(x_0)$.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
