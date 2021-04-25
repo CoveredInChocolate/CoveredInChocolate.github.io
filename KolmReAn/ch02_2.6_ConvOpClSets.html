@@ -241,33 +241,82 @@ $\Rightarrow$) Assume $f$ is continuous at $x_0$: for any $\eps>0$ there exists 
 $\rho'(f(x), f(x_0)) < \eps$ when $\rho(x, x_0) < \delta$. Now we assume that $x_n\rightarrow x$, so for every $\eps > 0$
 there exists some $N\in\N$ such that $\rho(x_n, x_0) < \eps$ when $n\geq N$.
 <br /><br />
-$\Leftarrow$) Assume that $x_n\rightarrow x_0$ and that $f(x_n)\rightarrow f(x_0)$.
+$\Leftarrow$) Assume that $x_n\rightarrow x_0$ and that $f(x_n)\rightarrow f(x_0)$ as $n\rightarrow\infty$.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 5</h3>
-asd
+Prove the statements.
+<br /><br />
+a) The closure of any set $M$ is closed.
 <br /><br />
 <i>Proof</i>.<br />
+Any closed set coincides with its closure, and since by Theorem 1, $[[M]] = [M]$, then $[M]$ is a closed set.
+<div class="proofend">&#9632;</div>
+<br /><br />
+b) $[M]$ is the smallest closed set containing $M$.
+<br /><br />
+<i>Proof</i>.<br />
+Assume $M$ is a closed set. Then $[M] = M$ which obviously is the smallest set containing $M$.
+<br /><br />
+Now assume that $M$ is an open set. Let $C$ be some arbitrary closed set such that $M\subset C$. Assume $y\in[M]$,
+then it is a limit point for $M$. Since a $M\subset C$ and a closed set contains all its limit points, it follows that
+$y\in C$, which shows that $[M]\subset C$. Since any closed set $C$ containing $M$ also contains $[M]$, it shows that
+$[M]$ is the smallest closed set.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 6</h3>
-asd
+Is the union of infinitely many closed sets necessarily closed? How about the intersection of infinitely many
+open sets? Give examples.
 <br /><br />
 <i>Proof</i>.<br />
+The countable union of closed sets can be an open set, as shown in Problem 7, in section 1.1.
+$$
+\bigcup_{n=1}^\infty \left[a + \frac{1}{n}, b - \frac{1}{n}\right] = (a, b)
+$$
+And the countable intersection of open sets can be a closed sets, also shown in Problem 7.
+$$
+\bigcup_{n=1}^\infty \left(a - \frac{1}{n}, b + \frac{1}{n}\right) = [a, b]
+$$
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 7</h3>
-asd
+Prove directly that the point 1/4 belongs to the Cantor set, $F$, although it is not an end point of any of the open
+intervals deleted in constructing $F$.
 <br /><br />
 <i>Proof</i>.<br />
+As noted in the text, any $x\in[0,1]$ can be written in ternary notation:
+$$
+x = \frac{a_1}{3} + \frac{a_2}{3^2} + \ldots + \frac{a_2}{3^n} + \ldots,
+$$
+where $a_i$ can only take values $0, 1, 2$. The $x$ belongs to $F$ if and only if none of the $a_i$ equals 1.
+If write 1/4 in this form it becomes:
+$$
+\frac{1}{4} = \frac{0}{3} + \frac{2}{3^2} + \frac{0}{3^3} + \frac{2}{3^4} + \frac{0}{3^5} + \frac{2}{3^6}  + \ldots,
+$$
+or in decimal form:
+$$
+\frac{1}{4} = 0.0202020202\ldots
+$$
+Since there are no 1s, this shows that $1/4\in F$.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 8</h3>
-asd
+Let $F$ be the Cantor set. Prove the following.
+<br /><br />
+(a) The points of the first kind;
+$$
+0, 1, \frac{1}{3}, \frac{2}{3}, \frac{1}{9}, \frac{2}{9}, \frac{7}{9}, \frac{8}{9},\ldots
+$$
+form an everywhere dense subset of $F$.
+<br /><br />
+<i>Proof</i>.<br />
+<div class="proofend">&#9632;</div>
+<br /><br />
+(b) The numbers of the form $t_1 + t_2$, where $t_1,t_2\in F$, fill the whole interval $[0,2]$. 
 <br /><br />
 <i>Proof</i>.<br />
 <div class="proofend">&#9632;</div>
