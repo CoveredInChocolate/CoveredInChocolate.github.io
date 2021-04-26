@@ -323,16 +323,68 @@ form an everywhere dense subset of $F$.
 <br /><br />
 
 <h3>Problem 9</h3>
-asd
+Given a metric space $(X,\rho)$, let $A\subset X$ and $x\in X$. Then the number
+$$
+\rho(A, x) = \inf_{a\in A}\rho(a, x)
+$$
+is called the <i>distance between $A$ and $x$</i>. Prove the following statements:
+<br /><br />
+(a) $x\in A$ implies $\rho(A, x) = 0$, but not conversely.
+<br /><br />
+<i>Proof</i>.<br />
+Assume $x\in A$. Since the distance is nonnegative, $\inf_{a\in A}\rho(a, x)\geq 0$
+then $a = x$ so $\inf_{a\in A}\rho(a, x) = \rho(x, x) = 0$.
+<br /><br />
+To show that the converse is not true consider the following counterexample.
+Let $X = \R$, let $A = (0,1)$ and let $x = 1$. Then $x\not\in A$, but
+for any $\eps > 0$ we can find some $a\in A$ such that $|a - 1| < \eps$, which means $\inf_{a\in A}\rho(a, x) = 0$.
+<div class="proofend">&#9632;</div>
+<br /><br />
+(b) $\rho(A, x)$ is a continuous function of $x$ (for fixed $A$).
 <br /><br />
 <i>Proof</i>.<br />
 <div class="proofend">&#9632;</div>
 <br /><br />
-
-<h3>Problem 10</h3>
-asd
+(c) $\rho(A, x) = 0$ if and only if $x$ is a contact point of $A$.
 <br /><br />
 <i>Proof</i>.<br />
+$\Rightarrow$) Assume $\rho(A, x) = 0$. Then for any $\eps > 0$, the point $O_\eps(x)$ will contain points
+in $A$ and is therefore a contact point of $A$.
+<br /><br />
+$\Leftarrow$) Assume $x\in A$ is a contact point. Assume further that $A$ is closed.
+Then $x\in A$, since a closed point contains all its contact points. Then by (a),
+the distance from $A$ to $x$ is 0. Assume now that $A$ is open. Let $x$ be a contact point. By definition,
+for any $\eps > 0$ the ball $O_\eps(x)$ will contain points from $A$, so $\rho(A, x) < \eps$. Since
+this is true for any $\eps > 0$, this means that $\rho(A, x) = 0$.
+<div class="proofend">&#9632;</div>
+<br /><br />
+(d) $[A] = A\cup M$, where $M$ is the set of all points $x$ such that $\rho(A, x) = 0$.
+<br /><br />
+<i>Proof</i>.<br />
+$\subset$) Assume $x\in[A]$. Since $[A]$ is closed it contains all its contact points, so $\rho(A, x) = 0$,
+which means $x\in M \subset A\cup M$. Hence $[A]\subset A\cup M$.
+<br /><br />
+$\supset$) Assume $x\in A$. Since $A\subset[A]$ then $x\in [A]$. Assume now that $x\in M$ and $x\not\in A$.
+Then by definition of $M$, $\rho(A, x) = 0$ which means $x$ is a contact point for $A$ by (c), which also
+means $x\in[A]$. It follows that $A\cup M\subset[A]$.
+<div class="proofend">&#9632;</div>
+<br /><br />
+
+<h3>Problem 10</h3>
+Let $A$ and $B$ be two subsets of a metric space $(X,\rho)$. Then the number
+$$
+\rho(A, B) = \inf_{a\in A, b\in B}\rho(a, b)
+$$
+is called the <i>distance between $A$ and $B$</i>. Show that $\rho(A, B) = 0$ if $A\cap B\not=\emptyset$,
+but not conversely.
+<br /><br />
+<i>Proof</i>.<br />
+Let $x\in A\cap B$. Then by 9(a), $\rho(x, A) = 0$ and $\rho(x, B) = \rho(B, x) = 0$. From the triangle
+inequality, $\rho(A, B) \leq \rho(A, x) + \rho(x, B) = 0 + 0 = 0$ which shows that $\rho(A, B) = 0$.
+<br /><br />
+Showing that the converse is not true with a counterexample.
+Let $X = \R$, let $A = (0,1)$ and let $B = [1, 2)$. Then as shown above, $\rho(A, 1) = 0$
+and since $1\in B$, $\rho(A, B) = 0$.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
