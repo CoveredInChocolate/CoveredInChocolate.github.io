@@ -251,15 +251,28 @@ if and only if the sequence $\{y_n\} = \{f(x_n)\}$ converges to $y = f(x_0)$ whe
 <i>Proof</i>.<br />
 Showing implication both ways.
 <br /><br />
-$\Rightarrow$) Assume $f$ is continuous at $x_0$: for any $\eps>0$ there exists some $\delta > 0$ such that
-$\rho'(f(x), f(x_0)) < \eps$ when $\rho(x, x_0) < \delta$. Now we assume that $x_n\rightarrow x$, so for every $\eps > 0$
-there exists some $N\in\N$ such that $\rho(x_n, x_0) < \eps$ when $n\geq N$.
+$\Rightarrow$) Assume $f$ is continuous and $x_n\rightarrow x_0$. For any $\eps > 0$, then
+$\rho'(f(x_n), f(x_0)) < \eps$ since, by continuity of $f$, there exists some $\delta > 0$ such that
+$\rho(x_n, x_0) < \delta$, which follows by convergence of $\{x_n\}$ (set $\delta = \eps_2 > 0)$.
+This shows that $f(x_n)\rightarrow f(x_0)$.
+<!-- Assume $f$ is continuous at $x_0$: for any $\eps>0$ there exists some $\delta > 0$ such that
+$\rho'(f(x), f(x_0)) < \eps$ when $\rho(x, x_0) < \delta$. Now we assume that $x_n\rightarrow x_0$, so for every $\eps > 0$
+there exists some $N\in\N$ such that $\rho(x_n, x_0) < \eps$ when $n\geq N$. -->
 <br /><br />
-$\Leftarrow$) Assume that $x_n\rightarrow x_0$ and that $f(x_n)\rightarrow f(x_0)$ as $n\rightarrow\infty$. By the definition
+$\Leftarrow$)
+Assume that $x_n\rightarrow x_0$ and that $f(x_n)\rightarrow f(x_0)$ as $n\rightarrow\infty$.
+For any $\eps > 0$ we can find some $N_1\in\N$ such that $\rho'(f(x_n), f(x_0)) < \eps$ whenever $n\geq N_1$
+and some $N_2\in\N$ such that $\rho(x_n, x_0) < \eps$ whenever $n\geq N_2$. Let $\delta = \eps$, then
+$\rho(x_n, x_0) < \delta$ implies that $\rho'(f(x_n), f(x_0)) < \eps$ for $n\geq \max(N_1, N_2)$
+and we can conclude that $f$ is continuous.
+<!-- Assume that $x_n\rightarrow x_0$ and that $f(x_n)\rightarrow f(x_0)$ as $n\rightarrow\infty$. By the definition
 of convergence, then for any $\eps > 0$ we can find some $N_1\in\N$ such that $\rho(x_n, x_0) < \eps$ for all $n\geq N_1$.
 By assumption we can also find some $N_2\in\N$ such that $\rho'(f(x_n), f(x_0)) < \eps$ whenever $n\geq N_2$. Now, set $\delta = \eps$.
-Then, for any $\rho(x, x_0) < \delta$, then $\rho'(f(x_n), f(x_0)) < \eps$, which shows that $f$ is continuous on $x_0$.
+Then, for any $\rho(x, x_0) < \delta$, then $\rho'(f(x_n), f(x_0)) < \eps$, which shows that $f$ is continuous on $x_0$. -->
 <div class="proofend">&#9632;</div>
+<br /><br />
+<b>NOTE</b>: In the last part, we showed continuity only for points in the sequence $\{x_n\}$ and not any $x$ close to $x_0$.
+Do we need an argument on limit points and isolated points?
 <br /><br />
 
 <h3>Problem 5</h3>
@@ -331,13 +344,29 @@ $$
 form an everywhere dense subset of $F$.
 <br /><br />
 <i>Proof</i>.<br />
+Define the set of points to be $G$. We want to show that $F\subset [G]$,
+and we do that by showing that any point in $F$ is a limit point of $G$. 
+<br /><br />
+Assume $x\in F$. For any $\eps > 0$ we will consider the $\eps$-ball, which in this case is the interval:
+$(x - \eps, x + \eps)$. In this interval, we can find some endopints from $G$ satisfying:
+$$
+x - \eps < \frac{3k}{3^n} < \frac{3k+1}{3^n} < x + \eps
+$$
+for some $k,n\in\N$ (a similar argument can be used for any expression of the general formula of the Cantor endpoints).
+But once we have identified some endpoints that are in the set, we can find an infinite amount of endpoints that
+are between them, from the Cantor set construction. This means $(x-\eps, x+\eps)$ contains an infinite amount of points
+from $G$, which means that $x\in F$ is a limit point for $G$.
+<br /><br />
+The closure of a set will contain all its limit points, so since $x\in F$ is a limit point for $G$, then $x\in[G]$.
+Since $x$ was an arbitrary point, this shows that $F\subset [G]$, which also shows that $G$ is an everywhere dense subset of $F$.
 <div class="proofend">&#9632;</div>
 <br /><br />
 (b) The numbers of the form $t_1 + t_2$, where $t_1,t_2\in F$, fill the whole interval $[0,2]$. 
 <br /><br />
-<i>Proof</i>.<br />
+<i>Skipped for now...</i>
+<!-- <i>Proof</i>.<br />
 <div class="proofend">&#9632;</div>
-<br /><br />
+<br /><br /> -->
 
 <h3>Problem 9</h3>
 Given a metric space $(X,\rho)$, let $A\subset X$ and $x\in X$. Then the number
@@ -360,6 +389,40 @@ for any $\eps > 0$ we can find some $a\in A$ such that $|a - 1| < \eps$, which m
 (b) $\rho(A, x)$ is a continuous function of $x$ (for fixed $A$).
 <br /><br />
 <i>Proof</i>.<br />
+Defining $f(x) := \rho(x, A)$.
+<br /><br />
+If $V\subset X$ is an open set containing $f(x)$, then $f$ is continuous if there is some open set $U\subset X$
+such that $x\in U$ and $f(U)\subset V$.
+<br /><br />
+Assume $f(x)\in V$ for some open set $V$. Then for any $\eps > 0$ there exists an epsilon-ball such that
+$O_\eps(f(x))\subset V$. Now, our claim is that there exists some open set $U = O_{\frac{\eps}{2}}(x)$
+such that $f(U) \subset O_\eps(f(x))\subset V$. Let $y\in A$ and $z\in O_{\frac{\eps}{2}}(x)$, which means
+that the distance from $z$ to $x$ is smaller than $\eps/2$. By the triangle inequality:
+$$
+\rho(y, z) \leq \rho(x, y) + \rho(x, z)
+$$
+$$
+\rho(x, y) \leq \rho(x, z) + \rho(z, y).
+$$
+By the property of the infimum;
+$$
+\rho(z, A) \leq \rho(x, A) + \rho(x, z) < \rho(x, A) + \frac{\eps}{2}
+$$
+$$
+\rho(x, A) \leq \rho(x, z) + \rho(z, A) < \rho(z, A) + \frac{\eps}{2}
+$$
+Or directly,
+$$
+\rho(z, A) < \rho(x, A) + \frac{\eps}{2}
+$$
+$$
+\rho(x, A) < \rho(z, A) + \frac{\eps}{2}
+$$
+Which, when combined, shows us that:
+$$
+\rho(x, A) - \frac{\eps}{2} < \rho(z, A) < \rho(x, A) + \frac{\eps}{2} 
+$$
+which shows that $f(z)\in O_\eps)f(x) \subset V$, and that $f(U)\subset V$ which proves that $f$ is continuous.
 <div class="proofend">&#9632;</div>
 <br /><br />
 (c) $\rho(A, x) = 0$ if and only if $x$ is a contact point of $A$.
@@ -406,7 +469,8 @@ and since $1\in B$, $\rho(A, B) = 0$.
 <br /><br />
 
 <h3>Problem 11</h3>
-et $M_K$ be the set of all functions $f$ in $C_{[a,b]}$ satisfying a <i>Lipschitz condition</i>, i.e.
+<i>Skipped...</i>
+<!-- Let $M_K$ be the set of all functions $f$ in $C_{[a,b]}$ satisfying a <i>Lipschitz condition</i>, i.e.
 the set of all $f$ such that
 $$
 |f(t_1) - f(t_2)| < K|t_1 - t_2|
@@ -432,14 +496,15 @@ of all functions satisfying the Lipschitz condition for some $K$ is not closed.
 <br /><br />
 <i>Proof</i>.<br />
 <div class="proofend">&#9632;</div>
-<br /><br />
+<br /><br /> -->
 
 <h3>Problem 12</h3>
-asd
+<i>Skipped...</i>
+<!-- asd
 <br /><br />
 <i>Proof</i>.<br />
 <div class="proofend">&#9632;</div>
-<br /><br />
+<br /><br /> -->
 
 
 <br /><br />
