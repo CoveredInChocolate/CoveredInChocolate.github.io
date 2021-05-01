@@ -235,44 +235,81 @@ A subset $A$ of a metric space $R$ is said to be <i>bounded</i> if its diameter 
 Prove that the union of a finite number of bounded sets is bounded.
 <br /><br />
 <i>Proof</i>.<br />
-Assume $M\in\N$ is fixed and assume $A_1,\ldots, A_M$ are $M$ bounded sets with diameters $d_1,\ldots, d_M$.
+Assume $M\in\N$ is a fixed, finite number and assume $A_1,\ldots, A_M$ are $M$ bounded sets with diameters $d_1,\ldots, d_M$.
+<br /><br />
+Assume for contradiction that the diameter $d(A_1\cup\ldots\cup A_M) = \infty$, then at least one of the sets must be of
+infinite size, but that is impossible since they are all bounded. Contradiction! Thus, the diameter of the union of the
+sets must be bounded.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 6</h3>
-asd
+Give an example of a complete metric space $R$ and a nested sequence $\{A_n\}$ of closed subsets of $R$ such
+that
+$$
+\bigcap_{n=1}^\infty A_n = \emptyset.
+$$
+Reconcile this example with Problem 4.
 <br /><br />
 <i>Proof</i>.<br />
+The real line $\R$ with $\rho(x,y) = |x-y|$ is a complete metric space. Define $A_n = \emptyset$ for each $n\in\N$
+which we can do since $\emptyset$ is a closed set. Then the intersection of all $A_n$ becomes $\emptyset$.
+<br /><br />
+In Problem 4 we have indirectly assumed that the sets are nonempty.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 7</h3>
-asd
+Prove that a subspace of a complete metric space $R$ is complete if and only if it is closed.
 <br /><br />
 <i>Proof</i>.<br />
+Let $A\subset X$ be a subset of the complete metric space $(X, \rho)$.
+<br /><br />
+$\Rightarrow$) Assume $A$ is complete. Then any convergent sequence $\{x_n\}$ in $A$ have limits $x$ also
+included in $A$, or in other words, $A$ contains all its limit points. Hence $[A] = A$ which means it is closed.
+<br /><br />
+$\Leftarrow$) Assume $A$ is closed. Since a closed set contains all its limit points, then any sequence
+$\{x_n\}$ in $A$ will converge to a point in $A$, which means it must be complete. 
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 8</h3>
-asd
+Prove that the real line $\R$ equipped with the distance
+$$
+\rho(x, y) = |\arctan(x) - \arctan(y)|
+$$
+is an incomplete metric space.
 <br /><br />
 <i>Proof</i>.<br />
+Set $x_n = n$. Let $\eps > 0$ and $N > \tan(\frac{\pi}{2} - \eps)$. For $m,n > N$ then
+$$
+\rho(x_n, x_m) = |\arctan(x_n) - \arctan(x_m)| \leq |\frac{\pi}{2} - \arctan N| < |\frac{\pi}{2} - \frac{\pi}{2} + \eps| = \eps,
+$$
+which shows that $\{x_n\}$ is Cauchy. As $n\rightarrow\infty$, $\arctan x_n\rightarrow \frac{\pi}{2}$ but $\{x_n\}$ does not
+converge to any element in $\R$ since there is no $x\in\R$ such that $\arctan x = \frac{\pi}{2}$.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 9</h3>
-asd
+Give an example of a complete metric space homeomorphic to an incomplete metric space.
 <br /><br />
 <i>Proof</i>.<br />
+The function 
+$$
+f(x) = \frac{2}{\pi}\arctan x
+$$
+defines a homeomorphism between $\R$ and $(-1, 1)$. But this is an open set and from Problem 7 it is incomplete since
+only closed sets are complete subspaces.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 10</h3>
-asd
+<i>Skipped...</i>
+<!-- asd
 <br /><br />
 <i>Proof</i>.<br />
 <div class="proofend">&#9632;</div>
-<br /><br />
+<br /><br /> -->
 
 
 <br /><br />
