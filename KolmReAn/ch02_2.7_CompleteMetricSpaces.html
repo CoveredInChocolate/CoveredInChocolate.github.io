@@ -53,8 +53,67 @@
 <h3>Results</h3>
 
 <div class="thm">Definition 1</div><br />
-A sequence $\{x_n\}$
+A sequence $\{x_n\}$ of points in a metric space $(X, \rho)$ is said to satisfy the
+<b>Cauchy criterion</b> if, given $\eps > 0$, there is an integer $N_\eps$ such that
+$\rho(x_n, x_{n'}) < \eps$ for all $n, n' > N_\eps$.
 <br /><br /><br /><br />
+
+<div class="thm">Definition 2</div><br />
+A subsequence $\{x_n\}$ of points in a metric space $(X,\rho)$ is called a
+<b>Cauchy sequence</b> (or <b>fundamental sequence</b>) if it satisfies the Cauchy criterion.
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 1</div><br />
+Every convergent sequence $\{x_n\}$ is fundamental.
+<br /><br />
+<i>Proof</i>.<br />
+If $\{x_n\}$ converges to a limit $x$, then given any $\eps > 0$, there is an integer $N_\eps$ such that
+$$
+\rho(x_n, x) < \frac{\eps}{2}
+$$
+for all $n\geq N_\eps$. But then,
+$$
+\rho(x_n, x_{n'}) \leq \rho(x_n, x) + \rho(x_{n'}, x) < \eps
+$$
+for all $n, n' > N_\eps$.
+<div class="proofend">&#9632;</div>
+<br /><br /><br /><br />
+
+<div class="thm">Definition 3</div><br />
+A metric space is said to be <b>complete</b> if every Cauchy sequence in $(X, \rho)$ converges to an element of $X$.
+Otherwise, $(X, \rho)$ is said to be <b>incomplete</b>.
+<br /><br /><br /><br />
+
+<i>Comment</i>: A way to verify completeness.
+<br /><br />
+
+<div class="thm">Theorem 2 (Nested Sphere Theorem)</div><br />
+A metric space $(X,\rho)$ is complete if and only if every nested sequence
+$\{S_n\} = \{S[x_n, r_n]\}$ of closed spheres in $X$ such that $r_n\rightarrow 0$ as $n\rightarrow\infty$
+has a nonempty intersection
+$$
+\bigcap_{n=1}^\infty S_n.
+$$
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 3 (Baire)</div><br />
+A complete metric space $(X,\rho)$ cannot be represented as the union of a countable number of nowhere dense sets.
+<br /><br /><br /><br />
+
+<div class="thm">Corollary</div><br />
+A complete metric space $(X,\rho)$ without isolated points is uncountable.
+<br /><br /><br /><br />
+
+<div class="thm">Definition 4</div><br />
+Given a metric space $R = (X,\rho)$ with closure $[R]$, a complete metric space $R^*$ is called a <b>completion</b>
+of $R$ if $R\subset R^*$ and $[R] = R^*$, i.e. if $R$ is a subset of $R^*$ and $R$ is everywhere dense in $R^*$.
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 4</div><br />
+Every metric space $R$ has a completion. This completion is unique to within an isometric mapping, carrying
+every point $x\in R$ to itself.
+<br /><br /><br /><br />
+
 
 <br /><br /><br /><br />
 
@@ -62,37 +121,121 @@ A sequence $\{x_n\}$
 <!-- ########################### PROBLEMS ########################### -->
 
 <h3>Problem 1</h3>
-asd
+Prove that the limit $f(t)$ of a uniformly convergent sequence of functions $\{f_n(t)\}$ continuous
+on $[a, b]$ is itself a function continuous on $[a, b]$.
+<br /><br />
+<i>Hint</i>: Clearly;
+$$
+|f(t) - f(t_0)| \leq |f(t) - f_n(t)| + |f_n(t) - f_n(t_0)| + |f_n(t_0) - f(t_0)|,
+$$
+where $t,t_0\in[a,b]$. Use the uniform convergence to make the sum of the first and third terms on the right
+small for sufficiently large $n$. Then use the continuity of $f_n(t)$ to make the second term small for $t$
+sufficiently close to $t_0$.
 <br /><br />
 <i>Proof</i>.<br />
+To show continuity of $f$, then for any $\eps > 0$, we must find some $\delta > 0$ such that:
+$$
+|t - t_0| < \delta \;\Longrightarrow\; |f(t) - f(t_0)| < \eps.
+$$
+From the hint, and applying the triangle inequality, we have:
+$$
+|f(t) - f(t_0)| \leq |f(t) - f_n(t)| + |f_n(t) - f_n(t_0)| + |f_n(t_0) - f(t_0)|.
+$$
+By convergence of $f_n$, then for any $\eps/3 > 0$ there exists some $N_1, N_2\in\N$,
+and we set $N_3 = \max(N_1, N_2)$, such that:
+$$
+|f(t) - f_n(t)| < \frac{\eps}{3},\quad
+|f_n(t_0) - f(t_0)| < \frac{\eps}{3}.
+$$
+Next, by continuity of $f_n$, then for  $\eps/3 > 0$ we can find some $\delta_2 > 0$ such that
+$$
+|t - t_0| < \delta_2 \;\Longrightarrow\; |f_n(t) - f_n(t_0)| < \frac{\eps}{3}.
+$$
+Now, for any $n\geq N_3$ and by setting $\delta = \delta_2$, we get:
+$$
+|f(t) - f(t_0)| < \frac{\eps}{3} + \frac{\eps}{3} + \frac{\eps}{3} = \eps
+$$
+whenever $|t - t_0| < \delta$ and $n\geq N_3$, which proves that $f$ is continuous.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 2</h3>
-asd
+Prove that the following set is complete. The set $m$ of all <i>bounded</i> infinite sequences of real numbers
+$x = (x_1, x_2, \ldots)$ with
+$$
+\rho(x, y) = \sup_k|x_k - y_k|.
+$$
 <br /><br />
 <i>Proof</i>.<br />
+We show that $m$ is complete by verifying that it contains the limit of a converging sequence.
+Assume the sequence of infinite sequences $\{x^{(n)}\}$ converges to some $y = (y_1,y_2,\ldots)$, so
+$$
+\lim_{n\rightarrow\infty}\rho(x^{(n)}, y) = 0
+\;\Longrightarrow\;
+\lim_{n\rightarrow\infty}\sup_k|x^{(n)}_k - y_k| = 0.
+$$
+By definition, $y$ is an infinite sequence. Assume for contradiction that $y$ is unbounded, but then
+$$
+\lim_{n\rightarrow\infty}\sup_k|x^{(n)}_k - y_k| = \infty
+$$
+since $x^{(n)}$ is bounded which is a contradiction to the convergence. So $y$ must be bounded. Since it is
+also infinite, it follows that $y\in m$ which shows that $m$ is complete.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 3</h3>
-asd
+If $R = (X,\rho)$ is complete, then the intersection:
+$$
+\bigcap_{n=1}^\infty S_n
+$$
+from Theorem 2, consists of a single point.
 <br /><br />
 <i>Proof</i>.<br />
+From Theorem 2, we know that the intersection is nonempty, so let $x\in\bigcap_{n=1}^\infty S_n$. Now let
+$y\not= x$ be some other arbitrary point in $R$. Since the point is distinct from $x$, then $\rho(x, y) = k > 0$
+for some $k\in\R$. Then there exists some $m\in\N$ such that $r_m < k$ so $y\not\in S[x_m, r_m]$
+and $y\not\in \bigcap_{n=1}^\infty S_n$. Since this is true for any point distinct from $x$, it follows
+that the intersection contains a single point, i.e.
+$$
+\bigcap_{n=1}^\infty S_n = \{x\}.
+$$
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 4</h3>
-asd
+By the <i>diameter</i> of a subset $A$ of a metric space $R$ is meant the number
+$$
+d(A) = \sup_{x,y\in A}\rho(x, y).
+$$
+Suppose $R$ is complete, and let $\{A_n\}$ be a sequence of closed subsets of $R$
+<i>nested</i> in the sense that
+$$
+A_1 \supset A_2 \supset \cdots \supset A_n \supset \cdots.
+$$
+Suppose further that
+$$
+\lim_{n\rightarrow\infty} d(A_n) = 0.
+$$
+Prove that the intersection $\bigcap_{n=1}^\infty A_n$ is nonempty.
 <br /><br />
 <i>Proof</i>.<br />
+For each set $A_k$ let $r_k$ define the smallest possible radius around some point $x_k$ so
+we can define a closed ball $S_k[x_k, r_k] \subset A_k$ and $S_k[x_k, r_k]\subset S_{k-1}[x_{k-1}, r_{k-1}]$.
+Then we get a sequence of nested, closed spheres where $r_n\rightarrow 0$ as $n\rightarrow\infty$.
+Then, according to Theorem 2 and Problem 3,
+$$
+\{x\} = \bigcap_{n=1}^\infty S_n \subset \bigcap_{n=1}^\infty A_n
+$$
+which shows that the intersection is nonempty.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 5</h3>
-asd
+A subset $A$ of a metric space $R$ is said to be <i>bounded</i> if its diameter $d(A)$ is finite.
+Prove that the union of a finite number of bounded sets is bounded.
 <br /><br />
 <i>Proof</i>.<br />
+Assume $M\in\N$ is fixed and assume $A_1,\ldots, A_M$ are $M$ bounded sets with diameters $d_1,\ldots, d_M$.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
