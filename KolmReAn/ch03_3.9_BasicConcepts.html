@@ -52,6 +52,80 @@
 
 <h3>Results</h3>
 
+<div class="thm">Definition 1</div><br />
+Given a set $X$, a <b>topology</b> in $X$ is a system $\tau$ of subsets $G\subset X$,
+called <b>open sets</b> (relative to $\tau$), with the following two properties.<br />
+(1) The set $X$ itself and $\emptyset$ belong to $\tau$.<br />
+(2) Arbitrary (finite or infinite) unions $\bigcup_\alpha G_\alpha$ and finite intersections
+$\bigcap_\alpha G_\alpha$ belong to $\tau$.
+<br /><br /><br /><br />
+
+<div class="thm">Definition 2</div><br />
+A <b>topological space</b> is a pair $(X,\tau)$ consisting of a set $X$ and a topology $\tau$
+defined in $X$.<br />
+(In this text, a topological space will usually be called $T = (X,\tau)$).
+<br /><br /><br /><br />
+
+<b>Closed Sets</b><br />
+The open sets in a topology are specified. Closed sets are the complements of the open sets; $T-G$.
+So, $X$ and $\emptyset$ are closed (and open) sets. Closed sets are closed under arbitrary intersections
+and finite unions.
+<br /><br /><br /><br />
+
+<b>Concepts from Metric Spaces</b><br />
+(1) A <i>neighborhood</i> of a point $x$ in a topological space $T$ is any open set $G\subset T$ containing $x$.<br />
+(2) A point $x\in T$ is called a <i>contact point</i> of a set $M\subset T$ if every neighborhood of $x$ contains at
+least one point of $M$.<br />
+(3) A point $x\in T$ is called a <i>limit point</i> of a set $M\subset T$ if every neighborhood of $x$ contains
+infinitely many points of $M$.<br />
+(4) The set of all contact points of a set $M\subset T$ is called the <i>closure</i> of $M$, and is denoted by $[M]$.<br />
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 1</div><br />
+The intersection $\tau = \bigcap_\alpha \tau_\alpha$ of any set of topologies on $X$
+is itself a topology in $X$.
+<br /><br /><br /><br />
+
+<div class="thm">Corollary</div><br />
+Let $\mathscr{B}$ be any system of subsets of a set $X$. Then there exists a minimal topology
+containing $\mathscr{B}$, i.e. a topology $\tau(\mathscr{B})$ containing $\mathscr{B}$ and
+contained in every topology containing $\mathscr{B}$.
+<br /><br /><br /><br />
+
+<div class="thm">Definition 3</div><br />
+A family $\mathscr{G}$ of open subsets of a toplogical space $T$ is called a <b>base</b> for
+$T$ if every open set in $T$ can be represented as a union of sets in $\mathscr{G}$.
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 2</div><br />
+Given a set $T$, let $\mathscr{G}$ be a system of subsets of $G_\alpha\subset T$ with
+the following two properties:<br />
+(1) Every point $x\in T$ belongs to at least one $G_\alpha\in \mathscr{G}$.<br />
+(2) If $x\in G_\alpha\cap G_\beta$, then there is a $G_\gamma\in\mathscr{G}$ such that
+$x\in G_\gamma\subset G_\alpha\cap G_\beta$.
+<br /><br />
+Suppose that $\emptyset$ and all sets representable as unions of sets $G_\alpha$ are
+designated as open. Then $T$ is a toplogical space, and $\mathscr{G}$ is a base for $T$.
+<br /><br /><br /><br />
+
+<i>Useful theorem for determining whether a given system of open sets is a base.</i>
+<br /><br />
+<div class="thm">Theorem 3</div><br />
+A system $\mathscr{G}$ of open sets $G_\alpha$ in a topological space $T$ is a base for
+$T$ if and only if, given any open set $G\subset T$ and any point $x\in G$, there is a
+set $G_\alpha\in\mathscr{G}$ such that $x\in G_\alpha\subset G$.
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 4</div><br />
+If a topological space $T$ has a countable base, then $T$ contains a countable everywhere
+dense subset, i.e. a countable set $M\subset T$ such that $[M] = T$.
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 5</div><br />
+If a metric space $R$ has a countable everywhere dense subset, then $R$ has a countable
+base.
+<br /><br /><br /><br />
+
 <br /><br /><br /><br />
 
 
