@@ -52,59 +52,226 @@
 
 <h3>Results</h3>
 
+<b>Contraction Mapping</b><br />
+Let $A$ be a mapping of a metric space $R$ into itself. Then $x$ is called a <i>fixed point</i>
+of $A$ if $Ax = x$, i.e. if $A$ carries $x$ into itself. Suppose there is some number $\alpha < 1$
+such that
+$$
+\rho(Ax, Ay) \leq \alpha\cdot \rho(x, y)
+$$
+for every pair of points $x,y\in R$. Then $A$ is said to be a <i>contraction mapping</i>.
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 1 (Fixed Point Theorem)</div><br />
+Every contraction mapping $A$ defined on a complete metric space $R$ has a unique fixed point.
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 1'</div><br />
+Given a continuous function of a complete metric space $R$ into itself, suppose $A^n$ is a contraction
+mapping ($n$ an integer $>$ 1). Then $A$ has a unique fixed point.
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 2 (Picard)</div><br />
+Given a function $f(x,y)$ defined and continuous on a plane domain $G$ containing the point $(x_0,y_0)$,
+suppose $f$ satisfies a Lipschitz condition of the form,
+$$
+|f(x,y) - f(x,\overset{\sim}{y})| \leq M|y - \overset{\sim}{y}|
+$$
+in the variable $y$. Then there is an interval $|x - x_0| \leq \delta$ in which the differential equation
+$$
+\frac{dy}{dx} = f(x,y)
+$$
+has a unique solution
+$$
+y = \phi(x)
+$$
+satisfying the condition
+$$
+\phi(x_0) = y_0
+$$
+<br /><br /><br /><br />
+
 <br /><br /><br /><br />
 
 
 <!-- ########################### PROBLEMS ########################### -->
 
 <h3>Problem 1</h3>
-asd
+Let $A$ be a mapping of a metric space $R$ into itself. Prove that the condition
+$$
+\rho(Ax, Ay) < \rho(x, y), \quad(x\not= y)
+$$
+is insufficient for the existence of a fixed point of $A$.
 <br /><br />
 <i>Proof</i>.<br />
+Theorem 1 only works in the cases where the metric space is complete. To construct a counterexample, consider
+the metric space where $X = (0,1)$ and $\rho(x,y) = |x - y|$, and the mapping is given by the function
+$$
+Ax = \frac{x}{2}.
+$$
+Then clearly,
+$$
+\rho(Ax, Ay) = \left|\frac{x}{2} - \frac{y}{2}\right| =
+\frac{1}{2}|x - y| < |x - y| = \rho(x,y)
+$$
+The fixed point is the solution of $Ax = x$:
+$$
+Ax = x
+\;\Longrightarrow\;
+\frac{x}{2} = x
+\;\Longrightarrow\;
+x = 0
+$$
+but $0\not\in(0,1)$, so the fixed point does not exist in the metric space, and the condition is insufficient by itself.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 2</h3>
-asd
+Let $F(x)$ be a continually differentiable function on the interval $[a,b]$ such that $F(a) < 0$ and $F(b) > 0$ and
+$$
+0 < K_1 \leq F'(x) \leq K_2,\quad x\in[a,b].
+$$
+Use Theorem 1 to find the unique root of the equation $F(x) = 0$.
 <br /><br />
 <i>Proof</i>.<br />
+Define the function
+$$
+f(x) = x - \lambda F(x)
+$$
+where $\lambda$ is some parameter. Since $F$ is continuous, we have $F\in C_{[a,b]}$, which is a complete metric space,
+and it follows that $f\in C_{[a,b]}$. Note that,
+$$
+f'(x) = 1 - \lambda F'(x).
+$$
+To ensure that this is a contraction mapping, we select $\lambda$ so the condition $|f'(x)| < 1$ is satisfied.
+$$
+|f'(x)| = |1 - \lambda F'(x)| < 1,
+$$
+whenever $\lambda F'(x) < 1$, since $F'(x)$ is strictly positive. This can be achieved by setting,
+$$
+\lambda = \frac{1}{K_1 + K_2},
+$$
+since
+$$
+\lambda F'(x) \leq \lambda K_2 = \frac{K_2}{K_1 + K_2} < 1.
+$$
+By Theorem 1, $f$ has a fixed point $x_0\in[a,b]$ such that $f(x_0) = x_0$, which means that
+$\lambda F(x_0) = 0$, and hence $x_0$ is the unique root of $F(x) = 0$.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 3</h3>
-asd
+Devise a proof of the implicit function theorem based on the use of the fixed point theorem.
 <br /><br />
-<i>Proof</i>.<br />
-<div class="proofend">&#9632;</div>
+<i>Skipped... This theorem is not stated in the text.</i>
 <br /><br />
 
 <h3>Problem 4</h3>
-asd
+Prove that the method of successive approximations can be used to solve the system:
+$$
+x_i = \sum_{j=1}^n a_{ij}x_j + b_i,
+$$
+if $|a_{ij}| < 1/n$ (for all $i$ and $j$), but not if $|a_{ij}| = 1/n$.
 <br /><br />
 <i>Proof</i>.<br />
+As shown in Example 2, there are two conditions depending on what metric is used. The contraction condition
+is satisfied if,
+$$
+\sum_{j=1}^n|a_{ij}| \leq \alpha < 1,
+$$
+$$
+\sum_{i=1}^n\sum_{j=1}^n a^2_{ij} \leq \alpha < 1.
+$$
+Suppose $|a_{ij}| < 1/n$. Then in the first case:
+$$
+\sum_{j=1}^n|a_{ij}| < \sum_{j=1}^n\frac{1}{n} = \frac{1}{n}\sum_{j=1}^n 1 = 1,
+$$
+and in the second case,
+$$
+\sum_{i=1}^n\sum_{j=1}^n a^2_{ij} < \sum_{i=1}^n\sum_{j=1}^n \frac{1}{n^2}
+= \frac{1}{n^2}\sum_{i=1}^n\sum_{j=1}^n 1
+= \frac{1}{n}\sum_{i=1}^n 1
+= 1.
+$$
+Showing that the contraction condition is satisfied for all three metrics. If we have equality, then
+each of these sums become equal to 1, and the contraction condition is not satisfied.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 5</h3>
-asd
+Prove that the condition:
+$$
+\sum_{j=1}^n|a_{ij}| \leq \alpha < 1 \tag{6}
+$$
+is necessary for the mapping:
+$$
+y_i = \sum_{j=1}^n a_{ij}x_j + b_i \tag{5}
+$$
+to be a contraction mapping in the space $R_0^n$.
 <br /><br />
 <i>Proof</i>.<br />
+The metric for $R_0^n$ is given by:
+$$
+\rho(x,y) = \max_{1\leq i\leq n}|x_i - y_i|.
+$$
+We assume that the mapping $A$ is a contraction mapping, and show that (6) must follow
+(i.e. that it is a necessary condition). By definition of a contraction mapping, then for some $\alpha < 1$,
+$$
+\rho(y, \overset{\sim}{y}) \leq \alpha\rho(x, \overset{\sim}{x}).
+$$
+This is pretty much just following the result in the book.
+\begin{align}
+\rho(y, \overset{\sim}{y})
+&= \max_{1\leq i\leq n}|y_i - \overset{\sim}{y}_i| \\
+&= \max_{1\leq i\leq n}\left|\left(\sum_{j=1}^n a_{ij}x_j + b_i\right) - \left(\sum_{j=1}^n a_{ij}\overset{\sim}{x}_j + b_i\right)\right|  \\
+&= \max_{1\leq i\leq n}\left|\left(\sum_{j=1}^n a_{ij}x_j + b_i - a_{ij}\overset{\sim}{x}_j - b_i\right)\right| \\
+&= \max_{1\leq i\leq n}\left|\sum_{j=1}^n a_{ij}(x_j - \overset{\sim}{x}_j)\right|\\
+&\leq \max_{1\leq i\leq n}\sum_{j=1}^n |a_{ij}||x_j - \overset{\sim}{x}_j| \\
+&\leq \max_{1\leq i\leq n}\sum_{j=1}^n |a_{ij}|\max_{1\leq j\leq n}|x_j - \overset{\sim}{x}_j|\\
+&= \max_{1\leq i\leq n}\sum_{j=1}^n |a_{ij}|\cdot\rho(x, \overset{\sim}{x}).
+\end{align}
+Which shows that the previous condition is satisfied when $\alpha = \max_{1\leq i\leq n}\sum_{j=1}^n |a_{ij}| < 1$,
+which is also satisfied when:
+$$
+\sum_{j=1}^n|a_{ij}| \leq \alpha < 1
+$$
+for $i = 1,2,\ldots,n$.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 6</h3>
-asd
+Prove that any of the $n$-dimensional contraction mapping conditions 
+imply that:
+$$
+\begin{vmatrix}
+a_{11}-1 & a_{12}   & \cdots & a_{1n} \\
+a_{21}   & a_{22}-1 & \cdots & a_{2n} \\
+\vdots   & \vdots   & \ddots & \vdots \\
+a_{n1}   & a_{n2}   & \cdots & a_{nn}-1 \\
+\end{vmatrix}
+\not= 0.
+$$
 <br /><br />
 <i>Proof</i>.<br />
+Whenever one of the conditions mentioned are satisfied, this means we have an $n$-dimensional contraction mapping,
+this means we solve the equation of the form $Ax = x$. Which means:
+$$
+Ax - x = 0
+\;\Longrightarrow\;
+(A-I)x = 0.
+$$
+By assumption, this homogeneous linear system has a solution, which means $A-I$ has rank $n$, which is equivalent to saying
+that it is invertible and therefore has a nonzero determinant: $\det(A-I)\not= 0$.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 7</h3>
-asd
+<i>Skipped...</i>
+<!-- Consider...
 <br /><br />
 <i>Proof</i>.<br />
 <div class="proofend">&#9632;</div>
-<br /><br />
+<br /><br /> -->
 
 
 <br /><br />
