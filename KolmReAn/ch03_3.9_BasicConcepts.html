@@ -126,20 +126,151 @@ If a metric space $R$ has a countable everywhere dense subset, then $R$ has a co
 base.
 <br /><br /><br /><br />
 
+<b>First Axiom of Countability</b><br />
+Let $x\in X$ be some point. If there exists a coutnable neighborhood base at $x$, i.e. a countable system
+$mathscr{O}$ of neighborhoods of $x$ with the following property: Given any open set $G$ containing $x$,
+there is a neighborhood $O\in\mathscr{O}$ sich that $O\subset G$. Suppose every point $x$ of a topological
+space $T$ has a countable neighborhood base. Then $T$ is said to satisfy the <i>first axiom of countability</i>
+(or that it is a first-countable set).
+<br /><br /><br /><br />
+
+<b>Covering of Topological Spaces</b><br />
+A system $\mathscr{M}$ of sets $M_\alpha$ is called a <i>cover</i> or <i>covering</i> of a topological space $T$,
+and $\mathscr{M}$ is said to <i>cover</i> $T$ if,
+$$
+T = \bigcup_\alpha M_\alpha.
+$$
+An open (closed) cover consists of open (closed) sets. A subcover is a subset of the covering that also covers $T$.
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 6</div><br />
+If $T$ is a topological space with a countable base $\mathscr{G}$, then every open cover $\mathscr{O}$ has a finite or
+countable subcover.
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 7</div><br />
+If a topological space $T$ satisfies the first axiom of countability, then every contact point of $x$ of a set $M\subset T$
+is the limit of a convergenct sequence of points in $M$.
+<br /><br /><br /><br />
+
+
+<i>General topological spaces are too different from metric spaces. Some additional assumptions makes the resemblance clearer.</i>
+<br /><br />
+<div class="thm">Definition 4</div><br />
+Suppose that for each pair of distinct points $x$ and $y$ in a topological space $T$, there is a neighborhood $O_x$ of $x$
+and a neighborhood $O_y$ of $y$ such that $x\in O_x$ and $y\in O_y$. Then $T$ is said to satisfy the
+<b>first axiom of separability</b>, and is called a <b>T<sub>1</sub>-space</b>.
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 8</div><br />
+Every finite subset of a $T_1$-space is closed.
+<br /><br /><br /><br />
+
+
+<i>A stronger seperation axiom; each pair of distinct points has a pair of disjoint neighborhoods.</i>
+<br /><br />
+<div class="thm">Definition 5</div><br />
+Suppose that for each pair of distinct points $x$ and $y$ in a topological space $T$, there is a neighborhood $O_x$ of $x$
+and a neighborhood $O_y$ of $y$ such that $O_x\cap O_y = \emptyset$. Then $T$ is said to satisfy the
+<b>second axiom of separability</b>, and is called a <b>T<sub>2</sub>-space</b> or a <b>Hausdorff space</b>.
+<br /><br /><br /><br />
+
+
+<i>Spaces more general than Hausdorff are rarely studied. Instead, an even stronger axiom of seperability is used.
+All pairs of disjoint closed, sets has a pair of disjoint neighborhoods.</i>
+<br /><br />
+<div class="thm">Definition 6</div><br />
+A $T_1$-space $T$ is said to be <b>normal</b> if for each pair of disjoint closed sets $F_1$ and $F_2$ in $T$,
+there are open sets $O_1\supset F_1$ and $O_2\supset F_2$ such that $O_1\cap O_2 = \emptyset$.
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 9</div><br />
+Every metric space is normal.
+<br /><br /><br /><br />
+
+<b>Continuous Mappings</b><br />
+Let $f: X\rightarrow Y$ be a mapping between topological spaces, so $f$ associates an element $y = f(x)$ for
+each element $x\in X$. Then $f$ is said to be <i>continuous at the point $x_0\in X$</i> if, given any neighborhood
+$V_{y_0}$ of the point $y_0 = f(x_0)$, there is a neighborhood $U_{x_0}$ around $x_0$ such that $f(U_{x_0})\subset V_{y_0}$.
+The mapping $f$ is said to be <i>continuous on $X$</i> if it is continuous at every point of $X$.
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 10</div><br />
+A mapping $f$ of a topological space $X$ into a topological space $Y$ is continuous if and only if the preimage
+$\Gamma = f^{-1}(G)$ of every open set $G\subset Y$ is open in $X$.
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 10'</div><br />
+A mapping $f$ of a topological space $X$ into a topological space $Y$ is continuous if and only if the preimage
+$\Gamma = f^{-1}(F)$ of every closed set $F\subset Y$ is closed in $X$.
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 11</div><br />
+Given topologial spaces $X$, $Y$ and $Z$, suppose $f:X\rightarrow Y$ is continuous and $\phi:Y\rightarrow Z$
+is continuous. Then the mapping $\phi\circ f = \phi(f(x))$ is continuous.
+<br /><br /><br /><br />
+
+<b>Homeomorphic Mappings</b><br />
+If $f:X\rightarrow Y$ and $f^{-1}: Y\rightarrow X$ are continuous functions between two topological spaces $X$ and $Y$
+then $f$ is called a <i>homeomorphic mapping</i> or just a <i>homeomorphism</i>. The spaces will have the same
+topological properties, and are just two different 'representatives' of the same space.
+<br /><br /><br /><br />
+
+
+<i>Topological spaces can be introduced by specifying the open sets, specifying a base, or introducing a notion of convergence.
+    One of the most important ways is by specifying a metric space in $T$.
+</i>
+<br /><br />
+<div class="thm">Definition 5</div><br />
+Suppose that for each pair of distinct points $x$ and $y$ in a topological space $T$, there is a neighborhood $O_x$ of $x$
+and a neighborhood $O_y$ of $y$ such that $O_x\cap O_y = \emptyset$. Then $T$ is said to satisfy the
+<b>second axiom of separability</b>, and is called a <b>T<sub>2</sub>-space</b> or a <b>Hausdorff space</b>.
+<br /><br /><br /><br />
+
+<div class="thm">Urysohn's Metrization Theorem</div><br />
+A necessary and sufficient condition for a topological space with a countable base to metrizable is that it be normal.
+<br /><br /><br /><br />
+
+
+
 <br /><br /><br /><br />
 
 
 <!-- ########################### PROBLEMS ########################### -->
 
 <h3>Problem 1</h3>
-asd
+Given a topological space $T$, prove that a set $G\subset T$ is open if and only if every point of $x\in G$
+has a neighborhood contained in $G$.
 <br /><br />
 <i>Proof</i>.<br />
+$\Rightarrow$) Assume $G$ is open. Then for any point $x\in G$, it follows that $x\in G\subset G$ which is a neighborhood.
+<br /><br />
+$\Leftarrow$) Assume every $x\in G$ has some neighborhood $O$ such that $x\in O\subset G$. By the property of
+topologies, the union of all these sets $\bigcup_\alpha O_\alpha$ is open. Our claim is that $\bigcup_\alpha O_\alpha = G$.
+<div class="indent">
+    $\supset$) Assume $x\in G$, by our assumption, $x\in O\subset G$ so $x\in \bigcup_\alpha O_\alpha$ and so
+    $G\subset \bigcup_\alpha O_\alpha$.<br />
+    $\subset$) Assume $x\in \bigcup_\alpha O_\alpha$, then for some $\beta$, we have $x\in O_\beta\subset G$ by our assumption.
+    It follows that $x\in G$, which means that $\bigcup_\alpha O_\alpha\subset G$.
+</div> 
+Hence $G = \bigcup_\alpha O_\alpha$ and it is an open set.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 2</h3>
-asd
+Given a topological space $T$, prove the following statements.
+<br /><br />
+(a) $[M] = M$ if and only if $M$ is a closed set, i.e. the complement $T-G$ of an open set $G\subset T$.
+<br /><br />
+<i>Proof</i>.<br />
+<div class="proofend">&#9632;</div>
+<br /><br />
+(b) asd
+<br /><br />
+<i>Proof</i>.<br />
+<div class="proofend">&#9632;</div>
+<br /><br />
+(c) asd
 <br /><br />
 <i>Proof</i>.<br />
 <div class="proofend">&#9632;</div>
