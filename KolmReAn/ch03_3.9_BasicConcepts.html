@@ -258,18 +258,55 @@ Hence $G = \bigcup_\alpha O_\alpha$ and it is an open set.
 <br /><br />
 
 <h3>Problem 2</h3>
+
+<b>Closure - Alternative Definition</b><br />
+Define the closure of $M$ be the arbitrary intersection of all closed sets containing $M$. That is,
+if each $C_\alpha$ is a closed set such that $M\subset C_\alpha$, then
+$$
+[M] = \bigcap_\alpha C_\alpha.
+$$
+<br /><br />
+
+<br /><br />
+<b>Problem</b><br />
 Given a topological space $T$, prove the following statements.
 <br /><br />
 (a) $[M] = M$ if and only if $M$ is a closed set, i.e. the complement $T-G$ of an open set $G\subset T$.
 <br /><br />
 <i>Proof</i>.<br />
-<div class="proofend">&#9632;</div>
+$\Rightarrow$) Assume $[M] = M$. Then, by the alternative definition,
+$$
+[M] = \bigcap_\alpha C_\alpha
+\;\;\Longrightarrow\;\;
+M = \bigcap_\alpha C_\alpha
+$$
+which is an arbitrary intersection of closed sets, and hence $M$ is closed.
 <br /><br />
+$\Leftarrow$) Assume $M$ is a closed set. We will show that $[M] = M$.
+<div class="indent">
+    $\supset$) Let $\overline{M}$ denote the set of contact points. Then $[M] = M\cup\overline{M}$,
+    and so $M\subset[M]$.
+    <br /><br />
+    $\subset$) Since $M$ is closed, then $M = C_\beta$ is a closed set containing $M$, so
+    $$
+    [M] = \bigcap_\alpha C_\alpha \subset M
+    \;\;\Longrightarrow\;\;
+    [M] \subset M.
+    $$
+    By inclusion both ways, $[M] = M$.
+</div>
+<div class="proofend">&#9632;</div>
+<br /><br /><br /><br />
 (b) $[M]$ is the smallest closed set containing $M$.
 <br /><br />
 <i>Proof</i>.<br />
+Let $C$ be any closed set such that $M\subset C$, then
+$$
+[M] = \bigcap_\alpha C_\alpha \subset C
+$$
+which shows that $[M]\subset C$. So $[M]$ is the smallest closed set containing $M$.
 <div class="proofend">&#9632;</div>
-<br /><br />
+<br /><br /><br /><br />
 (c) The closure operator, i.e. the mapping of $T$ into $T$ carrying $M$ into $[M]$ satisfies:
 <div class="indent">
 1) If $M\subset N$ then $[M]\subset[N]$<br />
@@ -279,46 +316,111 @@ Given a topological space $T$, prove the following statements.
 </div>
 <br /><br />
 <i>Proof</i>.<br />
+(1) Assume $M\subset N$, and we will show that $[M]\subset[N]$. By definition of closed sets,
+let $C_\alpha$ be the closed sets containing $N$. Then,
+$$
+[N] = \bigcap_\alpha C_\alpha.
+$$
+Since $M\subset N$, then $M\subset C_\alpha$ for each $\alpha$, so:
+$$
+M \subset \bigcap_\alpha C_\alpha = D_\gamma.
+$$
+So, $D_\gamma$ is a closed set containing $M$. Again, let $D_\beta$ be the closed sets containing $M$.
+By definition of the closure,
+$$
+[M] = \bigcap_\beta D_\beta = \bigcap_{\beta\not=\gamma}D_\beta\cap D_\gamma \subset D_\gamma = [N].
+$$
+Therefore, $[M]\subset[N]$.
+<br /><br /><br />
+(2) Since $[M]$ is a closed set, then by (a), $[[M]] = [M]$. 
+<br /><br /><br />
+(3)<br />
+<div class="indent">
+$\subset$) We have that $M\cup N\subset [M]\cup[N]$, which is a closed set containing $M\cup N$ since it is a finite union
+of closed sets. So,
+$$
+[M\cup N] = \bigcap_\alpha C_\alpha \subset [M]\cup[N].
+$$
+$\supset$) Since $M\subset M\cup N$, it follows from (1) that $[M]\subset [M\cup N]$, and similarly, $[N]\subset[M\cup N]$.
+Since both of these are subsets, we can conclude that $[M]\cup[N]\subset[M\cup N]$.
+</div><br />
+By inclusion both ways, $[M\cup N] = [M]\cup[N]$.
+<br /><br /><br />
+(4) Since $\emptyset$ is a closed set, then by (a), $[\emptyset] = \emptyset$. 
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 3</h3>
-asd
+Consider the set $\mathscr{T}$ of all possible topologies defined in a set $X$, where $\tau_1\leq \tau_2$ means that
+$\tau_1$ is weaker than $\tau_2$ ($\tau_1\subset\tau_2$). Verify that $\leq$ is a partial ordering of $\mathscr{T}$.
+Is there a maximum and minimum element? If so, what are they?
 <br /><br />
 <i>Proof</i>.<br />
+Verifying the three properties of a partial order.
+<br /><br />
+(Reflexive). For some topology $\tau$, then obviously, $\tau \subset \tau$, so $\tau\leq\tau$ is true.
+<br /><br />
+(Transitivity). If $\tau_1\leq \tau_2$ and $\tau_2\leq \tau_3$, we have $\tau_1\subset\tau_2\subset\tau_3$
+from which it clearly follows that $\tau_1\subset\tau_3$, and $\tau_1\leq\tau_3$.
+<br /><br />
+(Antisymmetry). If $\tau_A\leq\tau_B$ and $\tau_B\leq\tau_A$, then they are included in each other, so $\tau_A = \tau_B$
+which shows that antisymmetry is satisfied.
+<br /><br />
+All properties are met, so we can conclude that $\leq$ is a partial ordering on $\mathscr{T}$.
 <div class="proofend">&#9632;</div>
+There are minimal and maximum elements. The mimium element is the trivial topology, $\{\emptyset, X\}$ which must be included
+in all other topologies. The maximum element is the power set of all possible subsets of $X$, denoted by $\mathcal{P}(X)$ which
+is a topology, and which contains all other topologies. 
 <br /><br />
 
 <h3>Problem 4</h3>
-asd
+Can two distinct topologies, $\tau_1$ and $\tau_2$ in $X$ generate the same relative topology in a subset $A\subset X$?
 <br /><br />
 <i>Proof</i>.<br />
+Yes, this is possible. Consider the set $X = \{a, b, c\}$ with the following topologies.
+$$
+\tau_1 = \{\emptyset, \{b\}, X\},
+$$
+$$
+\tau_2 = \{\emptyset, \{c\}, X\}.
+$$
+These are distinct topologies. If we set $A = \{a\}$, then the relative topologies become the trivial topology on $A$:
+$$
+\tau_1\cap A = \{\emptyset, \{a\}\} = \tau_2\cap A.
+$$
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 5</h3>
-asd
+Let
+$$
+X = \{a,b,c\},\quad A = \{a, b\},\quad B = \{b, c\}
+$$
+and let $\mathscr{G} = \{\emptyset, X, A, B\}$. Is $\mathscr{G}$ a base for a topology in $X$?
 <br /><br />
 <i>Proof</i>.<br />
+Note that $A\cap B = \{b\}$ and that there is no open set containing $b$ that is a subset of $A\cap B$.
+This breaks with the second property of Theorem 2, so $\mathscr{G}$ is NOT a valid base for a topology. 
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 6</h3>
-asd
+Prove that if $M$ is an uncountable subset of a topological space with a countable base, then some point of $M$
+is a limit point of $M$.
 <br /><br />
 <i>Proof</i>.<br />
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 7</h3>
-asd
+Prove that the topolog...
 <br /><br />
 <i>Proof</i>.<br />
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 8</h3>
-asd
+Prove that a topolog...
 <br /><br />
 <i>Proof</i>.<br />
 <div class="proofend">&#9632;</div>
