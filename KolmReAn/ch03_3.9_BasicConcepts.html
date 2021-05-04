@@ -127,11 +127,16 @@ base.
 <br /><br /><br /><br />
 
 <b>First Axiom of Countability</b><br />
-Let $x\in X$ be some point. If there exists a coutnable neighborhood base at $x$, i.e. a countable system
-$mathscr{O}$ of neighborhoods of $x$ with the following property: Given any open set $G$ containing $x$,
-there is a neighborhood $O\in\mathscr{O}$ sich that $O\subset G$. Suppose every point $x$ of a topological
+Let $x\in X$ be some point. If there exists a countable neighborhood base at $x$, i.e. a countable system
+$\mathscr{O}$ of neighborhoods of $x$ with the following property: Given any open set $G$ containing $x$,
+there is a neighborhood $O\in\mathscr{O}$ such that $O\subset G$. Suppose every point $x$ of a topological
 space $T$ has a countable neighborhood base. Then $T$ is said to satisfy the <i>first axiom of countability</i>
 (or that it is a first-countable set).
+<br /><br /><br /><br />
+
+<b>Second Axiom of Countability</b><br />
+A topological space $T$ is said to satisfy the <i>second axiom of countability</i> if it has at least one
+<i>countable base</i>.
 <br /><br /><br /><br />
 
 <b>Covering of Topological Spaces</b><br />
@@ -158,7 +163,7 @@ is the limit of a convergenct sequence of points in $M$.
 <br /><br />
 <div class="thm">Definition 4</div><br />
 Suppose that for each pair of distinct points $x$ and $y$ in a topological space $T$, there is a neighborhood $O_x$ of $x$
-and a neighborhood $O_y$ of $y$ such that $x\in O_x$ and $y\in O_y$. Then $T$ is said to satisfy the
+and a neighborhood $O_y$ of $y$ such that $x\not\in O_y$ and $y\not\in O_x$. (Error in book!). Then $T$ is said to satisfy the
 <b>first axiom of separability</b>, and is called a <b>T<sub>1</sub>-space</b>.
 <br /><br /><br /><br />
 
@@ -221,12 +226,6 @@ topological properties, and are just two different 'representatives' of the same
     One of the most important ways is by specifying a metric space in $T$.
 </i>
 <br /><br />
-<div class="thm">Definition 5</div><br />
-Suppose that for each pair of distinct points $x$ and $y$ in a topological space $T$, there is a neighborhood $O_x$ of $x$
-and a neighborhood $O_y$ of $y$ such that $O_x\cap O_y = \emptyset$. Then $T$ is said to satisfy the
-<b>second axiom of separability</b>, and is called a <b>T<sub>2</sub>-space</b> or a <b>Hausdorff space</b>.
-<br /><br /><br /><br />
-
 <div class="thm">Urysohn's Metrization Theorem</div><br />
 A necessary and sufficient condition for a topological space with a countable base to metrizable is that it be normal.
 <br /><br /><br /><br />
@@ -409,34 +408,100 @@ Prove that if $M$ is an uncountable subset of a topological space with a countab
 is a limit point of $M$.
 <br /><br />
 <i>Proof</i>.<br />
+Assume that $M$ doesn't have a limit point. Then for any $x\in M$ there exists some $G_x\in\mathscr{G}$
+such that $G_x\cap M = \{x\}$. For another point $y\in M$ we can similarly find $G_y\cap M = \{y\}$.
+This means that $x\not= y\Rightarrow G_x\not= G_y$ which defines an injection from $M$ to $\mathscr{G}$
+so $|M|\leq|\mathscr{G}|$ which suggests that $M$ is countable, but this is a contradiction. Therefore
+there must be a limit point in $M$.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 7</h3>
-Prove that the topolog...
+Prove that the topological space $T = \{\emptyset, \{b\}, \{a, b\}\}$ is connected. (A space is connected
+if the only open and closed sets are the empty set and the entire space $X$).
 <br /><br />
 <i>Proof</i>.<br />
+The empty set and $\{a, b\}$ are open and closed. The set $\{b\}$ is only open since $\{a,b\}-\{b\} = \{a\}$
+is closed as it is not specified in the topology. Hence, the topology $T$ is connected.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 8</h3>
-Prove that a topolog...
+Prove that a topology satisfying the second axiom of countability satisfies the first axiom of
+countability.
 <br /><br />
 <i>Proof</i>.<br />
+Assume that $T$ satisfies the second axiom of countability, i.e. $T$ has a countable base $\mathscr{G}$.
+By Theorem 3, for any $O_x\subset T$ containing $x$, there is a set $G_\alpha\in\mathscr{G}$ such that
+$x\in G_\alpha\subset O_x$, which shows that the topology satisfies the first axiom of countability.
+<div class="proofend">&#9632;</div>
+<br /><br />
+
+<h3>Problem 8 - Additional</h3>
+Prove that a topology satisfying the $T_2$/Hausdorff property also satisfies the $T_1$ property.
+<br /><br />
+<i>Proof</i>.<br />
+Assume that the topological space $T$ satisfies the Hausdorff property. Then for any two distinct points $x$ and $y$,
+there are open sets containing them $O_x$ and $O_y$ such that $O_x\cap O_y = \emptyset$. Since $x\in O_x$ and
+$x\not\in O_x\cap O_y$, then $x\not\in O_y$, and similarly, $y\not\in O_x$. We can conclude that $T$ is $T_1$. 
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 9</h3>
-asd
+Give an example of a topological space satisfying the first axiom of countability but not the second
+axiom of countability.
 <br /><br />
 <i>Proof</i>.<br />
+A discrete, uncountable topology satisfies the first axiom of countability, but not the second axiom.
+In the discrete topology, every distinct point is an open set, so it cannot be covered by a countable base.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 10</h3>
-asd
+Let $\tau$ be the system of sets consisting of the empty set and every subset of the closed interval $[0,1]$
+obtained by deleting a finite or countable number of points from $X$. Verify that $T = (X,\tau)$ is a topological
+space. Prove that $T$ satisfies neither the second nor the first axiom of countability. Prove that
+$T$ is a $T_1$-space, but not a Hausdorff ($T_2$) space. 
+<!-- https://math.stackexchange.com/questions/562358/properties-of-the-co-countable-topology-on-0-1 -->
+<!-- https://math.stackexchange.com/questions/4127324/the-space-0-1-with-finite-countable-points-removed-is-a-t1-space -->
 <br /><br />
 <i>Proof</i>.<br />
+Set $X = [0,1]$, let $G_\alpha$ be open sets in $\tau$ and $F_\alpha$ be closed sets.
+<br /><br />
+<b>Showing that this is a topology</b><br /><br />
+As specified, $\emptyset\in\tau$. If we remove 0 points from $X$, we are left with $X$, so $X\in\tau$.
+Next we need to show that open sets are closed under arbitrary unions and finite intersections.
+<br /><br />
+Let $G_\alpha\in\tau$ for all $\alpha\in I$ for some arbitrary index set $I$. Let $F_\alpha = X - G_\alpha$. Then:
+$$
+\bigcup_\alpha G_\alpha = \bigcup_\alpha (X - F_\alpha) = X - \bigcap_\alpha F_\alpha. 
+$$
+Since closed sets are closed under arbitrary intersections, and $\bigcap_\alpha F_\alpha \subset F_\beta$ for some
+closed set that is at most countable, the arbitrary union is $X$ with a countable number of points removed. So,
+$\bigcup_\alpha G_\alpha\in\tau$ and $\tau$ is closed under arbitrary unions.
+<br /><br />
+Let $G_k\in\tau$ for $k = 1,2,\ldots, N$. Then:
+$$
+\bigcap_k G_k = \bigcap_k(X - F_k) = X - \bigcup_k F_k
+$$
+A finite union of closed sets is closed, and a finite union of countable sets is countable, which means
+$\bigcap_k G_k \in\tau$ and $\tau$ is closed under finite intersections.
+<br /><br />
+All properties are verified, so $\tau$ is topology.
+<br /><br />
+<b>Countability Axioms</b><br /><br />
+Since $A_2\Rightarrow A_1$ as shown in Problem 8, the converse states that $\neg A_1 \Rightarrow\neg A_2$.
+We only need to show that this topology does not satisfy the first axiom of countability and the second result being false follows.
+<br /><br />
+<b>This topology is T<sub>1</sub></b><br /><br />
+Let $x,y\in X$ be two distinct points. Set $O_x = [0, y)\cup(y, 1]$ and $O_y = [0, x)\cup(x, 1]$ which are open sets since we
+only remove a single point. Then $x\in O_x$ and $y\in O_y$,
+but $x\not\in O_y$ and $y\not\in O_x$, which shows that this is a $T_1$ space.
+<br /><br />
+<b>This topology is NOT Hausdorff (T<sub>2</sub>)</b><br /><br />
+Let $x$ and $y$ be two distinct points in $X$. Then any open set containing $x$ will have at most a countable set of $X$ removed
+and similarly for open sets containing $y$. Then the intersection $O_x\cap O_y \not= \emptyset$. In fact, it will be an uncountable
+set, so this topology is NOT Hausdorff.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
