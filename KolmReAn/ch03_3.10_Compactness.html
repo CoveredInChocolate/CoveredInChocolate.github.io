@@ -84,29 +84,71 @@ A topological space $T$ is compact if and only if it has the following property:
 
 <div class="thm">Theorem 2</div><br />
 Every closed subset $F$ of a compact topological space $T$ is itself compact.
-</div>
 <br /><br /><br /><br />
 
 <div class="thm">Corollary</div><br />
 Every closed subset of a compactum is itself a compactum.
-</div>
 <br /><br /><br /><br />
 
 <div class="thm">Theorem 3</div><br />
 Let $K$ be a compactum and $T$ any Hausdorff space containing $K$. Then $K$ is closed in $T$.
-</div>
 <br /><br /><br /><br />
 
 <div class="thm">Theorem 4</div><br />
 Every compactum $K$ is a normal space.
-</div>
 <br /><br /><br /><br />
 
 
 <div class="thm">Theorem 5</div><br />
 Let $X$ be a compact space and $f$ a continuous mapping of $X$ onto a topological space $Y$.
 Then $Y = f(X)$ is itself compact.
+<br /><br /><br /><br />
+
+
+<div class="thm">Theorem 6</div><br />
+A one-to-one continuous mapping of a compactum $X$ onto a compactum $Y$ is necessarily a homeomorphism.
+<br /><br /><br /><br />
+
+
+<div class="thm">Theorem 7</div><br />
+If $T$ is a compact space, then any infinite subset of $T$ has at least one limit point.
+<br /><br /><br /><br />
+
+
+<div class="thm">Definition 3</div><br />
+A topological space $T$ is said to be <b>countably compact</b> if every infinite subset of $T$ has at least one limit point (in $T$).
+<br /><br /><br /><br />
+
+
+<div class="thm">Theorem 8</div><br />
+Each of the following two conditions are necessary and sufficient for a topological space $T$ to be countably compact.
+<div class="indent">
+    1) Every countable open cover of $T$ has a finite subcover.<br />
+    2) Every countable centered system of closed subsets of $T$ has a nonempty intersection.
 </div>
+<br /><br />
+
+
+<b>Important Distinction</b><br />
+A compact topological space are those where an <i>arbitrary</i> open cover have a finite subcover, and the countably compact spaces
+where a <i>countable</i> open cover has a finite subcover. The following Theorem shows the special case where the first implies the second.
+<br /><br /><br /><br />
+
+
+<div class="thm">Theorem 9</div><br />
+The concepts of compactness and countable compactness coincide for a topological space $T$ with a countable base.
+<br /><br /><br /><br />
+
+
+<div class="thm">Definition 4</div><br />
+A subset $M$ of a topological space $T$ is said to be <b>relatively compact</b> (in $T$) if its closure $\overline{M}$
+in $T$ is compact.
+<br /><br /><br /><br />
+
+
+<div class="thm">Definition 5</div><br />
+A subset $M$ of a topological space $T$ is said to be <b>relatively countably compact</b> (in $T$) if every infinite subset
+$A\subset M$ has at least one limit point in $T$ (which may not belong to $T$).
 <br /><br /><br /><br />
 
 
@@ -116,21 +158,35 @@ Then $Y = f(X)$ is itself compact.
 <!-- ########################### PROBLEMS ########################### -->
 
 <h3>Problem 1</h3>
-asd
-<br /><br />
-<i>Proof</i>.<br />
-<div class="proofend">&#9632;</div>
-<br /><br />
+<i>Skipped... (Uninteresting counterexample)</i>
+<br /><br /><br /><br />
 
 <h3>Problem 2</h3>
-asd
+A topological space $T$ is said to be <i>locally compact</i> if every point $x\in T$ has at least one relatively compact
+neighborhood. Show that a compact space is automatically locally compact, but not conversely. Prove that every closed
+subspace of a locally compact subspace is locally compact.
 <br /><br />
 <i>Proof</i>.<br />
+Suppose $T$ is a compact space and let $x$ be some arbitrary point in $T$. Then select some open neighborhood containing $x$, $U\ni x$.
+The closure $[U]$ is a closed subset of a compact space. By Theorem 2, $[U]$ will be a compact
+space, so $U$ is a relatively compact neighborhood. This shows that $T$ is locally compact.
+<br /><br />
+Now a counterexample to show that the converse is not true; a space can be locally compact; i.e. every point has a neighborhood
+whose closure is compact. But that the space is not compact; an open cover does NOT have a finite subcover. An example of this
+is simply $\R$, which is locally compact, but not compact. Every $x\in\R$ is contained in an open set $(a, b)$ where the
+closure $[a, b]$ is compact, but there is no finite subcover of $\R$.
+<br /><br />
+Suppose $K$ is a locally compact subspace of $T$, and let $F$ be a closed subspace of $K$. Let $x$ be a random point $x\in F$.
+Then $x\in K$ and since $K$ is locally compact, there is at least one neighborhood $U_x\ni x$ such that $[U_x]$ is compact with
+respect to $K$. Let $[V_x] = [U_x]\cap F$, then $[V_x]\subset [U_x]$ is a closed subset of a compact space $[U_x]$ and by
+Theorem 2, $[V_x]$ is compact. But then $V_x$ is a relatively compact neighborhood of $x$ so $F$ is locally compact.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 3</h3>
-asd
+A point $x$ is said to be a <i>complete limit point</i> of a subset $A$ of a topological space, if given any neighborhood
+$U\ni x$, the sets $A$ and $A\cap U$ have the power (i.e. cardinal number). Prove that every infinite subset of a compact space $T$
+has at least one complete limit point.
 <br /><br />
 <i>Proof</i>.<br />
 <div class="proofend">&#9632;</div>
