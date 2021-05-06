@@ -189,6 +189,17 @@ $U\ni x$, the sets $A$ and $A\cap U$ have the power (i.e. cardinal number). Prov
 has at least one complete limit point.
 <br /><br />
 <i>Proof</i>.<br />
+Suppose $T$ is a compact space. Then any open covering $\{U_\alpha\}$ has a finite subcover, i.e.
+$$
+T \subset \bigcup_{k=1}^N U_k.
+$$
+Now let $A\subset T$ be an infinite subset. Since
+$$
+A\subset T \subset \bigcup_{k=1}^N U_k,
+$$
+then there is at least one open set $U_m$, $1\leq m\leq N$ that contains an infinite amount of points. (We can also assume that
+$U_m$ is the largest set). Take some $x\in U_m$, which is a neighborhood containing an infinite amount of points. Then $A\cap U_m$
+has the same power, and $x$ is a complete limit point of $A$.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
