@@ -4,9 +4,13 @@
 }
 
 .proofend {
-    text-align: right;
+    text-align: right
     font-size: large;
     background-color: #ffffff;
+}
+
+img {
+    border: 1px solid #000;
 }
 
 h3 {
