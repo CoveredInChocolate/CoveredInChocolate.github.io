@@ -59,7 +59,14 @@ an $\eps$-net for a set $M\subset R$ if, for every $x\in M$, there is at least o
 $\rho(x, a)\leq\eps$.
 <br /><br />
 
-An illustration.
+Illustration. The two red points make the set $A$ which is an $\eps$-net for $M$, since every point in $M$ is
+within $\eps$ of $A$.
+<br /><br />
+<img src="img/Kolm_ReAn_3.11_epsnet.png" />
+
+
+<br /><br />
+Another illustration.
 The red points form part of an $\eps$-net for the Euclidean plane, where $\eps$ is the radius of the large yellow disks.
 The blue disks of half the radius are disjoint, and the yellow disks together cover the whole plane, satisfying
 the two definitional requirements on an $\eps$-net.<br /><br />
@@ -93,6 +100,55 @@ A metric space $R$ is compact if and only if it is totally bounded and complete.
 <br /><br /><br /><br />
 
 
+<div class="thm">Theorem 3</div><br />
+A subset $M$ of a complete metric space $R$ is relatively compact if and only if it is totally bounded.
+<br /><br />
+
+<i>So any boudned subset of Euclidean $n$-space is totally bounded and hence relatively compact. This is
+a version of the <b>Bolzano-Weierstrass </b>theorem</i>. This form can be useful since it is usually
+easier to prove that a set is totally bounded than to prove that it is relative compact. But it is
+the compactness that is the key property.
+<br /><br /><br /><br />
+
+
+<div class="thm">Definition 3</div><br />
+A family $\Phi$ of functions $\phi$ defined on a closed interval $[a, b]$ is said to be
+<b>uniformly bounded</b> if there exists a number $K > 0$ such that,
+$$
+|\phi(x)| < K
+$$
+for all $x\in[a,b]$ and all $\phi\in\Phi$.
+<br /><br /><br /><br />
+
+
+<div class="thm">Definition 4</div><br />
+A family $\Phi$ of functions $\phi$ defined on a closed interval $[a, b]$ is said to be
+<b>equicontinuous</b> if, given any $\eps > 0$, there exists a number $\delta > 0$ such that
+$|x' - x''| < \delta$ implies
+$$
+|\phi(x') - \phi(x'')| < \eps
+$$
+for all $x',x''\in[a,b]$ and all $\phi\in\Phi$.
+<br /><br /><br /><br />
+
+
+<div class="thm">Theorem 4 (Arzelà)</div><br />
+A necessary and sufficient condition for a family $\Phi$ of continuous functions $\phi$
+defined on a closed interval $[a, b]$ to be relatively compact in $C_{[a,b]}$ is that
+$\Phi$ be uniformly bounded and equicontinuous.
+<br /><br /><br /><br />
+
+
+
+<div class="thm">Theorem 5 (Peano)</div><br />
+Let $f(x, y)$ be defined and continuous on a plane domain $G$. Then at least one integral curve
+of the differential equation
+$$
+\frac{dy}{dx} = f(x, y)
+$$
+passes through each point $(x_0, y_0)$ of $G$.
+<br /><br /><br /><br />
+
 
 
 
@@ -102,21 +158,66 @@ A metric space $R$ is compact if and only if it is totally bounded and complete.
 <!-- ########################### PROBLEMS ########################### -->
 
 <h3>Problem 1</h3>
-asd
+Let $M$ be a totally bounded subset of a metric space $R$. Prove that the $\eps/2$-nets figuring in the
+definition of total boundedness of $M$ can always be chosen to consist of points of $M$ rather than of $R$.
+(Fixed some errata reported on this exercise).
+<br /><br />
+<i>Hint</i>: Given an $\eps/2$-net for $M$ consisting of points $a_1, a_2, \ldots, a_n\in R$, all within $\eps/2$
+of some point of $M$, replace each point $a_k$ with a point $b_k\in M$ sich that $\rho(a_k, b_k) < \eps/2$,
+then $\{b_k\}\subset M$ is an $\eps$-net for $M$.
 <br /><br />
 <i>Proof</i>.<br />
+For any point $x\in M$ such that $\rho(x, a_k)\leq \eps/2$, we select new points $b_k\in M$ such that $\rho(a_k, b_k) \leq \eps/2$.
+Then, by the triangle inequality:
+$$
+\rho(x, b_k) \leq \rho(x, a_k) + \rho(a_k, b_k) \leq \frac{\eps}{2} + \frac{\eps}{2} = \eps,
+$$
+which shows that the points $\{b_k\}$ make an $\eps$-net for $M$.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 2</h3>
-asd
+Prove that every totally bounded metric space is separable. (Separable: a metric space has a countable everywhere dense subset).
+<br /><br />
+<i>Hint</i>: Construct a finite $(1/n)$-net for every $n\in\N$, then take the union of these nets.
 <br /><br />
 <i>Proof</i>.<br />
-<div class="proofend">&#9632;</div>
+Suppose $R$ is a totally bounded metric space. Since it is totally bounded, there exists a finite $\eps$-net for all $\eps > 0$.
+Following the hint we define an $1/n$-net for $n\in\N$. Each $A_n$ are the points in the $1/n$-net.
+$$
+A_1 = \{a_1,\ldots,a_{k_1}\}
+$$
+$$
+A_2 = \{a_{k_1 + 1},\ldots,a_{k_2}\}
+$$
+$$
+\vdots
+$$
+$$
+A_{n+1} = \{a_{k_n + 1},\ldots,a_{k_{n+1}}\}
+$$
+$$
+\vdots
+$$
+Define $Z = \bigcup_{n\in\N}A_n$, the union of all points in all the $\eps$-nets. As a countable union of finite sets, $Z$ is countable.
+To show that $Z$ is everywhere dense in $R$, we must show that $[Z] = R$.
 <br /><br />
+$\subset$) Since $[Z]$ is the intersection of all closed sets containing it, and $R$ is a closed set that contains $[Z]$, it follows
+that $[Z]\subset R$.
+<br /><br />
+$\supset$) To show that $R\subset[Z]$, we instead show the contrapositive; $x\not\in [Z] \Rightarrow x\not\in R$. So assume that
+$x\not\in[Z]$. Then for any $\eps > 0$ and any $a_m\in[Z]$, then $\rho(x, a_m) > \eps$, but then $x$ is outside the $\eps$-net
+and so $x\not\in R$ since $R$ is totally bounded. We can conclude that $R\subset[Z]$.
+<br /><br />
+This shows that $[Z]=R$, and since $Z$ is countable, it is a countable everywhere dense subset of $R$, so $R$ is separable.
+<div class="proofend">&#9632;</div>
 
 <h3>Problem 3</h3>
-asd
+Let $M$ be a bounded subset of the space $C_{[a,b]}$. Prove that the set of all functions
+$$
+F(x) = \int_a^x f(t)dt
+$$
+with $f\in M$ is relatively compact. (Added 'relatively' according to errata list).
 <br /><br />
 <i>Proof</i>.<br />
 <div class="proofend">&#9632;</div>
