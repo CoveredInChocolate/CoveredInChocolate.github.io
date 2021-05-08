@@ -45,7 +45,7 @@
     </tr>
     <tr>
         <td><b>Next</b>:</td>
-        <td><a href="_TEMPLATE.html">X.X XXX</a></td>
+        <td><a href="ch01_01.02_DiscProbDist.html">1.2 Discrete Probability Distributions</a></td>
     </tr>
 </table>
 <br /><br />
@@ -58,103 +58,231 @@
 <!-- ########################### EXERCISES ########################### -->
 
 <h3>Exercise 1</h3>
-asd
+Modify the program CoinTosses to toss a coin n times and print out after
+every 100 tosses the proportion of heads minus 1/2. Do these numbers appear
+to approach 0 as n increases? Modify the program again to print out, every
+100 times, both of the following quantities: the proportion of heads minus 1/2,
+and the number of heads minus half the number of tosses. Do these numbers
+appear to approach 0 as n increases?
+
+<br /><br />
+<i>Answer</i><br />
+Simulated 100.000 coin tosses. The first case has a very clear trend towards 0. The second case
+converges to 0, just a bit more randomly.
+<br /><br />
+
+<b>Code</b>:
+<!-- https://pinetools.com/syntax-highlighter -->
+<!-- Style: Vs -->
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 01.01 - Exercise 1</span>
+cointToss &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>(nToss) {
+    <span class="hljs-comment" style="color: green;"># 1 symbolizes coin toss 'H'</span>
+    tosses = sample(c(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>), size=nToss, replace = <span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>)
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(tosses)
+}
+
+PropHeads &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>(tosses) {
+    propHeads = cumsum(tosses)
+    numberOfHundreds = floor(length(tosses)/<span class="hljs-number">100</span>)
+    retVal = rep(<span class="hljs-number">0</span>, numberOfHundreds)
+    
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (k <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:numberOfHundreds) {
+    print(propHeads[<span class="hljs-number">100</span>*k]/length(tosses) - <span class="hljs-number">0.5</span>)
+    retVal[k] = propHeads[<span class="hljs-number">100</span>*k]/length(tosses) - <span class="hljs-number">0.5</span>
+    } 
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(retVal)
+} 
+PropHeadsByTosses &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>(tosses) {
+    propHeads = cumsum(tosses)
+    numberOfHundreds = floor(length(tosses)/<span class="hljs-number">100</span>)
+    retVal = rep(<span class="hljs-number">0</span>, numberOfHundreds)
+    
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (k <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:numberOfHundreds) {
+    print(propHeads[<span class="hljs-number">100</span>*k]/(<span class="hljs-number">100</span>*k) - <span class="hljs-number">0.5</span>)
+    retVal[k] = propHeads[<span class="hljs-number">100</span>*k]/(<span class="hljs-number">100</span>*k) - <span class="hljs-number">0.5</span>
+    } 
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(retVal)
+} 
+
+<span class="hljs-comment" style="color: green;"># Simulating 100K tosses</span>
+numbeOfTosses = <span class="hljs-number">100</span>*<span class="hljs-number">1000</span>
+simulatedTosses = cointToss(numbeOfTosses)
+t1 = PropHeads(simulatedTosses)
+t2 = PropHeadsByTosses(simulatedTosses)
+
+<span class="hljs-comment" style="color: green;"># Generate Plots</span>
+plot(<span class="hljs-number">1</span>:length(t1), t1, type=<span class="hljs-string" style="color: rgb(163, 21, 21);">"l"</span>,
+        main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"Heads by Total number of Tosses"</span>,
+        xlab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"100 tosses"</span>, ylab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"H - 0.5"</span>)
+
+plot(<span class="hljs-number">1</span>:length(t2), t2, type=<span class="hljs-string" style="color: rgb(163, 21, 21);">"l"</span>,
+        main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"Heads by Number of Tosses"</span>,
+        xlab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"100 tosses"</span>, ylab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"H - 0.5"</span>)
+
+
+<span class="hljs-comment" style="color: green;"># Save tosses</span>
+png(filename=<span class="hljs-string" style="color: rgb(163, 21, 21);">"~/GITHUB/CoveredInChocolate.github.io/IntroProb/img/01.01_Ex01_01.png"</span>, width = <span class="hljs-number">600</span>, height = <span class="hljs-number">480</span>)
+plot(<span class="hljs-number">1</span>:length(t1), t1, type=<span class="hljs-string" style="color: rgb(163, 21, 21);">"l"</span>,
+        main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"Heads by Total number of Tosses"</span>,
+        xlab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"100 tosses"</span>, ylab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"H - 0.5"</span>)
+dev.off()
+png(filename=<span class="hljs-string" style="color: rgb(163, 21, 21);">"~/GITHUB/CoveredInChocolate.github.io/IntroProb/img/01.01_Ex01_02.png"</span>, width = <span class="hljs-number">600</span>, height = <span class="hljs-number">480</span>)
+plot(<span class="hljs-number">1</span>:length(t2), t2, type=<span class="hljs-string" style="color: rgb(163, 21, 21);">"l"</span>,
+        main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"Heads by Number of Tosses"</span>,
+        xlab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"100 tosses"</span>, ylab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"H - 0.5"</span>)
+dev.off()
+
+</pre>
+</div>
+<br /><br />
+<b>Plots</b>:<br />
+<img src="img/01.01_Ex01_01.png" /><br />
+<img src="img/01.01_Ex01_02.png" /><br />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
 <h3>Exercise 2</h3>
 asd
+
+<br /><br />
+<i>Answer</i><br />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
 <h3>Exercise 3</h3>
 asd
+
+<br /><br />
+<i>Answer</i><br />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
 <h3>Exercise 4</h3>
 asd
+
+<br /><br />
+<i>Answer</i><br />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
 <h3>Exercise 5</h3>
 asd
+
+<br /><br />
+<i>Answer</i><br />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
 <h3>Exercise 6</h3>
 asd
+
+<br /><br />
+<i>Answer</i><br />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
 <h3>Exercise 7</h3>
 asd
+
+<br /><br />
+<i>Answer</i><br />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
 <h3>Exercise 8</h3>
 asd
+
+<br /><br />
+<i>Answer</i><br />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
 <h3>Exercise 9</h3>
 asd
+
+<br /><br />
+<i>Answer</i><br />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
 <h3>Exercise 10</h3>
 asd
+
+<br /><br />
+<i>Answer</i><br />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
 <h3>Exercise 11</h3>
 asd
+
+<br /><br />
+<i>Answer</i><br />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
 <h3>Exercise 12</h3>
 asd
+
+<br /><br />
+<i>Answer</i><br />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
 <h3>Exercise 13</h3>
 asd
+
+<br /><br />
+<i>Answer</i><br />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
 <h3>Exercise 14</h3>
 asd
+
+<br /><br />
+<i>Answer</i><br />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
 <h3>Exercise 15</h3>
 asd
+
+<br /><br />
+<i>Answer</i><br />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
 <h3>Exercise 16</h3>
 asd
+
+<br /><br />
+<i>Answer</i><br />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
 <h3>Exercise 17</h3>
 asd
+
+<br /><br />
+<i>Answer</i><br />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />

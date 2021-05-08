@@ -3,6 +3,10 @@
     font-size: medium;
 }
 
+.rcode {
+  border: 1px solid #000;
+}
+
 .exend {
   width:100%;
   text-align: right;
