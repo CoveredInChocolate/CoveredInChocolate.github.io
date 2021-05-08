@@ -104,7 +104,7 @@ A metric space $R$ is compact if and only if it is totally bounded and complete.
 A subset $M$ of a complete metric space $R$ is relatively compact if and only if it is totally bounded.
 <br /><br />
 
-<i>So any boudned subset of Euclidean $n$-space is totally bounded and hence relatively compact. This is
+<i>So any bounded subset of Euclidean $n$-space is totally bounded and hence relatively compact. This is
 a version of the <b>Bolzano-Weierstrass </b>theorem</i>. This form can be useful since it is usually
 easier to prove that a set is totally bounded than to prove that it is relative compact. But it is
 the compactness that is the key property.
@@ -220,13 +220,67 @@ $$
 with $f\in M$ is relatively compact. (Added 'relatively' according to errata list).
 <br /><br />
 <i>Proof</i>.<br />
+Note, from Example 4 on page 57, $C_{[a,b]}$ is a complete metric space.
+Define
+$$
+K = \left\{ F\,\mid\, F(x) = \int_a^x f(t)dt,\;f\in M\right\}.
+$$
+Not showing the details, but since $f$ is continuous, then so is the integral $F$ and so $F\in C_{[a,b]}$
+and therefore $K\subset C_{[a,b]}$, i.e. it is a subset of a complete metric space. In order to verify that
+$K$ is relatively compact, we must show that it is totally bounded, which means we need to show that $K$ has
+a finite $\eps$-net. After that, we can apply Theorem 3.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
 <h3>Problem 4</h3>
-asd
+Given two metric compacta (compact Hausdorff) $X$ and $Y$, let $C_{XY}$ be the set of all continuous mappings
+of $X$ into $Y$. Let distance be defined in $C_{XY}$ by the formula
+$$
+\rho(f, g) = \sup_{x\in X}d(f(x), g(x)). \tag{4}
+$$
+where $d$ is the metric in $Y$.
+Prove that $C_{XY}$ is a metric space. Let $M_{XY}$ be the set of all mappings of $X$ into $Y$, with the same
+metric (4). Prove that $C_{XY}$ is closed in $M_{XY}$.
 <br /><br />
 <i>Proof</i>.<br />
+Showing that $C_{XY}$ is a metric space, i.e. that $\rho$ satisfies the three conditions of a metric.<br />
+(1) Only 0 when objects are equal. $\rho(f, g) = 0 \Leftrightarrow f = g$.
+<br /><br />
+$\Rightarrow$) Assume that $\rho(f, g) = 0$.
+\begin{align}
+\rho(f, g) = 0 &\Longrightarrow 0\leq \sup_{x\in X}d(f(x), g(x)) = 0 \\
+&\Longrightarrow f(x) = g(x)
+\end{align}
+which follows since $d$ is a metric.
+<br /><br />
+$\Leftarrow$) Set $g = f$.
+$$
+\rho(f, f) =  \sup_{x\in X}d(f(x), f(x)) = 0
+$$
+which follows since $d$ is a metric.
+<br /><br />
+(2) Symmetric property.
+$$
+\rho(f, g) = \sup_{x\in X}d(f(x), g(x)) = \sup_{x\in X}d(g(x), f(x)) = \rho(g, f)
+$$
+which follows since $d$ is a metric.
+<br /><br />
+(3) Triangle inequality.
+$$
+\rho(f, g) = \sup_{x\in X}d(f(x), g(x)) \leq \sup_{x\in X}d(f(x), h(x)) + \sup_{x\in X}d(h(x), g(x)) = \rho(f, h) + \rho(h, g)
+$$
+So, since $d$ is a metric we have verfied:
+$$
+\rho(f, g) \leq \rho(f, h) + \rho(h, g).
+$$
+All properties are verified, so $C_{XY}$ is a metric space.
+<br /><br />
+Next we show that $C_{XY}$ is closed in $M_{XY}$. This can be verified by showing that any limit point of $C_{XY}$ must be in $C_{XY}$,
+which will prove that $C_{XY} = [C_{XY}]$, i.e. that it is closed. So assume $f$ is a limit point of $C_{XY}$, i.e.
+$f\in[C_{XY}]$ and that there is a sequence $\{f_n\}$ such that $f_n\rightarrow f$ as $n\rightarrow\infty$. From the results from
+Problem 1, section 2.7, we know that the limit of a sequence of continuous functions $f_n$ is itself continuous,
+so $f\in C_{XY}$. Therefore $[C_{XY}]\subset C_{XY}$. Since $C_{XY}\subset [C_{XY}]$ we conclude that
+$C_{XY} = [C_{XY}]$, i.e. that it is closed.
 <div class="proofend">&#9632;</div>
 <br /><br />
 
