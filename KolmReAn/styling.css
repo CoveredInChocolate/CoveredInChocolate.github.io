@@ -18,6 +18,8 @@ h3 {
 }
 .thm {
     font-variant: small-caps;
+    font-weight: 600;
+    background-color: #f3f3f3;
 }
 .indent {
     padding-left: 20px;

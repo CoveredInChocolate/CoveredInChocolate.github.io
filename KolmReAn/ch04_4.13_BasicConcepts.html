@@ -45,12 +45,78 @@
     </tr>
     <tr>
         <td><b>Next</b>:</td>
-        <td><a href="_TEMPLATE.html">X.X XXX</a></td>
+        <td><a href="ch04_4.14_ConSetsHBThm.html">4.14 Convex Sets and Functionals. The Hahn-Banach Theorem<</a></td>
     </tr>
 </table>
 <br /><br />
 
 <h3>Results</h3>
+
+
+<div class="thm">Definition 1</div><br />
+A nonempty set $L$ of elements $x,y,z,\ldots$ is said to be a <b>linear space</b> (or <b>vector space</b>)
+if it satisfies the following three axioms.
+<br /><br />
+(1) Any two elements $x,y\in L$ uniquely determine a third element $x+y\in L$, called the <b>sum</b>
+of $x$ and $y$, such that
+<div class="indent">
+    (a) $x + y = y + x$ (commutativity)<br />
+    (b) $(x + y) + z = x + (y + z)$ (associativity)<br />
+    (c) There exists an element $0\in L$, called the <b>zero element</b> with the property that
+    $x + 0 = x$ for every $x\in L$<br />
+    (d) For every element $x\in L$ there exists an element $-x\in L$, called the <b>negative</b> of $x$
+    with the property that $x + (-x) = 0$.
+</div>
+<br />
+(2) Any number $\alpha$ and any element $x\in L$ uniquely determines an element $\alpha x\in L$, called the
+<b>product</b> of $\alpha$ and $x$, such that
+<div class="indent">
+    (a) $\alpha(\beta x) = (\alpha\beta)x$<br />
+    (b) $1\cdot x = x$
+</div>
+<br />
+(3) The operations of addition and multiplication obey the two distributive laws.
+<div class="indent">
+    (a) $(\alpha + \beta)x = \alpha x + \beta x$<br />
+    (b) $\alpha(x + y) = \alpha x + \alpha y$
+</div>
+<br /><br />
+The points $x$, $y$ are called points or vectors, and $\alpha$, $\beta$ are called scalars.
+<br /><br /><br /><br />
+
+
+
+<div class="thm">Definition 2</div><br />
+Two linear spaces $L$ and $L^*$ are said to be <b>isomorphic</b> if there is a one-to-one
+correspondence $x\leftrightarrow x^*$ between $L$ and $L^*$ which preserves operations,
+in the sense that
+$$
+x\leftrightarrow x^*
+,\quad
+y\leftrightarrow y^*
+$$
+where $x,y\in L$ and $x^*,y^*\in L^*$, implies
+$$
+x + y\leftrightarrow x^* + y^*
+$$
+and
+$$
+\alpha x \leftrightarrow \alpha x^*
+$$
+for some arbitrary $\alpha$.
+<br /><br /><br /><br />
+
+<b>Linear Dependence</b><br />
+The elements $x,y,\ldots,w$ of a linear space $L$ are <i>linearly dependent</i> if there exists numbers $\alpha, \beta,\ldots,\lambda$,
+not all zeros, such that
+$$
+\alpha x + \beta y + \ldots + \lambda w = 0.
+$$
+If no such numbers exists, the points are said to be <i>linearly independent</i>.
+<br /><br /><br /><br />
+
+
+
 
 <br /><br /><br /><br />
 
@@ -93,48 +159,6 @@ asd
 <br /><br />
 
 <h3>Problem 6</h3>
-asd
-<br /><br />
-<i>Proof</i>.<br />
-<div class="proofend">&#9632;</div>
-<br /><br />
-
-<h3>Problem 7</h3>
-asd
-<br /><br />
-<i>Proof</i>.<br />
-<div class="proofend">&#9632;</div>
-<br /><br />
-
-<h3>Problem 8</h3>
-asd
-<br /><br />
-<i>Proof</i>.<br />
-<div class="proofend">&#9632;</div>
-<br /><br />
-
-<h3>Problem 9</h3>
-asd
-<br /><br />
-<i>Proof</i>.<br />
-<div class="proofend">&#9632;</div>
-<br /><br />
-
-<h3>Problem 10</h3>
-asd
-<br /><br />
-<i>Proof</i>.<br />
-<div class="proofend">&#9632;</div>
-<br /><br />
-
-<h3>Problem 11</h3>
-asd
-<br /><br />
-<i>Proof</i>.<br />
-<div class="proofend">&#9632;</div>
-<br /><br />
-
-<h3>Problem 12</h3>
 asd
 <br /><br />
 <i>Proof</i>.<br />

@@ -52,13 +52,98 @@
 
 <h3>Results</h3>
 
+<b>Functions and Functionals</b><br />
+Let $T$ be a topological space, in particular a metric space. A real function is a mapping
+$f: T\rightarrow\R$. If $T$ is a function space, a space of functions, then a real function
+on $T$ is called a <b>functional</b>. Examples:
+\begin{align}
+F_1(x) &= \sup_{t\in[0,1]}x(t) \\
+F_2(x) &= \int_0^1|x'(t)|dt
+\end{align}
+<br /><br /><br /><br />
+
+
+<div class="thm">Definition 1</div><br />
+A real function $f(x)$ defined on a metric space $R$ is said to be <b>uniformly continuous</b> on $R$,
+if given any $\eps > 0$, there is a $\delta > 0$ such that $\rho(x_1, x_2) < \delta$ implies
+$|f(x_1) - f(x_2)| < \eps$ for all $x_1,x_2\in R$.
+<br /><br /><br /><br />
+
+
+<div class="thm">Theorem 1</div><br />
+A real function $f$ continuous on a compact metric space $R$ is uniformly continuous on $R$.
+<br /><br />
+<i>Proof</i>.<br />
+Suppose $f$ is continuous but not uniformly continuous on $R$. Then for some positive $\eps$ and every $n$
+there are points $x_n$ and $x_n'$ in $R$ such that
+$$
+\rho(x_n, x_n') < \frac{1}{n},
+\tag{1}
+$$
+but
+$$
+|f(x_n) - f(x_n')| \geq \eps.
+\tag{2}
+$$
+Since $R$ is compact, the sequence $\{x_n\}$ has a subsequence $\{x_{n_k}\}$ converging to a point $x\in R$.
+Hence $\{x'_{n_k}\}$ also converges to $x$, because of (1). But then at least one of the inequalities
+$$
+|f(x) - f(x_{n_k})|\geq\frac{\eps}{2},\quad
+|f(x) - f(x'_{n_k})|\geq\frac{\eps}{2}
+$$
+must hold for arbitrary $k$, because of (2). This contradicts the assumed continuity of $f$ at $x$.
+<div class="proofend">&#9632;</div>
+<br /><br /><br /><br />
+
+
+<div class="thm">Theorem 2</div><br />
+A real function $f$ continuous on a compact topological space $T$ is bounded on $T$. Moreover, $f$ achieves
+its least upper bound and greatest lower bound on $T$.
+<br /><br /><br /><br />
+
+
+<div class="thm">Definition 2</div><br />
+A real function $f$ defined on a topological space $T$ is said to be <b>upper semicontinuous</b> at a point
+$x_0\in T$ if, given $\eps > 0$, there exists a neighborhood of $x_0$ in which $f(x) < f(x_0) + \eps$.
+Similarly, $f$ is said to be <b>lower semicontinuous</b> at $x_0$, if, given $\eps > 0$, there exists a
+neighborhood of $x_0$ in which $f(x) > f(x_0) - \eps$.
+<br /><br /><br /><br />
+
+
+<div class="thm">Theorem 2'</div><br />
+A finite lower semicontinuous function $f$ defined on a compact topological space $T$ is bounded from below.
+<br /><br /><br /><br />
+
+
+<div class="thm">Theorem 2''</div><br />
+A finite lower semicontinuous function $f$ defined on a compact topological space $T$ achieves its greatest
+lower bound on $T$.
+<br /><br /><br /><br />
+
+
+<div class="thm">Definition 3</div><br />
+Given a real function $f$ defined on a metric space $R$, the (finite or infinite) quantity
+$$
+\overline{f}(x_0) = \lim_{\eps\rightarrow 0}\left\{\sup_{x\in S(x_0, \eps)} f(x)\right\}
+$$
+is called the <b>upper limit</b> of $f$ at $x_0$, while the (finite or infinite) quantity
+$$
+\underline{f}(x_0) = \lim_{\eps\rightarrow 0}\left\{\inf_{x\in S(x_0, \eps)} f(x)\right\}
+$$
+is called the <b>lower limit</b> of $f$ at $x_0$. The difference
+$$
+\omega f(x_0) = \overline{f}(x_0) - \underline{f}(x_0),
+$$
+provided that it exists (one of the numbers are finite), is called the <b>oscillation</b> of $f$ at $x_0$.
+<br /><br /><br /><br />
+
 
 
 <br /><br /><br /><br />
 
-
+<i>Skipping these exercises for now.</i>
 <!-- ########################### PROBLEMS ########################### -->
-
+<!-- 
 <h3>Problem 1</h3>
 asd
 <br /><br />
@@ -141,7 +226,7 @@ asd
 <br /><br />
 <i>Proof</i>.<br />
 <div class="proofend">&#9632;</div>
-<br /><br />
+<br /><br /> -->
 
 
 <br /><br />
