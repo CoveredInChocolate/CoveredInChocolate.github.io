@@ -365,28 +365,260 @@ print(sum(firstOccurrence &gt; <span class="hljs-number">150</span>)/NREP)
 <br /><br />
 
 <h3>Exercise 6</h3>
-asd
-
+In Las Vegas, a roulette wheel has 38 slots numbered 0, 00, 1, 2, ..., 36. The
+0 and 00 slots are green and half of the remaining 36 slots are red and half
+are black. A croupier spins the wheel and throws in an ivory ball. If you bet
+1 dollar on red, you win 1 dollar if the ball stops in a red slot and otherwise
+you lose 1 dollar. Write a program to find the total winnings for a player who
+makes 1000 bets on red.
 <br /><br />
 <i>Answer</i><br />
+A player who only plays on red will lose money - around -52 on average based on repeated simulations.
+<br /><br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 01.01 - Exercise 6 - Roulette</span>
+
+<span class="hljs-comment" style="color: green;"># Simulate 1000 different situations, where a player bets</span>
+<span class="hljs-comment" style="color: green;"># on red 1000 times.</span>
+NSIM = <span class="hljs-number">10000</span>
+NGAMES = <span class="hljs-number">1000</span>
+
+TOTWINS = rep(<span class="hljs-number">0</span>, NSIM)
+
+<span class="hljs-comment" style="color: green;"># 37 is "0"</span>
+<span class="hljs-comment" style="color: green;"># 38 is "00"</span>
+<span class="hljs-comment" style="color: green;"># 1-18 is RED</span>
+<span class="hljs-comment" style="color: green;"># 19-36 is BLACK</span>
+
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (k <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:NSIM) {
+    winnings = <span class="hljs-number">0</span>
+    <span class="hljs-comment" style="color: green;"># Roulette</span>
+    roulette = sample(<span class="hljs-number">1</span>:<span class="hljs-number">38</span>, size = NGAMES, replace = <span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>)
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (g <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:NGAMES) {
+        <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (roulette[g] &lt;= <span class="hljs-number">18</span>) {
+            <span class="hljs-comment" style="color: green;"># Win!</span>
+            winnings = winnings + <span class="hljs-number">1</span>
+        } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> {
+            <span class="hljs-comment" style="color: green;"># Loss - black or green</span>
+            winnings = winnings - <span class="hljs-number">1</span>
+        }
+    }
+    TOTWINS[k] = winnings 
+}
+
+print(mean(TOTWINS))
+</pre>
+</div>
+<br />
+<b>Output</b>
+<pre class="rcode">
+> print(mean(TOTWINS))
+[1] -52.304
+</pre>
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
 <h3>Exercise 7</h3>
-asd
-
+Another form of bet for roulette is to bet that a specific number (say 17) will
+turn up. If the ball stops on your number, you get your dollar back plus 35
+dollars. If not, you lose your dollar. Write a program that will plot your
+winnings when you make 500 plays of roulette at Las Vegas, first when you
+bet each time on red (see Exercise 6), and then for a second visit to Las
+Vegas when you make 500 plays betting each time on the number 17. What
+differences do you see in the graphs of your winnings on these two occasions?
 <br /><br />
 <i>Answer</i><br />
+There is a lot more variation in the blue line, which is the riskier bet. Since it is a lot more risk,
+there is the potential for a huge payout as well. Sometimes it results in great rewards.
 <br /><br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 01.01 - Exercise 7 - Roulette II</span>
+
+<span class="hljs-comment" style="color: green;"># Simulate 1000 different situations, where a player bets</span>
+<span class="hljs-comment" style="color: green;"># on red 1000 times.</span>
+NGAMES = <span class="hljs-number">500</span>
+
+<span class="hljs-comment" style="color: green;"># 37 is "0"</span>
+<span class="hljs-comment" style="color: green;"># 38 is "00"</span>
+<span class="hljs-comment" style="color: green;"># 1-18 is RED</span>
+<span class="hljs-comment" style="color: green;"># 19-36 is BLACK</span>
+
+winnings = rep(<span class="hljs-number">0</span>, NGAMES)
+winnings17 = rep(<span class="hljs-number">0</span>, NGAMES)
+<span class="hljs-comment" style="color: green;"># Roulette</span>
+roulette = sample(<span class="hljs-number">1</span>:<span class="hljs-number">38</span>, size = NGAMES, replace = <span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>)
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (g <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:NGAMES) {
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (roulette[g] &lt;= <span class="hljs-number">18</span>) {
+    <span class="hljs-comment" style="color: green;"># Win!</span>
+    winnings[g] = <span class="hljs-number">1</span>
+    } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> {
+    <span class="hljs-comment" style="color: green;"># Loss - black or green</span>
+    winnings[g] = - <span class="hljs-number">1</span>
+    }
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (roulette[g] == <span class="hljs-number">17</span>) {
+    winnings17[g] = <span class="hljs-number">36</span>
+    } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> {
+    winnings17[g] = -<span class="hljs-number">1</span>
+    } 
+}
+
+winnings = cumsum(winnings)
+winnings17 = cumsum(winnings17)
+
+print(winnings)
+print(winnings17)
+
+yMIN = min(winnings, winnings17)
+yMAX = max(winnings, winnings17)
+
+plot(<span class="hljs-number">1</span>:<span class="hljs-number">500</span>, winnings, type=<span class="hljs-string" style="color: rgb(163, 21, 21);">"l"</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"red"</span>, ylim=c(yMIN, yMAX),
+        main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"Roulette: Strategy RED vs. 17"</span>,
+        xlab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"500 games"</span>, ylab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"Winnings"</span>)
+lines(<span class="hljs-number">1</span>:<span class="hljs-number">500</span>, winnings17, type=<span class="hljs-string" style="color: rgb(163, 21, 21);">"l"</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"blue"</span>)</pre>
+</div>
+<br />
+<b>Output</b><br />
+Note that even though it sometimes gives a huge reward, the '17' strategy will also give huge losses most of the time.
+Note that the 'RED' strategy goes to around -50 after 500 games, as found in the previous exercise.
+<br /><br />
+<img src="img/01.01_Ex07.png" />
 <div class="exend">&#9632;</div>
 <br /><br />
 
 <h3>Exercise 8</h3>
-asd
-
+An astute student noticed that, in our simulation of the game of heads or tails
+(see Example 1.4), the proportion of times the player is always in the lead is
+very close to the proportion of times that the player's total winnings end up 0.
+Work out these probabilities by enumeration of all cases for two tosses and
+for four tosses, and see if you think that these probabilities are, in fact, the
+same.
 <br /><br />
 <i>Answer</i><br />
+First, the case of two tosses. All possible outcomes are:
+<br /><br />
+<table class="pTab">
+    <tr>
+        <th>Outcome</th>
+        <th>Always lead</th>
+        <th>No payout</th>
+    </tr>
+    <tr>
+        <td>HH</td>
+        <td>T</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>HT</td>
+        <td></td>
+        <td>T</td>
+    </tr>
+    <tr>
+        <td>TH</td>
+        <td></td>
+        <td>T</td>
+    </tr>
+    <tr>
+        <td>TT</td>
+        <td>T</td>
+        <td></td>
+    </tr>
+</table>
+In this case two outcomes have someone always in the lead, and two outcomes result in no payout.
+So in this case, they are proportional.
+<br /><br />
+Next, the case of four tosses. All possible outcomes are:
+<br /><br />
+<table class="pTab">
+    <tr>
+        <th>Outcome</th>
+        <th>Always lead</th>
+        <th>No payout</th>
+    </tr>
+    <tr>
+        <td>HHHH</td>
+        <td>T</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>HHHT</td>
+        <td>T</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>HHTH</td>
+        <td>T</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>HTHH</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>THHH</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>HHTT</td>
+        <td></td>
+        <td>T</td>
+    </tr>
+    <tr>
+        <td>HTHT</td>
+        <td></td>
+        <td>T</td>
+    </tr>
+    <tr>
+        <td>THHT</td>
+        <td></td>
+        <td>T</td>
+    </tr>
+    <tr>
+        <td>HTTH</td>
+        <td></td>
+        <td>T</td>
+    </tr>
+    <tr>
+        <td>THTH</td>
+        <td></td>
+        <td>T</td>
+    </tr>
+    <tr>
+        <td>TTHH</td>
+        <td></td>
+        <td>T</td>
+    </tr>
+    <tr>
+        <td>TTTH</td>
+        <td>T</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>TTHT</td>
+        <td>T</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>THTT</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>HTTT</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>TTTT</td>
+        <td>T</td>
+        <td></td>
+    </tr>
+</table>
+<br /><br />
+If we never allow the lead to go back to 0, then 'always in the lead' and 'no payout' each
+stand for 6 of the possible 16 outcomes. This will likely generalize to other cases. 
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
