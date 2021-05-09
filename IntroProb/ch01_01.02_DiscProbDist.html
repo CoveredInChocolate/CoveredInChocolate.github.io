@@ -885,10 +885,10 @@ two cases.
 <h3>Exercise 28</h3>
 Here is an attempt to get around the fact that we cannot choose a "random integer."
 <br /><br />
-(a) What, intuitively, is the probability that a "randomly chosen" positive
+<b>(a)</b> What, intuitively, is the probability that a "randomly chosen" positive
 integer is a multiple of 3?
 <br /><br />
-(b) Let $P_3(N)$ be the probability that an integer, chosen at random between
+<b>(b)</b> Let $P_3(N)$ be the probability that an integer, chosen at random between
 1 and N, is a multiple of 3 (since the sample space is finite, this is a
 legitimate probability). Show that the limit
 $$
@@ -898,35 +898,57 @@ exists and equals 1/3. This formalizes the intuition in (a), and gives us
 a way to assign "probabilities" to certain events that are infinite subsets
 of the positive integers.
 <br /><br />
-(c) If A is any set of positive integers, let A(N) mean the number of elements
+<b>(c)</b> If A is any set of positive integers, let A(N) mean the number of elements
 of A which are less than or equal to N. Then define the "probability" of
 A as
 $$
 P(A) = \lim_{N\rightarrow\infty} A(N)/N
 $$
-provided this limit exists. Show that this definition would assign prob-
-ability 0 to any finite set and probability 1 to the set of all positive
+provided this limit exists. Show that this definition would assign probability 0
+to any finite set and probability 1 to the set of all positive
 integers. Thus, the probability of the set of all integers is not the sum of
 the probabilities of the individual integers in this set. This means that
 the definition of probability given here is not a completely satisfactory
 definition.
 <br /><br />
-(d) Let A be the set of all positive integers with an odd number of dig-
-its. Show that P(A) does not exist. This shows that under the above
+<b>(d)</b> Let A be the set of all positive integers with an odd number of digits.
+Show that P(A) does not exist. This shows that under the above
 definition of probability, not all sets have probabilities.
 <br /><br />
 <br /><br />
 <i>Answer</i><br /><br />
-(a)<br />
+<b>(a)</b><br />
 By definition, every third integer is divisible by 3:<br />
 1, 2, <b>3</b>, 4, 5, <b>6</b>, 7, 8, <b>9</b>, ...<br />
 If we select some random integer, then intuitively, it will have 1/3 probability of being divisible by 3.
 <br /><br />
-(b)<br />
+<b>(b)</b><br />
+The limit exists if the sequence converges. View the first few values of $P_3(N)$.
+\begin{align}
+P_3(1) &= 0 \\
+P_3(2) &= 0 \\
+P_3(3) &= 1/3 \\
+P_3(4) &= 1/4 \\
+P_3(5) &= 1/5 \\
+P_3(6) &= 2/6 = 1/3 \\
+P_3(7) &= 2/7 \\
+P_3(8) &= 2/8 = 1/4 \\
+P_3(9) &= 3/9 = 1/3 \\
+\end{align}
+From this it is clear that we get the following three cases, where $N=3K$, $N = 3K + 1$ and $N = 3K+2$ for $N\geq 3$:
+$$
+P_3(N) = \frac{K}{3K},\quad
+P_3(N) = \frac{K}{3K+1},\quad
+P_3(N) = \frac{K}{3K+2}
+$$
+When $N\rightarrow\infty$, then $K\rightarrow\infty$, and in either case, it is clear that:
+$$
+\lim_{N\rightarrow\infty} P_3(N) = 1/3.
+$$
 <br /><br />
-(c)<br />
+<b>(c)</b><br />
 <br /><br />
-(d)<br />
+<b>(d)</b><br />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
