@@ -50,9 +50,9 @@
 </table>
 <br /><br />
 
-<h3>Results and Examples</h3>
+<!-- <h3>Results and Examples</h3>
 
-<br /><br /><br /><br />
+<br /><br /><br /><br /> -->
 
 
 <!-- ########################### EXERCISES ########################### -->
@@ -820,11 +820,120 @@ mean(ALLGAMES)
 <br /><br />
 
 <h3>Exercise 11</h3>
-asd
-
+Modify the program <b>HTSimulation</b> so that it keeps track of the maximum of
+Peter’s winnings in each game of 40 tosses. Have your program print out the
+proportion of times that your total winnings take on values 0, 2, 4, ..., 40.
+Calculate the corresponding exact probabilities for games of two tosses and
+four tosses.
 <br /><br />
 <i>Answer</i><br />
+Roughly 12% of the games end with a 2 penny profit for Peter, then roughly 10% for a 4 penny profit,
+and from there it quickly falls to 0.
 <br /><br />
+<b>Code</b>
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 01.01 - Exercise 11 - Heads or Tails</span>
+NUMCOINTOSS = <span class="hljs-number">40</span>
+
+RunGame &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>() {
+    coinTosses = sample(c(<span class="hljs-string" style="color: rgb(163, 21, 21);">"H"</span>, <span class="hljs-string" style="color: rgb(163, 21, 21);">"T"</span>), size = NUMCOINTOSS, replace = <span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>)
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(coinTosses)
+}
+
+CalculateScore &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>(gameRes){
+    <span class="hljs-comment" style="color: green;"># H: Peter gets a penny</span>
+    <span class="hljs-comment" style="color: green;"># T: Paul gets a penny</span>
+    stateWinnings = rep(<span class="hljs-number">0</span>, length(gameRes))
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (k <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:length(gameRes)) {
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (gameRes[k] == <span class="hljs-string" style="color: rgb(163, 21, 21);">"H"</span>) {
+        stateWinnings[k] = <span class="hljs-number">1</span>
+    } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> {
+        stateWinnings[k] = -<span class="hljs-number">1</span>
+    } 
+    }
+    totWins = sum(stateWinnings)
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(totWins)
+}
+
+NGAMES = <span class="hljs-number">10000</span>
+propGames = rep(<span class="hljs-number">0</span>, NGAMES)
+gameProp = rep(<span class="hljs-number">0</span>, <span class="hljs-number">20</span>)
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (g <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:NGAMES) {
+    coinRes = RunGame()
+    oneGame = CalculateScore(coinRes)
+    propGames[g]= oneGame
+}
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (v <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> seq(<span class="hljs-number">2</span>, <span class="hljs-number">40</span>, <span class="hljs-number">2</span>)) {
+    print(<span class="hljs-string" style="color: rgb(163, 21, 21);">"------------"</span>)
+    print(paste0(<span class="hljs-string" style="color: rgb(163, 21, 21);">"Total win: "</span>, v))
+    print(sum(propGames == v)/length(propGames))
+}
+</pre>
+</div>
+<br />
+<b>Output</b>
+<pre class="rcode">
+[1] "------------"
+[1] "Total win: 2"
+[1] 0.1222
+[1] "------------"
+[1] "Total win: 4"
+[1] 0.1013
+[1] "------------"
+[1] "Total win: 6"
+[1] 0.0816
+[1] "------------"
+[1] "Total win: 8"
+[1] 0.0564
+[1] "------------"
+[1] "Total win: 10"
+[1] 0.0368
+[1] "------------"
+[1] "Total win: 12"
+[1] 0.0186
+[1] "------------"
+[1] "Total win: 14"
+[1] 0.0116
+[1] "------------"
+[1] "Total win: 16"
+[1] 0.0042
+[1] "------------"
+[1] "Total win: 18"
+[1] 0.0026
+[1] "------------"
+[1] "Total win: 20"
+[1] 5e-04
+[1] "------------"
+[1] "Total win: 22"
+[1] 2e-04
+[1] "------------"
+[1] "Total win: 24"
+[1] 0
+[1] "------------"
+[1] "Total win: 26"
+[1] 1e-04
+[1] "------------"
+[1] "Total win: 28"
+[1] 0
+[1] "------------"
+[1] "Total win: 30"
+[1] 0
+[1] "------------"
+[1] "Total win: 32"
+[1] 0
+[1] "------------"
+[1] "Total win: 34"
+[1] 0
+[1] "------------"
+[1] "Total win: 36"
+[1] 0
+[1] "------------"
+[1] "Total win: 38"
+[1] 0
+[1] "------------"
+[1] "Total win: 40"
+[1] 0
+</pre>
 <div class="exend">&#9632;</div>
 <br /><br />
 
@@ -1217,27 +1326,113 @@ sum(walkRes == -<span class="hljs-number">1</span>)
 </pre>
 <br /><br />
 <b>(b)</b><br >
+As expected, the mean time to retun to 0 is much higher for a random 2D walk.
+Out of the 1000 simulations, 223 did not return to 0 within the first 10000 steps that were done.
 <br /><br />
 <b>Code</b>
 <div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 01.01 - Exercise 17b - Random Walk in 2D</span>
 
+RandomWalk2D &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>() {
+    NSTEPS = <span class="hljs-number">100000</span>
+    walkDirectionX = sample(c(-<span class="hljs-number">1</span>, <span class="hljs-number">1</span>), size = NSTEPS, replace = <span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>)
+    walkDirectionY = sample(c(-<span class="hljs-number">1</span>, <span class="hljs-number">1</span>), size = NSTEPS, replace = <span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>)
+    backX = cumsum(walkDirectionX)
+    backY = cumsum(walkDirectionY)
+    <span class="hljs-comment" style="color: green;"># Did simulation not return?</span>
+    returned = <span class="hljs-literal" style="color: rgb(163, 21, 21);">FALSE</span>
+    k = <span class="hljs-number">0</span>
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">while</span> (k &lt; NSTEPS &amp; returned == <span class="hljs-literal" style="color: rgb(163, 21, 21);">FALSE</span>)  {
+    k = k + <span class="hljs-number">1</span>
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (backX[k] == <span class="hljs-number">0</span> &amp; backY[k] == <span class="hljs-number">0</span>) {
+        returned = <span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>
+    }
+    }
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span>(returned) {
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(k)
+    } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> {
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(-<span class="hljs-number">1</span>)
+    } 
+}
+
+NWALKS = <span class="hljs-number">1000</span>
+walkRes = rep(<span class="hljs-number">0</span>, NWALKS)
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (i <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:NWALKS) {
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (i %% <span class="hljs-number">100</span> == <span class="hljs-number">0</span>) print(i)
+    walkRes[i]= RandomWalk2D()
+}
+<span class="hljs-comment" style="color: green;"># Average return time</span>
+mean(walkRes[walkRes &gt; -<span class="hljs-number">1</span>])
+<span class="hljs-comment" style="color: green;"># Number of infinite spirals</span>
+sum(walkRes == -<span class="hljs-number">1</span>)</pre>
 </div>
 <br />
 <b>Output</b>
 <pre class="rcode">
-
+> # Average return time
+> mean(walkRes[walkRes > -1])
+[1] 2389.346
+> # Number of infinite spirals
+> sum(walkRes == -1)
+[1] 223
 </pre>
 <br /><br />
 <b>(c)</b><br >
+With just a few modifications we can adjust the previous program to a 3D random walk. The results show that
+almost 3/4 of the simulated walks did not return to 0. Of those that did, the return time is a bit shorter
+than for the 2D walk.
+<br /><br />
+Based on the limited simulations we are able to do, it is very hard to determine that the walks will always
+return for 1D and 2D walks, but not necessarily for 3D walks.
 <br /><br />
 <b>Code</b>
 <div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 01.01 - Exercise 17c - Random Walk in 3D</span>
 
+RandomWalk3D &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>() {
+    NSTEPS = <span class="hljs-number">100000</span>
+    walkDirectionX = sample(c(-<span class="hljs-number">1</span>, <span class="hljs-number">1</span>), size = NSTEPS, replace = <span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>)
+    walkDirectionY = sample(c(-<span class="hljs-number">1</span>, <span class="hljs-number">1</span>), size = NSTEPS, replace = <span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>)
+    walkDirectionZ = sample(c(-<span class="hljs-number">1</span>, <span class="hljs-number">1</span>), size = NSTEPS, replace = <span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>)
+    backX = cumsum(walkDirectionX)
+    backY = cumsum(walkDirectionY)
+    backZ = cumsum(walkDirectionZ)
+    <span class="hljs-comment" style="color: green;"># Did simulation not return?</span>
+    returned = <span class="hljs-literal" style="color: rgb(163, 21, 21);">FALSE</span>
+    k = <span class="hljs-number">0</span>
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">while</span> (k &lt; NSTEPS &amp; returned == <span class="hljs-literal" style="color: rgb(163, 21, 21);">FALSE</span>)  {
+    k = k + <span class="hljs-number">1</span>
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (backX[k] == <span class="hljs-number">0</span> &amp; backY[k] == <span class="hljs-number">0</span> &amp; backZ[k] == <span class="hljs-number">0</span>) {
+        returned = <span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>
+    }
+    }
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span>(returned) {
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(k)
+    } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> {
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(-<span class="hljs-number">1</span>)
+    } 
+}
+
+NWALKS = <span class="hljs-number">1000</span>
+walkRes = rep(<span class="hljs-number">0</span>, NWALKS)
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (i <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:NWALKS) {
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (i %% <span class="hljs-number">100</span> == <span class="hljs-number">0</span>) print(i)
+    walkRes[i]= RandomWalk3D()
+}
+<span class="hljs-comment" style="color: green;"># Average return time</span>
+mean(walkRes[walkRes &gt; -<span class="hljs-number">1</span>])
+<span class="hljs-comment" style="color: green;"># Number of infinite spirals</span>
+sum(walkRes == -<span class="hljs-number">1</span>)</pre>
 </div>
 <br />
 <b>Output</b>
 <pre class="rcode">
-
+> # Average return time
+> mean(walkRes[walkRes > -1])
+[1] 336.5551
+> # Number of infinite spirals
+> sum(walkRes == -1)
+[1] 737
 </pre>
 <div class="exend">&#9632;</div>
 <br /><br />

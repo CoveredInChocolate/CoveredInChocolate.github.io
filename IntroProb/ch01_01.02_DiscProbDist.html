@@ -947,8 +947,29 @@ $$
 $$
 <br /><br />
 <b>(c)</b><br />
+If we set $A = \{5, 23, 85\}$, then for $N = 1000$ we would get
+$$
+P(A) = \frac{A(N)}{N} = \frac{3}{1000}.
+$$
+When we take the limit, and $|A| = K$ for some finite $K$, then
+$$
+P(A) = \lim_{N\rightarrow\infty}\frac{A(N)}{N} = \lim_{N\rightarrow\infty}\frac{K}{N} = 0.
+$$
+When $A$ is countable infinite, then
+$$
+P(A) = \lim_{N\rightarrow\infty}\frac{A(N)}{N} = \lim_{N\rightarrow\infty}\frac{N}{N} = 1.
+$$
 <br /><br />
 <b>(d)</b><br />
+Let $A$ be the set of all numbers with an odd number of digits. We can partition the set as follows:
+$$
+A = A_1\cup A_3\cup A_5\cup\ldots \cup A_{2k+1}\cup\ldots
+$$
+where $A_p$ is the set of all numbers with $p$ digits, where $p$ is odd. Since these sets are disjoint:
+$$
+P(A) = P(A_1) + P(A_3) + P(A_5) + \ldots = 0 + 0 + 0 + \ldots
+$$
+which become 0 since they are finite sets. Any sets we specify become 0, so we cannot calculate this limit.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
