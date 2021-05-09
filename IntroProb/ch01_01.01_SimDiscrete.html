@@ -267,25 +267,25 @@ simulateGame &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">fun
     serve = <span class="hljs-string" style="color: rgb(163, 21, 21);">"p"</span>
     winner= -<span class="hljs-number">1</span>
     <span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (k <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:length(seededVals)) {
-    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (serve == <span class="hljs-string" style="color: rgb(163, 21, 21);">"p"</span> &amp; seededVals[k] &gt;= winPoint) {
-        <span class="hljs-comment" style="color: green;"># Player wins point</span>
-        pPoints = pPoints + <span class="hljs-number">1</span>
-    } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (serve == <span class="hljs-string" style="color: rgb(163, 21, 21);">"p"</span> &amp; seededVals[k] &lt; winPoint) {
-        <span class="hljs-comment" style="color: green;"># Player loses serve</span>
-        serve = <span class="hljs-string" style="color: rgb(163, 21, 21);">"o"</span> 
-    } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (serve == <span class="hljs-string" style="color: rgb(163, 21, 21);">"o"</span> &amp; seededVals[k] &gt;= winBackServe) {
-        <span class="hljs-comment" style="color: green;"># Opponent wins point</span>
-        oPoints = oPoints + <span class="hljs-number">1</span>
-    } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (serve == <span class="hljs-string" style="color: rgb(163, 21, 21);">"o"</span> &amp; seededVals[k] &lt; winBackServe) {
-        <span class="hljs-comment" style="color: green;"># Opponent loses serve</span>
-        serve = <span class="hljs-string" style="color: rgb(163, 21, 21);">"p"</span> 
-    }
-    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (pPoints == <span class="hljs-number">21</span> | oPoints == <span class="hljs-number">21</span>) {
-        <span class="hljs-comment" style="color: green;"># Game finished - break for loop</span>
-        <span class="hljs-comment" style="color: green;"># print("BREAK!")</span>
-        <span class="hljs-comment" style="color: green;"># print(k)</span>
-        <span class="hljs-keyword" style="color: rgb(0, 0, 255);">break</span>
-    } 
+        <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (serve == <span class="hljs-string" style="color: rgb(163, 21, 21);">"p"</span> &amp; seededVals[k] &gt;= winPoint) {
+            <span class="hljs-comment" style="color: green;"># Player wins point</span>
+            pPoints = pPoints + <span class="hljs-number">1</span>
+        } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (serve == <span class="hljs-string" style="color: rgb(163, 21, 21);">"p"</span> &amp; seededVals[k] &lt; winPoint) {
+            <span class="hljs-comment" style="color: green;"># Player loses serve</span>
+            serve = <span class="hljs-string" style="color: rgb(163, 21, 21);">"o"</span> 
+        } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (serve == <span class="hljs-string" style="color: rgb(163, 21, 21);">"o"</span> &amp; seededVals[k] &gt;= winBackServe) {
+            <span class="hljs-comment" style="color: green;"># Opponent wins point</span>
+            oPoints = oPoints + <span class="hljs-number">1</span>
+        } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (serve == <span class="hljs-string" style="color: rgb(163, 21, 21);">"o"</span> &amp; seededVals[k] &lt; winBackServe) {
+            <span class="hljs-comment" style="color: green;"># Opponent loses serve</span>
+            serve = <span class="hljs-string" style="color: rgb(163, 21, 21);">"p"</span> 
+        }
+        <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (pPoints == <span class="hljs-number">21</span> | oPoints == <span class="hljs-number">21</span>) {
+            <span class="hljs-comment" style="color: green;"># Game finished - break for loop</span>
+            <span class="hljs-comment" style="color: green;"># print("BREAK!")</span>
+            <span class="hljs-comment" style="color: green;"># print(k)</span>
+            <span class="hljs-keyword" style="color: rgb(0, 0, 255);">break</span>
+        } 
     }
     <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (pPoints == <span class="hljs-number">21</span>) winner = <span class="hljs-number">1</span>
     <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (oPoints == <span class="hljs-number">21</span>) winner = <span class="hljs-number">0</span>

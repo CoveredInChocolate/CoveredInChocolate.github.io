@@ -730,41 +730,151 @@ function for $\Omega$.
 <br /><br />
 <i>Answer</i><br />
 Note that $m(j)\geq 0$ for all $j$, which is the first requirement. Next, we must show that
-the
+all infinite terms sum up to 1. We can show that this is a geometric series, with $a = r$
+and $q = 1-r$ such that $|q| < 1$.
+\begin{align}
+\sum_{k=0}^\infty m(k)
+&= \sum_{k=0}^\infty (1-r)^k r \\
+&= \sum_{k=0}^\infty aq^k \\
+&= \frac{a}{1 - q} \\
+&= \frac{r}{1 - (1-r)} \\
+&= \frac{r}{r} \\
+&= 1
+\end{align}
+which verifies that this is a valid distribution function.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
  
  
 <h3>Exercise 24</h3>
-asd
+Our calendar has a 400-year cycle. B. H. Brown noticed that the number of
+times the thirteenth of the month falls on each of the days of the week in the
+4800 months of a cycle is as follows:<br />
+<table border="0">
+    <tr>
+        <td>Monday</td>
+        <td>685</td>
+    </tr>
+    <tr>
+        <td>Tuesday</td>
+        <td>685</td>
+    </tr>
+    <tr>
+        <td>Wednesday</td>
+        <td>687</td>
+    </tr>
+    <tr>
+        <td>Thursday</td>
+        <td>684</td>
+    </tr>
+    <tr>
+        <td>Friday</td>
+        <td>688</td>
+    </tr>
+    <tr>
+        <td>Saturday</td>
+        <td>684</td>
+    </tr>
+    <tr>
+        <td>Sunday</td>
+        <td>687</td>
+    </tr>
+</table>
+From this he deduced that the thirteenth was more likely to fall on Friday
+than on any other day. Explain what he meant by this.
 <br /><br />
 <i>Answer</i><br />
+He simply made the observation that Fridays occurs most frequently on the 13th day of the month.
+In other words, for any random 13th day of the month, there is a slightly higher probability that
+it will be a Friday. (Bad luck for the superstitious!) 
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
  
  
 <h3>Exercise 25</h3>
-asd
+Tversky and Kahneman asked a group of subjects to carry out the following
+task. They are told that:
+<br /><br />
+<div class="indent">
+Linda is 31, single, outspoken, and very bright. She majored in
+philosophy in college. As a student, she was deeply concerned with
+racial discrimination and other social issues, and participated in
+anti-nuclear demonstrations.
+</div>
+<br />
+The subjects are then asked to rank the likelihood of various alternatives, such
+as:<br /><br />
+<div class="indent">
+(1) Linda is active in the feminist movement.<br />
+(2) Linda is a bank teller.<br />
+(3) Linda is a bank teller and active in the feminist movement.
+</div>
+<br />
+Tversky and Kahneman found that between 85 and 90 percent of the subjects
+rated alternative (1) most likely, but alternative (3) more likely than alternative (2).
+Is it? They call this phenomenon the conjunction fallacy, and note
+that it appears to be unaffected by prior training in probability or statistics.
+Is this phenomenon a fallacy? If so, why? Can you give a possible explanation
+for the subjects’ choices?
 <br /><br />
 <i>Answer</i><br />
+We will define the events $F$: Linda is in the feminist movement, and $B$: Linda is a bank teller.
+It is not possible for (3) to be more likely than (2) since $F\cap B\subset B$, and so
+$P(F\cap B)\leq P(B)$.
+<br /><br />
+This phenomenon is a phallacy, and the reasoning is that people only identify the very probably
+event $F$ in the statement and fail to recognize that we are dealing with an intersection.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
  
  
 <h3>Exercise 26</h3>
-asd
+Two cards are drawn successively from a deck of 52 cards. Find the probability
+that the second card is higher in rank than the first card. <i>Hint</i>: Show that 1 =
+P(higher) + P(lower) + P(same) and use the fact that P(higher) = P(lower).
 <br /><br />
 <i>Answer</i><br />
+Define the events $H$ as higher, $L$ as lower, and $S$ as same.
+There are only three possibilities, so:
+$$
+P(H) + P(L) + P(S) = 1
+$$
+Because of the symmetry, we get
+$$
+P(H) = P(L).
+$$
+Finally, once we have drawn a card, we can find the explicit probability for the
+next card being the same - there are only three possible cards in the remaining 51-card deck:
+$$
+P(S) = \frac{3}{51}
+$$
+Putting all of this together:
+$$
+P(H) + P(H) + \frac{3}{51} = 1
+$$
+$$
+2P(H) = \frac{48}{51}
+$$
+$$
+P(H) = \frac{24}{51}
+$$
+which is approximately 0.4705882.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
  
  
 <h3>Exercise 27</h3>
-asd
+A <i>life table</i> is a table that lists for a given number of births the estimated
+number of people who will live to a given age. In Appendix C we give a life
+table based upon 100,000 births for ages from 0 to 85, both for women and for
+men. Show how from this table you can estimate the probability m(x) that a
+person born in 1981 would live to age x. Write a program to plot m(x) both
+for men and for women, and comment on the differences that you see in the
+two cases.
 <br /><br />
 <i>Answer</i><br />
 <br /><br />
