@@ -617,42 +617,120 @@ P(A\cup B\cup C) = P(A) + P(B) + P(C) - P(A\cap B) - P(B\cap C) - P(C\cap A) + P
 $$
 <br /><br />
 <i>Answer</i><br />
+This can be shown by repeated use of Theorem 1.4. Define $D = A\cup B$.
+\begin{align}
+P(A\cup B\cup C) &= P(D\cup C) \\
+&= P(D) + P(C) - P(D\cap C) \\
+&= P(A\cup B) + P(C) - P([A\cup B]\cap C) \\
+&= P(A) + P(B) - P(A\cap B) +  P(C)- P([A\cap C]\cup[B\cap C]) \\
+&= P(A) + P(B) + P(C) - P(A\cap B) - P([A\cap C]\cup[B\cap C]) \\
+&= P(A) + P(B) + P(C) - P(A\cap B) - \Big[P([A\cap C]\cup[B\cap C])\Big] \\
+&= P(A) + P(B) + P(C) - P(A\cap B) - \Big[P(A\cap C) + P(B\cap C) - P(A\cap C\cap B\cap C\Big] \\
+&= P(A) + P(B) + P(C) - P(A\cap B) - P(A\cap C) - P(B\cap C) + P(A\cap B\cap C\cap C) \\
+&= P(A) + P(B) + P(C) - P(A\cap B) - P(A\cap C) - P(B\cap C) + P(A\cap B\cap C) 
+\end{align}
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
  
  
 <h3>Exercise 20</h3>
-asd
+Explain why it is not possible to define a uniform distribution function (see
+Definition 1.3) on a countably infinite sample space. Hint: Assume $m(\omega) = a$
+for all $\omega$, where $0 \leq a \leq 1$. Does $m(\omega)$ have all the properties of
+a distribution function?
 <br /><br />
 <i>Answer</i><br />
+In a uniform distribution every outcome has the same distribution, so every $P(\omega) = 1/n$
+for some $1/n > 0$ for every $\omega\in\Omega$. If this space is countable infinite, then
+the probability of all possible outcomes becomes infinite instead of 1.
+$$
+\sum_{i=1}^\infty P(\omega_i) = \sum_{i=1}^\infty \frac{1}{n} = \frac{1}{n} \sum_{i=1}^\infty 1 = \infty.
+$$
+Therefore, it is impossible to make a uniform distribution on a countably infinite sample space.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
  
  
-<h3>Exercise 21</h3>
-asd
+<h3>Exercise 21</h3> <!-- page. 46 -->
+Example 1.13:<br />
+A coin is tossed until the first time that a head turns up. Let the
+outcome of the experiment, $\omega$, be the first time that a head turns up. Then the
+possible outcomes of our experiment are
+$$
+\Omega = \{1, 2, 3, \ldots\}.
+$$
+<br /><br />
+Find the probability that the coin turns up heads for the first
+time on the tenth, eleventh, or twelfth toss.
 <br /><br />
 <i>Answer</i><br />
+This is simply calculating the probability of sequences such as: TTTTTTTTTH. Let $X$
+be the number of tosses until we get the first H.
+\begin{align}
+P(X = 10) &= \frac{1}{2^{10}} \\
+P(X = 11) &= \frac{1}{2^{11}} \\
+P(X = 12) &= \frac{1}{2^{12}}
+\end{align}
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
  
  
 <h3>Exercise 22</h3>
-asd
+A die is rolled until the first time that a six turns up. We shall see that the
+probability that this occurs on the $n$th roll is $(5/6)^{n−1}\cdot(1/6)$. Using this fact,
+describe the appropriate infinite sample space and distribution function for
+the experiment of rolling a die until a six turns up for the first time. Verify
+that for your distribution function $\sum_{\omega} m(\omega) = 1$.
 <br /><br />
 <i>Answer</i><br />
+The sample space becomes:
+$$
+\Omega = \{1, 2, 3, \ldots\}.
+$$
+As noted, the probability of the terms become:
+\begin{align}
+P(X = 1) &= \frac{1}{6} \\
+P(X = 2) &= \left(\frac{5}{6}\right)\frac{1}{6} \\
+P(X = 3) &= \left(\frac{5}{6}\right)^2\frac{1}{6} \\
+&\vdots \\
+P(X = n) &= \left(\frac{5}{6}\right)^{n-1}\frac{1}{6}
+\end{align}
+We are going to show that the following sum becomes 1.
+$$
+\sum_{n=1}^\infty P(X = n)
+= \sum_{n=1}^\infty \left(\frac{5}{6}\right)^{n-1}\frac{1}{6}
+<!-- = \sum_{n=1}^\infty \frac{5^{n-1}}{6^n}
+= \sum_{n=0}^\infty \frac{5^{n}}{6^{n+1}} -->
+= \sum_{n=0}^\infty \left(\frac{1}{6}\right)\left(\frac{5}{6}\right)^n
+= \sum_{n=0}^\infty ar^n
+$$
+where $a = 1/6$ and $r = 5/6 < 1$, which shows that this is a geometric series. Thus:
+$$
+\sum_{n=0}^\infty ar^n = \frac{a}{1 - r} = \frac{1/6}{1 - \frac{5}{6}} = \frac{1/6}{1/6} = 1.
+$$
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
  
  
 <h3>Exercise 23</h3>
-asd
+Let $\Omega$ be the sample space
+$$
+\Omega = \{0, 1, 2, \ldots\}
+$$
+and define a distribution function by
+$$
+m(j) = (1 - r)^jr,
+$$
+for some fixed $r$, $0 < r < 1$, and for $j=0,1,2, \ldots$. Show that this is a distribution
+function for $\Omega$.
 <br /><br />
 <i>Answer</i><br />
+Note that $m(j)\geq 0$ for all $j$, which is the first requirement. Next, we must show that
+the
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />

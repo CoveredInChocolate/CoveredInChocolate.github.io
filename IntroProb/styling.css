@@ -18,6 +18,13 @@ img {
     border: 1px solid #000;
 }
 
+pre {
+  padding-top: 5px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+}
+
 h3 {
     background-color: #d8daf5;
 }

@@ -144,10 +144,39 @@ dev.off()
 <br /><br />
 
 <h3>Exercise 2</h3>
-asd
+Modify the program CoinTosses so that it tosses a coin n times and records
+whether or not the proportion of heads is within 0.1 of 0.5 (i.e., between 0.4
+and .06). Have your program repeat this experiment 100 times. About how
+large must n be so that approximately 95 out of 100 times the proportion of
+heads is between 0.4 and 0.6?
 
 <br /><br />
 <i>Answer</i><br />
+Based on repeated simulations, it seems like the proportion is consistently within 0.4 and 0.6
+when $n = 100$, and maybe a little above, such as $n=110$ or $n=120$.
+<br /><br />
+<b>Code</b>:
+<div clasS="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 01.01 - Exercise 2</span>
+coinToss &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>(nToss) {
+    <span class="hljs-comment" style="color: green;"># 1 symbolizes coin toss 'H'</span>
+    tosses = sample(c(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>), size=nToss, replace = <span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>)
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(tosses)
+}
+
+<span class="hljs-comment" style="color: green;"># Select n</span>
+NSIM = <span class="hljs-number">120</span>
+<span class="hljs-comment" style="color: green;"># Storing results</span>
+propVector = rep(<span class="hljs-number">0</span>, <span class="hljs-number">100</span>)
+
+<span class="hljs-comment" style="color: green;"># Repeat experiment 100 times:</span>
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (k <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:<span class="hljs-number">100</span>) {
+    tosses = coinToss(NSIM)
+    propVector[k] = mean(tosses) 
+} 
+
+print(sum(propVector &gt; <span class="hljs-number">0.4</span> &amp; propVector &lt; <span class="hljs-number">0.6</span>)/length(propVector))</pre>
+</div>
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -198,16 +227,88 @@ Based on our simulations, it looks like 10 is in fact more frequent.
 (b) Can you conclude from your simulations that the gamblers were correct?
 <br /><br />
 <i>Answer</i><br />
-Yes, simulations can be repeated several times and the results are consistent.
+The simulations can be repeated several times and the results are consistent, so we can make
+an empirical conclusion. But we can't make a formal conclusion unless we prove it; there is
+a very small chance that we are being fooled by the simulation. (And maybe it isn't even
+implemented correctly).
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
 <h3>Exercise 4</h3>
-asd
-
+In raquetball, a player continues to serve as long as she is winning; a point
+is scored only when a player is serving and wins the volley. The first player
+to win 21 points wins the game. Assume that you serve first and have a
+probability 0.6 of winning a volley when you serve and probability 0.5 when
+your opponent serves. Estimate, by simulation, the probability that you will
+win a game.
 <br /><br />
 <i>Answer</i><br />
+Simulating 100.000 games. The player appears to win in around 82.5% of the games.
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 01.01 - Exercise 4 - Raquetball</span>
+
+winPoint = <span class="hljs-number">0.4</span>
+winBackServe = <span class="hljs-number">0.5</span>
+
+NGAMES = <span class="hljs-number">100000</span>
+<span class="hljs-comment" style="color: green;"># Initializing vector of results</span>
+<span class="hljs-comment" style="color: green;"># 1: Player wins</span>
+<span class="hljs-comment" style="color: green;"># 0: Opponent wins</span>
+<span class="hljs-comment" style="color: green;"># -1: Default, empty value</span>
+resultsVector = rep(-<span class="hljs-number">1</span>, NGAMES)
+
+<span class="hljs-comment" style="color: green;"># Simulate game</span>
+simulateGame &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>(seededVals) {
+    pPoints = <span class="hljs-number">0</span>
+    oPoints = <span class="hljs-number">0</span>
+    serve = <span class="hljs-string" style="color: rgb(163, 21, 21);">"p"</span>
+    winner= -<span class="hljs-number">1</span>
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (k <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:length(seededVals)) {
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (serve == <span class="hljs-string" style="color: rgb(163, 21, 21);">"p"</span> &amp; seededVals[k] &gt;= winPoint) {
+        <span class="hljs-comment" style="color: green;"># Player wins point</span>
+        pPoints = pPoints + <span class="hljs-number">1</span>
+    } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (serve == <span class="hljs-string" style="color: rgb(163, 21, 21);">"p"</span> &amp; seededVals[k] &lt; winPoint) {
+        <span class="hljs-comment" style="color: green;"># Player loses serve</span>
+        serve = <span class="hljs-string" style="color: rgb(163, 21, 21);">"o"</span> 
+    } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (serve == <span class="hljs-string" style="color: rgb(163, 21, 21);">"o"</span> &amp; seededVals[k] &gt;= winBackServe) {
+        <span class="hljs-comment" style="color: green;"># Opponent wins point</span>
+        oPoints = oPoints + <span class="hljs-number">1</span>
+    } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (serve == <span class="hljs-string" style="color: rgb(163, 21, 21);">"o"</span> &amp; seededVals[k] &lt; winBackServe) {
+        <span class="hljs-comment" style="color: green;"># Opponent loses serve</span>
+        serve = <span class="hljs-string" style="color: rgb(163, 21, 21);">"p"</span> 
+    }
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (pPoints == <span class="hljs-number">21</span> | oPoints == <span class="hljs-number">21</span>) {
+        <span class="hljs-comment" style="color: green;"># Game finished - break for loop</span>
+        <span class="hljs-comment" style="color: green;"># print("BREAK!")</span>
+        <span class="hljs-comment" style="color: green;"># print(k)</span>
+        <span class="hljs-keyword" style="color: rgb(0, 0, 255);">break</span>
+    } 
+    }
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (pPoints == <span class="hljs-number">21</span>) winner = <span class="hljs-number">1</span>
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (oPoints == <span class="hljs-number">21</span>) winner = <span class="hljs-number">0</span>
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(winner)
+} 
+
+<span class="hljs-comment" style="color: green;"># More efficient to vectorize, but code is easier to understand this way</span>
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (g <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:NGAMES) {
+    <span class="hljs-comment" style="color: green;"># Simulating 200 random uniform variables</span>
+    simSeed = runif(<span class="hljs-number">200</span>)
+    resultsVector[g] =  simulateGame(simSeed)
+} 
+
+WINRATE = sum(resultsVector)/length(resultsVector)
+print(WINRATE)
+</pre>
+</div>
+<br /><br />
+<b>Output</b>
+<pre class="rcode">
+> print(WINRATE)
+[1] 0.82536
+</pre>
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
