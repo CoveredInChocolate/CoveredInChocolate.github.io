@@ -322,6 +322,20 @@ to choose geology. What are the respective probabilities that she chooses art,
 geology, and psychology?
 <br /><br />
 <i>Answer</i><br />
+Defining the sample space.
+$$
+\Omega = \{A, P, G\}.
+$$
+The total probability must be 1, so using that $A$ and $P$ are equally likely,
+and that $G$ is twice as likely as $A$:
+$$
+P(A) + P(A) + 2P(A) = 1
+\;\Longrightarrow\;
+4P(A) = 1
+\;\Longrightarrow\;
+P(A) = 1(4).
+$$
+So, $P(A) = 1/4$, $P(P) = 1/4$ and $P(G) = 1/2$.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -334,14 +348,45 @@ that he chooses mathematics? What is the probability that he chooses either
 art or French?
 <br /><br />
 <i>Answer</i><br />
+The student needs to select two classes, so we can define the sample space as:
+$$
+\Omega = \{AF, AM, FM\},
+$$
+where $F$ is French, $A$ is arts, and $M$ is mathematics. As given:
+$$
+P(F) = P(AF) + P(FM) = 5/8
+$$
+$$
+P(A) = P(AF) + P(AM) = 5/8
+$$
+We also know that $P(AF) = 1/4 = 2/8$, and by using the above equations, we can calculate:
+$P(FM) = 3/8$ and $P(AM) = 3/8$. Note that the sum of all outcomes become 1.
+<br /><br />
+The probability of selecting $M$ becomes:
+$$
+P(M) = P(AM) + P(FM) = 3/8 + 3/8 = 6/8 = 3/4.
+$$
+The probability of selecting $F$ or $A$ becomes 1, since one of them is included in all outcomes.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
 <h3>Exercise 10</h3>
-asd
+For a bill to come before the president of the United States, it must be passed
+by both the House of Representatives and the Senate. Assume that, of the
+bills presented to these two bodies, 60 percent pass the House, 80 percent
+pass the Senate, and 90 percent pass at least one of the two. Calculate the
+probability that the next bill presented to the two groups will come before the
+president.
 <br /><br />
 <i>Answer</i><br />
+Define $P(H) = 0.6$, $P(S) = 0.8$ and $P(H\cup S) = 0.9$. We need to find the probability
+of $H\cap S$. This can be done with the following formula (a rewritten version of
+Theorem 1.4):
+$$
+P(H\cap S) = P(H) + P(S) - P(H\cup S) = 0.6 + 0.8 - 0.9 = 0.5.
+$$
+So the probability that a bill reaches the president is $1/2$.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -371,39 +416,166 @@ asd
 <br /><br />
 
 <h3>Exercise 14</h3>
-asd
+Let $X$ be a random variable with distribution function $m_X(x)$ defined by
+$$
+m_X(-1) = 1/5,\quad
+m_X(0) = 1/5,\quad
+m_X(1) = 2/5,\quad
+m_X(2) = 1/5
+$$
+<br /><br />
+(a) Let $Y$ be the random variable defined by the equation $Y = X+3$.
+Find the distribution function $m_Y(y)$ of $Y$.
 <br /><br />
 <i>Answer</i><br />
+Just adjust the values accordingly.
+$$
+m_Y(2) = 1/5,\quad
+m_Y(3) = 1/5,\quad
+m_Y(4) = 2/5,\quad
+m_Y(5) = 1/5
+$$
+<br /><br />
+(b) Let $Z$ be the random variable defined by the equation $Z = X^2$.
+Find the distribution function $m_Z(z)$ of $Z$.
+<br /><br />
+<i>Answer</i><br />
+Notice that both $X = -1$ and $X = 1$ will be mapped into $Z = 1$, so it will
+get the sum of their probabilities.
+$$
+m_Z(0) = 1/5,\quad
+m_Z(1) = 3/5,\quad
+m_Z(4) = 1/5
+$$
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
 <h3>Exercise 15</h3>
-asd
+John and Mary are taking a mathematics course. The course has only three
+grades: A, B, and C. The probability that John gets a B is 0.3. The probability
+that Mary gets a B is 0.4. The probability that neither gets an A but at least
+one gets a B is 0.1. What is the probability that at least one gets a B but
+neither gets a C?
 <br /><br />
 <i>Answer</i><br />
+Let $XY$ be the grades they get, where $X$ is John's grade and $Y$ is Mary's grade.
+We define the sample space.
+$$
+\Omega = \{AA, AB, AC, BA, BB, BC, CA, CB, CC\}
+$$
+Define the provided events. $J_B$ are the outcomes where John gets a B.
+$$
+P(J_B) = P(\{BA, BB, BC\}) = 0.3
+$$
+Similarly for Mary, we define the event $M_B$.
+$$
+P(M_B) = P(\{AB, BB, CB\}) = 0.4
+$$
+And the final even, which we call $N$.
+$$
+P(N) = P(\{BB, BC, CB\}) = 0.1
+$$
+Finally, the event we want to calculate the probability for, which is:
+$$
+D = \{AB, BA, BB\}
+$$
+The key observation here is to note that $J_B\cup M_B = D\cup N = \{AB, BA, BB, BC, CB\}$
+and that $J_B\cap M_B = D\cap N = \{BB\}$. So:
+$$
+P(J_B\cup M_B) = P(J_B) + P(M_B) - P(\{BB\})
+$$
+$$
+P(D\cup N) = P(D) + P(N) - P(\{BB\})
+$$
+Since the events are equal, we can set these equal to each other, and eliminate $P(\{BB\})$.
+So:
+\begin{align}
+P(D\cup N) &= P(J_B\cup M_B) \\
+P(D) + P(N) - P(\{BB\}) &= P(J_B) + P(M_B) - P(\{BB\})\\
+P(D) + P(N) &= P(J_B) + P(M_B) \\
+P(D) + 0.1 &= 0.3 + 0.4 \\
+P(D) &= 0.6
+\end{align}
+The observation was discovered when looking at a table with all possibilities and
+coloring the areas we want to find.
+<table>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
 <h3>Exercise 16</h3>
-asd
+In a fierce battle, not less than 70 percent of the soldiers lost one eye, not less
+than 75 percent lost one ear, not less than 80 percent lost one hand, and not
+less than 85 percent lost one leg. What is the minimal possible percentage of
+those who simultaneously lost one ear, one eye, one hand, and one leg?
 <br /><br />
 <i>Answer</i><br />
+So if there were 100 soldiers in the battle, at least 70 lost one eye etc.
+To calculate those who fall in all groups, we call it $A$:
+$$
+P(A) = 0.70\cdot 0.75\cdot 0.80\cdot 0.85 = 0.357,
+$$
+so around 35.7% of the soldiers lost everything.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
+ 
 <h3>Exercise 17</h3>
-asd
+Assume that the probability of a "success" on a single experiment with n
+outcomes is 1/n. Let m be the number of experiments necessary to make it a
+favorable bet that at least one success will occur (see Exercise 1.1.5).
+<br /><br />
+(a) Show that the probability that, in m trials, there are no successes is
+$(1 − 1/n)^m$.
 <br /><br />
 <i>Answer</i><br />
+The probability of success is $P(S) = 1/n$, so the probability of failure is
+$P(S^c) = 1 - 1/n$. For two consecutive fails, the probability becomes
+$P(S^c)P(S^c) = P(S^c)^2 = (1 - 1/n)^2$ and so on. The probability for $m$
+failures is $(1 - 1/n)^n$.
+<br /><br /><br /><br />
+(b) (de Moivre) Show that if $m = n\log 2$ then
+$$
+\lim_{n\rightarrow\infty}\left(1 - \frac{1}{n}\right)^m = \frac{1}{2}
+$$
+<i>Hint</i>:
+$$
+\lim_{n\rightarrow\infty}\left(1 - \frac{1}{n}\right)^n = e^{-1}
+$$
+Hence for large n we should choose m to be about $n\log 2$.
+<br /><br />
+<i>Answer</i><br />
+Selecting $m = n\log 2$.
+$$
+\lim_{n\rightarrow\infty}\left(1 - \frac{1}{n}\right)^m =
+\lim_{n\rightarrow\infty}\left(1 - \frac{1}{n}\right)^{n\log 2} =
+\lim_{n\rightarrow\infty}\Bigg[\left(1 - \frac{1}{n}\right)^n\Bigg]^{\log 2} =
+e^{-\log 2} = \frac{1}{e^{\log 2}} = \frac{1}{2}
+$$
+<br /><br /><br /><br />
+(c) Would DeMoivre have been led to the correct answer for de Méré’s two
+bets if he had used this approximation?
+<br /><br />
+<i>Answer</i><br />
+In this case, the probability of success will be:
+$$
+\frac{1}{6^2} = \frac{1}{36}
+$$
+so, $36\log 2 \approx 24.95$ which DeMoivre would round up to 25, which is exactly
+what de Méré found out he needed.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
- 
- 
+
 <h3>Exercise 18</h3>
 asd
 <br /><br />

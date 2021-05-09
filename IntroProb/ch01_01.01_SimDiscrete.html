@@ -153,10 +153,52 @@ asd
 <br /><br />
 
 <h3>Exercise 3</h3>
-asd
-
+In the early 1600s, Galileo was asked to explain the fact that, although the
+number of triples of integers from 1 to 6 with sum 9 is the same as the number
+of such triples with sum 10, when three dice are rolled, a 9 seemed to come
+up less often than a 10—supposedly in the experience of gamblers.
+<br /><br />
+(a) Write a program to simulate the roll of three dice a large number of
+times and keep track of the proportion of times that the sum is 9 and
+the proportion of times it is 10.
 <br /><br />
 <i>Answer</i><br />
+<b>Code</b>
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 01.01 - Exercise 3</span>
+NSIM = <span class="hljs-number">1e6</span>
+
+<span class="hljs-comment" style="color: green;"># Simulating three dice tosses</span>
+d1 = sample(c(<span class="hljs-number">1</span>:<span class="hljs-number">6</span>), size=NSIM, replace = <span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>)
+d2 = sample(c(<span class="hljs-number">1</span>:<span class="hljs-number">6</span>), size=NSIM, replace = <span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>)
+d3 = sample(c(<span class="hljs-number">1</span>:<span class="hljs-number">6</span>), size=NSIM, replace = <span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>)
+
+<span class="hljs-comment" style="color: green;"># Sum of tosses</span>
+sumDice = d1 + d2 + d3
+
+<span class="hljs-comment" style="color: green;"># Number of 9s</span>
+sum(sumDice == <span class="hljs-number">9</span>)/NSIM
+
+<span class="hljs-comment" style="color: green;"># Number of 10s</span>
+sum(sumDice == <span class="hljs-number">10</span>)/NSIM
+</pre>
+</div>
+<br />
+<b>Output</b>
+<pre class="rcode">
+> # Number of 9s
+> sum(sumDice == 9)/NSIM
+[1] 0.115731
+> # Number of 10s
+> sum(sumDice == 10)/NSIM
+[1] 0.124509
+</pre>
+Based on our simulations, it looks like 10 is in fact more frequent.
+<br /><br /><br /><br />
+(b) Can you conclude from your simulations that the gamblers were correct?
+<br /><br />
+<i>Answer</i><br />
+Yes, simulations can be repeated several times and the results are consistent.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -171,10 +213,52 @@ asd
 <br /><br />
 
 <h3>Exercise 5</h3>
-asd
-
+Consider the bet that all three dice will turn up sixes at least once in n rolls
+of three dice. Calculate $f(n)$, the probability of at least one triple-six when
+three dice are rolled n times. Determine the smallest value of n necessary for
+a favorable bet that a triple-six will occur when three dice are rolled n times.
+(DeMoivre would say it should be about 216 log 2 = 149.7 and so would answer
+150 — see Exercise 1.2.17. Do you agree with him?)
 <br /><br />
 <i>Answer</i><br />
+According to the simulations performed, it seems that the proportion of simulations
+where the first triple six occurs within the first 150 tosses is just above 50%.
+In this case, I agree with DeMoivre.
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 01.01 - Exercise 5</span>
+
+NREP = <span class="hljs-number">100000</span>
+NSIM = <span class="hljs-number">200</span>
+
+firstOccurrence = rep(<span class="hljs-number">0</span>, NREP)
+
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (i <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:NREP) {
+    <span class="hljs-comment" style="color: green;"># Simulating three dice tosses</span>
+    d1 = sample(c(<span class="hljs-number">1</span>:<span class="hljs-number">6</span>), size=NSIM, replace = <span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>)
+    d2 = sample(c(<span class="hljs-number">1</span>:<span class="hljs-number">6</span>), size=NSIM, replace = <span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>)
+    d3 = sample(c(<span class="hljs-number">1</span>:<span class="hljs-number">6</span>), size=NSIM, replace = <span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>)
+    
+    <span class="hljs-comment" style="color: green;"># Sum of tosses</span>
+    sumDice = d1 + d2 + d3
+    
+    <span class="hljs-comment" style="color: green;"># Value which ensures victory in majority of cases</span>
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (sum(sumDice == <span class="hljs-number">18</span>) &gt; <span class="hljs-number">0</span>) {
+    firstTripleSix = min(which(sumDice == <span class="hljs-number">18</span>))
+    } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> {
+    firstTripleSix = NSIM
+    } 
+    firstOccurrence[i] = firstTripleSix
+} 
+
+print(sum(firstOccurrence &gt; <span class="hljs-number">150</span>)/NREP)
+</pre>
+</div>
+<br />
+<b>Output</b>
+<pre class="rcode">
+> print(sum(firstOccurrence > 150)/NREP)
+[1] 0.50036
+</pre>
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
