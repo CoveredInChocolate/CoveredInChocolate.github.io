@@ -577,16 +577,44 @@ what de Méré found out he needed.
 
 
 <h3>Exercise 18</h3>
-asd
+(a) For events $A_1,\ldots, A_n$, prove that
+$$
+P(A_1\cup\ldots \cup A_n) \leq P(A_1) + \ldots + P(A_n).
+$$
 <br /><br />
 <i>Answer</i><br />
+From Theorem 1.3, we have:
+$$
+P(A_1\cup A_2) = P(A_1) + P(A_2) - P(A_1\cap A_2) \leq P(A_1) + P(A_2) 
+$$
+since all probabilities are greater or equal to 0. Define $B_2 = A_1\cup A_2$.
+Then, we can repeat the procedure again:
+$$
+P(A_1\cup A_2\cup A_3) = P(B_2\cup A_3) = P(B_2) + P(A_3) - P(B_2\cap A_3) \leq P(B_2) + P(A_3) \geq P(A_1) + P(A_2) + P(A_3) 
+$$
+Continuing in this way, we can show the result.
+<br /><br /><br /><br />
+(b) For events $A$ and $B$, prove that
+$$
+P(A\cap B) \geq P(A) + P(B) - 1
+$$
+<br /><br />
+<i>Answer</i><br />
+Rewriting the result from Theorem 1.4. Since $A\cup B\subset\Omega$, then
+$P(A\cup B)\leq P(\Omega)$, which also means $-P(A\cup B)\geq -1$. So:
+$$
+P(A\cap B) = P(A) + P(B) - P(A\cup B) \geq P(A) + P(B) - 1.
+$$
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
  
  
 <h3>Exercise 19</h3>
-asd
+If A, B, C are any three events, show that:
+$$
+P(A\cup B\cup C) = P(A) + P(B) + P(C) - P(A\cap B) - P(B\cap C) - P(C\cap A) + P(A\cap B\cap C)
+$$
 <br /><br />
 <i>Answer</i><br />
 <br /><br />
