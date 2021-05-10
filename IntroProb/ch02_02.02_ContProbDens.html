@@ -52,6 +52,44 @@
 
 <h3>Results</h3>
 
+<div class="thm">Definition 2.1</div><br />
+Let $X$ be a continuous real-valued random variable. A <i>density function</i>
+for $X$ is a real-valued function $f$ which satisfies
+$$
+P(a\leq X\leq b) = \int_a^b f(x)dx
+$$
+for all $a,b\in\R$.
+<br /><br />
+In terms of the density function, if $E\subset\R$, then (assuming it makes sense)
+$$
+P(X\in E) = \int_E f(x)dx.
+$$
+<i>Comment</i>: The density does not measure probabilities, but it does contain all the information
+about the probabilty.
+<br /><br /><br /><br />
+
+
+<div class="thm">Definition 2.2</div><br />
+Let $X$ be a continuous real-valued random variable. Then the cumulative distribution function of $X$
+is defined by the equation
+$$
+F_X(x) = P(X\leq x).
+$$
+<br /><br /><br /><br />
+
+
+<div class="thm">Theorem 2.1</div><br />
+Let $X$ be a continuous real-valued random variable with density function $f(x)$. Then the function
+defined by
+$$
+F(x) = \int_{-\infty}^x f(t)dt
+$$
+is the cumulative distribution function of $X$. Furthermore, we have
+$$
+\frac{d}{dx}F(x) = f(x).
+$$
+<br /><br /><br /><br />
+
 <br /><br /><br /><br />
 
 
