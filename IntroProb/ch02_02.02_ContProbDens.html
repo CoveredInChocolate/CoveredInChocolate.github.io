@@ -108,6 +108,7 @@ $$
 </pre>
 -->
 
+<!-- P. 79 -->
 <h3>Exercise 1</h3>
 Suppose you choose at random a real number X from the interval [2, 10].
 <br /><br />
@@ -135,7 +136,7 @@ $$
 $$
 In general, for an event $E = [a,b]\subset[2,10]$:
 $$
-P(E) = \int_a^b f(x)dx.
+P(E) = \int_a^b \frac{1}{8}dx.
 $$
 <br /><br />
 <b>(b)</b> <br />
@@ -147,23 +148,110 @@ The second event, $E_2 = [5, 7]$.
 $$
 f(E_2) = \int_5^{7}\frac{1}{8}dx = \bigg[\frac{x}{8}\bigg]_5^{7} = \frac{7}{8} - \frac{5}{8} = \frac{1}{4}.
 $$
+For the last event, note that $X^2 - 12X + 35 = (X-7)(X-5)$. This is a second degree polynomial which is equal
+to 0 when $X=5$ or $X=7$ and negative between them , such as when $X=6$. It follows that this is positive
+whenever $X < 5$ and $X > 7$, so the event we want to calculate is $A = [2, 5]\cup [7, 10]$. Since these are
+disjoint we can consider the probability for this event as the sum of two probabilities $A_1$ and $A_2$:
+$$
+P(A_1) = \int_2^5\frac{1}{8}dx = \bigg[\frac{x}{8}\bigg]_2^5 = \frac{5}{8} - \frac{2}{8} = \frac{3}{8}
+$$
+$$
+P(A_2) = \int_7^{10}\frac{1}{8}dx = \bigg[\frac{x}{8}\bigg]_7^{10} = \frac{10}{8} - \frac{7}{8} = \frac{3}{8}
+$$
+The sum of these is the event, so:
+$$
+P(A) = P(A_1) + P(A_2) = \frac{6}{8} = \frac{3}{4}
+$$
+We could also have noted that $A = \Omega - E_2$, so we could simply have used $1 - 1/4$.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
+
+
+
+
 
 <h3>Exercise 2</h3>
-asd
+Suppose you choose a real number X from the interval [2, 10] with a density
+function of the form
+$$
+f(x) = Cx,
+$$
+where C is a constant.
+<br /><br />
+<b>(a)</b> Find C.<br />
+<b>(b)</b> Find P(E), where E = [a, b] is a subinterval of [2, 10].<br />
+<b>(c)</b> Find P(X > 5), P(X < 7), and P(X<sup>2</sup> − 12X + 35 > 0).
 <br /><br />
 <i>Answer</i><br /><br />
+<b>(a)</b><br />
+In the previous exercise, the density was constant in the interval, but that is no longer the case.
+We need to determine C so the integral over the interval [2, 10] becomes 1.
+$$
+\int_2^{10}Cxdx = C\int_2^{10}xdx  = C\left[\frac{x^2}{2}\right]_2^{10} = C\left[\frac{100}{2} - \frac{4}{2}\right]
+= C\left[50 - 2\right] = C(48),
+$$
+so in order for this to equal 1, then $C = 1/48$. So:
+$$
+f(x) = \frac{x}{48}.
+$$
+<br /><br />
+<b>(b)</b><br />
+With the PDF, the probability for some event E = [a, b] is just:
+$$
+P(E) = \int_a^b\frac{x}{48}dx.
+$$
+<br /><br />
+<b>(c)</b><br />
+This is almost the same as in Exercise 1. Define $E_1 = [5, 10]$,$E_2 = [7, 10]$ , $E_3 = [5, 7]$ and $A = X^2 - 12X + 35 > 0$.
+$$
+P(E_1) = \int_5^{10}\frac{x}{48}dx = \left[\frac{x^2}{96}\right]_{5}^{10} = \left[\frac{100}{96} - \frac{25}{96}\right]
+= \frac{75}{96}.
+$$
+Next event,
+$$
+P(E_2) = \int_7^{10}\frac{x}{48}dx = \left[\frac{x^2}{96}\right]_{7}^{10} = \left[\frac{100}{96} - \frac{49}{96}\right]
+= \frac{51}{96}.
+$$
+As in Exercise 1.
+$$
+P(E_3) = \int_5^{7}\frac{x}{48}dx = \left[\frac{x^2}{96}\right]_{5}^{7} = \left[\frac{49}{96} - \frac{25}{96}\right]
+= \frac{24}{96} = \frac{1}{4}.
+$$
+And as in Exercise 1.
+$$
+P(A) = 1 - P(E_3) = \frac{3}{4}.
+$$
+<br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
+
+
+
+
 <h3>Exercise 3</h3>
-asd
+Same as Exercise 2, but suppose
+$$
+f(x) = \frac{C}{x}
+$$
 <br /><br />
 <i>Answer</i><br /><br />
+<b>(a)</b><br />
+asd
+<br /><br />
+<b>(b)</b><br />
+asd
+<br /><br />
+<b>(c)</b><br />
+asd
+<br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
+
+
+
+
 
 <h3>Exercise 4</h3>
 asd
@@ -172,12 +260,20 @@ asd
 <div class="exend">&#9632;</div>
 <br /><br />
 
+
+
+
+
 <h3>Exercise 5</h3>
 asd
 <br /><br />
 <i>Answer</i><br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
+
+
+
+
 
 <h3>Exercise 6</h3>
 asd
@@ -186,12 +282,20 @@ asd
 <div class="exend">&#9632;</div>
 <br /><br />
 
+
+
+
+
 <h3>Exercise 7</h3>
 asd
 <br /><br />
 <i>Answer</i><br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
+
+
+
+
 
 <h3>Exercise 8</h3>
 asd
@@ -200,12 +304,20 @@ asd
 <div class="exend">&#9632;</div>
 <br /><br />
 
+
+
+
+
 <h3>Exercise 9</h3>
 asd
 <br /><br />
 <i>Answer</i><br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
+
+
+
+
 
 <h3>Exercise 10</h3>
 asd
@@ -214,12 +326,20 @@ asd
 <div class="exend">&#9632;</div>
 <br /><br />
 
+
+
+
+
 <h3>Exercise 11</h3>
 asd
 <br /><br />
 <i>Answer</i><br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
+
+
+
+
 
 <h3>Exercise 12</h3>
 asd
@@ -228,12 +348,20 @@ asd
 <div class="exend">&#9632;</div>
 <br /><br />
 
+
+
+
+
 <h3>Exercise 13</h3>
 asd
 <br /><br />
 <i>Answer</i><br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
+
+
+
+
 
 <h3>Exercise 14</h3>
 asd
@@ -242,12 +370,20 @@ asd
 <div class="exend">&#9632;</div>
 <br /><br />
 
+
+
+
+
 <h3>Exercise 15</h3>
 asd
 <br /><br />
 <i>Answer</i><br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
+
+
+
+
 
 <h3>Exercise 16</h3>
 asd
@@ -256,12 +392,20 @@ asd
 <div class="exend">&#9632;</div>
 <br /><br />
 
+
+
+
+
 <h3>Exercise 17</h3>
 asd
 <br /><br />
 <i>Answer</i><br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
+
+
+
+
 
 <h3>Exercise 18</h3>
 asd
@@ -270,12 +414,20 @@ asd
 <div class="exend">&#9632;</div>
 <br /><br />
 
+
+
+
+
 <h3>Exercise 19</h3>
 asd
 <br /><br />
 <i>Answer</i><br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
+
+
+
+
 
 <h3>Exercise 20</h3>
 asd
@@ -284,6 +436,10 @@ asd
 <div class="exend">&#9632;</div>
 <br /><br />
 
+
+
+
+
 <h3>Exercise 21</h3>
 asd
 <br /><br />
@@ -291,12 +447,20 @@ asd
 <div class="exend">&#9632;</div>
 <br /><br />
 
+
+
+
+
 <h3>Exercise 22</h3>
 asd
 <br /><br />
 <i>Answer</i><br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
+
+
+
+
 
 <h3>Exercise 23</h3>
 asd
