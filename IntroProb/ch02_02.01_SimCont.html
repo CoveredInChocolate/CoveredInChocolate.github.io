@@ -415,17 +415,51 @@ log(<span class="hljs-number">2</span>)
 
 
 <h3>Exercise 6</h3>
-asd
+To simulate the Buffon’s needle problem we choose independently the distance
+d and the angle $\theta$ at random, with $0 \leq d \leq 1/2$ and $0 \leq \theta \leq \pi/2$,
+and check whether $d \leq (1/2)\sin\theta$. Doing this a large number of times, we
+estimate $\pi$ as $2/a$, where $a$ is the fraction of the times that $d \leq (1/2)\sin\theta$.
+Write a program to estimate $\pi$ by this method. Run your program several
+times for each of 100, 1000, and 10,000 experiments. Does the accuracy of
+the experimental approximation for $\pi$ improve as the number of experiments
+increases?
 <br /><br />
-<i>Answer</i><br /><br />
+<i>Answer</i><br />
+The approximation for $\pi$ does become closer on average, but it is still quite unstable. Sometimes
+a simulation with 1.000.000 performed worse than a simulation with 10.000 experiments.
+<br /><br />
 <b>Code</b>
 <div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 02.01 - Exercise 6 - Buffon's Needle Simulation</span>
 
+simBuffon &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>(NSIMS) {
+    d = runif(NSIMS, min = <span class="hljs-number">0</span>, max = <span class="hljs-number">0.5</span>)
+    theta = runif(NSIMS, min = <span class="hljs-number">0</span>, max = pi/<span class="hljs-number">2</span>)
+    
+    a = sum(d &lt; <span class="hljs-number">0.5</span>*sin(theta))/NSIMS
+    piapprox = <span class="hljs-number">2</span>/a
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(piapprox)
+}
+simBuffon(<span class="hljs-number">100</span>)
+simBuffon(<span class="hljs-number">1000</span>)
+simBuffon(<span class="hljs-number">10000</span>)
+simBuffon(<span class="hljs-number">100000</span>)
+simBuffon(<span class="hljs-number">1000000</span>)
+</pre>
 </div>
 <br />
 <b>Output</b>
 <pre class="rcode">
-
+> simBuffon(100)
+[1] 3.389831
+> simBuffon(1000)
+[1] 3.12989
+> simBuffon(10000)
+[1] 3.137255
+> simBuffon(100000)
+[1] 3.13952
+> simBuffon(1000000)
+[1] 3.143656
 </pre>
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -435,17 +469,63 @@ asd
 
 
 <h3>Exercise 7</h3>
-asd
+For Buffon’s needle problem, Laplace considered a grid with horizontal and
+vertical lines one unit apart. He showed that the probability that a needle of
+length L ≤ 1 crosses at least one line is
+$$
+p = \frac{4L - L^2}{\pi}
+$$
+To simulate this experiment we choose at random an angle $\theta$ between 0 and
+$\pi/2$ and independently two numbers $d_1$ and $d_2$ between 0 and L/2. (The two
+numbers represent the distance from the center of the needle to the nearest
+horizontal and vertical line.) The needle crosses a line if either $d_1 \leq (L/2)\sin\theta$
+or $d_2 \leq (L/2)\cos\theta$. We do this a large number of times and estimate $\pi$ as
+$$
+\overline{\pi} = \frac{4L - L^2}{a}
+$$
+where a is the proportion of times that the needle crosses at least one line.
+Write a program to estimate $\pi$ by this method, run your program for 100,
+1000, and 10,000 experiments, and compare your results with Buffon’s method
+described in Exercise 6. (Take L = 1.)
 <br /><br />
-<i>Answer</i><br /><br />
+<i>Answer</i><br />
+The estimates for $\pi$ appear to be quite a lot closer with the Laplace method, especially for
+smaller values of $n$.
+<br /><br />
 <b>Code</b>
 <div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 02.01 - Exercise 7 - Buffon's Needle Simulation - Laplace version</span>
 
+simLaplace &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>(NSIMS) {
+    L = <span class="hljs-number">1</span>
+    d1 = runif(NSIMS, min = <span class="hljs-number">0</span>, max = L/<span class="hljs-number">2</span>)
+    d2 = runif(NSIMS, min = <span class="hljs-number">0</span>, max = L/<span class="hljs-number">2</span>)
+    theta = runif(NSIMS, min = <span class="hljs-number">0</span>, max = pi/<span class="hljs-number">2</span>)
+    
+    a = sum(d1 &lt; <span class="hljs-number">0.5</span>*sin(theta) | d2 &lt; <span class="hljs-number">0.5</span>*cos(theta))/NSIMS
+    piapprox = (<span class="hljs-number">4</span>*L - L^<span class="hljs-number">2</span>)/a
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(piapprox)
+}
+simLaplace(<span class="hljs-number">100</span>)
+simLaplace(<span class="hljs-number">1000</span>)
+simLaplace(<span class="hljs-number">10000</span>)
+simLaplace(<span class="hljs-number">100000</span>)
+simLaplace(<span class="hljs-number">1000000</span>)
+</pre>
 </div>
 <br />
 <b>Output</b>
 <pre class="rcode">
-
+> simLaplace(100)
+[1] 3.061224
+> simLaplace(1000)
+[1] 3.10559
+> simLaplace(10000)
+[1] 3.143666
+> simLaplace(100000)
+[1] 3.141789
+> simLaplace(1000000)
+[1] 3.142694
 </pre>
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -455,17 +535,64 @@ asd
 
 
 <h3>Exercise 8</h3>
-asd
+A long needle of length L much bigger than 1 is dropped on a grid with
+horizontal and vertical lines one unit apart. We will see (in Exercise 6.3.28)
+that the average number $a$ of lines crossed is approximately
+$$
+a = \frac{4L}{\pi}
+$$
+To estimate π by simulation, pick an angle θ at random between 0 and π/2 and
+compute $L\sin\theta + L\cos\theta$. This may be used for the number of lines crossed.
+Repeat this many times and estimate π by
+$$
+\overline{\pi} = \frac{4L}{a}
+$$
+where a is the average number of lines crossed per experiment. Write a program
+to simulate this experiment and run your program for the number of
+experiments equal to 100, 1000, and 10,000. Compare your results with the
+methods of Laplace or Buffon for the same number of experiments. (Use
+L = 100.)
 <br /><br />
-<i>Answer</i><br /><br />
+<i>Answer</i><br />
+The estimates are even closer to $\pi$, with the result for 1.000.000 experiments falls within
+0.0001% of $\pi$. That's pretty close!
+<br /><br />
 <b>Code</b>
 <div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 02.01 - Exercise 8 - Buffon's Needle Simulation - Long needle version</span>
 
+simLongNeedle &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>(NSIMS) {
+    L = <span class="hljs-number">100</span>
+    theta = runif(NSIMS, min = <span class="hljs-number">0</span>, max = pi/<span class="hljs-number">2</span>)
+    
+    a = mean(L*sin(theta) + L*cos(theta))
+    piapprox = (<span class="hljs-number">4</span>*L)/a
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(piapprox)
+}
+simLongNeedle(<span class="hljs-number">100</span>)
+simLongNeedle(<span class="hljs-number">1000</span>)
+simLongNeedle(<span class="hljs-number">10000</span>)
+simLongNeedle(<span class="hljs-number">100000</span>)
+simLongNeedle(<span class="hljs-number">1000000</span>)
+</pre>
 </div>
 <br />
 <b>Output</b>
 <pre class="rcode">
-
+> simLongNeedle(100)
+[1] 3.13445
+> simLongNeedle(1000)
+[1] 3.14688
+> simLongNeedle(10000)
+[1] 3.143391
+> simLongNeedle(100000)
+[1] 3.140012
+> simLongNeedle(1000000)
+[1] 3.141351
+> pi
+[1] 3.141593
+> pi/3.141351
+[1] 1.000077
 </pre>
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -475,7 +602,22 @@ asd
 
 
 <h3>Exercise 9</h3>
-asd
+<i>Skipped. Poorly formulated exercise.</i>
+<!-- A large number of waiting time problems have an <i>exponential distribution</i> of
+outcomes. We shall see (in Section 5.2) that such outcomes are simulated by
+computing (−1/λ) log(rnd), where λ > 0. For waiting times produced in this
+way, the average waiting time is 1/λ. For example, the times spent waiting for
+a car to pass on a highway, or the times between emissions of particles from a
+radioactive source, are simulated by a sequence of random numbers, each of
+which is chosen by computing (−1/λ) log(rnd), where 1/λ is the average time
+between cars or emissions. Write a program to simulate the times between
+cars when the average time between cars is 30 seconds. Have your program
+compute an area bar graph for these times by breaking the time interval from
+0 to 120 into 24 subintervals. On the same pair of axes, plot the function
+$$
+f(x) = (1/30)\exp\{−(1/30)x\}.
+$$
+Does the function fit the bar graph well?
 <br /><br />
 <i>Answer</i><br /><br />
 <b>Code</b>
@@ -487,26 +629,74 @@ asd
 <pre class="rcode">
 
 </pre>
-<div class="exend">&#9632;</div>
-<br /><br />
+<div class="exend">&#9632;</div>-->
+<br /><br /> 
 
 
 
 
 
 <h3>Exercise 10</h3>
-asd
+In this problem, we will
+again consider an experiment whose outcomes are not equally likely. We will
+determine a function $f(x)$ which can be used to determine the probability of
+certain events. Let T be the right triangle in the plane with vertices at the
+points (0, 0), (1, 0), and (0, 1). The experiment consists of picking a point
+at random in the interior of T , and recording only the x-coordinate of the
+point. Thus, the sample space is the set [0, 1], but the outcomes do not seem
+to be equally likely. We can simulate this experiment by asking a computer to
+return two random real numbers in [0, 1], and recording the first of these two
+numbers if their sum is less than 1. Write this program and run it for 10,000
+trials. Then make a bar graph of the result, breaking the interval [0, 1] into
+10 intervals. Compare the bar graph with the function $f(x) = 2 − 2x$. Now
+show that there is a constant c such that the height of T at the x-coordinate
+value x is c times f (x) for every x in [0, 1]. Finally, show that
+$$
+\int_0^1 f(x) dx = 1
+$$
+How might one use the function $f(x)$ to determine the probability that the
+outcome is between 0.2 and 0.5?
 <br /><br />
 <i>Answer</i><br /><br />
 <b>Code</b>
 <div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 02.01 - Exercise 10 - Triangle</span>
 
+simTriangle &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>(NSIMS) {
+    x = runif(NSIMS)
+    y = runif(NSIMS)
+    
+    ind = x + y &lt; <span class="hljs-number">1</span>
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(x[ind])
+} 
+
+xval = simTriangle(<span class="hljs-number">10000</span>)
+xcut = cut(xval, c(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>:<span class="hljs-number">10</span>/<span class="hljs-number">10</span>)) 
+
+df = data.frame(
+    xcat = xcut,
+    cnt = <span class="hljs-number">1</span>
+)
+
+df2 = aggregate(df$cnt, by=list(df$xcat), FUN = sum)
+names(df2) = c(<span class="hljs-string" style="color: rgb(163, 21, 21);">"Interval"</span>, <span class="hljs-string" style="color: rgb(163, 21, 21);">"Freq"</span>)
+
+barplot(height=df2$Freq/<span class="hljs-number">500</span>, names=df2$Interval , col=rgb(<span class="hljs-number">0.2</span>,<span class="hljs-number">0.4</span>,<span class="hljs-number">0.6</span>,<span class="hljs-number">0.6</span>), width=<span class="hljs-number">1</span>,
+        main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"Frequency per Subinterval"</span>)
+plotx = <span class="hljs-number">1</span>:<span class="hljs-number">120</span>/<span class="hljs-number">10</span>
+lines(plotx, <span class="hljs-number">2</span> - (<span class="hljs-number">1</span>/<span class="hljs-number">6</span>)*plotx, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"red"</span>, lwd=<span class="hljs-number">2</span>)
+
+png(filename = <span class="hljs-string" style="color: rgb(163, 21, 21);">"~/GITHUB/CoveredInChocolate.github.io/IntroProb/img/02.01_Ex10.png"</span>,
+    width = <span class="hljs-number">640</span>, height=<span class="hljs-number">480</span>)
+barplot(height=df2$Freq/<span class="hljs-number">500</span>, names=df2$Interval , col=rgb(<span class="hljs-number">0.2</span>,<span class="hljs-number">0.4</span>,<span class="hljs-number">0.6</span>,<span class="hljs-number">0.6</span>), width=<span class="hljs-number">1</span>,
+        main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"Frequency per Subinterval"</span>)
+plotx = <span class="hljs-number">1</span>:<span class="hljs-number">120</span>/<span class="hljs-number">10</span>
+lines(plotx, <span class="hljs-number">2</span> - (<span class="hljs-number">1</span>/<span class="hljs-number">6</span>)*plotx, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"red"</span>, lwd=<span class="hljs-number">2</span>)
+dev.off()</pre>
 </div>
 <br />
-<b>Output</b>
-<pre class="rcode">
-
-</pre>
+<b>Output</b><br />
+<img src="img/02.01_Ex10.png" />
 <div class="exend">&#9632;</div>
 <br /><br />
 
@@ -516,17 +706,68 @@ asd
 
 
 <h3>Exercise 11</h3>
-asd
+Here is another way to pick a chord at random on the circle of unit radius.
+Imagine that we have a card table whose sides are of length 100. We place
+coordinate axes on the table in such a way that each side of the table is parallel
+to one of the axes, and so that the center of the table is the origin. We now
+place a circle of unit radius on the table so that the center of the circle is the
+origin. Now pick out a point $(x_0 , y_0)$ at random in the square, and an angle θ
+at random in the interval (−π/2, π/2). Let $m = \tan\theta$. Then the equation of
+the line passing through $(x_0 , y_0)$ with slope m is
+$$
+y = y_0 + m(x - x_0)
+$$
+and the distance of this line from the center of the circle (i.e., the origin) is
+$$
+d = \left|\frac{y_0 - mx_0}{\sqrt{m^2 + 1}}\right|
+$$
+We can use this distance formula to check whether the line intersects the circle
+(i.e., whether d < 1). If so, we consider the resulting chord a <i>random</i> chord.
+<br /><br />
+This describes an experiment of dropping a long straw at random on a table
+on which a circle is drawn.
+<br /><br />
+Write a program to simulate this experiment 10.000 times
+and estimate the probability that the length of the chord is greater than $\sqrt{3}$.
+How does your estimate compare with the results of Example 2.6?
 <br /><br />
 <i>Answer</i><br /><br />
+This experiment gives a fourth interpretation, since the proportion of chords of length larger than $\sqrt{3}$
+is about 0.577 (and quite consistently). Presumably, this represents a separate interpretation.
+<br /><br />
 <b>Code</b>
 <div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 02.01 - Exercise 11 - Chord of a circle</span>
 
+simChord &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>(NSIMS) {
+    x0 = runif(NSIMS)
+    y0 = runif(NSIMS)
+    theta = runif(NSIMS, min=-pi/<span class="hljs-number">2</span>, max=pi/<span class="hljs-number">2</span>)
+    
+    m = tan(theta)
+    
+    <span class="hljs-comment" style="color: green;"># Distance</span>
+    d = abs((y0 - m*x0)/(sqrt(m**<span class="hljs-number">2</span> + <span class="hljs-number">1</span>)))
+    <span class="hljs-comment" style="color: green;"># Random Chords</span>
+    chordInd = d &lt; <span class="hljs-number">1</span>
+    
+    chords = d[chordInd]
+    <span class="hljs-comment" style="color: green;"># As in Example 2.6, the length is larger than sqrt(3)</span>
+    <span class="hljs-comment" style="color: green;"># if the chord intersects a circle with radius 0.5</span>
+    prop = sum(chords &lt; <span class="hljs-number">0.5</span>)/length(chords)
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(prop)
+} 
+
+res = simChord(<span class="hljs-number">10000</span>)
+res
+</pre>
 </div>
 <br />
 <b>Output</b>
 <pre class="rcode">
-
+> res = simChord(10000)
+> res
+[1] 0.5779924
 </pre>
 <div class="exend">&#9632;</div>
 <br /><br />

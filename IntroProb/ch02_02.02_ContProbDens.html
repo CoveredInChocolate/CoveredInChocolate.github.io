@@ -136,7 +136,7 @@ $$
 $$
 In general, for an event $E = [a,b]\subset[2,10]$:
 $$
-P(E) = \int_a^b \frac{1}{8}dx.
+P(E) = \int_a^b \frac{1}{8}dx  = \bigg[\frac{x}{8}\bigg]_a^{b} = \frac{b}{8} - \frac{a}{8}
 $$
 <br /><br />
 <b>(b)</b> <br />
@@ -199,7 +199,7 @@ $$
 <b>(b)</b><br />
 With the PDF, the probability for some event E = [a, b] is just:
 $$
-P(E) = \int_a^b\frac{x}{48}dx.
+P(E) = \int_a^b\frac{x}{48}dx = \left[\frac{x^2}{96}\right]_{a}^{b}  = \frac{b^2}{96} - \frac{a^2}{96}.
 $$
 <br /><br />
 <b>(c)</b><br />
@@ -238,13 +238,34 @@ $$
 <br /><br />
 <i>Answer</i><br /><br />
 <b>(a)</b><br />
-asd
+We must determine $C$ so the integral over [2, 10] becomes 1.
+$$
+C\int_2^{10}\frac{1}{x}dx = C\Big[\log x\Big]_2^{10} = C\left(\log 10 - \log 2\right)
+= C\left(\log 10/2\right) = C\log 5.
+$$
+In order for this to become 1, $C = 1/\log(5)$.
 <br /><br />
 <b>(b)</b><br />
-asd
+With the PDF, the probability for some event E = [a, b] is just:
+$$
+P(E) = \int_a^b\frac{1}{\log 5x}dx = \frac{1}{\log 5}\Big[\log(x)\Big]_{a}^{b}  = \frac{1}{\log 5}\left(\log(b) - \log(a)\right)
+= \frac{\log\left(b/a\right)}{\log 5}
+$$
 <br /><br />
 <b>(c)</b><br />
-asd
+Define $E_1 = [5, 10]$,$E_2 = [7, 10]$ , $E_3 = [5, 7]$ and $A = X^2 - 12X + 35 > 0$.
+$$
+P(E_1) = \int_5^{10}\frac{1}{\log 5x}dx = \frac{\log(10/5)}{\log(5)} = \frac{\log(2)}{\log(5)}
+$$
+$$
+P(E_2) = \int_7^{10}\frac{1}{\log 5x}dx = \frac{\log(10/7)}{\log(5)}
+$$
+$$
+P(E_3) = \int_5^{7}\frac{1}{\log 5x}dx = \frac{\log(7/5)}{\log(5)}
+$$
+$$
+P(A) = 1 - P(E_3) = 1 - \frac{\log(7/5)}{\log(5)}
+$$
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
