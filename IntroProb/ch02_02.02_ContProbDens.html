@@ -527,7 +527,7 @@ sum(<span class="hljs-number">3</span>*B^<span class="hljs-number">2</span> &lt;
 <h3>Exercise 8</h3>
 Choose independently two numbers B and C at random from the interval [0, 1]
 with uniform density. Note that the point (B, C) is then chosen at random in
-the unit square. Find the probability that
+the unit square. Find the probability that:
 <br /><br />
 <br /><br />
 <b>(a)</b> B + C < 1/2.<br /><br />
@@ -540,43 +540,256 @@ $$
 \frac{1}{2}bh = \frac{1}{2^3} = \frac{1}{8}.
 $$
 The probability will be this area divided by the whole area - but in this case the whole area is just 1, so
-$P(B + C < 1/2) = 1/8$. (See code for verification).
+$P(B + C < 1/2) = 1/8$. (See code for verification). <b>Note</b>: This was solved in Example 2.14.
 <br /><br />
 <img src="img/02.02_Ex08a.png" />
 <br /><br /><br /><br />
-<b>(b)</b> BC < 1/2.<br />
+<b>(b)</b> BC < 1/2.<br /><br />
 <i>Answer</i><br /><br />
 Again we will think of this as a geometrical problem. The point $(1, 1/2)$ and $(1, 1/2)$ are both equal to 1/2
 so lie on the separating line. When B and C are equal, the point on the boundary will be $1/\sqrt{2}$, but this
-time it is non-linear. Let's define $Z = BC$ and try to find $P(Z\leq 1/2)$.
+time it is non-linear. In general:
+$$
+BC = \frac{1}{2}
+\;\;\Longrightarrow\;\;
+B = \frac{1}{2C}
+$$
+With this we can calculate the boundary as the following function
+$$
+f(x) = \frac{1}{2x}
+$$
+when $x\in[1/2, 1]$. All points below or to the left of this boundary will be in the area. So the entire rectangle
+in the unit square when $x\in[0, 1/2]$ which corresponds to a probability of 1/2, and the area under the graph
+of $f$, which we can find by integration.
+$$
+\int_{1/2}^1\frac{1}{2x} dx = \frac{1}{2}\Big[\log(x)\Big]_{1/2}^1
+= \frac{1}{2}\Big(\log(1) - \log(1/2)\Big)
+= \frac{1}{2}\Big(\log(2)\Big)
+= \frac{\log(2)}{2}
+$$
+The total area, and probability, is therefore:
+$$
+P(BC < 1/2) = 0.5 + \frac{\log(2)}{2} \approx 0.8465736.
+$$
+<br /><br />
+<img src="img/02.02_Ex08b.png" />
 <br /><br /><br /><br />
-<b>(c)</b> |B − C| < 1/2.<br />
+<b>(c)</b> |B − C| < 1/2.<br /><br />
 <i>Answer</i><br /><br />
 Asd
+<br /><br />
+<img src="img/02.02_Ex08c.png" />
 <br /><br /><br /><br />
-<b>(d)</b> max{B, C} < 1/2.<br />
+<b>(d)</b> max{B, C} < 1/2.<br /><br />
 <i>Answer</i><br /><br />
 Asd
+<br /><br />
+<img src="img/02.02_Ex08d.png" />
 <br /><br /><br /><br />
-<b>(e)</b> min{B, C} < 1/2.<br />
+<b>(e)</b> min{B, C} < 1/2.<br /><br />
 <i>Answer</i><br /><br />
 Asd
+<br /><br />
+<img src="img/02.02_Ex08e.png" />
 <br /><br /><br /><br />
-<b>(f)</b> B < 1/2 and 1 − C < 1/2.<br />
+<b>(f)</b> B < 1/2 and 1 − C < 1/2.<br /><br />
 <i>Answer</i><br /><br />
 Asd
+<br /><br />
+<img src="img/02.02_Ex08f.png" />
 <br /><br /><br /><br />
-<b>(g)</b> conditions (c) and (f) both hold.<br />
+<b>(g)</b> conditions (c) and (f) both hold.<br /><br />
 <i>Answer</i><br /><br />
 Asd
+<br /><br />
+<img src="img/02.02_Ex08g.png" />
 <br /><br /><br /><br />
 <b>(h)</b> $B^2 + C^2 \leq 1/2$.<br />
 <i>Answer</i><br /><br />
 Asd
+<br /><br />
+<img src="img/02.02_Ex08h.png" />
 <br /><br /><br /><br />
 <b>(i)</b> $(B − 1/2)^2 + (C − 1/2)^2 < 1/4$.<br />
 <i>Answer</i><br /><br />
 Asd
+<br /><br />
+<img src="img/02.02_Ex08i.png" />
+<br /><br />
+<b>Output</b><br />
+Simulation results that give an independent verification that the results above are correct.
+Code can be found under the plot.
+<br /><br />
+<img src="img/02.02_Ex8ALL.png" />
+<br /><br />
+<b>Code</b><br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 02.02 - Exercise 8 - Simulations to verify calculations</span>
+
+NSIMS = <span class="hljs-number">100000</span>
+
+B = runif(NSIMS)
+C = runif(NSIMS)
+
+<span class="hljs-comment" style="color: green;">#### (a)</span>
+sum(B + C &lt; <span class="hljs-number">0.5</span>)/NSIMS
+<span class="hljs-number">1</span>/<span class="hljs-number">8</span>
+
+<span class="hljs-comment" style="color: green;">#### (b)</span>
+sum(B*C &lt; <span class="hljs-number">0.5</span>)/NSIMS
+<span class="hljs-number">0.5</span> + log(<span class="hljs-number">2</span>)/<span class="hljs-number">2</span>
+
+<span class="hljs-comment" style="color: green;">#### (c)</span>
+sum(abs(B - C) &lt; <span class="hljs-number">0.5</span>)/NSIMS
+<span class="hljs-number">6</span>/<span class="hljs-number">8</span>
+
+<span class="hljs-comment" style="color: green;">#### (d)</span>
+sum(pmax(B, C) &lt; <span class="hljs-number">0.5</span>)/NSIMS
+<span class="hljs-number">1</span>/<span class="hljs-number">4</span>
+
+<span class="hljs-comment" style="color: green;">#### (e)</span>
+sum(pmin(B, C) &lt; <span class="hljs-number">0.5</span>)/NSIMS
+<span class="hljs-number">3</span>/<span class="hljs-number">4</span>
+
+<span class="hljs-comment" style="color: green;">#### (f)</span>
+sum(B &lt; <span class="hljs-number">0.5</span> &amp; <span class="hljs-number">1</span> - C &lt; <span class="hljs-number">0.5</span>)/NSIMS
+<span class="hljs-number">1</span>/<span class="hljs-number">4</span>
+
+<span class="hljs-comment" style="color: green;">#### (g)</span>
+sum((B &lt; <span class="hljs-number">0.5</span> &amp; <span class="hljs-number">1</span> - C &lt; <span class="hljs-number">0.5</span>) &amp; (abs(B - C) &lt; <span class="hljs-number">0.5</span>))/NSIMS
+<span class="hljs-number">1</span>/<span class="hljs-number">8</span>
+
+<span class="hljs-comment" style="color: green;">#### (h)</span>
+sum(B**<span class="hljs-number">2</span> + C**<span class="hljs-number">2</span> &lt; <span class="hljs-number">0.5</span>)/NSIMS
+pi*(<span class="hljs-number">1</span>/sqrt(<span class="hljs-number">2</span>))**<span class="hljs-number">2</span>/<span class="hljs-number">4</span>
+
+<span class="hljs-comment" style="color: green;">#### (i)</span>
+sum((B-<span class="hljs-number">0.5</span>)**<span class="hljs-number">2</span> + (C-<span class="hljs-number">0.5</span>)**<span class="hljs-number">2</span> &lt; <span class="hljs-number">0.25</span>)/NSIMS
+pi*(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)**<span class="hljs-number">2</span>
+
+
+<span class="hljs-comment" style="color: green;"># Compile plots</span>
+B = runif(NSIMS)
+C = runif(NSIMS)
+
+par(mfrow=c(<span class="hljs-number">3</span>,<span class="hljs-number">3</span>))
+png(filename = <span class="hljs-string" style="color: rgb(163, 21, 21);">"~/GITHUB/CoveredInChocolate.github.io/IntroProb/img/02.02_Ex8_COMP.png"</span>,
+    width = <span class="hljs-number">820</span>, height=<span class="hljs-number">650</span>)
+
+<span class="hljs-comment" style="color: green;"># (a)</span>
+ind = B + C &lt; <span class="hljs-number">0.5</span>
+plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>, xlim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), ylim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>),
+        main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"(a)"</span>, xlab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"B"</span>, ylab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"C"</span>)
+points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"darkgray"</span>)
+
+<span class="hljs-comment" style="color: green;"># (b)</span>
+ind = B*C &lt; <span class="hljs-number">0.5</span>
+plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>, xlim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), ylim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>),
+        main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"(b)"</span>, xlab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"B"</span>, ylab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"C"</span>)
+points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"darkgray"</span>)
+
+<span class="hljs-comment" style="color: green;"># (c)</span>
+ind = abs(B - C) &lt; <span class="hljs-number">0.5</span>
+plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>, xlim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), ylim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>),
+        main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"(c)"</span>, xlab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"B"</span>, ylab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"C"</span>)
+points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"darkgray"</span>)
+
+<span class="hljs-comment" style="color: green;"># (d)</span>
+ind = pmax(B, C) &lt; <span class="hljs-number">0.5</span>
+plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>, xlim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), ylim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>),
+        main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"(d)"</span>, xlab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"B"</span>, ylab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"C"</span>)
+points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"darkgray"</span>)
+
+<span class="hljs-comment" style="color: green;"># (e)</span>
+ind = pmin(B, C) &lt; <span class="hljs-number">0.5</span>
+plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>, xlim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), ylim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>),
+        main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"(e)"</span>, xlab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"B"</span>, ylab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"C"</span>)
+points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"darkgray"</span>)
+
+<span class="hljs-comment" style="color: green;"># (f)</span>
+ind = B &lt; <span class="hljs-number">0.5</span> &amp; <span class="hljs-number">1</span> - C &lt; <span class="hljs-number">0.5</span>
+plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>, xlim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), ylim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>),
+        main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"(f)"</span>, xlab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"B"</span>, ylab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"C"</span>)
+points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"darkgray"</span>)
+
+<span class="hljs-comment" style="color: green;"># (g)</span>
+ind = (B &lt; <span class="hljs-number">0.5</span> &amp; <span class="hljs-number">1</span> - C &lt; <span class="hljs-number">0.5</span>) &amp; (abs(B - C) &lt; <span class="hljs-number">0.5</span>)
+plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>, xlim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), ylim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>),
+        main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"(g)"</span>, xlab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"B"</span>, ylab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"C"</span>)
+points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"darkgray"</span>)
+
+<span class="hljs-comment" style="color: green;"># (h)</span>
+ind = B**<span class="hljs-number">2</span> + C**<span class="hljs-number">2</span> &lt; <span class="hljs-number">0.5</span>
+plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>, xlim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), ylim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>),
+        main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"(h)"</span>, xlab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"B"</span>, ylab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"C"</span>)
+points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"darkgray"</span>)
+
+<span class="hljs-comment" style="color: green;"># (i)</span>
+ind = (B-<span class="hljs-number">0.5</span>)**<span class="hljs-number">2</span> + (C-<span class="hljs-number">0.5</span>)**<span class="hljs-number">2</span> &lt; <span class="hljs-number">0.25</span>
+plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>, xlim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), ylim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>),
+        main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"(i)"</span>, xlab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"B"</span>, ylab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"C"</span>)
+points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"darkgray"</span>)
+dev.off()
+</pre>
+</div>
+<br /><br />
+<b>Output</b><br />
+Results from comparing the theoretical to simulated results.<br />
+<pre class="rcode">
+> #### (a)
+> sum(B + C < 0.5)/NSIMS
+[1] 0.12656
+> 1/8
+[1] 0.125
+> 
+> #### (b)
+> sum(B*C < 0.5)/NSIMS
+[1] 0.8479
+> 0.5 + log(2)/2
+[1] 0.8465736
+> 
+> #### (c)
+> sum(abs(B - C) < 0.5)/NSIMS
+[1] 0.74805
+> 6/8
+[1] 0.75
+> 
+> #### (d)
+> sum(pmax(B, C) < 0.5)/NSIMS
+[1] 0.25078
+> 1/4
+[1] 0.25
+> 
+> #### (e)
+> sum(pmin(B, C) < 0.5)/NSIMS
+[1] 0.75217
+> 3/4
+[1] 0.75
+> 
+> #### (f)
+> sum(B < 0.5 & 1 - C < 0.5)/NSIMS
+[1] 0.25004
+> 1/4
+[1] 0.25
+> 
+> #### (g)
+> sum((B < 0.5 & 1 - C < 0.5) & (abs(B - C) < 0.5))/NSIMS
+[1] 0.12436
+> 1/8
+[1] 0.125
+> 
+> #### (h)
+> sum(B**2 + C**2 < 0.5)/NSIMS
+[1] 0.39403
+> pi*(1/sqrt(2))**2/4
+[1] 0.3926991
+> 
+> #### (i)
+> sum((B-0.5)**2 + (C-0.5)**2 < 0.25)/NSIMS
+[1] 0.78623
+> pi*(1/2)**2
+[1] 0.7853982
+</pre>
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -584,11 +797,21 @@ Asd
 
 
 
-
 <h3>Exercise 9</h3>
-asd
+Suppose that we have a sequence of occurrences. We assume that the time
+X between occurrences is exponentially distributed with λ = 1/10, so on the
+average, there is one occurrence every 10 minutes (see Example 2.17). You
+come upon this system at time 100, and wait until the next occurrence. Make
+a conjecture concerning how long, on the average, you will have to wait. Write
+a program to see if your conjecture is right.
 <br /><br />
 <i>Answer</i><br /><br />
+Since the exponential distribution has the 'memoryless' property, every random starting point
+will behave similarly to the initial starting point, where we would wait an average of 10 minutes
+for the first occurrence. My conjecture is that this holds true even if we start at time 100.
+<br /><br />
+Simulate a few thousand exponential experiments up to time 200, start at 100 and see how long it takes
+before the first occurrence, and then take the average of all these waiting times. 
 <div class="exend">&#9632;</div>
 <br /><br />
 
