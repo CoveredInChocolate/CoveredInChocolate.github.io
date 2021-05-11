@@ -284,15 +284,54 @@ at random, find the probability that the dart falls
 <b>(c)</b>  within the first quadrant of the target.<br />
 <b>(d)</b> within the first quadrant and within 2 inches of the rim.
 <br /><br />
-<i>Answer</i><br /><br />
-<br />
+<i>Answer</i><br />
+We simply need to work out the various areas of the specified regions. First, we calculate the area of the
+entire circle, then the probabilities we need will be the area divided by the total area. Calling the total
+area $A$.
+$$
+A = \pi r^2 = \pi(10)^2 = 100\pi
+$$
+<br /><br />
 <b>(a)</b> <br />
+The area of this region is a circle with radius 2.
+$$
+E_1 = \pi(2)^2 = 4\pi
+$$
+The probability is:
+$$
+P(E_1) = \frac{E_1}{A} = \frac{4\pi}{100\pi} = \frac{1}{25}.
+$$
 <br /><br />
-<b>(b)</b> <br />
+<img src="img/02.02_Ex04_1.png" />
 <br /><br />
-<b>(c)</b> <br />
+<b>(b)</b><br />
+The area of this region is the total circle area minus the inner circle of radius 8, which we call $E_2^c$.
+Area of the inner circle:
+$$
+E_2^c = \pi(8)^2 = 64\pi.
+$$
+$$
+P(E_2) = 1 - P(E_2^c) = 1 - \frac{64\pi}{100\pi} = \frac{36}{100} = \frac{9}{25}.
+$$
+The region on the outer rim is larger than the central area, so the probabilities are larger.
+<br /><br />
+<img src="img/02.02_Ex04_2.png" />
+<br /><br />
+<b>(c)</b><br />
+For this area we don't need to calculate. The probability is clearly:
+$$
+P(E_3) = \frac{1}{4}.
+$$
+<br /><br />
+<img src="img/02.02_Ex04_3.png" />
 <br /><br />
 <b>(d)</b> <br />
+This is simply 1/4 of the area in (a).
+$$
+P(E_4) = \frac{P(E_1)}{4} = \frac{1}{100}.
+$$
+<br /><br />
+<img src="img/02.02_Ex04_4.png" />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -302,9 +341,52 @@ at random, find the probability that the dart falls
 
 
 <h3>Exercise 5</h3>
-asd
+Suppose you are watching a radioactive source that emits particles at a rate
+described by the exponential density
+$$
+f(t) = \lambda e^{-\lambda t},
+$$
+where $\lambda = 1$, so that the probability
+P(0, T) that a particle will appear in
+the next T seconds is $P([0,T]) = \int_0^T e^{-t} dt$. Find the probability that a
+particle (not necessarily the first) will appear
 <br /><br />
-<i>Answer</i><br /><br />
+<b>(a)</b> within the next second.<br />
+<b>(b)</b> within the next 3 seconds.<br />
+<b>(c)</b> between 3 and 4 seconds from now.<br />
+<b>(d)</b> after 4 seconds from now.
+<br /><br />
+<i>Answer</i><br />
+Calculating the integral in the general case when starting from 0.
+$$
+P([0, b]) = \int_0^b e^{-t} dt = \left[-e^{-t}\right]_0^b = -e^{-b} - (-e^{0}) = 1 - e^{-b}.
+$$
+<b>(a)</b> 
+$$
+P([0, 1]) = 1 - e^{-1} \approx 0.6321
+$$
+<br /><br />
+<b>(b)</b> 
+$$
+P([0, 3]) = 1 - e^{-3} \approx 0.9502
+$$
+<br /><br />
+<b>(c)</b><br />
+Integrating directly, but we could also have calculated $P([3, 4]) = P([0, 4]) - P([0, 3])$.
+$$
+P([3, 4]) =
+\int_3^4 e^{-t} dt = \left[-e^{-t}\right]_3^4 = -e^{-4} - (-e^{-3}) = e^{-3} - e^{-4} \approx 0.03147
+$$
+<br /><br />
+<b>(d)</b><br />
+To calculate $P([4, \infty])$ we simply note that $P([4, \infty]) = 1 - P([0, 4])$.
+$$
+P([0, 4]) = 1 - e^{-4} \approx 0.9817
+$$
+$$
+P([4, \infty]) = 1 - P([0,4]) \approx 0.018315
+$$
+<br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
@@ -313,9 +395,46 @@ asd
 
 
 <h3>Exercise 6</h3>
-asd
+Assume that a new light bulb will burn out after t hours, where t is chosen
+from [0, ∞) with an exponential density
+$$
+f(t) = \lambda e^{-\lambda t}.
+$$
+In this context, λ is often called the failure rate of the bulb.
+<br /><br />
+<b>(a)</b> Assume that λ = 0.01, and find the probability that the bulb will not
+burn out before T hours. This probability is often called the reliability
+of the bulb.
+<br /><br />
+<b>(b)</b> For what T is the reliability of the bulb = 1/2?
 <br /><br />
 <i>Answer</i><br /><br />
+<b>(a)</b>
+We want to find the probability that the bulb will burn out after $T$ hours, which we can express as $P(t > T)$.
+We can calculate this as:
+$$
+P(t > T) = 1 - P(t\leq T)
+$$
+where we use the CDF. We can calculate this:
+$$
+P(t\leq T) = \int_0^T \lambda e^{-\lambda t} dt = \Big[-e^{-\lambda t}\Big]_0^T = 1 - e^{-\lambda T}.
+$$
+So:
+$$
+P(t > T) = 1 - P(t\leq T) = 1 - \left(1 - e^{-\lambda T}\right) = e^{-\lambda T} = e^{-\frac{T}{100}}
+$$
+where we insterted $\lambda = 0.01$ in the final step.
+<br /><br />
+<b>(b)</b><br />
+We simply need to find which $T$ makes the previous expression equal to 0.5.
+\begin{align}
+e^{-\frac{T}{100}} &= \frac{1}{2} \\
+-\frac{T}{100} &= \log\left(\frac{1}{2}\right) = \log(1) - \log(2) = -\log(2) \\
+T &= 100\log(2) \\
+T &\approx 69.31
+\end{align}
+So a bulb that burns out after around 69.3 hours has a reliability of 0.5.
+<br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
@@ -324,20 +443,141 @@ asd
 
 
 <h3>Exercise 7</h3>
-asd
+Choose a number B at random from the interval [0, 1] with uniform density.
+Find the probability that
+<br /><br />
+<b>(a)</b> $1/3 < B < 2/3$.<br />
+<b>(b)</b> $|B − 1/2| \leq 1/4$.<br />
+<b>(c)</b> $B < 1/4$ or $1 − B < 1/4$.<br />
+<b>(d)</b> $3B^2 < B$.
 <br /><br />
 <i>Answer</i><br /><br />
+<b>(a)</b><br />
+The PDF for a uniform variable is the constant 1, so we can find this probability by integrating the following:
+$$
+\int_{1/3}^{2/3}1dx = \Big[x\Big]_{1/3}^{2/3} = \frac{2}{3} - \frac{1}{3} = \frac{1}{3}.
+$$
+(or just by direct observation).
+<br /><br />
+<b>(b)</b><br />
+Note that:
+\begin{align}
+|B − 1/2| &\leq 1/4 \\
+-1/4 \leq B - 1/2 &\leq 1/4\\
+1/4 \leq B &\leq 3/4
+\end{align}
+Just as in the previous exercise, we can integrate or just note that the probability is 1/2.
+Can be verified with the following code.
+<br /><br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);">NSIMS = <span class="hljs-number">10000</span>
+B = runif(NSIMS)
+sum(abs(B - <span class="hljs-number">0.5</span>) &lt; <span class="hljs-number">0.25</span>)/NSIMS</pre>
+</div>
+<br /><br />
+<b>(c)</b><br />
+Note that:
+$$
+1 - B < 0.25
+\;\;\Longrightarrow\;\;
+0.75 < B
+$$
+so we can express this event as:
+$$
+B\in[0, 0.25]\cup[0.75, 1]
+$$
+The complement to this set is:
+$$
+B\in [0.25, 0.75]
+$$
+or
+$1/4 \leq B\leq 3/4$ which is exactly what we found in (b), so this probability is $1 - 1/2 = 1/2$.
+Can be verified with the following code.
+<br /><br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);">NSIMS = <span class="hljs-number">10000</span>
+B = runif(NSIMS)
+sum(B &lt; <span class="hljs-number">0.25</span> | <span class="hljs-number">1</span> - <span class="hljs-number">0.25</span> &lt; B)/NSIMS</pre>
+</div>
+<br /><br />
+<b>(d)</b><br />
+Since we know $B$ is positive and non-zero:
+$$
+3B^2 < B
+\;\;\Longrightarrow\;\;
+3B < 1
+\;\;\Longrightarrow\;\;
+B < \frac{1}{3}
+$$
+which also has a probability of 1/3.
+<br /><br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);">NSIMS = <span class="hljs-number">10000</span>
+B = runif(NSIMS)
+sum(<span class="hljs-number">3</span>*B^<span class="hljs-number">2</span> &lt; B)/NSIMS</pre> 
+</div>
+<br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
 
 
 
-
+<!-- p. 80 -->
 <h3>Exercise 8</h3>
-asd
+Choose independently two numbers B and C at random from the interval [0, 1]
+with uniform density. Note that the point (B, C) is then chosen at random in
+the unit square. Find the probability that
 <br /><br />
+<br /><br />
+<b>(a)</b> B + C < 1/2.<br /><br />
 <i>Answer</i><br /><br />
+We can think of this problem as a geometrical problem. First the dividing line which will be
+$B + C = 1/2$ which will be the line going from $(1/2, 0)$ to $(0, 1/2)$. The points in the region
+is everything under this line, within the unit square. The area of this triangle will be,
+when b is the baseline and h is the height, given by
+$$
+\frac{1}{2}bh = \frac{1}{2^3} = \frac{1}{8}.
+$$
+The probability will be this area divided by the whole area - but in this case the whole area is just 1, so
+$P(B + C < 1/2) = 1/8$. (See code for verification).
+<br /><br />
+<img src="img/02.02_Ex08a.png" />
+<br /><br /><br /><br />
+<b>(b)</b> BC < 1/2.<br />
+<i>Answer</i><br /><br />
+Again we will think of this as a geometrical problem. The point $(1, 1/2)$ and $(1, 1/2)$ are both equal to 1/2
+so lie on the separating line. When B and C are equal, the point on the boundary will be $1/\sqrt{2}$, but this
+time it is non-linear. Let's define $Z = BC$ and try to find $P(Z\leq 1/2)$.
+<br /><br /><br /><br />
+<b>(c)</b> |B − C| < 1/2.<br />
+<i>Answer</i><br /><br />
+Asd
+<br /><br /><br /><br />
+<b>(d)</b> max{B, C} < 1/2.<br />
+<i>Answer</i><br /><br />
+Asd
+<br /><br /><br /><br />
+<b>(e)</b> min{B, C} < 1/2.<br />
+<i>Answer</i><br /><br />
+Asd
+<br /><br /><br /><br />
+<b>(f)</b> B < 1/2 and 1 − C < 1/2.<br />
+<i>Answer</i><br /><br />
+Asd
+<br /><br /><br /><br />
+<b>(g)</b> conditions (c) and (f) both hold.<br />
+<i>Answer</i><br /><br />
+Asd
+<br /><br /><br /><br />
+<b>(h)</b> $B^2 + C^2 \leq 1/2$.<br />
+<i>Answer</i><br /><br />
+Asd
+<br /><br /><br /><br />
+<b>(i)</b> $(B − 1/2)^2 + (C − 1/2)^2 < 1/4$.<br />
+<i>Answer</i><br /><br />
+Asd
+<br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
