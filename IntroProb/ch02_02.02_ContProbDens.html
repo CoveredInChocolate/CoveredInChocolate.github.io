@@ -591,37 +591,49 @@ therefore has an area of 3/4.
 <br /><br /><br /><br />
 <b>(d)</b> max{B, C} < 1/2.<br /><br />
 <i>Answer</i><br /><br />
-Asd
+This can be expressed as the region $\{B < 1/2\}\cap\{C < 1/2\}$ which corresponds to the
+square region in the third quadrant of the unit square. The probability is 1/4.
 <br /><br />
 <img src="img/02.02_Ex08d.png" />
 <br /><br /><br /><br />
 <b>(e)</b> min{B, C} < 1/2.<br /><br />
 <i>Answer</i><br /><br />
-Asd
+This can be expressed as the region $\{B < 1/2\}\cup\{C < 1/2\}$ which corresponds to the
+entire region except the first quadrant of the unit square. The probability is 3/4.
 <br /><br />
 <img src="img/02.02_Ex08e.png" />
 <br /><br /><br /><br />
 <b>(f)</b> B < 1/2 and 1 − C < 1/2.<br /><br />
 <i>Answer</i><br /><br />
-Asd
+Rewriting the second equation leads to 1/2 < C. So the entire region can be written as
+$\{B < 1/2\}\cap\{1/2 < C\}$ which corresponds to the fourth quadrant. The probability is 1/4.
 <br /><br />
 <img src="img/02.02_Ex08f.png" />
 <br /><br /><br /><br />
 <b>(g)</b> conditions (c) and (f) both hold.<br /><br />
 <i>Answer</i><br /><br />
-Asd
+This becomes the intersection between the region from (c) and (f), so we make a triangle in
+the fourth quadrant with area 1/8 which is the probability.
 <br /><br />
 <img src="img/02.02_Ex08g.png" />
 <br /><br /><br /><br />
 <b>(h)</b> $B^2 + C^2 \leq 1/2$.<br />
 <i>Answer</i><br /><br />
-Asd
+This is the circle with center in (0, 0) with radius $1/\sqrt{2}$ limited to the unit region,
+so the probability becomes 1/4th of the area of this circle.
+$$
+P(A) = \frac{\pi}{4}(1/\sqrt{2})^2 = \frac{\pi}{8}.
+$$
 <br /><br />
 <img src="img/02.02_Ex08h.png" />
 <br /><br /><br /><br />
 <b>(i)</b> $(B − 1/2)^2 + (C − 1/2)^2 < 1/4$.<br />
 <i>Answer</i><br /><br />
-Asd
+This is the circle with center in (1/2, 1/2) with radius 1/2, so it is a circle inscribed within
+the unit square. The probability of this region is another circle area.
+$$
+P(A) = \pi\left(\frac{1}{2}\right)^2 = \frac{\pi}{4}.
+$$
 <br /><br />
 <img src="img/02.02_Ex08i.png" />
 <br /><br />
@@ -1441,12 +1453,31 @@ each n in the interval [35, 65]. Does the bar graph look as though it can be fit
 with a normal curve?
 <br /><br />
 <i>Answer</i><br />
+Running the simulation and plotting a histogram. We can clearly see that
+a normal curve would fit. (Indications of the central limit theorem).
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 02.02 - Exercise 22 - Coin Histogram</span>
+NSIMS = <span class="hljs-number">1000</span>
+numHeads = rep(<span class="hljs-number">0</span>, NSIMS)
+
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span>(n <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:NSIMS) {
+    toss = sample(c(<span class="hljs-number">1</span>,<span class="hljs-number">0</span>), size = <span class="hljs-number">100</span>, replace = <span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>)
+    numHeads[n] = sum(toss)
+}
+hist(numHeads)
+
+png(filename = <span class="hljs-string" style="color: rgb(163, 21, 21);">"~/GITHUB/CoveredInChocolate.github.io/IntroProb/img/02.01_Ex22.png"</span>,
+    width = <span class="hljs-number">640</span>, height=<span class="hljs-number">480</span>)
+hist(numHeads)
+dev.off()</pre>
+</div>
+<br /><br />
+<img src="img/02.01_Ex22.png" />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
-
-
-
 
 
 <h3>Exercise 23</h3>
@@ -1457,9 +1488,41 @@ interval of length 0.1 in [0, 10]. On this bar graph plot a graph of the density
 $f(x) = e^{−x}$. How well does this density fit your graph?
 <br /><br />
 <i>Answer</i><br />
+The graph fits incredibly well to the histogram of the simulated values.
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 02.02 - Exercise 23 - Negative Log</span>
+NSIMS = <span class="hljs-number">1000000</span>
+xval = runif(NSIMS)
+yhst = -log(xval)
+
+xplot = sort(runif(<span class="hljs-number">1000</span>, min=<span class="hljs-number">0</span>, max=<span class="hljs-number">6</span>))
+yval = exp(-xplot)
+
+hist(yhst, breaks=<span class="hljs-number">200</span>, probability = <span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>,
+        xlim=c(<span class="hljs-number">0</span>,<span class="hljs-number">6</span>))
+lines(sort(xplot), yval, type=<span class="hljs-string" style="color: rgb(163, 21, 21);">"l"</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"red"</span>,
+        lwd=<span class="hljs-number">2</span>)
+
+png(filename = <span class="hljs-string" style="color: rgb(163, 21, 21);">"~/GITHUB/CoveredInChocolate.github.io/IntroProb/img/02.01_Ex23.png"</span>,
+    width = <span class="hljs-number">640</span>, height=<span class="hljs-number">480</span>)
+hist(yhst, breaks=<span class="hljs-number">200</span>, probability = <span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>,
+        xlim=c(<span class="hljs-number">0</span>,<span class="hljs-number">6</span>))
+lines(sort(xplot), yval, type=<span class="hljs-string" style="color: rgb(163, 21, 21);">"l"</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"red"</span>,
+        lwd=<span class="hljs-number">2</span>)
+dev.off()
+</pre>
+</div>
+<br /><br />
+<img src="img/02.01_Ex23.png" />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
+
+
+
+
 
 <!--
 <br /><br />
