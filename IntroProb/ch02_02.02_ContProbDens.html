@@ -97,12 +97,13 @@ $$
 
 
 <!--
-<b>Code</b>
+<br /><br />
+<b>Code</b>:<br />
 <div class="rcode">
 
 </div>
 <br />
-<b>Output</b>
+<b>Output</b>:<br />
 <pre class="rcode">
 
 </pre>
@@ -326,9 +327,9 @@ $$
 <img src="img/02.02_Ex04_3.png" />
 <br /><br />
 <b>(d)</b> <br />
-This is simply 1/4 of the area in (a).
+This is simply 1/4 of the area in (b).
 $$
-P(E_4) = \frac{P(E_1)}{4} = \frac{1}{100}.
+P(E_4) = \frac{P(E_2)}{4} = \frac{9}{100}.
 $$
 <br /><br />
 <img src="img/02.02_Ex04_4.png" />
@@ -576,7 +577,15 @@ $$
 <br /><br /><br /><br />
 <b>(c)</b> |B − C| < 1/2.<br /><br />
 <i>Answer</i><br /><br />
-Asd
+The line where B = C is the diagonal line from the lower left to the upper right. From this, the expression
+says that the distance between B and C has to be smaller than 1/2, so the region of interest is the entire
+region is within 1/2 of the diagonal line.
+<br /><br />
+Alternatively, assume C > B which is the area above the diagonal line. Then the boundary C - B = 1/2 is
+a straight line, between the points when B = 0 and C = 1/2, and the point when B = 1/2 and C = 1. Similarly
+for B. This is the upper region minus the triangle with points (0, 1/2), (1, 1) and (1, 1/2). As we found
+in (a), this triangle has area 1/8 and the same is true for the lower region. The remaining region of interest
+therefore has an area of 3/4.
 <br /><br />
 <img src="img/02.02_Ex08c.png" />
 <br /><br /><br /><br />
@@ -672,63 +681,63 @@ pi*(<span class="hljs-number">1</span>/<span class="hljs-number">2</span>)**<spa
 B = runif(NSIMS)
 C = runif(NSIMS)
 
-par(mfrow=c(<span class="hljs-number">3</span>,<span class="hljs-number">3</span>))
 png(filename = <span class="hljs-string" style="color: rgb(163, 21, 21);">"~/GITHUB/CoveredInChocolate.github.io/IntroProb/img/02.02_Ex8_COMP.png"</span>,
     width = <span class="hljs-number">820</span>, height=<span class="hljs-number">650</span>)
+par(mfrow=c(<span class="hljs-number">3</span>,<span class="hljs-number">3</span>))
 
 <span class="hljs-comment" style="color: green;"># (a)</span>
 ind = B + C &lt; <span class="hljs-number">0.5</span>
-plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>, xlim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), ylim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>),
+plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"white"</span>, xlim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), ylim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>),
         main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"(a)"</span>, xlab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"B"</span>, ylab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"C"</span>)
-points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"darkgray"</span>)
+points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>)
 
 <span class="hljs-comment" style="color: green;"># (b)</span>
 ind = B*C &lt; <span class="hljs-number">0.5</span>
-plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>, xlim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), ylim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>),
+plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"white"</span>, xlim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), ylim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>),
         main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"(b)"</span>, xlab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"B"</span>, ylab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"C"</span>)
-points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"darkgray"</span>)
+points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>)
 
 <span class="hljs-comment" style="color: green;"># (c)</span>
 ind = abs(B - C) &lt; <span class="hljs-number">0.5</span>
-plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>, xlim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), ylim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>),
+plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"white"</span>, xlim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), ylim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>),
         main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"(c)"</span>, xlab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"B"</span>, ylab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"C"</span>)
-points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"darkgray"</span>)
+points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>)
 
 <span class="hljs-comment" style="color: green;"># (d)</span>
 ind = pmax(B, C) &lt; <span class="hljs-number">0.5</span>
-plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>, xlim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), ylim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>),
+plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"white"</span>, xlim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), ylim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>),
         main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"(d)"</span>, xlab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"B"</span>, ylab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"C"</span>)
-points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"darkgray"</span>)
+points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>)
 
 <span class="hljs-comment" style="color: green;"># (e)</span>
 ind = pmin(B, C) &lt; <span class="hljs-number">0.5</span>
-plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>, xlim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), ylim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>),
+plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"white"</span>, xlim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), ylim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>),
         main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"(e)"</span>, xlab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"B"</span>, ylab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"C"</span>)
-points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"darkgray"</span>)
+points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>)
 
 <span class="hljs-comment" style="color: green;"># (f)</span>
 ind = B &lt; <span class="hljs-number">0.5</span> &amp; <span class="hljs-number">1</span> - C &lt; <span class="hljs-number">0.5</span>
-plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>, xlim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), ylim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>),
+plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"white"</span>, xlim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), ylim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>),
         main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"(f)"</span>, xlab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"B"</span>, ylab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"C"</span>)
-points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"darkgray"</span>)
+points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>)
 
 <span class="hljs-comment" style="color: green;"># (g)</span>
 ind = (B &lt; <span class="hljs-number">0.5</span> &amp; <span class="hljs-number">1</span> - C &lt; <span class="hljs-number">0.5</span>) &amp; (abs(B - C) &lt; <span class="hljs-number">0.5</span>)
-plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>, xlim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), ylim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>),
+plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"white"</span>, xlim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), ylim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>),
         main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"(g)"</span>, xlab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"B"</span>, ylab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"C"</span>)
-points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"darkgray"</span>)
+points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>)
 
 <span class="hljs-comment" style="color: green;"># (h)</span>
 ind = B**<span class="hljs-number">2</span> + C**<span class="hljs-number">2</span> &lt; <span class="hljs-number">0.5</span>
-plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>, xlim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), ylim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>),
+plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"white"</span>, xlim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), ylim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>),
         main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"(h)"</span>, xlab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"B"</span>, ylab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"C"</span>)
-points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"darkgray"</span>)
+points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>)
 
 <span class="hljs-comment" style="color: green;"># (i)</span>
 ind = (B-<span class="hljs-number">0.5</span>)**<span class="hljs-number">2</span> + (C-<span class="hljs-number">0.5</span>)**<span class="hljs-number">2</span> &lt; <span class="hljs-number">0.25</span>
-plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>, xlim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), ylim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>),
+plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"white"</span>, xlim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), ylim=c(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>),
         main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"(i)"</span>, xlab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"B"</span>, ylab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"C"</span>)
-points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"darkgray"</span>)
+points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>)
 dev.off()
 </pre>
 </div>
@@ -810,8 +819,39 @@ Since the exponential distribution has the 'memoryless' property, every random s
 will behave similarly to the initial starting point, where we would wait an average of 10 minutes
 for the first occurrence. My conjecture is that this holds true even if we start at time 100.
 <br /><br />
-Simulate a few thousand exponential experiments up to time 200, start at 100 and see how long it takes
-before the first occurrence, and then take the average of all these waiting times. 
+Will simulate a few thousand exponential experiments, start at 100 and see how long it takes
+before the first occurrence, and then take the average of all these waiting times.
+<br /><br />
+After running the simulation, we see that the conjecture is true.
+<br /><br />
+<b>Code</b>:<br />
+Simulating waiting times modeled with the exponential distribution.<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 02.02 - Exercise 9 - Memoryless Exponential Distribution</span>
+NSIMS = <span class="hljs-number">10000</span>
+wtList = rep(<span class="hljs-number">0</span>, NSIMS)
+
+tmpBL = <span class="hljs-number">0</span>
+
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span>(k <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:NSIMS) {
+    wt = cumsum(rexp(<span class="hljs-number">500</span>, rate=<span class="hljs-number">1</span>/<span class="hljs-number">10</span>))
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (wt[<span class="hljs-number">1</span>] &gt; <span class="hljs-number">100</span>) {
+        IND = <span class="hljs-number">1</span>
+    } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> {
+        IND = max(which(wt &lt; <span class="hljs-number">100</span>))
+    }
+    wtList[k] = wt[IND+<span class="hljs-number">1</span>] - <span class="hljs-number">100</span>
+}
+mean(wtList)</pre>
+</div>
+<br /><br />
+<b>Output</b>:<br />
+Results confirm the conjecture.<br />
+<pre class="rcode">
+> mean(wtList)
+[1] 10.0572
+</pre>
+<br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
@@ -820,9 +860,46 @@ before the first occurrence, and then take the average of all these waiting time
 
 
 <h3>Exercise 10</h3>
-asd
+As in Exercise 9, assume that we have a sequence of occurrences, but now
+assume that the time X between occurrences is uniformly distributed between
+5 and 15. As before, you come upon this system at time 100, and wait until
+the next occurrence. Make a conjecture concerning how long, on the average,
+you will have to wait. Write a program to see if your conjecture is right.
 <br /><br />
 <i>Answer</i><br /><br />
+The mean of a uniform distribution is the mid point, so we will on average have 10
+occurrences and land on exactly 100, and then we will need to wait further 10 minutes - on average -
+until the next occurrence. After simulating this in the same way as in Exercise 9.
+<br /><br />
+After running the simulation, we can see that our conjecture was wrong, and that the waiting times
+for the uniform distribution is <i>consistently</i> around 5.41.
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 02.02 - Exercise 10 - Uniformly distributed waiting times</span>
+NSIMS = <span class="hljs-number">100000</span>
+wtList = rep(<span class="hljs-number">0</span>, NSIMS)
+
+tmpBL = <span class="hljs-number">0</span>
+
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span>(k <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:NSIMS) {
+    wt = cumsum(runif(<span class="hljs-number">25</span>, min=<span class="hljs-number">5</span>, max=<span class="hljs-number">15</span>)) - <span class="hljs-number">100</span>
+    <span class="hljs-comment" style="color: green;"># Finding smallest positive value</span>
+    IND = min(which(wt &gt; <span class="hljs-number">0</span>))
+    <span class="hljs-comment" style="color: green;"># This is the shortest waiting time at time 100</span>
+    <span class="hljs-comment" style="color: green;"># Ex.</span>
+    <span class="hljs-comment" style="color: green;"># c(90, 92, 105) - 100  ==&gt;  c(-10, -8, 5) ==&gt; 5</span>
+    wtList[k] = wt[IND]
+}
+mean(wtList)</pre>
+</div>
+<br /><br />
+<b>Output</b>:<br />
+<pre class="rcode">
+> mean(wtList)
+[1] 5.412795
+</pre>
+<br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
@@ -831,9 +908,49 @@ asd
 
 
 <h3>Exercise 11</h3>
-asd
+For examples such as those in Exercises 9 and 10, it might seem that at least
+you should not have to wait on average more than 10 minutes if the average
+time between occurrences is 10 minutes. Alas, even this is not true. To see
+why, consider the following assumption about the times between occurrences.
+Assume that the time between occurrences is 3 minutes with probability 0.9
+and 73 minutes with probability 0.1. Show by simulation that the average time
+between occurrences is 10 minutes, but that if you come upon this system at
+time 100, your average waiting time is more than 10 minutes.
 <br /><br />
 <i>Answer</i><br /><br />
+Running the simulation below.
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 02.02 - Exercise 11 - Custom waiting times</span>
+NSIMS = <span class="hljs-number">10000</span>
+wtList = rep(<span class="hljs-number">0</span>, NSIMS)
+
+<span class="hljs-comment" style="color: green;"># Mean waiting time</span>
+mnwt = sample(c(<span class="hljs-number">3</span>, <span class="hljs-number">73</span>), size=<span class="hljs-number">10000</span>, replace=<span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>, prob=c(<span class="hljs-number">0.9</span>, <span class="hljs-number">0.1</span>))
+mean(mnwt)
+
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span>(k <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:NSIMS) {
+    wt = sample(c(<span class="hljs-number">3</span>, <span class="hljs-number">73</span>), size=<span class="hljs-number">50</span>, replace=<span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>, prob=c(<span class="hljs-number">0.9</span>, <span class="hljs-number">0.1</span>))
+    wt = cumsum(wt) - <span class="hljs-number">100</span>
+    <span class="hljs-comment" style="color: green;"># Finding smallest positive value</span>
+    IND = min(which(wt &gt; <span class="hljs-number">0</span>))
+    wtList[k] = wt[IND]
+}
+mean(wtList)
+</pre>
+</div>
+<br /><br />
+<b>Output</b>:<br />
+The mean waiting time is around 10. Amazingly, the waiting time at 100 is a bit over 27 on average.
+<pre class="rcode">
+> mean(mnwt)
+[1] 10.021
+
+> mean(wtList)
+[1] 27.5952
+</pre>
+<br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
@@ -842,9 +959,52 @@ asd
 
 
 <h3>Exercise 12</h3>
-asd
+Take a stick of unit length and break it into three pieces, choosing the break
+points at random. (The break points are assumed to be chosen simultaneously.)
+What is the probability that the three pieces can be used to form a
+triangle? <i>Hint</i>: The sum of the lengths of any two pieces must exceed the
+length of the third, so each piece must have length < 1/2. Now use Exercise 8(g).
 <br /><br />
-<i>Answer</i><br /><br />
+<i>Answer</i><br />
+If we get three pieces of length 0.1, 0.1 and 0.8, we will not be able to make a triangle.
+We can make a triangle with height 0 if the sizes are 0.25, 0.25 and 0.5. If we call the sides
+x, y and z, then by the triangle inequality $x \leq y + z$, which is used in the hint.
+<br /><br />
+We cannot have a side with length bigger than 1/2, so we get the requirements x < 1/2,
+y < 1/2 and z < 1/2. The breaks on the stick are done with the uniform variables B and C.
+<br /><br />
+From condition (c) we use the condition that |B - C| < 1/2, to ensure that the middle piece
+is smaller than 1/2. From condition (f) we place the break points at B < 1/2 and 1/2 < C to ensure
+that the remaining two pieces are smaller than 1/2. Since both must apply, we get the condition in (g)
+which has a probability 1/8 of happening, given that B and C are uniformly distributed. NOW, we assumed
+that B < 1/2 and 1/2 < C, but it is equally likely when the reverse is true, which doubles the possible
+outcomes, so the probability is <b>1/4</b>. (Verified by the code below).
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 02.02 - Exercise 12 - Breaking a stick II</span>
+NSIMS = <span class="hljs-number">10000</span>
+
+B = runif(NSIMS)
+C = runif(NSIMS)
+
+CutShort = pmin(B, C)
+CutLong = pmax(B, C)
+
+<span class="hljs-comment" style="color: green;"># B[1:5]</span>
+<span class="hljs-comment" style="color: green;"># C[1:5]</span>
+
+CutShort[<span class="hljs-number">1</span>:<span class="hljs-number">5</span>]
+CutLong[<span class="hljs-number">1</span>:<span class="hljs-number">5</span>]
+
+
+L3 = <span class="hljs-number">1</span> - CutLong
+L2 = CutLong - CutShort
+L1 = CutShort
+
+sum(L3 &lt; <span class="hljs-number">1</span>/<span class="hljs-number">2</span> &amp; L2 &lt; <span class="hljs-number">1</span>/<span class="hljs-number">2</span> &amp; L1 &lt; <span class="hljs-number">1</span>/<span class="hljs-number">2</span>)/NSIMS</pre>
+</div>
+<br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
@@ -853,9 +1013,52 @@ asd
 
 
 <h3>Exercise 13</h3>
-asd
+Take a stick of unit length and break it into two pieces, choosing the break
+point at random. Now break the longer of the two pieces at a random point.
+What is the probability that the three pieces can be used to form a triangle?
 <br /><br />
-<i>Answer</i><br /><br />
+<i>Answer</i><br />
+Was not able to find a good solution analytically, but simulating the result is doable.
+By the first rule we are guaranteed to have a piece that is smaller than 1/2, so we only
+have to find the cases when the second line doesn't produce a piece that is larger than 1/2.
+The probability of this happening is around 0.386 according to the simulations.
+(This corresponds to the analytical solution which is $2\log(2) - 1$).
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 02.02 - Exercise 13 - Breaking a stick</span>
+NSIMS = <span class="hljs-number">100000</span>
+
+<span class="hljs-comment" style="color: green;"># First cut</span>
+C = runif(NSIMS)
+triangles = rep(<span class="hljs-number">0</span>, NSIMS)
+
+<span class="hljs-comment" style="color: green;"># Second cut smaller, which is larger 1/2</span>
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (k <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:NSIMS) {
+    lnC = max(C[k], <span class="hljs-number">1</span> - C[k])
+    <span class="hljs-comment" style="color: green;"># Second break</span>
+    B = runif(<span class="hljs-number">1</span>, min = <span class="hljs-number">0</span>, max = lnC)
+    lnB = max(B, lnC - B)
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span>(lnB &lt; <span class="hljs-number">1</span>/<span class="hljs-number">2</span>) {
+        <span class="hljs-comment" style="color: green;"># Triangle</span>
+        triangles[k] = <span class="hljs-number">1</span>
+    } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> {
+        <span class="hljs-comment" style="color: green;"># Can't make a triangle; one piece is larger than 0.5</span>
+        triangles[k] = <span class="hljs-number">0</span>
+    }
+}
+sum(triangles)/NSIMS
+
+<span class="hljs-comment" style="color: green;"># Single case</span>
+Ct = runif(<span class="hljs-number">1</span>)
+lnC = max(Ct, <span class="hljs-number">1</span> - Ct)
+lnC
+Bt = runif(<span class="hljs-number">1</span>, min=<span class="hljs-number">0</span>, max=lnC)
+lnB = max(Bt, lnC - Bt)
+lnB
+</pre>
+</div>
+<br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
@@ -864,9 +1067,106 @@ asd
 
 
 <h3>Exercise 14</h3>
-asd
+Choose independently two numbers $B$ and $C$ <i>at random</i> from the interval [-1, 1]
+with uniform distribution, and consider the quadratic equation
+$$
+x^2 + Bx + C = 0.
+$$
+Find the probability that the roots of this equation
 <br /><br />
-<i>Answer</i><br /><br />
+<b>(a)</b> are both real<br />
+<b>(b)</b> are both positive<br />
+<br /><br />
+<i>Hints</i>: (a) requires $0 \leq B^2 − 4C$, (b) requires $0 \leq B^2 − 4C$, $B \leq 0$, $0 \leq C$.
+<br /><br />
+<i>Answer</i><br />
+<b>(a)</b><br />
+<b>(b)</b> are both positive<br />
+For the first case, we have uniform $B$ and $C$, and the condition $0 \leq B^2 - 4C$. Reshuffling:
+$$
+0 \leq B^2 - 4C
+\;\;\Longrightarrow\;\;
+4C \leq B^2
+\;\;\Longrightarrow\;\;
+C \leq \frac{B^2}{4}.
+$$
+We can restrict this to the case $[0, 1]$ for now, and desribe the boundary as $f(x) = x^2/4$. The area of interest
+is the area below this curve, which we can find by integration.
+$$
+\int_0^1\frac{x^2}{4}dx = \Big[\frac{x^3}{12}\Big]_0^1 = \frac{1}{12}.
+$$
+Since $B$ is always positive, the same relationship will hold in the interval $[-1, 0]$. Finally, whenever C is
+negative this is always true, so if we take the entire region $[-1, 1]$ into account, we get (and must adjust
+the probability for the curve since we only calcualted the values for single quadrants):
+$$
+\frac{1}{2} + \frac{1}{4\cdot12} + \frac{1}{4\cdot12} = \frac{26}{48} = \frac{13}{24}.
+$$
+<br />
+<b>(b)</b><br />
+This is the same region as in (a), only restricted to the 4th quadrant, i.e. the area under the curve for $[-1,1]$.
+This area has already been calculated and is $1/48$.
+<br /><br />
+Both results verified by simulation (and plots).
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 02.02 - Exercise 14 - Polynomial roots</span>
+NSIMS = <span class="hljs-number">100000</span>
+B = runif(NSIMS, min=-<span class="hljs-number">1</span>, max=<span class="hljs-number">1</span>)
+C = runif(NSIMS, min=-<span class="hljs-number">1</span>, max=<span class="hljs-number">1</span>)
+
+sum(C &lt; B**<span class="hljs-number">2</span>/<span class="hljs-number">4</span>)/NSIMS
+<span class="hljs-number">13</span>/<span class="hljs-number">24</span>
+
+ind = C &lt; B**<span class="hljs-number">2</span>/<span class="hljs-number">4</span>
+plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"white"</span>, xlim=c(-<span class="hljs-number">1</span>, <span class="hljs-number">1</span>), ylim=c(-<span class="hljs-number">1</span>, <span class="hljs-number">1</span>),
+        main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"(a)"</span>, xlab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"B"</span>, ylab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"C"</span>)
+points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>)
+
+
+sum(C &lt;= B**<span class="hljs-number">2</span>/<span class="hljs-number">4</span> &amp; C &gt;= <span class="hljs-number">0</span> &amp; B &lt;= <span class="hljs-number">0</span>)/NSIMS
+<span class="hljs-number">1</span>/<span class="hljs-number">48</span>
+
+ind = C &lt;= B**<span class="hljs-number">2</span>/<span class="hljs-number">4</span> &amp; C &gt;= <span class="hljs-number">0</span> &amp; B &lt;= <span class="hljs-number">0</span>
+plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"white"</span>, xlim=c(-<span class="hljs-number">1</span>, <span class="hljs-number">1</span>), ylim=c(-<span class="hljs-number">1</span>, <span class="hljs-number">1</span>),
+        main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"(b)"</span>, xlab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"B"</span>, ylab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"C"</span>)
+points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>)
+
+png(filename = <span class="hljs-string" style="color: rgb(163, 21, 21);">"~/GITHUB/CoveredInChocolate.github.io/IntroProb/img/02.02_Ex14_COMP.png"</span>,
+    width = <span class="hljs-number">800</span>, height=<span class="hljs-number">400</span>)
+par(mfrow=c(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>))
+
+ind = C &lt; B**<span class="hljs-number">2</span>/<span class="hljs-number">4</span>
+plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"white"</span>, xlim=c(-<span class="hljs-number">1</span>, <span class="hljs-number">1</span>), ylim=c(-<span class="hljs-number">1</span>, <span class="hljs-number">1</span>),
+        main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"(a)"</span>, xlab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"B"</span>, ylab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"C"</span>)
+points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>)
+abline(h = <span class="hljs-number">0</span>)
+abline(v = <span class="hljs-number">0</span>)
+
+ind = C &lt;= B**<span class="hljs-number">2</span>/<span class="hljs-number">4</span> &amp; C &gt;= <span class="hljs-number">0</span> &amp; B &lt;= <span class="hljs-number">0</span>
+plot(B[!ind], C[!ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"white"</span>, xlim=c(-<span class="hljs-number">1</span>, <span class="hljs-number">1</span>), ylim=c(-<span class="hljs-number">1</span>, <span class="hljs-number">1</span>),
+        main=<span class="hljs-string" style="color: rgb(163, 21, 21);">"(b)"</span>, xlab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"B"</span>, ylab=<span class="hljs-string" style="color: rgb(163, 21, 21);">"C"</span>)
+points(B[ind], C[ind], pch=<span class="hljs-number">16</span>, col=<span class="hljs-string" style="color: rgb(163, 21, 21);">"lightgray"</span>)
+abline(h = <span class="hljs-number">0</span>)
+abline(v = <span class="hljs-number">0</span>)
+dev.off()</pre>
+</div>
+<br /><br />
+<b>Output</b>:<br />
+<pre class="rcode">
+> sum(C < B**2/4)/NSIMS
+[1] 0.54398
+> 13/24
+[1] 0.5416667
+> sum(C <= B**2/4 & C >= 0 & B <= 0)/NSIMS
+[1] 0.02108
+> 1/48
+[1] 0.02083333
+</pre>
+<br /><br />
+<b>Plot</b>:<br />
+<img src="img/02.02_Ex14_COMP.png" />
+<br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
@@ -875,9 +1175,35 @@ asd
 
 
 <h3>Exercise 15</h3>
-asd
+At the Tunbridge World’s Fair, a coin toss game works as follows. Quarters
+are tossed onto a checkerboard. The management keeps all the quarters, but
+for each quarter landing entirely within one square of the checkerboard the
+management pays a dollar. Assume that the edge of each square is twice the
+diameter of a quarter, and that the outcomes are described by coordinates
+chosen at <i>random</i>. Is this a fair game?
 <br /><br />
-<i>Answer</i><br /><br />
+<i>Answer</i><br />
+Let's call the radius of the coin r. Then the checkerboard square will have side lengths of 4r.
+We can simplify the problem by dividing the checkerboard square into 16 rxr regions. The coin will fall
+completely inside the square as long as the center of the coin is a distance of r away from the border.
+As demonstrated in the image below, this happens whenever the center of the coin lies in the central
+4 regions. A few coins on the border have been inscribed.
+<br /><br />
+Call a win by the player the event W, and loss the event L.
+If the final location of the coin is assumed to be compeltely random, then there is a probability of
+P(W) = 4/16 = 1/4 that it will lie completely within the square, so P(L) = 3/4. To calculate whether the game
+is fair, we calculate the expectation. If the player win, they lose the quarter, but get a dollar, so the win
+is 75 cents and the player will lose 25 cents.
+$$
+\frac{3}{4}\cdot P(W) - \frac{1}{4}\cdot P(L)
+= \left(\frac{3}{4}\right)\left(\frac{1}{4}\right) - \left(\frac{1}{4}\right)\left(\frac{3}{4}\right)
+= \frac{3}{16} - \frac{3}{16}
+= 0.
+$$
+The average payout equals the average loss, so this is a fair game.
+<br /><br />
+<img src="img/02.02_Ex15.png" />
+<br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
@@ -886,9 +1212,24 @@ asd
 
 
 <h3>Exercise 16</h3>
-asd
+Three points are chosen at <i>random</i> on a circle of <i>unit circumference</i>. What is
+the probability that the triangle defined by these points as vertices has three
+acute angles? <i>Hint</i>: One of the angles is obtuse if and only if all three points
+lie in the same semicircle. Take the circumference as the interval [0, 1]. Take
+one point at 0 and the others at B and C.
 <br /><br />
-<i>Answer</i><br /><br />
+<i>Answer</i><br />
+We define the first point in 0, and select $B, C\sim U(0,1)$. Let $E$ be the event that we have
+an obtuse angle, i.e. all points lie in the same semicircle. This can be expressed as:
+$$
+P(E) = P(\max{B, C}\leq 1/2) = 1/4
+$$
+which is the probability that was found in 8(d). The event that we have three acute angles will
+be the complement of event E.
+$$
+P(A) = P(E^c) = 1 - P(E) = 1 - 1/4 = 3/4.
+$$
+<br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
@@ -897,9 +1238,47 @@ asd
 
 
 <h3>Exercise 17</h3>
-asd
+Write a program to choose a random number X in the interval [2, 10] 1000
+times and record what fraction of the outcomes satisfy X > 5, what fraction
+satisfy 5 < X < 7, and what fraction satisfy $x^2 − 12x + 35 > 0$. How do these
+results compare with Exercise 1?
 <br /><br />
-<i>Answer</i><br /><br />
+<i>Answer</i><br />
+Simple simulation exercise. Results from exercise 1 are confirmed.
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 02.02 - Exercise 17 - Simulating Exercise 1</span>
+NSIMS = <span class="hljs-number">10000</span>
+X = runif(NSIMS, min=<span class="hljs-number">2</span>, max=<span class="hljs-number">10</span>)
+
+sum(X &gt; <span class="hljs-number">5</span>)/NSIMS
+<span class="hljs-number">5</span>/<span class="hljs-number">8</span> <span class="hljs-comment" style="color: green;"># Ex. 1</span>
+sum(<span class="hljs-number">5</span> &lt; X &amp; X &lt; <span class="hljs-number">7</span>)/NSIMS
+<span class="hljs-number">1</span>/<span class="hljs-number">4</span> <span class="hljs-comment" style="color: green;"># Ex. 1</span>
+sum(X**<span class="hljs-number">2</span> - <span class="hljs-number">12</span>*X + <span class="hljs-number">35</span> &gt; <span class="hljs-number">0</span>)/NSIMS
+<span class="hljs-number">3</span>/<span class="hljs-number">4</span> <span class="hljs-comment" style="color: green;"># Ex. 1</span>
+</pre>
+</div>
+<br /><br />
+<b>Output</b>:<br />
+<pre class="rcode">
+> sum(X > 5)/NSIMS
+[1] 0.625
+> 5/8 # Ex. 1
+[1] 0.625
+
+> sum(5 < X & X < 7)/NSIMS
+[1] 0.2497
+> 1/4 # Ex. 1
+[1] 0.25
+
+> sum(X**2 - 12*X + 35 > 0)/NSIMS
+[1] 0.7503
+> 3/4 # Ex. 1
+[1] 0.75
+</pre>
+<br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
@@ -908,9 +1287,48 @@ asd
 
 
 <h3>Exercise 18</h3>
-asd
+Write a program to choose a point (X, Y) at random in a square of side 20
+inches, doing this 10,000 times, and recording what fraction of the outcomes
+fall within 10 (19 makes no sense - corrected) inches of the center; of these, what fraction fall between 8 and 10
+inches of the center; and, of these, what fraction fall within the first quadrant
+of the square. How do these results compare with those of Exercise 4?
 <br /><br />
-<i>Answer</i><br /><br />
+<i>Answer</i><br />
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 02.02 - Exercise 18 - Dartboard simulation</span>
+NSIMS = <span class="hljs-number">100000</span>
+X = runif(NSIMS, min=-<span class="hljs-number">10</span>, max=<span class="hljs-number">10</span>)
+Y = runif(NSIMS, min=-<span class="hljs-number">10</span>, max=<span class="hljs-number">10</span>)
+
+<span class="hljs-comment" style="color: green;"># Proportion within 10 from center (19 doesn't make sense)</span>
+NPROP = sum(sqrt(X**<span class="hljs-number">2</span> + Y**<span class="hljs-number">2</span>) &lt; <span class="hljs-number">10</span>)
+
+<span class="hljs-comment" style="color: green;"># Proportion between 8 and 10 from center</span>
+sum(sqrt(X**<span class="hljs-number">2</span> + Y**<span class="hljs-number">2</span>) &lt; <span class="hljs-number">10</span> &amp; sqrt(X**<span class="hljs-number">2</span> + Y**<span class="hljs-number">2</span>) &gt; <span class="hljs-number">8</span>)/NPROP
+<span class="hljs-number">9</span>/<span class="hljs-number">25</span>  <span class="hljs-comment" style="color: green;"># Ex. 4</span>
+
+<span class="hljs-comment" style="color: green;"># Proportion within 8 and 10 from center in first quadrant</span>
+sum(sqrt(X**<span class="hljs-number">2</span> + Y**<span class="hljs-number">2</span>) &lt; <span class="hljs-number">10</span> &amp; sqrt(X**<span class="hljs-number">2</span> + Y**<span class="hljs-number">2</span>) &gt; <span class="hljs-number">8</span>)/(<span class="hljs-number">4</span>*NPROP)
+<span class="hljs-number">9</span>/<span class="hljs-number">100</span>  <span class="hljs-comment" style="color: green;"># Ex. 4</span></pre>
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+> # Proportion between 8 and 10 from center
+> sum(sqrt(X**2 + Y**2) < 10 & sqrt(X**2 + Y**2) > 8)/NPROP
+[1] 0.3601117
+> 9/25  # Ex. 4
+[1] 0.36
+> 
+> # Proportion within 8 and 10 from center in first quadrant
+> sum(sqrt(X**2 + Y**2) < 10 & sqrt(X**2 + Y**2) > 8)/(4*NPROP)
+[1] 0.09002793
+> 9/100  # Ex. 4
+[1] 0.09
+</pre>
+<br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
@@ -919,9 +1337,53 @@ asd
 
 
 <h3>Exercise 19</h3>
-asd
+Write a program to simulate the problem describe in Exercise 7 (see Exercise 17).
+How do the simulation results compare with the results of Exercise 7?
 <br /><br />
-<i>Answer</i><br /><br />
+<i>Answer</i><br />
+Already done in Exercise 7, but we repeat it here.
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 02.02 - Exercise 19 - Simulating Exercise 7</span>
+NSIMS = <span class="hljs-number">10000</span>
+B = runif(NSIMS)
+
+sum(<span class="hljs-number">1</span>/<span class="hljs-number">3</span> &lt; B &amp; B &lt; <span class="hljs-number">2</span>/<span class="hljs-number">3</span>)/NSIMS
+<span class="hljs-number">1</span>/<span class="hljs-number">3</span> <span class="hljs-comment" style="color: green;"># Ex 7.</span>
+
+sum(abs(B - <span class="hljs-number">1</span>/<span class="hljs-number">2</span>) &lt;= <span class="hljs-number">1</span>/<span class="hljs-number">4</span>)/NSIMS
+<span class="hljs-number">1</span>/<span class="hljs-number">2</span> <span class="hljs-comment" style="color: green;"># Ex 7.</span>
+
+sum(B &lt; <span class="hljs-number">1</span>/<span class="hljs-number">4</span> | <span class="hljs-number">1</span> - B &lt; <span class="hljs-number">1</span>/<span class="hljs-number">4</span>)/NSIMS
+<span class="hljs-number">1</span>/<span class="hljs-number">2</span> <span class="hljs-comment" style="color: green;"># Ex 7.</span>
+
+sum(<span class="hljs-number">3</span>*B**<span class="hljs-number">2</span> &lt; B)/NSIMS
+<span class="hljs-number">1</span>/<span class="hljs-number">3</span> <span class="hljs-comment" style="color: green;"># Ex 7.</span></pre>
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+> sum(1/3 < B & B < 2/3)/NSIMS
+[1] 0.3491
+> 1/3 # Ex 7.
+[1] 0.3333333
+> 
+> sum(abs(B - 1/2) <= 1/4)/NSIMS
+[1] 0.5142
+> 1/2 # Ex 7.
+[1] 0.5
+> 
+> sum(B < 1/4 | 1 - B < 1/4)/NSIMS
+[1] 0.4858
+> 1/2 # Ex 7.
+[1] 0.5
+> 
+> sum(3*B**2 < B)/NSIMS
+[1] 0.3211
+> 1/3 # Ex 7.
+[1] 0.3333333
+</pre>
 <div class="exend">&#9632;</div>
 <br /><br />
 
@@ -930,9 +1392,7 @@ asd
 
 
 <h3>Exercise 20</h3>
-asd
-<br /><br />
-<i>Answer</i><br /><br />
+Code already written in exercise 12. <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
@@ -941,9 +1401,30 @@ asd
 
 
 <h3>Exercise 21</h3>
-asd
+Write a program to simulate the problem described in Exercise 16.
 <br /><br />
-<i>Answer</i><br /><br />
+<i>Answer</i><br />
+Results confirm the caluclations that were done.
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 02.02 - Exercise 21 - Circle Angles</span>
+NSIMS = <span class="hljs-number">10000</span>
+B = runif(NSIMS)
+C = runif(NSIMS)
+
+sum(B &gt; <span class="hljs-number">0.5</span> | C &gt; <span class="hljs-number">0.5</span>)/NSIMS
+<span class="hljs-number">3</span>/<span class="hljs-number">4</span> <span class="hljs-comment" style="color: green;"># Ex. 16</span>
+</pre>
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+> sum(B > 0.5 | C > 0.5)/NSIMS
+[1] 0.7563
+> 3/4 # Ex. 16
+[1] 0.75
+</pre>
 <div class="exend">&#9632;</div>
 <br /><br />
 
@@ -952,9 +1433,15 @@ asd
 
 
 <h3>Exercise 22</h3>
-asd
+Write a program to carry out the following experiment. A coin is tossed 100
+times and the number of heads that turn up is recorded. This experiment
+is then repeated 1000 times. Have your program plot a bar graph for the
+proportion of the 1000 experiments in which the number of heads is n, for
+each n in the interval [35, 65]. Does the bar graph look as though it can be fit
+with a normal curve?
 <br /><br />
-<i>Answer</i><br /><br />
+<i>Answer</i><br />
+<br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
@@ -963,12 +1450,29 @@ asd
 
 
 <h3>Exercise 23</h3>
-asd
+Write a program that picks a random number between 0 and 1 and computes
+the negative of its logarithm. Repeat this process a large number of times and
+plot a bar graph to give the number of times that the outcome falls in each
+interval of length 0.1 in [0, 10]. On this bar graph plot a graph of the density
+$f(x) = e^{−x}$. How well does this density fit your graph?
 <br /><br />
-<i>Answer</i><br /><br />
+<i>Answer</i><br />
+<br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
+<!--
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+
+</pre>
+-->
 
 <br /><br />
 <br /><br />
