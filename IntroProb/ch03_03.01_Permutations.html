@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styling.css">
+    <script>
+        MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        svg: {
+            fontCache: 'global'
+        }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
+    <title>Chapter 3 - 3.1</title> <!-- #################### TITLE #################### -->
+</head>
+\(
+   \def\R{\mathbb{R}}
+   \def\N{\mathbb{N}}
+   \def\Z{\mathbb{Z}}
+   \def\Q{\mathbb{Q}}
+   \def\eps{\varepsilon}
+   \def\epsilon{\varepsilon}
+   \renewcommand{\geq}{\geqslant}
+   \renewcommand{\leq}{\leqslant}
+\)
+<body>
+    <div class="page">
+<h1>Chapter 3 - Combinatorics</h1>
+
+<h2>3.1. Permutations</h2>
+<br />
+<table border="0">
+    <tr>
+        <td><b>Main</b>:</td>
+        <td><a href="index.html">Index</a></td>
+    </tr>
+    <tr>
+        <td><b>Previous</b>:</td>
+        <td><a href="ch02_02.02_ContProbDens.html">2.2 Continuous Density Functions</a></td>
+    </tr>
+    <tr>
+        <td><b>Next</b>:</td>
+        <td><a href="_TEMPLATE.html">3.2 Combinations</a></td>
+    </tr>
+</table>
+<br /><br />
+
+<h3>Results</h3>
+
+<div class="thm">Counting Technique</div><br />
+A task is to be carried out in $r$ stages, there are $n_k$ ways to carry out
+stage $k$. The total number of ways in which the entire task can be accomplished
+is given by the product $N = n_1n_2\cdots n_k$.
+<br /><br /><br /><br />
+
+<div class="thm">Definition 3.1</div><br />
+Let A be any finite set. A <i>permutation of A</i> is a one-to-one mapping of A onto itself.
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 3.1</div><br />
+The total number of permutations of a set A of n elements is given by
+$n(n-1)(n-2)\cdots 1$.
+<br /><br /><br /><br />
+
+<div class="thm">Definition 3.2</div><br />
+Let A be an n-element set, and let k be an integer between 0 and n. Then a k-permutation of
+A is an ordered listing of a subset of A of size k.
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 3.2</div><br />
+The total number of k-permutations of a set A of n elements is given by
+$n(n-1)(n-2)\cdots (n - k + 1)$.
+<br /><br /><br /><br />
+
+<div class="thm">Definition 3.3</div><br />
+Let $a_n$ and $b_n$ be two sequences of numbers. We say that $a_n$ is
+<i>asymptotically equal</i> to $b_n$, and write $a_n\sim b_n$ if,
+$$
+\lim_{n\rightarrow\infty}\frac{a_n}{b_n} = 1.
+$$
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 3.3 (Stirling's Formula)</div><br />
+The sequence n! is asymptotically equal to
+$$
+n^n e^{-n}\sqrt{2\pi n}.
+$$
+<br /><br /><br /><br />
+
+<div class="thm">Definition 3.4</div><br />
+Let $\sigma$ be a permutation of set $\{1, 2,\ldots, n\}$. Then $i$ is a
+<i>record</i> of $\sigma$ if either $i = 1$ or $\sigma(j) < \sigma(i)$ for every
+$j = 1,\ldots, i-1$.
+<br /><br /><br /><br />
+
+<br /><br /><br /><br />
+
+
+<!-- ########################### EXERCISES ########################### -->
+
+
+<!--
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+
+</pre>
+-->
+
+<!-- p. 96 -->
+<h3>Exercise 1</h3>
+Four people are to be arranged in a row to have their picture taken. In how
+many ways can this be done?
+<br /><br />
+<i>Answer</i><br />
+The first position can be filled by 4 people, the next by 3 and so on.
+There are 4! = 4·3·2·1 = 24 possibilities.
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 2</h3>
+An automobile manufacturer has four colors available for automobile exteri-
+ors and three for interiors. How many different color combinations can he
+produce?
+<br /><br />
+<i>Answer</i><br />
+Using the counting technique, there are a total of 4·3 = 12 color combinations.
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 3</h3>
+In a digital computer, a bit is one of the integers {0,1}, and a word is any
+string of 32 bits. How many different words are possible?
+<br /><br />
+<i>Answer</i><br />
+There are 2·2·2·...·2 a total of 32 times, or 2<sup>32</sup> = 4294967296. So, quite a few!
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 4</h3>
+What is the probability that at least 2 of the presidents of the United States
+have died on the same day of the year? If you bet this has happened, would
+you win your bet?
+<br /><br />
+<i>Answer</i><br />
+As this is written, there have been a total of 46 presidents. This is the same exact problem as the
+shared birthday problem, when we assume that all days are equally likely and we disregard leap years.
+The calculation:<br />
+<pre class="rcode">
+> 1 - prod(365:(365 - 46 + 1))/365**46
+[1] 0.9482528
+</pre>
+so there is a very high probability that at least two presidents have a shared death date.
+<br /><br />
+This has actually happened, the second and third presidents, John Adams and Thomas Jefferson
+both died on the same day - actually on the 4th of July!
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 5</h3>
+There are three different routes connecting city A to city B. How many ways
+can a round trip be made from A to B and back? How many ways if it is
+desired to take a different route on the way back?
+<br /><br />
+<i>Answer</i><br />
+There are 3 routes from A to B, and then 3 routes from B to A, so there are
+3·3 = 9 possible round trips. If the way back must be different, it becomes 3·2 = 6 possible trips.
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 6</h3>
+In arranging people around a circular table, we take into account their seats
+relative to each other, not the actual position of any one person. Show that
+n people can be arranged around a circular table in (n − 1)! ways.
+<br /><br />
+<i>Answer</i><br />
+<div class="note">GET BACK TO THIS ONE</div>
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 7</h3>
+Five people get on an elevator that stops at five floors. Assuming that each
+has an equal probability of going to any one floor, find the probability that
+they all get off at different floors.
+<br /><br />
+<i>Answer</i><br />
+Consider first the case where there are two people in the elevator and there are two floors.
+We can make a tree and map out four possible outcomes, each with a probability of 1/4. There are
+two ways for the passengers to get off on the same floor, so the probability is 2·(1/2<sup>2</sup>) = 1/2.
+<br /><br />
+If there are 3 people in the elevator with 3 floors, we get a tree with 27 final outcomes, each
+with 1/27. Now there are 3 ways that the passengers can exit on the same floor, so the
+probability becomes 3·(1/3<sup>3</sup>) = 1/3<sup>2</sup> = 1/9.
+<br /><br />
+We can see the pattern, so for 5 people, we get 5·(1/5<sup>5</sup>) = 1/5<sup>4</sup> = 1/625.
+<br /><br />
+<b>However</b> - that's not what the question was. We want to find the probability of the passengers
+getting off at DIFFERENT floors.
+<div class="note">GET BACK TO THIS ONE</div>
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 8</h3>
+A finite set $\Omega$ has $n$ elements. Show that if we count the empty set and $\Omega$
+as subsets, there are 2<sup>n</sup> subsets of $\Omega$.
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 9</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 10</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 11</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 12</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 13</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 14</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 15</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 16</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 17</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 18</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 19</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 20</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 21</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 22</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 23</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 24</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+<!--
+
+<b>Code</b>:<br />
+<div class="rcode">
+
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+
+</pre>
+<div class="exend">&#9632;</div>
+<br /><br />
+-->
+
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+</div><!-- End page div-->
+</body>
+</html>
+
