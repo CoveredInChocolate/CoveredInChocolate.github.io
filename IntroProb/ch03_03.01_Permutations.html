@@ -257,6 +257,11 @@ A finite set $\Omega$ has $n$ elements. Show that if we count the empty set and 
 as subsets, there are 2<sup>n</sup> subsets of $\Omega$.
 <br /><br />
 <i>Answer</i><br />
+We can represent each possible subset as a binary number. So<br />
+000...0 is the empty set.<br />
+111...1 is the full set.<br />
+011...0 is some subset.<br />
+Each element has 2 possibilities, so we get 2·2·2·...·2 n times, or 2<sup>n</sup> total possibilities.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -267,9 +272,55 @@ as subsets, there are 2<sup>n</sup> subsets of $\Omega$.
 
 
 <h3>Exercise 9</h3>
-asd
+A more refined inequality for approximating n! is given by
+$$
+\sqrt{2\pi}\left(\frac{n}{e}\right)^2 e^{1/(12n + 1)} < n! < \sqrt{2\pi}\left(\frac{n}{e}\right)^2 e^{1/(12n)} 
+$$
+Write a computer program to illustrate this inequality for n = 1 to 9.
 <br /><br />
 <i>Answer</i><br />
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 03.01 - Exercise 9 - Polynomial roots</span>
+lowEst &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>(n) {
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(sqrt(<span class="hljs-number">2</span>*pi*n)*(n/exp(<span class="hljs-number">1</span>))**n*exp(<span class="hljs-number">1</span>/(<span class="hljs-number">12</span>*n + <span class="hljs-number">1</span>)))
+}
+highEst &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>(n) {
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(sqrt(<span class="hljs-number">2</span>*pi*n)*(n/exp(<span class="hljs-number">1</span>))**n*exp(<span class="hljs-number">1</span>/(<span class="hljs-number">12</span>*n)))
+}
+
+printVals &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>() {
+    cat(sprintf(<span class="hljs-string" style="color: rgb(163, 21, 21);">"%3s"</span>, <span class="hljs-string" style="color: rgb(163, 21, 21);">"n"</span>))
+    cat(sprintf(<span class="hljs-string" style="color: rgb(163, 21, 21);">"%12s"</span>, <span class="hljs-string" style="color: rgb(163, 21, 21);">"LOW"</span>))
+    cat(sprintf(<span class="hljs-string" style="color: rgb(163, 21, 21);">"%12s"</span>, <span class="hljs-string" style="color: rgb(163, 21, 21);">"FAC"</span>))
+    cat(sprintf(<span class="hljs-string" style="color: rgb(163, 21, 21);">"%12s"</span>, <span class="hljs-string" style="color: rgb(163, 21, 21);">"HIGH\n"</span>))
+    cat(<span class="hljs-string" style="color: rgb(163, 21, 21);">"-----------------------------------------\n"</span>)
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span>(n <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:<span class="hljs-number">9</span>) {
+    cat(sprintf(<span class="hljs-string" style="color: rgb(163, 21, 21);">"%3d"</span>,n))
+    cat(sprintf(<span class="hljs-string" style="color: rgb(163, 21, 21);">"%12.2f"</span>, lowEst(n)))
+    cat(sprintf(<span class="hljs-string" style="color: rgb(163, 21, 21);">"%12d"</span>, factorial(n)))
+    cat(sprintf(<span class="hljs-string" style="color: rgb(163, 21, 21);">"%12.2f\n"</span>, highEst(n)))
+    }
+}
+printVals()</pre>
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+    n         LOW         FAC       HIGH
+-----------------------------------------
+    1        1.00           1        1.00
+    2        2.00           2        2.00
+    3        6.00           6        6.00
+    4       23.99          24       24.00
+    5      119.97         120      120.00
+    6      719.87         720      720.01
+    7     5039.33        5040     5040.04
+    8    40315.89       40320    40320.22
+    9   362850.55      362880   362881.38
+</pre>
+<div class="exend">&#9632;</div>
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -280,9 +331,24 @@ asd
 
 
 <h3>Exercise 10</h3>
-asd
+A deck of ordinary cards is shuffled and 13 cards are dealt. What is the
+probability that the last card dealt is an ace?
 <br /><br />
 <i>Answer</i><br />
+Simplified cases: if we simply draw an ace from one card: 4/52 = 0.07692308.
+<br /><br />
+Let us draw two cards. The value of the first card isn't irrelevant,
+because if it is an ace, it will affect the probability of drawing an ace on the second draw.
+There are two possibilities:<br />
+Draw two aces: 4/52·3/51 and drawing one ace: 48/52·4/51. When adding them, we get
+0.004524887 + 0.07239819 = 0.07692308.
+<br /><br />
+Similarly when drawing three cards.<br />
+4/52·3/51·2/50 + 4/52·48/51·3/50 + 48/52·4/51·3/50 + 48/52·47/51·4/50 = 0.07692308
+<br /><br />
+The probability doesn't change even if we change the number of cards. The reason is that
+it doesn't matter what draw we use, since it is equally likely to be an ace as any of the other
+cads - so the probability is simply 4/52 = 1/13.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -293,10 +359,85 @@ asd
 
 
 <h3>Exercise 11</h3>
-asd
+There are n applicants for the director of computing. The applicants are interviewed
+independently by each member of the three-person search committee
+and ranked from 1 to n. A candidate will be hired if he or she is ranked first
+by at least two of the three interviewers. Find the probability that a candidate
+will be accepted if the members of the committee really have no ability at all
+to judge the candidates and just rank the candidates randomly. In particular,
+compare this probability for the case of three candidates and the case of ten
+candidates.
 <br /><br />
 <i>Answer</i><br />
+Assume first there are two interviewers and three candidates. If the first interviewer selects candidate 1,
+then there is a 1/3 probability that the second interviewer will do the same.
 <br /><br />
+Increase to three interviewers and three candidates. If the first interviewer selects candidate 1,
+then there are three possible ways of selecting a candidate. Interviewer 2 selects 1, Interviewer 3
+selects another. The reverse situation. All interviewers select candidate 1. And finally, the two other
+candidates select the same candidate. All cases must be taken into account.
+<br /><br />
+So in the general case. The first interviewer selects some candidate.
+There are four cases that must be considered for selecting a candidate,
+ an event which we call S:<br />
+Interviewer 2 selects the same candidate, interviewer 3 selects another.<br />
+Interviewer 3 selects the same and interviewer 2 selects another.<br />
+Both the other interviewers select the same candidate as interviewer 1.<br />
+The two other candidates select the same - other - candidate, which can happen in n-1 ways.<br />
+So the probability P(S) becomes:
+$$
+P(S) =
+\frac{1}{n}\cdot\frac{n-1}{n} + \frac{n-1}{n}\cdot\frac{1}{n} + \frac{1}{n}\cdot\frac{1}{n} + (n-1)\frac{1}{n^2}
+=
+\frac{n-1}{n^2} + \frac{n-1}{n^2} + \frac{1}{n^2} + \frac{n-1}{n^2} 
+=
+\frac{3n-2}{n^2}
+$$
+Alternatively, the complement event is that all interviewers select different candidates.
+\begin{align}
+P(S) &= 1 - P(S^c) \\
+&= 1 - (1)\left(\frac{n-1}{n}\right)\left(\frac{n-2}{n}\right) \\
+&= \frac{n^2}{n^2} - \frac{n^2 - 3n + 2}{n^2} \\
+&= \frac{n^2 - n^2 + 3n - 2}{n^2} \\
+&= \frac{3n - 2}{n^2} 
+\end{align}
+This has been verified by a simulation.
+<br /><br />
+If there are 3 candidates, we can calculate an explicit probability:
+$$
+P(S) = \frac{3(3) - 2}{(3)^2}  = \frac{7}{9}
+$$
+If there are 10 candidates:
+$$
+P(S) = \frac{3(10) - 2}{(10)^2}  = \frac{28}{100}
+$$
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 03.01 - Exercise 11 - Candidate selection</span>
+N = <span class="hljs-number">10</span>
+candidates = <span class="hljs-number">1</span>:N
+NSIMS = <span class="hljs-number">10000</span>
+SAME = rep(<span class="hljs-number">0</span>, NSIMS)
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span>(k <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:NSIMS) {
+    c1 = sample(candidates, size=<span class="hljs-number">1</span>)
+    c2 = sample(candidates, size=<span class="hljs-number">1</span>)
+    c3 = sample(candidates, size=<span class="hljs-number">1</span>)
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span>(c1 == c2 &amp; c1 == c3) {
+        SAME[k] = <span class="hljs-number">1</span>
+    } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span>(c1 == c2 &amp; c1 != c3) {
+        SAME[k] = <span class="hljs-number">1</span>
+    } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span>(c1 != c2 &amp; c1 == c3) {
+        SAME[k] = <span class="hljs-number">1</span>
+    } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span>(c2 == c3) {
+        SAME[k] = <span class="hljs-number">1</span>
+    }
+}
+mean(SAME)
+(<span class="hljs-number">3</span>*N - <span class="hljs-number">2</span>)/N**<span class="hljs-number">2</span>
+</pre>
+</div>
+<br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
@@ -306,9 +447,30 @@ asd
 
 
 <h3>Exercise 12</h3>
-asd
+A symphony orchestra has in its repertoire 30 Haydn symphonies, 15 modern
+works, and 9 Beethoven symphonies. Its program always consists of a Haydn
+symphony followed by a modern work, and then a Beethoven symphony.
+<br /><br />
+<b>(a)</b> How many different programs can it play?
+<br /><br />
+<b>(b)</b> How many different programs are there if the three pieces can be played
+in any order?
+<br /><br />
+<b>(c)</b>  How many different three-piece programs are there if more than one
+piece from the same category can be played and they can be played in
+any order?
 <br /><br />
 <i>Answer</i><br />
+<b>(a)</b><br />
+This is a standard application of the counting technique. There are 30·15·9 = 4050
+different possible concerts.
+<br /><br />
+<b>(b)</b><br />
+We add all possible orders, which are 3·2·1 = 6 in total. So now there are 6·30·15·9 = 24 300
+possible concerts.
+<br /><br />
+<b>(c)</b><br />
+There are a total of 54 pieces, and they will play three pieces: 54<sup>3</sup> = 157 464 possible concerts.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -319,9 +481,21 @@ asd
 
 
 <h3>Exercise 13</h3>
-asd
+A certain state has license plates showing three numbers and three letters.
+How many different license plates are possible
+<br /><br />
+<b>(a)</b> if the numbers must come before the letters?
+<br /><br />
+<b>(b)</b> if there is no restriction on where the letters and numbers appear?
 <br /><br />
 <i>Answer</i><br />
+<b>(a)</b> <br />
+The numbers can be from 0-9, so 10 possible values, and the letters have 26 possible values.
+The total number of possible license plates are: 10·10·10·26·26·26 = 17 576 000 possible license plates.
+<br /><br />
+<b>(b)</b><br />
+There are a total of 36 alphanumeric characters. Now the total number of possible values are:
+36<sup>6</sup> = 2 176 782 336, so more than 2 billion. Should last a while.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -332,9 +506,24 @@ asd
 
 
 <h3>Exercise 14</h3>
-asd
+The door on the computer center has a lock which has five buttons numbered
+from 1 to 5. The combination of numbers that opens the lock is a sequence
+of five numbers and is reset every week.
+<br /><br />
+<b>(a)</b> How many combinations are possible if every button must be used once?
+<br /><br />
+<b>(b)</b> Assume that the lock can also have combinations that require you to
+push two buttons simultaneously and then the other three one at a time.
+How many more combinations does this permit?
 <br /><br />
 <i>Answer</i><br />
+<b>(a)</b><br />
+First number has 5 possible values, then 4 etc. so this is a factorial problem. There are 5! = 720 possible
+combinations.
+<br /><br />
+<b>(b)</b><br />
+For pressing two buttons at the same time, we get 5·4 = 20 possible values. And then we get 3 values afterwards,
+which we assume can be anything. There are a total of: 20·5<sup>3</sup> = 2500 possible combination.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -482,8 +671,6 @@ asd
 <pre class="rcode">
 
 </pre>
-<div class="exend">&#9632;</div>
-<br /><br />
 -->
 
 <br /><br />
