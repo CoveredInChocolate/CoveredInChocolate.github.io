@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styling.css">
+    <script>
+        MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        svg: {
+            fontCache: 'global'
+        }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
+    <title>Chapter 3 - 3.2</title> <!-- #################### TITLE #################### -->
+</head>
+\(
+   \def\R{\mathbb{R}}
+   \def\N{\mathbb{N}}
+   \def\Z{\mathbb{Z}}
+   \def\Q{\mathbb{Q}}
+   \def\eps{\varepsilon}
+   \def\epsilon{\varepsilon}
+   \renewcommand{\geq}{\geqslant}
+   \renewcommand{\leq}{\leqslant}
+\)
+<body>
+    <div class="page">
+        <h1>Chapter 3 - Combinatorics</h1>
+
+        <h2>3.2 Combinations</h2>
+<br />
+<table border="0">
+    <tr>
+        <td><b>Main</b>:</td>
+        <td><a href="index.html">Index</a></td>
+    </tr>
+    <tr>
+        <td><b>Previous</b>:</td>
+        <td><a href="ch03_03.01_Permutations.html">3.1 Permutations</a></td>
+    </tr>
+    <tr>
+        <td><b>Next</b>:</td>
+        <td><a href="_TEMPLATE.html">4.1 Discrete Conditional Probability</a></td>
+    </tr>
+</table>
+<br /><br />
+
+<h3>Results</h3>
+
+<div class="thm">Combinations</div><br />
+Imagine a set A with n elements. A <i>combination</i> of size k can be thought of as the all subsets
+of A with length k. Example: A = {a, b, c}. Then the set of all possible subsets are:
+$$
+\{\emptyset, \{a\}, \{b\}, \{c\}, \{a, b\}, \{a, c\}, \{b, c\}, \{a, b, c\}\}.
+$$
+All possible combinations of length 2 are: {a, b}, {a, c} or {b, c}. For combinations the order doesn't
+matter; {a, b} and {b, a} are the same subset.
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 3.4</div><br />
+For integers n and k with 0 < k < n, the binomial coefficients satisfy:
+$$
+\binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k-1}.
+\tag{3.1}
+$$
+We use the initial condition:
+$$
+\binom{n}{0} = \binom{n}{n} = 1  
+$$
+which uniquely determines Pascal's triangle.
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 3.5</div><br />
+The binomial coefficients are given by the formula:
+$$
+\binom{n}{k} = \frac{n!}{k!(n-k)!}.
+\tag{3.2}
+$$
+It immediately follows that:
+$$
+\binom{n}{k} = \binom{n}{n-k}
+$$
+<br /><br /><br /><br />
+
+<div class="thm">Definition 3.5</div><br />
+A <i>Bernoulli trials process</i> is a sequence of n chance experiments such that
+<br /><br />
+<div class="indent">
+    1. Each experiment has two possible outcomes, which we can call <i>success</i> and <i>failure</i>.
+    <br /><br />
+    2. The probability p of success on each experiment is the same for each experiment, and this
+    probability is not affected by any knowledge of previous outcomes. The probability q of failure
+    is given by q = 1 - p.
+</div>
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 3.6</div><br />
+Given n Bernoulli trials with probability p of success on each experiment, the probability of
+exactly k successes is
+$$
+b(n, p, k) = \binom{n}{k}p^kq^{n-k}
+$$
+where q = 1-p.
+<br /><br /><br /><br />
+
+<div class="thm">Definition 3.6</div><br />
+Let n be a positive integer and let p be a real number between 0 and 1. Let B be the random variable
+which counts the number of successes in a Bernoulli trials process with parameters n and p. Then the
+distribution b(n, p, k) of B is called the <i>binomial distribution</i>.
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 3.7 (Binomial Theorem)</div><br />
+The quantity (a + b)<sup>n</sup> can be expressed in the form
+$$
+(a + b)^n = \sum_{k=0}^n\binom{n}{k}a^kb^{n-k}.
+$$
+<br /><br /><br /><br />
+
+
+<br /><br /><br /><br />
+
+
+<!-- ########################### EXERCISES ########################### -->
+
+
+<!--
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+
+</pre>
+-->
+
+
+<!-- p 121 -->
+<h3>Exercise 1</h3>
+Compute the following:
+<br /><br />
+<b>(a)</b> binom(6, 3)<br />
+<b>(b)</b> b(5, .2, 4)<br />
+<b>(c)</b> binom(7, 2)<br />
+<b>(d)</b> binom(26, 26)<br />
+<b>(e)</b> b(4, .2, 3)<br />
+<b>(f)</b> binom(6, 2)<br />
+<b>(g)</b> binom(10, 9)<br />
+<b>(h)</b> b(8, .3, 5)<br />
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<b>(a)</b><br />
+binom(6, 3) = 20
+<br /><br />
+<b>(b)</b><br />
+$$
+b(5, .2, 4) = \binom{5}{4}(0.2)^4(0.8) = 5(0.2)^4(0.8) = 0.0064.
+$$
+<br /><br />
+<b>(c)</b><br />
+binom(7, 2) = 21
+<br /><br />
+<b>(d)</b><br />
+binom(26, 26) = 1
+<br /><br />
+<b>(e)</b><br />
+$$
+b(4, .2, 3) = \binom{4}{3}(0.2)^3(0.8) = 4(0.2)^3(0.8) = 0.0256.
+$$
+<br /><br />
+<b>(f)</b><br />
+binom(6, 2) = 15
+<br /><br />
+<b>(g)</b><br />
+binom(10, 9) = 10
+<br /><br />
+<b>(h)</b><br />
+$$
+b(8, .3, 5) = \binom{8}{5}(0.3)^5(0.7)^3 = 56(0.3)^5(0.7)^3 = 0.04667544.
+$$
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 2</h3>
+In how many ways can we choose five people from a group of ten to form a
+committee?
+<br /><br />
+<i>Answer</i><br />
+How many possible subsets of 5 elements can be drawn from a set with 10 elements.
+$$
+\binom{10}{5} = \frac{10!}{5!5!} = 252.
+$$
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 3</h3>
+How many seven-element subsets are there in a set of nine elements?
+<br /><br />
+<i>Answer</i><br />
+binom(9,7) = 9!/(2!7!) = 36.
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 4</h3>
+Using the relation Equation 3.1 write a program to compute Pascal’s triangle,
+putting the results in a matrix. Have your program print the triangle for
+n = 10.
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 03.02 - Exercise 4 - Binomial Triangle</span>
+ntot = <span class="hljs-number">11</span>
+
+pascalsTriangle = matrix(rep(<span class="hljs-number">0</span>, ntot**<span class="hljs-number">2</span>), ncol=ntot)
+
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (i <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:ntot) {
+    n = i-<span class="hljs-number">1</span>
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (n &gt; <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (j <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:i) {
+            k = j-<span class="hljs-number">1</span>
+            pascalsTriangle[i, j] = choose(n, k)
+        }
+    } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> {
+        <span class="hljs-comment" style="color: green;"># First row</span>
+        pascalsTriangle[<span class="hljs-number">1</span>, <span class="hljs-number">1</span>] = choose(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>)
+    }
+}
+
+<span class="hljs-comment" style="color: green;"># Nicer output</span>
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (i <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:ntot) {
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (j <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:ntot) {
+        <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span>(pascalsTriangle[i, j] != <span class="hljs-number">0</span>) {
+            cat(sprintf(<span class="hljs-string" style="color: rgb(163, 21, 21);">"%6d"</span>, pascalsTriangle[i, j]))
+        }
+    }
+    cat(<span class="hljs-string" style="color: rgb(163, 21, 21);">"\n"</span>)
+}
+</pre>
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+    1
+    1     1
+    1     2     1
+    1     3     3     1
+    1     4     6     4     1
+    1     5    10    10     5     1
+    1     6    15    20    15     6     1
+    1     7    21    35    35    21     7     1
+    1     8    28    56    70    56    28     8     1
+    1     9    36    84   126   126    84    36     9     1
+    1    10    45   120   210   252   210   120    45    10     1
+</pre>
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 5</h3>
+Write a program to find the probability that, in 100
+tosses of a fair coin, the number of heads that turns up lies between 35 and
+65, between 40 and 60, and between 45 and 55.
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 03.02 - Exercise 5 - Many coin flips</span>
+
+b &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>(n, p, k) {
+    q = <span class="hljs-number">1</span> - p
+    prob = choose(n, k)*p**k*q**(n-k)
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(prob)
+}
+
+N = <span class="hljs-number">100</span>
+prob1 = <span class="hljs-number">0</span>
+prob2 = <span class="hljs-number">0</span>
+prob3 = <span class="hljs-number">0</span>
+
+<span class="hljs-comment" style="color: green;"># Between 35 and 65</span>
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (heads <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">35</span>:<span class="hljs-number">65</span>) {
+    prob1 = prob1 + b(N, <span class="hljs-number">0.5</span>, heads)
+}
+<span class="hljs-comment" style="color: green;"># Between 40 and 60</span>
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (heads <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">40</span>:<span class="hljs-number">60</span>) {
+    prob2 = prob2 + b(N, <span class="hljs-number">0.5</span>, heads)
+}
+<span class="hljs-comment" style="color: green;"># Between 45 and 55</span>
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (heads <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">45</span>:<span class="hljs-number">55</span>) {
+    prob3 = prob3 + b(N, <span class="hljs-number">0.5</span>, heads)
+}
+
+<span class="hljs-comment" style="color: green;"># Probabilities</span>
+prob1
+prob2
+prob3
+
+</pre>
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+> # Probabilities
+> prob1
+[1] 0.9982101
+> prob2
+[1] 0.9647998
+> prob3
+[1] 0.728747
+</pre>
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 6</h3>
+Charles claims that he can distinguish between beer and ale 75 percent of the
+time. Ruth bets that he cannot and, in fact, just guesses. To settle this, a bet
+is made: Charles is to be given ten small glasses, each having been filled with
+beer or ale, chosen by tossing a fair coin. He wins the bet if he gets seven or
+more correct. Find the probability that Charles wins if he has the ability that
+he claims. Find the probability that Ruth wins if Charles is guessing.
+<br /><br />
+<i>Answer</i><br />
+This is a binomial experiment. If Charles has the ability to distinguish beer from ale
+his success rate is 0.75. Let X be the number of correct guesses, then we have:
+$$
+P(X = k) = \binom{10}{k}(0.75)^k(0.25)^{10-k}
+$$
+Charles wins if:
+$$
+P(X\geq 7) = P(X = 10) + P(X = 9) + P(X = 8) + P(X = 7)
+$$
+Calculating in R.
+<pre class="rcode">
+# Using b() from previous exercise
+# Between 7 and 10
+probCharles = 0
+for (correct in 7:10) {
+  probCharles = probCharles + b(10, 0.75, correct)
+}
+> probCharles
+[1] 0.7758751
+</pre>
+If Charles is guessing, his probability of success falls to 0.5. Calculating the probability.
+<pre class="rcode">
+# Using b() from previous exercise
+# Between 0 and 6
+probRuth = 0
+for (correct in 0:6) {
+  probRuth = probRuth + b(10, 0.5, correct)
+}
+> probRuth
+[1] 0.828125
+</pre>
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 7</h3>
+Show that
+$$
+b(n, p, k) = \frac{p}{q}\binom{n - k + 1}{k}b(n, p, k-1)
+$$
+for j greater or equal to 1. <i>Hint</i>: Consider the successive ratios as j increases.
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 8</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 9</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 10</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 11</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 12</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 13</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 14</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 15</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 16</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 17</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 18</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 19</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 20</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 21</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 22</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 23</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 24</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 25</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 26</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 27</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 28</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 29</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 30</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 31</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 32</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 33</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 34</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 35</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 36</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 37</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 38</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 39</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 40</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+<!--
+
+<b>Code</b>:<br />
+<div class="rcode">
+
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+
+</pre>
+<br /><br />
+-->
+
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+</div><!-- End page div-->
+</body>
+</html>
+

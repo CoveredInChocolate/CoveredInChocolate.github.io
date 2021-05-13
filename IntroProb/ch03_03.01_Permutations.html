@@ -32,7 +32,7 @@
     <div class="page">
 <h1>Chapter 3 - Combinatorics</h1>
 
-<h2>3.1. Permutations</h2>
+<h2>3.1 Permutations</h2>
 <br />
 <table border="0">
     <tr>
@@ -45,7 +45,7 @@
     </tr>
     <tr>
         <td><b>Next</b>:</td>
-        <td><a href="_TEMPLATE.html">3.2 Combinations</a></td>
+        <td><a href="ch03_03.02_Combinations.html">3.2 Combinations</a></td>
     </tr>
 </table>
 <br /><br />
@@ -135,9 +135,8 @@ There are 4! = 4·3·2·1 = 24 possibilities.
 
 
 <h3>Exercise 2</h3>
-An automobile manufacturer has four colors available for automobile exteri-
-ors and three for interiors. How many different color combinations can he
-produce?
+An automobile manufacturer has four colors available for automobile exteriors
+and three for interiors. How many different color combinations can he produce?
 <br /><br />
 <i>Answer</i><br />
 Using the counting technique, there are a total of 4·3 = 12 color combinations.
@@ -707,13 +706,14 @@ CalcProb(N)
 
 
 <h3>Exercise 19</h3>
-asd
+<i>Skipped - don't have all the time in the world! :-)</i>
+<!-- asd
 <br /><br />
 <i>Answer</i><br />
 <div class="note">GETTING BACK TO THIS</div>
 <br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
+<div class="exend">&#9632;</div> -->
+<br /><br /><br /><br />
 
 
 
@@ -819,16 +819,18 @@ CheckRepSeat(l2, d2)
 
 
 <h3>Exercise 21</h3>
-Write a program to count the number of permutations
+<i>Skipped - code not provided.</i>
+<!-- Write a program to count the number of permutations
 of n objects that have exactly j fixed points for j = 0, 1, 2, ... , n. Run
 your program for n = 2 to 6. Make a conjecture for the relation between the
 number that have 0 fixed points and the number that have exactly 1 fixed
 point. A proof of the correct conjecture can be found in Wilf.
 <br /><br />
 <i>Answer</i><br />
+<div class="note">GETTING BACK TO THIS</div>
 <br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
+<div class="exend">&#9632;</div> -->
+<br /><br /><br /><br />
 
 
 
@@ -836,9 +838,66 @@ point. A proof of the correct conjecture can be found in Wilf.
 
 
 <h3>Exercise 22</h3>
-asd
+(Paraphrased). A watch maker discovers some counterfeit watches which are marked
+with a stamped number. Of the 16 found watches, the highest has the value 56.
+Watson says that the maximum likelihood principle says that 56 is the highest number,
+but Holmes claims it is the double of that: 112 (at least).
+<br /><br />
+<b>(a)</b> Show that Watson is correct that the Maximum Likelihood Principle
+gives 56.
+<br /><br />
+<b>(b)</b> Write a computer program to compare Holmes’s and Watson’s guessing
+strategies as follows: fix a total N and choose 16 integers randomly
+between 1 and N . Let m denote the largest of these. Then Watson’s
+guess for N is m, while Holmes’s is 2m. See which of these is closer to
+N. Repeat this experiment (with N still fixed) a hundred or more times,
+and determine the proportion of times that each comes closer. Whose
+seems to be the better strategy?
 <br /><br />
 <i>Answer</i><br />
+<b>(a)</b><br />
+So we assume that the serial numbers come from a uniform distribution {1, 2, ..., N} where N is the
+total number of counterfeit watches, and define X have this distribution. We have watches
+k<sub>1</sub>, ..., k<sub>16</sub> where the largest value is 56. By the MLE method, we want to maximize:
+$$
+P(X=k_1)\cdot P(X=k_2)\cdot \ldots\cdot P(X = k_{16}) = \frac{1}{N^{16}}.
+$$
+This probability is maximized when 1/N<sup>16</sup> is as small as possible. Based on the data we have,
+we have some restrictions for what N can be: $k_i\leq N$ for all i. So the smallest $N$ we can find
+based on all the information we have is 56, which then becomes our MLE.
+<br /><br />
+<b>(b)</b><br />
+After running the simulation we can see that Watson slightly understimates the true value, but
+Holmes greatly overestimates it.
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 03.01 - Exercise 22 - Counterfeit Watches</span>
+NSIMS = <span class="hljs-number">10000</span>
+NMAX = <span class="hljs-number">127</span>             <span class="hljs-comment" style="color: green;"># Actual max value</span>
+K = <span class="hljs-number">16</span>                 <span class="hljs-comment" style="color: green;"># Sample size</span>
+wEst = rep(<span class="hljs-number">0</span>, NSIMS)   <span class="hljs-comment" style="color: green;"># Watson estimate</span>
+hEst = rep(<span class="hljs-number">0</span>, NSIMS)   <span class="hljs-comment" style="color: green;"># Holmes estimate</span>
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (k <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:NSIMS) {
+    smp = sample(<span class="hljs-number">1</span>:NMAX, size=<span class="hljs-number">16</span>)
+    m = max(smp)
+    wEst[k] = m
+    hEst[k] = <span class="hljs-number">2</span>*m
+}
+NMAX
+mean(wEst)
+mean(hEst)</pre>
+</div>
+<b>Output</b>:<br />
+<pre class="rcode">
+> NMAX
+[1] 127
+> mean(wEst)
+[1] 120.4803
+> mean(hEst)
+[1] 240.9606
+</pre>
+<br /><br />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -849,9 +908,37 @@ asd
 
 
 <h3>Exercise 23</h3>
-asd
+(Paraphrased). Barbara is interviewing candidates for a job. There are n candidates that can be ordered relative
+to each other, but not the total rank. So if there are 6 candidates and their true rank is {6, 1, 4, 2, 3, 5},
+then after the first 3 cancidates the ranking is {3, 1, 2}. After each interview, the candidate must be hired, or
+will be lost.
+<br /><br />
+<b>(a)</b> What is the probability that Barbara gets the best candidate if she interviews
+all of the candidates? What is it if she chooses the first candidate?
+<br /><br />
+<b>(b)</b> Assume that Barbara decides to interview the first half of the candidates
+and then continue interviewing until getting a candidate better than any
+candidate seen so far. Show that she has a better than 25 percent chance
+of ending up with the best candidate.
 <br /><br />
 <i>Answer</i><br />
+<br />
+<b>(a)</b><br />
+In either case it will be a completely random choice, since the candidates appear in random order. So both get
+probability 1/n. (If she interviews all candidates we assume she hires the last one since this is the only
+available candidate).
+<br /><br />
+<b>(b)</b><br />
+In all possible cases, the best candidate (candidate 1) will end up in the second group (group 2)
+with a 0.5 probability, and we will restrict our attention to this case. In the cases where
+candidate 1 ends up in group 2, we must find the cases where they are the first candidate that is
+better than all candidates in group 1.
+<br /><br />
+We have restricted our cases to when 1 is in the second group. In half of these cases, candidate 2 will
+be in group 1, and when that happens, the interviews will continue until Barbara finds candidate 1. This
+situation will be 1/4 of all possible cases, and in addition to these there are more cases where
+candidate 1 will be selected (such as when 3 is in group 1, and candidate 1 randomly comes before 2 in group 2).
+Hence the chance of getting candidate 1 is more than 1/4.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -862,9 +949,56 @@ asd
 
 
 <h3>Exercise 24</h3>
-asd
+For the task described in Exercise 23, it can be shown that the best strategy
+is to pass over the first k − 1 candidates where k is the smallest integer for
+which
+$$
+\frac{1}{k} + \frac{1}{k+1} + \ldots + \frac{1}{n-1} \leq 1.
+$$
 <br /><br />
 <i>Answer</i><br />
+From some calculations we can see that 1/4 + ... + 1/9 = 0.9956... which is the smallest k so the sum is smaller
+than 1. According to the optimal strategy we will pass over the first k-1 = 3 candidates. (Calling this K in the
+program).
+<br /><br />
+The simulations become roughly equal to 1/e, but even with one million simulations it is very approximate.
+Apparently some slow convergence.  
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 03.01 - Exercise 24 - Optimal hiring strategy</span>
+n = <span class="hljs-number">10</span>
+K = <span class="hljs-number">3</span>
+
+NSIMS = <span class="hljs-number">1000000</span>
+bestCand = rep(<span class="hljs-number">0</span>, NSIMS)
+
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (k <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:NSIMS) {
+    cnd = sample(<span class="hljs-number">1</span>:n, size=n)
+    <span class="hljs-comment" style="color: green;"># Best candidate among first selection</span>
+    bestSMP = min(cnd[<span class="hljs-number">1</span>:K])
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (bestSMP &gt; <span class="hljs-number">1</span>) {
+    <span class="hljs-comment" style="color: green;"># Cand. 1 not in basis sample bestSMP</span>
+    remCAND = cnd[(K+<span class="hljs-number">1</span>):n]
+        HIRED = remCAND[min(which(remCAND &lt; bestSMP))]
+        <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (HIRED == <span class="hljs-number">1</span>) {
+            bestCand[k] = <span class="hljs-number">1</span>
+        }
+    }
+}
+mean(bestCand)
+<span class="hljs-number">1</span>/exp(<span class="hljs-number">1</span>)
+
+</pre>
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+> mean(bestCand)
+[1] 0.398069
+> 1/exp(1)
+[1] 0.3678794
+</pre>
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -882,6 +1016,7 @@ asd
 <pre class="rcode">
 
 </pre>
+<br /><br />
 -->
 
 <br /><br />
