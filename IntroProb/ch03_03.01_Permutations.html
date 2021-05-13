@@ -282,7 +282,7 @@ Write a computer program to illustrate this inequality for n = 1 to 9.
 <br /><br />
 <b>Code</b>:<br />
 <div class="rcode">
-<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 03.01 - Exercise 9 - Polynomial roots</span>
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 03.01 - Exercise 9 - Factorial estimate</span>
 lowEst &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>(n) {
     <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(sqrt(<span class="hljs-number">2</span>*pi*n)*(n/exp(<span class="hljs-number">1</span>))**n*exp(<span class="hljs-number">1</span>/(<span class="hljs-number">12</span>*n + <span class="hljs-number">1</span>)))
 }
@@ -534,9 +534,37 @@ which we assume can be anything. There are a total of: 20·5<sup>3</sup> = 2500 
 
 
 <h3>Exercise 15</h3>
-asd
+A computing center has 3 processors that receive n jobs, with the jobs assigned
+to the processors purely at random so that all of the 3<sup>n</sup> possible assignments
+are equally likely. Find the probability that exactly one processor has no jobs.
 <br /><br />
 <i>Answer</i><br />
+In this setup, the jobs can be queued. Simplifying the exercise to two jobs, N<sub>1</sub>, N<sub>2</sub>,
+and start by finding the probability that all jobs go to either the second or third processor. This can be
+summarized in the following image, where the processors are drawn as nodes and the jobs marked by their names.
+There are four possible outcomes:
+<br /><br />
+<img src="img/chapter03/03.01_Ex15_01.png" />
+<br /><br />
+The probability that the jobs end up in the other processors is:
+$$
+P(C_1^c) = \left(\frac{2}{3}\right)^2 = \frac{4}{9}
+$$
+But we must take away the probabilities when both jobs end up in the same processor (which can happen in two ways),
+since we want to find the probability that exactly one processor is empty. Denote this event as $C_1^S$.
+$$
+P(C_1^S) = \left(\frac{2}{3}\right)^2 - 2\left(\frac{1}{3}\right)^2 = \frac{4}{9} - \frac{2}{9} = \frac{2}{9}
+$$
+This can happen to all three processors, so in the simplified case, this becomes:
+$$
+P(C_1^S) + P(C_2^S)  + P(C_3^S) = \frac{6}{9} = \frac{2}{3}
+$$
+<br /><br />
+Generalizing to the case with n jobs. The event where exactly one processor has no jobs is S.
+$$
+P(S) = 3\left[\left(\frac{2}{3}\right)^n - 2\left(\frac{1}{3}\right)^n\right]
+= 3\left(\frac{2^n}{3^n} - \frac{2}{3^n}\right) = \frac{3(2^n-2)}{3^n}
+$$
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -547,9 +575,13 @@ asd
 
 
 <h3>Exercise 16</h3>
-asd
+Prove that at least two people in Atlanta, Georgia, have the same initials,
+assuming no one has more than four initials.
 <br /><br />
 <i>Answer</i><br />
+The population of Atlanta is about 500 000. If we assume that all people have four initials, there
+are a total of 26<sup>4</sup> = 456 976 possible initials. Since this is less than the population,
+there must be some repetition, so some people must have the same initials.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -560,9 +592,29 @@ asd
 
 
 <h3>Exercise 17</h3>
-asd
+Find a formula for the probability that among a set of n people, at least two
+have their birthdays in the same month of the year (assuming the months are
+equally likely for birthdays.
 <br /><br />
 <i>Answer</i><br />
+In the case where n = 2, the first person can have birthday in any month, and the event that
+the second person has a different birthday month, P(D<sub>2</sub>) = 11/12. So the probability
+they have the same birthday, P(S<sub>2</sub>) = 1 - 11/12.
+<br /><br />
+In the case where n = 3, it becomes.
+$$
+P(D_3) = \left(\frac{11}{12}\right)\left(\frac{10}{12}\right)
+$$
+$$
+P(S_3) = 1 - \left(\frac{11}{12}\right)\left(\frac{10}{12}\right)
+$$
+and so on. Generalizing to the nth case, adding 12/12 = 1 and assuming n < 13:
+$$
+P(D_n) = \left(\frac{12}{12}\right)\left(\frac{11}{12}\right)\cdots\left(\frac{12-n+1}{12}\right) = \frac{12!}{(12-n)!}\cdot\frac{1}{12^n}
+$$
+$$
+P(S_n) = 1 - \frac{12!}{(12-n)!12^{n}}.
+$$
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -573,7 +625,13 @@ asd
 
 
 <h3>Exercise 18</h3>
-asd
+Consider the problem of finding the probability of more than one coincidence
+of birthdays in a group of n people. These include, for example, three people
+with the same birthday, or two pairs of people with the same birthday, or
+larger coincidences. Show how you could compute this probability, and write
+a computer program to carry out this computation. Use your program to find
+the smallest number of people for which it would be a favorable bet that there
+would be more than one coincidence of birthdays.
 <br /><br />
 <i>Answer</i><br />
 <br /><br />

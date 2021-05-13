@@ -1,4 +1,4 @@
-# 03.01 - Exercise 9 - Polynomial roots
+# 03.01 - Exercise 9 - Factorial estimate
 lowEst <- function(n) {
   return(sqrt(2*pi*n)*(n/exp(1))**n*exp(1/(12*n + 1)))
 }
