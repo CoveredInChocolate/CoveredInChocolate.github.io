@@ -214,7 +214,10 @@ relative to each other, not the actual position of any one person. Show that
 n people can be arranged around a circular table in (n − 1)! ways.
 <br /><br />
 <i>Answer</i><br />
-<div class="note">GET BACK TO THIS ONE</div>
+Fix the seat of the first person, any other seat chosen can be 'rotated' back to this position since
+we only care about the relative positions. This is a disguised counting problem, on the first seat to the
+left there are n-1 possible choices, on the net seat n-2 etc. all the way until the last seat, which is
+the seat to the right of the first person. There are clearly (n-1)·(n-2)·...·1 = (n-1! possible seatings.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -242,7 +245,13 @@ We can see the pattern, so for 5 people, we get 5·(1/5<sup>5</sup>) = 1/5<sup>4
 <br /><br />
 <b>However</b> - that's not what the question was. We want to find the probability of the passengers
 getting off at DIFFERENT floors.
-<div class="note">GET BACK TO THIS ONE</div>
+<br /><br />
+We have established that we get a total of 1/5<sup>5</sup> possible outcomes, so we just have to count the
+possible ways they can exit the the elevator. There are 5 ways for one of them to exit the first floor,
+4 ways for them to leave the second floor, etc. So there are a total of 5! unique ways of exiting the
+the elevator, out of a total of 1/5<sup>5</sup> possible ways.
+<br /><br />
+The probability they all get off on different floors is therefore 5!/5<sup>5</sup>.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -634,6 +643,60 @@ the smallest number of people for which it would be a favorable bet that there
 would be more than one coincidence of birthdays.
 <br /><br />
 <i>Answer</i><br />
+For two peole, there are only two possible 'coincidences'. Either they share a birthday, or they don't.
+<br /><br />
+For three people, p1, p2, p3, there are four coincidences:<br />
+▸ p1 and p2 share a birthday<br />
+▸ p1 and p3 share a birthday<br />
+▸ p2 and p3 share a birthday<br />
+▸ p1, p2 and p3 all share a birthday<br />
+<br /><br />
+A much easier way to account for all coincidences is to instead consider the complement of any coincidences:
+the probability that all people have distinct birthdays, and then subtract this from 1. Call this event D, then:
+$$
+P(D_3) = \left(\frac{365}{365}\right)\left(\frac{364}{365}\right)\left(\frac{363}{365}\right)
+$$
+Which gives us the probability of a coincidence as:
+$$
+P(C_3) = 1 - P(D_3) = 1 - \left(\frac{365}{365}\right)\left(\frac{364}{365}\right)\left(\frac{363}{365}\right).
+$$
+Testing out this conjecture with a simulation, which indicates that the theoretical value is close to the simulated one.
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 03.01 - Exercise 18 - Birthday coincidences</span>
+N = <span class="hljs-number">5</span>
+
+CalcProb &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>(n) {
+    numerator = prod(<span class="hljs-number">365</span>:(<span class="hljs-number">365</span>-n+<span class="hljs-number">1</span>))
+    denominator = <span class="hljs-number">365</span>**n
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(<span class="hljs-number">1</span> - numerator/denominator)
+}
+
+NSIMS = <span class="hljs-number">100000</span>
+coincidences = rep(<span class="hljs-number">1</span>, NSIMS)
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span>(k <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:NSIMS) {
+    <span class="hljs-comment" style="color: green;"># Simulate N birthdays</span>
+    bd = sample(<span class="hljs-number">1</span>:<span class="hljs-number">365</span>, size=N, replace=<span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>)
+    <span class="hljs-comment" style="color: green;"># If length of unique values equals N: they are distinct</span>
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (length(unique(bd)) == N) {
+        coincidences[k] = <span class="hljs-number">0</span>
+    }
+}
+mean(coincidences)
+CalcProb(N)
+</pre>
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+> mean(coincidences)
+[1] 0.02754
+> CalcProb(N)
+[1] 0.02713557
+</pre>
+<div class="exend">&#9632;</div>
+<br /><br />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -647,6 +710,7 @@ would be more than one coincidence of birthdays.
 asd
 <br /><br />
 <i>Answer</i><br />
+<div class="note">GETTING BACK TO THIS</div>
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -657,10 +721,95 @@ asd
 
 
 <h3>Exercise 20</h3>
-asd
+At a mathematical conference, ten participants are randomly seated around
+a circular table for meals. Using simulation, estimate the probability that no
+two people sit next to each other at both lunch and dinner. Can you make an
+intelligent conjecture for the case of n participants when n is large?
 <br /><br />
 <i>Answer</i><br />
+For n=10 the probability is around 0.92, for n=100 and n=250 it's around 0.86 showing that
+it looks like it stabilizes for large n and converges to some constant. We can make a conjecture
+that it converges to $C = \sqrt{3}/2 \approx 0.8660254$, but I have no argument for that except it looks like it
+from the simulated values. :-)
 <br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 03.01 - Exercise 20 - Conference seating</span>
+CheckRepSeat &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>(ll, ld) {
+    <span class="hljs-comment" style="color: green;"># ll: List Lunch</span>
+    <span class="hljs-comment" style="color: green;"># ld: List Dinner</span>
+    foundRep = <span class="hljs-literal" style="color: rgb(163, 21, 21);">FALSE</span>
+    
+    <span class="hljs-comment" style="color: green;"># Only check the 'inner' values, don't need to check all</span>
+    <span class="hljs-comment" style="color: green;"># (Repeated seating is symmetric)</span>
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (i <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">2</span>:(length(ll)-<span class="hljs-number">1</span>)) {
+        <span class="hljs-comment" style="color: green;"># Find dinner index</span>
+        d = which(ld == ll[i])
+        <span class="hljs-comment" style="color: green;"># Wrap list</span>
+        nxt = d+<span class="hljs-number">1</span>
+        prv = d-<span class="hljs-number">1</span>
+        <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (nxt &gt; length(ll)) nxt = <span class="hljs-number">1</span>
+        <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (prv == <span class="hljs-number">0</span>) prv = <span class="hljs-number">5</span> 
+        <span class="hljs-comment" style="color: green;"># Check neighbors</span>
+        <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (ll[i-<span class="hljs-number">1</span>] == ld[nxt]) {
+            foundRep = <span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>
+        } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (ll[i+<span class="hljs-number">1</span>] == ld[prv]) {
+            foundRep = <span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>
+        } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (ll[i-<span class="hljs-number">1</span>] == ld[prv]) {
+            foundRep = <span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>
+        } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (ll[i+<span class="hljs-number">1</span>] == ld[nxt]) {
+            foundRep = <span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>
+        }
+    }
+    
+    <span class="hljs-comment" style="color: green;"># Returns TRUE if repeated seating</span>
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(foundRep)
+}
+
+NSIMS = <span class="hljs-number">10000</span>
+NPARTICIPANTS = <span class="hljs-number">100</span> <span class="hljs-comment" style="color: green;"># Min value is 5 due to logic</span>
+DupeSeating = rep(<span class="hljs-number">0</span>, NSIMS)
+
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (k <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:NSIMS) {
+    stLch = sample(<span class="hljs-number">1</span>:NPARTICIPANTS, size=NPARTICIPANTS)
+    stDin = sample(<span class="hljs-number">1</span>:NPARTICIPANTS, size=NPARTICIPANTS)
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (CheckRepSeat(stLch, stDin)) {
+    DupeSeating[k] = <span class="hljs-number">1</span>
+    }
+}
+sum(DupeSeating)/NSIMS
+
+
+
+<span class="hljs-comment" style="color: green;">#### Testing function logic</span>
+
+<span class="hljs-comment" style="color: green;"># No repeated neighbor</span>
+l1 = c(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>)
+d1 = c(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>)
+CheckRepSeat(l1, d1)
+
+<span class="hljs-comment" style="color: green;"># Repeated neighbor(5+1 or 3+2)</span>
+l2 = c(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>)
+d2 = c(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>)
+CheckRepSeat(l2, d2)
+
+</pre>
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+> # N = 10
+> sum(DupeSeating)/NSIMS
+[1] 0.9179
+
+> # N = 100
+> sum(DupeSeating)/NSIMS
+[1] 0.8662
+
+> # N = 250
+> sum(DupeSeating)/NSIMS
+[1] 0.8687
+</pre>
 <div class="exend">&#9632;</div>
 <br /><br />
 
@@ -670,7 +819,11 @@ asd
 
 
 <h3>Exercise 21</h3>
-asd
+Write a program to count the number of permutations
+of n objects that have exactly j fixed points for j = 0, 1, 2, ... , n. Run
+your program for n = 2 to 6. Make a conjecture for the relation between the
+number that have 0 fixed points and the number that have exactly 1 fixed
+point. A proof of the correct conjecture can be found in Wilf.
 <br /><br />
 <i>Answer</i><br />
 <br /><br />
