@@ -403,11 +403,25 @@ for (correct in 0:6) {
 <h3>Exercise 7</h3>
 Show that
 $$
-b(n, p, k) = \frac{p}{q}\binom{n - k + 1}{k}b(n, p, k-1)
+b(n, p, k) = \frac{p}{q}\left(\frac{n - k + 1}{k}\right)b(n, p, k-1)
 $$
 for j greater or equal to 1. <i>Hint</i>: Consider the successive ratios as j increases.
+<b>Note</b>: <i>This is a fraction and not a binomial coefficient!</i> :)
 <br /><br />
 <i>Answer</i><br />
+\begin{align}
+b(n, p, k) &= \binom{n}{k}p^kq^{n-k}
+\\&\\
+&= \frac{n!}{(n-k)!k!}\cdot p^{k-1}q^{n-k+1}\cdot\frac{p}{q}
+\\&\\
+&= \frac{p}{q}\cdot\frac{n!}{(n-k)!k!}\cdot\frac{(n-k+1)!(k-1)!}{n!}\cdot\binom{n}{k-1}\cdot p^{k-1}q^{n-(k-1)}
+\\&\\
+&= \frac{p}{q}\cdot\frac{n!}{(n-k)!k!}\cdot\frac{(n-k+1)!(k-1)!}{n!}\cdot b(n, p, k-1)
+\\&\\
+&= \frac{p}{q}\cdot\frac{(n-k+1)!(k-1)!}{(n-k)!k!}\cdot b(n, p, k-1)
+\\&\\
+&= \frac{p}{q}\left(\frac{n-k+1}{k}\right)b(n, p, k-1)
+\end{align}
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -418,9 +432,25 @@ for j greater or equal to 1. <i>Hint</i>: Consider the successive ratios as j in
 
 
 <h3>Exercise 8</h3>
-asd
+A die is rolled 30 times. What is the probability that a 6 turns up exactly 5
+times? What is the most probable number of times that a 6 will turn up?
 <br /><br />
 <i>Answer</i><br />
+Another binomial experiment where X is the number of sixes with a success rate of p = 1/6.
+$$
+P(X = 5) = \binom{30}{5}(1/6)^5(5/6)^{25} = 0.1921081.
+$$
+<br /><br />
+The distribution of binomial experiments are quite symmetrical around the expected value, which
+in this case is (30)(1/6) = 5, so this is the most probable outcome. We can check this by
+calculating the values for 4 and 6 sixes. We see that this is correct below.
+<pre class="rcode">
+> choose(30, 6)*(1/6)**6*(5/6)**24
+[1] 0.1600901
+
+> choose(30, 4)*(1/6)**4*(5/6)**26
+[1] 0.1847194
+</pre>
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -431,9 +461,30 @@ asd
 
 
 <h3>Exercise 9</h3>
-asd
+Find integers n and r such that the following equation is true:
+$$
+\binom{13}{5} + 2\binom{13}{6} + \binom{13}{7} = \binom{n}{r}.
+$$
 <br /><br />
 <i>Answer</i><br />
+This is just applying Theorem 3.5 several times.
+\begin{align}
+\binom{13}{5} + 2\binom{13}{6} + \binom{13}{7} &=
+\binom{13}{5} + \binom{13}{6} + \binom{13}{6} + \binom{13}{7}
+\\&\\
+&= \binom{14}{6} + \binom{14}{7}
+\\&\\
+&= \binom{15}{7}.
+\end{align}
+<br /><br />
+Confirming in R.
+<pre class="rcode">
+> choose(13, 5) + 2*choose(13, 6) + choose(13,7)
+[1] 6435
+
+> choose(15, 7)
+[1] 6435
+</pre>
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -444,9 +495,75 @@ asd
 
 
 <h3>Exercise 10</h3>
-asd
+In a ten-question true-false exam, find the probability that a student gets a
+grade of 70 percent or better by guessing. Answer the same question if the
+test has 30 questions, and if the test has 50 questions.
 <br /><br />
 <i>Answer</i><br />
+Binomial experiment, where we need at least 7, 21 and 35 correct to get at least 70%. (The probabilities
+get progressively worse as the size of the test increases).
+\begin{align}
+P(T_1 \geq 7) &= \sum_{k=7}^{10}\binom{10}{k}(0.5)^{k}(0.5)^{10-k}
+\\&\\
+P(T_2 \geq 21) &= \sum_{k=21}^{30}\binom{30}{k}(0.5)^{k}(0.5)^{30-k}
+\\&\\
+P(T_3 \geq 35) &= \sum_{k=35}^{50}\binom{50}{k}(0.5)^{k}(0.5)^{50-k}
+\end{align}
+<br /><br />
+Will calculate in R.
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 03.02 - Exercise 10 - Test Guessing</span>
+
+<span class="hljs-comment" style="color: green;"># Binomial Distribution</span>
+b &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>(n, p, k) {
+    q = <span class="hljs-number">1</span> - p
+    prob = choose(n, k)*p**k*q**(n-k)
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(prob)
+}
+
+<span class="hljs-comment" style="color: green;"># Test: 7 to 10</span>
+probT1 = <span class="hljs-number">0</span>
+minQst = <span class="hljs-number">7</span>
+totQst = <span class="hljs-number">10</span>
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (correct <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> minQst:totQst) {
+    probT1 = probT1 + b(totQst, <span class="hljs-number">0.5</span>, correct)
+}
+
+<span class="hljs-comment" style="color: green;"># Test: 21 to 30</span>
+probT2 = <span class="hljs-number">0</span>
+minQst = <span class="hljs-number">21</span>
+totQst = <span class="hljs-number">30</span>
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (correct <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> minQst:totQst) {
+    probT2 = probT2 + b(totQst, <span class="hljs-number">0.5</span>, correct)
+}
+
+<span class="hljs-comment" style="color: green;"># Test: 35 to 50</span>
+probT3 = <span class="hljs-number">0</span>
+minQst = <span class="hljs-number">35</span>
+totQst = <span class="hljs-number">50</span>
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (correct <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> minQst:totQst) {
+    probT3 = probT3 + b(totQst, <span class="hljs-number">0.5</span>, correct)
+}
+
+probT1
+probT2
+probT3
+</pre>
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+> probT1
+[1] 0.171875
+
+> probT2
+[1] 0.02138697
+
+> probT3
+[1] 0.003300224
+</pre>
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -457,7 +574,11 @@ asd
 
 
 <h3>Exercise 11</h3>
-asd
+A restaurant offers apple and blueberry pies and stocks an equal number of
+each kind of pie. Each day ten customers request pie. They choose, with
+equal probabilities, one of the two kinds of pie. How many pieces of each kind
+of pie should the owner provide so that the probability is about .95 that each
+customer gets the pie of his or her own choice?
 <br /><br />
 <i>Answer</i><br />
 <br /><br />

@@ -1,4 +1,4 @@
-# 04.01 - Exercise 4 - Binomial Triangle
+# 03.02 - Exercise 4 - Binomial Triangle
 ntot = 11
 
 pascalsTriangle = matrix(rep(0, ntot**2), ncol=ntot)
