@@ -1099,7 +1099,7 @@ arrives.
 <br /><br />
 <i>Answer</i><br />
 Using the method from the previous exercises, we find the total number of ways that
-the customers can distribute themselves, which is:<br />
+the customers can distribute themselves, which is applying the previous formula with n=20, r=10:<br />
 binom(20 + 10 - 1, 10) = binom(29, 10) = 20030010.
 <br /><br />
 Two possible outcomes are displayed bellow.
@@ -1111,7 +1111,16 @@ Two possible outcomes are displayed bellow.
 In the first case, all hotels have some customers. In the second case, there are two vacant hotels
 which happens when two of the separators appear next to each other. The complement of the set we need
 is to count all outcomes where at least two of the separators are next to each other.
-<div class="note">No idea how to solve this!</div>
+<br /><br />
+Listing all possible placements for how to divide the data, where the carets are all possible placements
+for the dividing box.
+<pre style="font-family: monospace; background: #eee;">
+§C^C^C^C^C^C^C^C^C^C^C^C^C^C^C^C^C^C^C^C§
+</pre>
+There are 19 possible placements for the divisors, and only 10 we have to place.
+So the number of possibilities where there are no empty hotels is given by
+binom(19, 10) = 92378.<br />
+The probability that this happens is: 92378/20030010 = 0.00461198.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -1130,6 +1139,17 @@ case, calculate the probability that all the passengers get off at different flo
 <br /><br />
 <i>Answer</i><br />
 <br /><br />
+<b>(a)</b><br />
+The total number of ways they can exit: 10<sup>6</sup> ways. The number of ways the passengers can
+exit is 10·9·8·7·6·5.<br />
+The probability becomes 10·9·8·7·6·5/10<sup>6</sup> = 0.1512.
+<br /><br />
+<b>(b)</b><br />
+Using the method described above for indistinguishable objects, with n=10 and r=6, there are
+binom(19 + 6 - 1, 10) = binom(15, 6) = 5005 ways they can exit the elevator. To find how many
+ways they can exit, we simply count how many ways we can select 6 from 10: binom(10, 6) = 210.<br />
+The probability becomes 210/5005 = 0.04195804.
+<br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
@@ -1139,9 +1159,29 @@ case, calculate the probability that all the passengers get off at different flo
 
 
 <h3>Exercise 26</h3>
-asd
+You are playing heads or tails with Prosser but you suspect that his coin is
+unfair. Von Neumann suggested that you proceed as follows: Toss Prosser’s
+coin twice. If the outcome is HT call the result win. if it is TH call the result
+lose. If it is TT or HH ignore the outcome and toss Prosser’s coin twice again.
+Keep going until you get either an HT or a TH and call the result win or lose
+in a single play. Repeat this procedure for each play. Assume that Prosser’s
+coin turns up heads with probability p.
+<br /><br />
+<b>(a)</b> Find the probability of HT, TH, HH, TT with two tosses of Prosser’s
+coin.
+<br /><br />
+<b>(b)</b> Using part (a), show that the probability of a win on any one play is 1/2,
+no matter what p is.
 <br /><br />
 <i>Answer</i><br />
+<br /><br />
+<b>(a)</b><br />
+Assume that the coin has p of becoming H, and q = 1-p of becoming T. The probability of HT becomes p(1-p) = p-p<sup>2</sup>,
+the probability of TH is (1-p)p = p - p<sup>2</sup>. The probability of HH is p<sup>2</sup> and TT is (1-p)<sup>2</sup>.
+<br /><br />
+<b>(b)</b><br />
+Any double sequences are ignored, so we don't count them. Since HT and TH have the same probability, then they will occur
+at the same frequency, and will therefore each have a probability of 1/2 of happening.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -1150,11 +1190,25 @@ asd
 
 
 
-
+<!-- p 124 -->
 <h3>Exercise 27</h3>
-asd
+John claims that he has extrasensory powers and can tell which of two symbols
+is on a card turned face down (see Example 3.11). To test his ability he is
+asked to do this for a sequence of trials. Let the null hypothesis be that he is
+just guessing, so that the probability is 1/2 of his getting it right each time,
+and let the alternative hypothesis be that he can name the symbol correctly
+more than half the time. Devise a test with the property that the probability
+of a type 1 error is less than .05 and the probability of a type 2 error is less
+than .05 if John can name the symbol correctly 75 percent of the time.
 <br /><br />
 <i>Answer</i><br />
+This can be modeled as a binomial experiment.
+Defining the null-hypothesis and the alternative hypothesis.<br />
+<div class="indent">
+H<sub>0</sub>: p = 0.5<br />
+H<sub>a</sub>: p > 0.5<br />
+</div>
+
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
