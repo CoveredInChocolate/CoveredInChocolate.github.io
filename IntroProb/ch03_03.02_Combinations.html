@@ -581,6 +581,29 @@ of pie should the owner provide so that the probability is about .95 that each
 customer gets the pie of his or her own choice?
 <br /><br />
 <i>Answer</i><br />
+Start with 10 pies of one kind, and remove them one at a time until we pass the 0.95 mark.
+Calculating in R. As we see, if we remove 3 pies, there is a 95% that there won't be enough pies.
+So the restaurant should have 8 of each.
+<br /><br />
+<pre class="rcode">
+# Binomial Distribution
+b <- function(n, p, k) {
+    q = 1 - p
+    prob = choose(n, k)*p**k*q**(n-k)
+    return(prob)
+}
+
+1 - b(10, 0.5, 10)
+1 - (b(10, 0.5, 10) + b(10, 0.5, 9))
+1 - (b(10, 0.5, 10) + b(10, 0.5, 9) + b(10, 0.5, 8))
+
+> 1 - b(10, 0.5, 10)
+[1] 0.9990234
+> 1 - (b(10, 0.5, 10) + b(10, 0.5, 9))
+[1] 0.9892578
+> 1 - (b(10, 0.5, 10) + b(10, 0.5, 9) + b(10, 0.5, 8))
+[1] 0.9453125
+</pre>
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -589,11 +612,55 @@ customer gets the pie of his or her own choice?
 
 
 
-
+<!-- p 122 -->
 <h3>Exercise 12</h3>
-asd
+A poker hand is a set of 5 cards randomly chosen from a deck of 52 cards.
+Find the probability of a
+<br /><br />
+<b>(a)</b> royal flush (ten, jack, queen, king, ace in a single suit).<br />
+<b>(b)</b> straight flush (five in a sequence in a single suit, but not a royal flush).<br />
+<b>(c)</b> four of a kind (four cards of the same face value).<br />
+<b>(d)</b> full house (one pair and one triple, each of the same face value).<br />
+<b>(e)</b> flush (five cards in a single suit but not a straight or royal flush).<br />
+<b>(f)</b> straight (five cards in a sequence, not all the same suit). (Note that in<br />
+straights, an ace counts high or low.)
 <br /><br />
 <i>Answer</i><br />
+In all cases the possible hands is binom(52, 5). We just have to count the number of ways each of
+the hands can be attained to find the probability. (A lot easier than directly calculating probabilities!)
+<br /><br />
+<b>(a)</b><br />
+There are only 4 ways of getting a royal flush. So the probability is 4/binom(52, 5) = 0.00000153907.
+<br /><br />
+<b>(b)</b><br />
+We can get a straight flush in all 4 suits. In each suit, we can get a straight from A to 5 up to and including
+10 to A, so 10 straights, but the last type is a royal flush, which we disregard. So 9 straights in each suit
+for a total of 4·9 = 36 possibilities. The probability is 36/binom(52, 5) = 0.00001385169. (Exactly 9 times
+more likely than the royal flush).
+<br /><br />
+<b>(c)</b><br />
+As explained in the example, there are 13 ways of getting four of a kind, and for the last card there are 48 possible
+(all remaining cards). It can happen in 624 ways. The probability is 624/(binom(52, 5) = 0.000240096.
+<br /><br />
+<b>(d)</b><br />
+Also covered in the example. There are 13 ways of getting 3 of a kind, and out of those there are binom(4, 3) = 4
+ways. For the remaining pair, there are 12 ways (one value has been discarded in the three of a kind), and
+binom(4, 2) = 6 ways of getting them, in total 13·4·12·6 = 3744 ways.
+The probability is 3744/binom(52, 5) = 0.001440576.
+<br /><br />
+<b>(e)</b><br />
+A flush can be attained for all 4 suits, and in each suit there are binom(13, 5) = 1287 ways to get the cards needed.
+For all four suits, we get 4·1287 = 5148, but this includes royal flush and straight flush, so we remove them
+and get 5108 total possibilities. The probability is: (5108)/binom(52, 5) = 0.001965402.
+<br /><br />
+<b>(f)</b><br />
+In this case we only care about consecutive cards and ignore suits. Counting low and high aces, we get
+10 possible straights from A-5 up to 10-A. For 10 possible straights, each draw with 4 possible cards
+gives a total of 10·4·4·4·4·4 = 10240 possibilities. This includes royal flush and straight flush which
+we remove, and get 10200. The probability is 10200/binom(52, 5) = 0.003924647.
+<br /><br />
+To verify results check here:<br />
+<a href="https://en.wikipedia.org/wiki/Poker_probability#Frequency_of_5-card_poker_hands" target="_blank">Wikipedia</a>.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -604,9 +671,41 @@ asd
 
 
 <h3>Exercise 13</h3>
-asd
+If a set has 2n elements, show that it has more subsets with n elements than
+with any other number of elements.
 <br /><br />
 <i>Answer</i><br />
+The number of sets is determined by the binomial coefficient.
+$$
+\binom{2n}{n} = \frac{(2n)!}{(2n - n)!n!} = \frac{(2n)!}{n!n!}
+$$
+Recall that the binomial coefficient is symmetric, so we only have to verify that it gets smaller for
+n+1 and n-1.
+$$
+\binom{2n}{n+1} = \frac{(2n)!}{(2n - (n+1))!(n+1)!} = \frac{(2n)!}{(n+1)!(n-1)!}
+$$
+$$
+\binom{2n}{n-1} = \frac{(2n)!}{(2n - (n-1))!(n-1)!} = \frac{(2n)!}{(n+1)!(n-1)!}
+$$
+Note that both of these are equal. Now we show that both of these are smaller. We can start with either:
+\begin{align}
+\binom{2n}{n+1} &= \frac{(2n)!}{(n+1)!(n-1)!}
+\\&\\
+&= \frac{(2n)(2n-1)\cdots(n+1)(n)(n-1)(n-2)\cdots(1)}{(n+1)(n)(n-1)\cdots(1)\times (n-1)(n-2)\cdots(1)}
+\\&\\
+&= \frac{(2n)(2n-1)\cdots(n+1)(n)}{(n+1)(n)(n-1)\cdots(1)}
+\\&\\
+&= \left(\frac{n}{n+1}\right)\frac{(2n)(2n-1)\cdots(n+1)}{(n)(n-1)\cdots(1)}
+\\&\\
+&= \left(\frac{n}{n+1}\right)\frac{(2n)(2n-1)\cdots(n+1)}{(n)(n-1)\cdots(1)}\cdot\frac{n!}{n!}
+\\&\\
+&= \left(\frac{n}{n+1}\right)\frac{(2n)!}{n!n!}
+\\&\\
+&= \left(\frac{n}{n+1}\right)\binom{2n}{n}
+\\&\\
+&< \binom{2n}{n}
+\end{align}
+since n/(n+1) < 1. Both sides are smaller, showing that binom(2n, n) is the largest value.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -617,9 +716,75 @@ asd
 
 
 <h3>Exercise 14</h3>
-asd
+Let b(2n, 0.5, n) be the probability that in 2n tosses of a fair coin exactly n heads
+turn up. Using Stirling’s formula (Theorem 3.3), show that $b(2n, 0.5, n) \sim 1/\sqrt{\pi n}$.
+Use a program to compare this with the exact value for n = 10 to 25.
 <br /><br />
 <i>Answer</i><br />
+Showing that the expressions are asymptotically equal.
+\begin{align}
+b(2n, 0.5, n) &= \binom{2n}{n}(0.5)^n(0.5)^{2n-n}
+\\&\\
+&= \frac{(2n)!}{n!n!}\left(\frac{1}{2}\right)^{2n}
+\\&\\
+&= \frac{(2n)!}{n!n!}\left(\frac{1}{2^{2n}}\right)
+\\&\\
+&\sim \frac{(2n)^{2n}e^{-2n}\sqrt{4\pi n}}{(n^n e^{-n}\sqrt{2\pi n})(n^n e^{-n}\sqrt{2\pi n})}\left(\frac{1}{2^{2n}}\right)
+\\&\\
+&= \frac{2^{2n}n^{2n}e^{-2n}2\sqrt{\pi n}}{n^{2n} e^{-2n}\cdot 2\pi n}\left(\frac{1}{2^{2n}}\right)
+\\&\\
+&= \frac{\sqrt{\pi n}}{\pi n}\left(\frac{2^{2n}}{2^{2n}}\right)
+\\&\\
+&= \frac{1}{\sqrt{\pi n}}
+\end{align}
+<br /><br />
+Instead of all the values proposed, we will check programmatically for n=10, 25, 50.
+The approximations are very close.
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 03.02 - Exercise 14 - Stirling approximation</span>
+
+<span class="hljs-comment" style="color: green;"># Binomial Distribution</span>
+b &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>(n, p, k) {
+    q = <span class="hljs-number">1</span> - p
+    prob = choose(n, k)*p**k*q**(n-k)
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(prob)
+}
+
+n = <span class="hljs-number">10</span>
+b(<span class="hljs-number">2</span>*n, <span class="hljs-number">0.5</span>, n)
+<span class="hljs-number">1</span>/sqrt(pi*n)
+
+n = <span class="hljs-number">25</span>
+b(<span class="hljs-number">2</span>*n, <span class="hljs-number">0.5</span>, n)
+<span class="hljs-number">1</span>/sqrt(pi*n)
+
+n = <span class="hljs-number">50</span>
+b(<span class="hljs-number">2</span>*n, <span class="hljs-number">0.5</span>, n)
+<span class="hljs-number">1</span>/sqrt(pi*n)</pre>
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+> n = 10
+> b(2*n, 0.5, n)
+[1] 0.1761971
+> 1/sqrt(pi*n)
+[1] 0.1784124
+
+> n = 25
+> b(2*n, 0.5, n)
+[1] 0.1122752
+> 1/sqrt(pi*n)
+[1] 0.1128379
+
+> n = 50
+> b(2*n, 0.5, n)
+[1] 0.07958924
+> 1/sqrt(pi*n)
+[1] 0.07978846
+</pre>
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -630,9 +795,47 @@ asd
 
 
 <h3>Exercise 15</h3>
-asd
+A baseball player, Smith, has a batting average of .300 and in a typical game
+comes to bat three times. Assume that Smith’s hits in a game can be considered
+to be a Bernoulli trials process with probability .3 for success. Find the
+probability that Smith gets 0, 1, 2, and 3 hits.
 <br /><br />
 <i>Answer</i><br />
+Binomial experiment with n=3, p=0.3. Calculating the probabilities in R.
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 03.02 - Exercise 25 - Baseball simulation</span>
+
+<span class="hljs-comment" style="color: green;"># Binomial Distribution</span>
+b &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>(n, p, k) {
+    q = <span class="hljs-number">1</span> - p
+    prob = choose(n, k)*p**k*q**(n-k)
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(prob)
+}
+
+n = <span class="hljs-number">3</span>
+p = <span class="hljs-number">0.3</span>
+
+<span class="hljs-comment" style="color: green;">##### Probability for hits</span>
+b(n, p, <span class="hljs-number">0</span>)
+b(n, p, <span class="hljs-number">1</span>)
+b(n, p, <span class="hljs-number">2</span>)
+b(n, p, <span class="hljs-number">3</span>)</pre>
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+> ##### Probability for hits
+> b(n, p, 0)
+[1] 0.343
+> b(n, p, 1)
+[1] 0.441
+> b(n, p, 2)
+[1] 0.189
+> b(n, p, 3)
+[1] 0.027
+</pre>
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -643,9 +846,22 @@ asd
 
 
 <h3>Exercise 16</h3>
-asd
+The Siwash University football team plays eight games in a season, winning
+three, losing three, and ending two in a tie. Show that the number of ways
+that this can happen is:
+$$
+\binom{8}{3}\binom{5}{3} = \frac{8!}{3!3!2!}.
+$$
 <br /><br />
 <i>Answer</i><br />
+They win 3 out of 8 games, which can be done in binom(8, 3) = 56 ways. Of the remaining 5 games
+they win 3 which can happen in binom(5, 3) = 10 ways, and finally the 2 draws can happen in
+binom(2, 2) = 1 way, so there are a total of 560 possible outcomes.
+<br /><br />
+Deriving the equation:
+$$
+\binom{8}{3}\binom{5}{3} = \frac{8!}{5!3!}\cdot\frac{5!}{3!2!} = \frac{8!}{3!3!2!}.
+$$
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -656,9 +872,22 @@ asd
 
 
 <h3>Exercise 17</h3>
-asd
+Using the technique of Exercise 16, show that the number of ways that one
+can put n different objects into three boxes with a in the first, b in the second,
+and c in the third is n!/(a!b!c!).
 <br /><br />
 <i>Answer</i><br />
+Placing a objects in the first box can be done in binom(n, a) ways. Placing b in the second box
+can be done in binom(n-a, b) ways, and finally the c objects into the third box can be done in
+binom(n - a - b, c) ways. Expressing in factorials:
+\begin{align}
+\binom{n}{a}\binom{n-a}{b} \binom{n-a-b}{c} &=
+\frac{n!}{(n-a)!a!}\cdot\frac{(n-a)!}{(n-a-b)!b!}\cdot\frac{(n-a-b)!}{(n-a-b-c)!c!}
+\\&\\
+&= \frac{n!}{a!}\cdot\frac{1}{b!}\cdot\frac{1}{0!c!}
+\\&\\
+&= \frac{n!}{a!b!c!}
+\end{align}
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -669,9 +898,49 @@ asd
 
 
 <h3>Exercise 18</h3>
-asd
+Baumgartner, Prosser, and Crowell are grading a calculus exam. There is a
+true-false question with ten parts. Baumgartner notices that one student has
+only two out of the ten correct and remarks, “The student was not even bright
+enough to have flipped a coin to determine his answers.” “Not so clear,” says
+Prosser. “With 340 students I bet that if they all flipped coins to determine
+their answers there would be at least one exam with two or fewer answers
+correct.” Crowell says, “I’m with Prosser. In fact, I bet that we should expect
+at least one exam in which no answer is correct if everyone is just guessing.”
+Who is right in all of this?
 <br /><br />
 <i>Answer</i><br />
+Finding the probabilities in R. For 2 or fewer points there should be several students
+who get 2 or fewer points when there are 340 students. Even for 1 or fewer there should be a few.
+A score of 0 is unlikely with 340 students. Prosser is correct.
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 03.02 - Exercise 18 - Exam Coin Flip</span>
+
+<span class="hljs-comment" style="color: green;"># Binomial Distribution</span>
+b &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>(n, p, k) {
+    q = <span class="hljs-number">1</span> - p
+    prob = choose(n, k)*p**k*q**(n-k)
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(prob)
+}
+
+<span class="hljs-comment" style="color: green;"># Probability of 0, 1 or 2</span>
+b(<span class="hljs-number">10</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0</span>) + b(<span class="hljs-number">10</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">1</span>) + b(<span class="hljs-number">10</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">2</span>)
+b(<span class="hljs-number">10</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0</span>) + b(<span class="hljs-number">10</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">1</span>)
+b(<span class="hljs-number">10</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0</span>)
+</pre>
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+> # Probability of 0, 1 or 2
+> b(10, 0.5, 0) + b(10, 0.5, 1) + b(10, 0.5, 2)
+[1] 0.0546875
+> b(10, 0.5, 0) + b(10, 0.5, 1)
+[1] 0.01074219
+> b(10, 0.5, 0)
+[1] 0.0009765625
+</pre>
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -682,9 +951,36 @@ asd
 
 
 <h3>Exercise 19</h3>
-asd
+A gin hand consists of 10 cards from a deck of 52 cards. Find the probability
+that a gin hand has
+<br /><br />
+<b>(a)</b> all 10 cards of the same suit.
+<br /><br />
+<b>(b)</b> exactly 4 cards in one suit and 3 in two other suits.
+<br /><br />
+<b>(c)</b> a 4, 3, 2, 1, distribution of suits.
 <br /><br />
 <i>Answer</i><br />
+The total combination of dealt cards is binom(52, 10) = 15820024220. Quite a few more possibilities than Poker.
+Now we just have to count the number of possibilities.
+<br /><br />
+<b>(a)</b><br />
+There are 4 suits, and for each suit we can get 10 cards in binom(13, 10) = 286 ways, 1144 ways in total.<br />
+The probability is 1144/15820024220 = 0.00000007231342.
+<br /><br />
+<b>(b)</b><br />
+For each suit, we draw 4 cards, so binom(13, 4) = 715. Next, for 2 of the remaining suits, i.e. binom(3, 2) = 3,
+we draw 3 cards: binom(13, 3) = 286 - which counts for BOTH suits. For all 4 suits, there are: 4·715·3·286·286 = 701809680 ways.
+<br />
+The probability becomes 701809680/15820024220 = 0.04436211.
+<br /><br />
+<b>(c)</b><br />
+For the first suit, there are binom(13, 4) = 715 possible draws. The next suit has binom(3, 1) = 3
+possibilities, and there are binom(13, 3) = 286 possible draws. The third suit has binom(2, 1) = 2 possibilites,
+and there are binom(13, 2) = 78 possible draws. The last suit is determined automatically, and there
+are binom(13, 1) = 13 possible draws. All together, from 4 possible starting suits there are a total of:
+4·715·3·286·2·78·13 = 4976468640 possible outcomes.<br />
+The probability becomes 4976468640/15820024220 = 0.3145677.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -695,9 +991,32 @@ asd
 
 
 <h3>Exercise 20</h3>
-asd
+A six-card hand is dealt from an ordinary deck of cards. Find the probability
+that:
+<br /><br />
+<b>(a)</b> All six cards are hearts.
+<br /><br />
+<b>(b)</b> There are three aces, two kings, and one queen.
+<br /><br />
+<b>(c)</b> There are three cards of one suit and three of another suit.
 <br /><br />
 <i>Answer</i><br />
+The total number of possible combination of dealt cards is binom(52, 6) = 20358520. Now we simply count the possible outcomes.
+<br /><br />
+<b>(a)</b><br />
+How many ways can we draw 6 hears? binom(13, 6) = 1716.<br />
+The probability is 1716/20358520 = 0.00008428903.
+<br /><br />
+<b>(b)</b><br />
+We can select 3 out of 4 aces in binom(4, 3) = 4 ways. The kings in binom(4, 2) = 6 ways, and the single queen in 4 ways.
+A total of 4·6·4 = 96 ways.<br />
+The probability is 96/20358520 = 0.00000471547.
+<br /><br />
+<b>(c)</b><br />
+For each suit, we can select binom(13, 3) = 286. For the other suit, there are binom(3, 1) = 3 ways we can get it. And from that
+suit there are a total of binom(13, 3) = 286 possible hands. In total: 4·286·3·286 = 981552 possibilites.<br />
+The probability is 981552/20358520 = 0.04821333.
+<br /><br />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -708,9 +1027,11 @@ asd
 
 
 <h3>Exercise 21</h3>
-asd
+A lady wishes to color her fingernails on one hand using at most two of the
+colors red, yellow, and blue. How many ways can she do this?
 <br /><br />
 <i>Answer</i><br />
+This is simply how many ways we can choose 2 from 3: binom(3, 2) = 3 ways. The fingers are irrelevant as the problem is stated.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -721,9 +1042,25 @@ asd
 
 
 <h3>Exercise 22</h3>
-asd
+How many ways can six indistinguishable letters be put in three mail boxes?
+<i>Hint</i>: One representation of this is given by a sequence |LL|L|LLL| where the
+|’s represent the partitions for the boxes and the L’s the letters. Any possible
+way can be so described. Note that we need two bars at the ends and the
+remaining two bars and the six L’s can be put in any order.
 <br /><br />
 <i>Answer</i><br />
+Ignoring the borders and focusing on the inner portion, where we can place six Ls and two |s.
+If we only have two Ls and one |, there are three possible ways.
+<pre style="font-family: monospace; background: #eee;">
+LL|
+L|L
+|LL
+</pre>
+If we represent this as the set {a, b, c}, then if we select two values there are binom(3, 2) = 3 ways. {a, b}, {a, c} and
+{b, c}. This represents the case above - any missing values are replaced by a |.
+<br /><br />
+With this reasoning, we can represent the |s as missing values and draw 6 from 8. So there are binom(8, 6) = 28 possible ways
+of putting the six letters into three boxes.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -734,9 +1071,16 @@ asd
 
 
 <h3>Exercise 23</h3>
-asd
+Using the method for the hint in Exercise 22, show that r indistinguishable
+objects can be put in n boxes in
+$$
+\binom{n + r - 1}{n - 1} = \binom{n + r - 1}{r}
+$$
+different ways.
 <br /><br />
 <i>Answer</i><br />
+This is just a repetition of the reasoning with the set {a, b, c} in the previous exercise.
+Will not give a more formal argument than that.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -747,9 +1091,27 @@ asd
 
 
 <h3>Exercise 24</h3>
-asd
+A travel bureau estimates that when 20 tourists go to a resort with ten hotels
+they distribute themselves as if the bureau were putting 20 indistinguishable
+objects into ten distinguishable boxes. Assuming this model is correct, find
+the probability that no hotel is left vacant when the first group of 20 tourists
+arrives.
 <br /><br />
 <i>Answer</i><br />
+Using the method from the previous exercises, we find the total number of ways that
+the customers can distribute themselves, which is:<br />
+binom(20 + 10 - 1, 10) = binom(29, 10) = 20030010.
+<br /><br />
+Two possible outcomes are displayed bellow.
+<pre style="font-family: monospace; background: #eee;">
+§CCC|CC|CCC|CC|C|CC|C|CCC|C|CC§
+
+§CCC|CCC||CC|CCC|CCC||CCC|C|CC§
+</pre>
+In the first case, all hotels have some customers. In the second case, there are two vacant hotels
+which happens when two of the separators appear next to each other. The complement of the set we need
+is to count all outcomes where at least two of the separators are next to each other.
+<div class="note">No idea how to solve this!</div>
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -758,9 +1120,13 @@ asd
 
 
 
-
+<!-- p 124 -->
 <h3>Exercise 25</h3>
-asd
+An elevator takes on six passengers and stops at ten floors. We can assign
+two different equiprobable measures for the ways that the passengers are discharged:
+(a) we consider the passengers to be distinguishable or (b) we consider
+them to be indistinguishable (see Exercise 23 for this case). For each
+case, calculate the probability that all the passengers get off at different floors.
 <br /><br />
 <i>Answer</i><br />
 <br /><br />
