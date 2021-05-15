@@ -45,7 +45,7 @@
     </tr>
     <tr>
         <td><b>Next</b>:</td>
-        <td><a href="_TEMPLATE.html">4.1 Discrete Conditional Probability</a></td>
+        <td><a href="ch03_04.01_DiscreteCondProb.html">4.1 Discrete Conditional Probability</a></td>
     </tr>
 </table>
 <br /><br />
@@ -1208,7 +1208,77 @@ Defining the null-hypothesis and the alternative hypothesis.<br />
 H<sub>0</sub>: p = 0.5<br />
 H<sub>a</sub>: p > 0.5<br />
 </div>
+We are going to find the critical value m so that we reject the null hypothesis if the number of correct guesses are higher than
+m. We calculate the probabilty of avoiding type 1 errors with the formula:
+$$
+\alpha(p) = \sum_{m\leq k\leq n}b(n, p, k).
+$$
+Using this we find that if we set n=100, we will require 68 successful tests in order to ensure less than 5% chance of both
+Type I and Type II errors. If we set n=1000 we require 773 successful tests.
+<br /><br />
+There were no indications of what n should be, but apparently it should be as small as possible, which in this case is 42
+(with 27 successes satisfying both error requirements).
+<br /><br />
+Calculating the probabilities in R.
+<!-- α β -->
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 03.02 - Exercise 27 - Hypothesis Testing</span>
 
+<span class="hljs-comment" style="color: green;"># Binomial Distribution</span>
+b &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>(n, p, k) {
+    q = <span class="hljs-number">1</span> - p
+    prob = choose(n, k)*p**k*q**(n-k)
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(prob)
+}
+
+<span class="hljs-comment" style="color: green;"># Alpha function for Type I errors</span>
+alpha &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>(n, p, m) {
+    prb = <span class="hljs-number">0</span>
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span>(mm <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> m:n) {
+    prb = prb + b(n, p, mm)
+    }
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(prb)
+}
+
+p1 = <span class="hljs-number">0.5</span>
+p2 = <span class="hljs-number">0.75</span>
+
+n = <span class="hljs-number">100</span>
+alpha(n, p1, <span class="hljs-number">68</span>)
+<span class="hljs-number">1</span> - alpha(n, p2, <span class="hljs-number">68</span>)
+
+n = <span class="hljs-number">1000</span>
+alpha(n, p1, <span class="hljs-number">727</span>)
+<span class="hljs-number">1</span> - alpha(n, p2, <span class="hljs-number">727</span>)
+
+n = <span class="hljs-number">42</span>
+alpha(n, p1, <span class="hljs-number">27</span>)
+<span class="hljs-number">1</span> - alpha(n, p2, <span class="hljs-number">27</span>)
+</pre>
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+> n = 100
+> alpha(n, p1, 68)
+[1] 0.0002043886
+> 1 - alpha(n, p2, 68)
+[1] 0.04459633
+
+> n = 1000
+> alpha(n, p1, 727)
+[1] 1.649466e-48
+> 1 - alpha(n, p2, 727)
+[1] 0.04409633
+
+> n = 42
+> alpha(n, p1, 27)
+[1] 0.04421477
+> 1 - alpha(n, p2, 27)
+[1] 0.0416287
+</pre>
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -1219,11 +1289,8 @@ H<sub>a</sub>: p > 0.5<br />
 
 
 <h3>Exercise 28</h3>
-asd
+<i>Skipping - don't have code.</i>
 <br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
 <br /><br />
 
 
@@ -1232,9 +1299,41 @@ asd
 
 
 <h3>Exercise 29</h3>
-asd
+A drug is assumed to be effective with an unknown probability p. To estimate
+p the drug is given to n patients. It is found to be effective for m patients.
+The method of maximum likelihood for estimating p states that we should
+choose the value for p that gives the highest probability of getting what we
+got on the experiment. Assuming that the experiment can be considered as a
+Bernoulli trials process with probability p for success, show that the maximum
+likelihood estimate for p is the proportion m/n of successes.
 <br /><br />
 <i>Answer</i><br />
+Let X~Bernoulli(p) for some unknown probability p. The maximum likelihood estimate gives us:
+\begin{align}
+L(p) &= P(X=s_1)P(X=s_2)\cdots P(X=s_n)
+\\&\\
+&= p^m(1-p)^{n-m}.
+\end{align}
+The ML estimate is the p that makes this most likely.
+Differentiate this wrt. p and set equals to 0.
+$$
+\frac{dL(p)}{dp} = mp^{m-1}(1-p)^{n-m} + p^m(n-m)(1-p)^{n-m-1}(-1) = 0
+$$
+\begin{align}
+mp^{m-1}(1-p)^{n-m} &= p^m(n-m)(1-p)^{n-m-1}
+\\&\\
+m(1-p)^{n-m} &= p(n-m)(1-p)^{n-m-1}
+\\&\\
+m(1-p) &= p(n-m)
+\\&\\
+m-mp &= pn-mp
+\\&\\
+m &= pn
+\\&\\
+p &= \frac{m}{n}.
+\end{align}
+<br /><br />
+<b>Note</b>: Why do they use MLE when it is not covered in the text??
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -1245,11 +1344,8 @@ asd
 
 
 <h3>Exercise 30</h3>
-asd
+<i>Skipping - don't have code.</i>
 <br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
 <br /><br />
 
 
@@ -1258,9 +1354,23 @@ asd
 
 
 <h3>Exercise 31</h3>
-asd
+Each of the four engines on an airplane functions correctly on a given flight
+with probability .99, and the engines function independently of each other.
+Assume that the plane can make a safe landing if at least two of its engines
+are functioning correctly. What is the probability that the engines will allow
+for a safe landing?
 <br /><br />
 <i>Answer</i><br />
+This is a binomial experiment where the probability p of an engine failure is 0.01, and we want to calculate
+the probability that there have been a maximum of two engine failures, or, P(X ≤ 2) = P(X=0) + P(X=1) + P(X=2).
+From calculating in R, the probability is:<br />
+P(X ≤ 2) = 0.99999603.
+<br /><br />
+<b>Output</b>:<br />
+<pre class="rcode">
+> b(4, 0.01, 0) + b(4, 0.01, 1) + b(4, 0.01, 2)
+[1] 0.99999603
+</pre>
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -1271,9 +1381,17 @@ asd
 
 
 <h3>Exercise 32</h3>
-asd
+A small boy is lost coming down Mount Washington. The leader of the search
+team estimates that there is a probability p that he came down on the east
+side and a probability 1 − p that he came down on the west side. He has n
+people in his search team who will search independently and, if the boy is
+on the side being searched, each member will find the boy with probability
+u. Determine how he should divide the n people into two groups to search
+the two sides of the mountain so that he will have the highest probability of
+finding the boy. How does this depend on u?
 <br /><br />
 <i>Answer</i><br />
+<div class="note">Coming back to this...</div>
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -1284,9 +1402,155 @@ asd
 
 
 <h3>Exercise 33</h3>
-asd
+2n balls are chosen at random from a total of 2n red balls and 2n blue balls.
+Find a combinatorial expression for the probability that the chosen balls are
+equally divided in color. Use Stirling’s formula to estimate this probability.
+<br /><br />
+Compare the exact value with Stirling’s approximation for n = 20.
 <br /><br />
 <i>Answer</i><br />
+First considering a simplified example where there are a total of 8 balls
+where 4 are red and 4 are blue. In this case there area total of binom(8, 4) = 70
+ways of drawing 4 balls. There are binom(4, 2) = 6 ways of drawing red balls,
+and the same for drawing 6 blue balls. In total, there are binom(4,2)binom(4,2) = 36
+ways of drawing 4 balls where 2 are blue and 2 are red.
+<br /><br />
+The probability of this happening is 36/70 = 0.5142857 which can be confirmed with a simulation.
+Can easily verify a similar problem with 16 and 8 as can be seen in the code.
+<br /><br />
+Let us call the event where there are an equal amount of red and blue balls for E.
+As shown, a combinatiorial expression for calculating this probability is:
+$$
+P(E) = \frac{\binom{2n}{n}\binom{2n}{n}}{\binom{4n}{2n}}
+$$
+Now we can use Stirling's formula (Theorem 3.3) to make an approximation.
+\begin{align}
+\frac{\binom{2n}{n}\binom{2n}{n}}{\binom{4n}{2n}}
+&= \left(\frac{(2n)!}{n!n!}\right)\left(\frac{(2n)!}{n!n!}\right)\bigg/\left(\frac{(4n)!}{(2n)!(2n)!}\right)
+\\&\\
+&=\left(\frac{(2n)!}{n!n!}\right)\left(\frac{(2n)!}{n!n!}\right)\cdot\left(\frac{(2n)!(2n)!}{(4n)!}\right)
+\\&\\
+&=\frac{[(2n)!]^4}{(4n)![(n)!]^4}
+\\&\\
+&\sim \frac{[(2n)^{2n}e^{-2n}\sqrt{4\pi n}]^4}{((4n)^{4n}e^{-4n}\sqrt{8\pi n})[n^{n}e^{-n}\sqrt{2\pi n}]^4}
+\\&\\
+&= \frac{2^{8n}n^{8n}e^{-8n}4^2\pi^2 n^2}{(4^{4n}n^{4n}e^{-4n}\sqrt{8\pi n})[n^{4n}e^{-4n}2^2\pi^2 n^2]}
+\\&\\
+&= \frac{2^{8n}n^{8n}e^{-8n}2^4\pi^2 n^2}{(2^{8n}n^{4n}e^{-4n}\sqrt{2\pi n})[n^{4n}e^{-4n}2^3\pi^2 n^2]}
+\\&\\
+&= \frac{2^{8n}n^{8n}e^{-8n}2^4\pi^2 n^2}{(2^{8n}n^{8n}e^{-8n}\sqrt{2\pi n})2^3\pi^2 n^2}
+\\&\\
+&= \frac{2}{\sqrt{2\pi n}}
+\\&\\
+&= \sqrt{\frac{2}{\pi n}}
+\end{align}
+<br /><br />
+Comparing this approximation with exact results and simulated results show that it is quite accurate for n=20.
+It's actually not too bad for n=2, everything considered!
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 03.02 - Exercise 33 - Stirling's Approximation</span>
+
+<span class="hljs-comment" style="color: green;">### Case 1: 8 total, 4 of each color, n=2</span>
+n = <span class="hljs-number">2</span>
+NSIMS = <span class="hljs-number">100000</span>
+eq = rep(<span class="hljs-number">0</span>, NSIMS)
+
+<span class="hljs-comment" style="color: green;"># Red is -1, Blue is 1</span>
+dt = c(rep(-<span class="hljs-number">1</span>, <span class="hljs-number">2</span>*n), rep(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>*n))
+
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (k <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:NSIMS) {
+    smp = sample(dt, size=<span class="hljs-number">2</span>*n)
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (sum(smp) == <span class="hljs-number">0</span>) {
+    eq[k] = <span class="hljs-number">1</span>
+    }
+}
+<span class="hljs-comment" style="color: green;">### Case 1: 8 total, 4 of each color, n=2</span>
+mean(eq)
+<span class="hljs-number">36</span>/<span class="hljs-number">70</span>
+(factorial(<span class="hljs-number">4</span>))**<span class="hljs-number">4</span>/(factorial(<span class="hljs-number">8</span>)*(factorial(<span class="hljs-number">2</span>))**<span class="hljs-number">4</span>)
+sqrt(<span class="hljs-number">2</span>/(pi*n))
+
+
+<span class="hljs-comment" style="color: green;">### Case 2: 16 total, 8 of each color, n=4</span>
+n = <span class="hljs-number">4</span>
+NSIMS = <span class="hljs-number">100000</span>
+eq = rep(<span class="hljs-number">0</span>, NSIMS)
+
+<span class="hljs-comment" style="color: green;"># Red is -1, Blue is 1</span>
+dt = c(rep(-<span class="hljs-number">1</span>, <span class="hljs-number">2</span>*n), rep(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>*n))
+
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (k <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:NSIMS) {
+    smp = sample(dt, size=<span class="hljs-number">2</span>*n)
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (sum(smp) == <span class="hljs-number">0</span>) {
+    eq[k] = <span class="hljs-number">1</span>
+    }
+}
+<span class="hljs-comment" style="color: green;">### Case 2: 16 total, 8 of each color, n=4</span>
+mean(eq)
+<span class="hljs-number">4900</span>/<span class="hljs-number">12870</span>
+(factorial(<span class="hljs-number">2</span>*n))**<span class="hljs-number">4</span>/(factorial(<span class="hljs-number">4</span>*n)*(factorial(n))**<span class="hljs-number">4</span>)
+sqrt(<span class="hljs-number">2</span>/(pi*n))
+
+
+
+
+<span class="hljs-comment" style="color: green;">### Case 3: 80 total, 40 of each color, n=20</span>
+n = <span class="hljs-number">20</span>
+NSIMS = <span class="hljs-number">100000</span>
+eq = rep(<span class="hljs-number">0</span>, NSIMS)
+
+<span class="hljs-comment" style="color: green;"># Red is -1, Blue is 1</span>
+dt = c(rep(-<span class="hljs-number">1</span>, <span class="hljs-number">2</span>*n), rep(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>*n))
+
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span> (k <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:NSIMS) {
+    smp = sample(dt, size=<span class="hljs-number">2</span>*n)
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (sum(smp) == <span class="hljs-number">0</span>) {
+    eq[k] = <span class="hljs-number">1</span>
+    }
+}
+<span class="hljs-comment" style="color: green;">### Case 3: 80 total, 40 of each color, n=20</span>
+mean(eq)
+(choose(<span class="hljs-number">40</span>, <span class="hljs-number">20</span>)*choose(<span class="hljs-number">40</span>, <span class="hljs-number">20</span>))/choose(<span class="hljs-number">80</span>, <span class="hljs-number">40</span>)
+(factorial(<span class="hljs-number">2</span>*n))**<span class="hljs-number">4</span>/(factorial(<span class="hljs-number">4</span>*n)*(factorial(n))**<span class="hljs-number">4</span>)
+sqrt(<span class="hljs-number">2</span>/(pi*n))
+</pre>
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+> ### Case 1: 8 total, 4 of each color, n=2
+> mean(eq)
+[1] 0.51523
+> 36/70
+[1] 0.51428571
+> (factorial(4))**4/(factorial(8)*(factorial(2))**4)
+[1] 0.51428571
+> sqrt(2/(pi*n))
+[1] 0.56418958
+
+> ### Case 2: 16 total, 8 of each color, n=4
+> mean(eq)
+[1] 0.38003
+> 4900/12870
+[1] 0.38073038
+> (factorial(2*n))**4/(factorial(4*n)*(factorial(n))**4)
+[1] 0.38073038
+> sqrt(2/(pi*n))
+[1] 0.39894228
+
+> ### Case 3: 80 total, 40 of each color, n=20
+> mean(eq)
+[1] 0.17607
+> (choose(40, 20)*choose(40, 20))/choose(80, 40)
+[1] 0.17674783
+> (factorial(2*n))**4/(factorial(4*n)*(factorial(n))**4)
+[1] 0.17674783
+> sqrt(2/(pi*n))
+[1] 0.17841241
+</pre>
+<br /><br />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -1297,12 +1561,14 @@ asd
 
 
 <h3>Exercise 34</h3>
-asd
+<i>Skipped - combinatorics isn't THAT important.</i>
+<br /><br /><br /><br />
+<!-- asd
 <br /><br />
 <i>Answer</i><br />
 <br /><br />
 <div class="exend">&#9632;</div>
-<br /><br />
+<br /><br /> -->
 
 
 
@@ -1310,12 +1576,15 @@ asd
 
 
 <h3>Exercise 35</h3>
-asd
+<i>Skipped - combinatorics isn't THAT important.</i>
+<br /><br /><br /><br />
+<!-- asd
 <br /><br />
 <i>Answer</i><br />
 <br /><br />
 <div class="exend">&#9632;</div>
-<br /><br />
+<br /><br /> -->
+
 
 
 
@@ -1323,12 +1592,15 @@ asd
 
 
 <h3>Exercise 36</h3>
-asd
+<i>Skipped - combinatorics isn't THAT important.</i>
+<br /><br /><br /><br />
+<!-- asd
 <br /><br />
 <i>Answer</i><br />
 <br /><br />
 <div class="exend">&#9632;</div>
-<br /><br />
+<br /><br /> -->
+
 
 
 
@@ -1336,12 +1608,14 @@ asd
 
 
 <h3>Exercise 37</h3>
-asd
+<i>Skipped - combinatorics isn't THAT important.</i>
+<br /><br /><br /><br />
+<!-- asd
 <br /><br />
 <i>Answer</i><br />
 <br /><br />
 <div class="exend">&#9632;</div>
-<br /><br />
+<br /><br /> -->
 
 
 
@@ -1349,12 +1623,14 @@ asd
 
 
 <h3>Exercise 38</h3>
-asd
+<i>Skipped - combinatorics isn't THAT important.</i>
+<br /><br /><br /><br />
+<!-- asd
 <br /><br />
 <i>Answer</i><br />
 <br /><br />
 <div class="exend">&#9632;</div>
-<br /><br />
+<br /><br /> -->
 
 
 
@@ -1362,12 +1638,14 @@ asd
 
 
 <h3>Exercise 39</h3>
-asd
+<i>Skipped - combinatorics isn't THAT important.</i>
+<br /><br /><br /><br />
+<!-- asd
 <br /><br />
 <i>Answer</i><br />
 <br /><br />
 <div class="exend">&#9632;</div>
-<br /><br />
+<br /><br /> -->
 
 
 
@@ -1375,12 +1653,14 @@ asd
 
 
 <h3>Exercise 40</h3>
-asd
+<i>Skipped - combinatorics isn't THAT important.</i>
+<br /><br /><br /><br />
+<!-- asd
 <br /><br />
 <i>Answer</i><br />
 <br /><br />
 <div class="exend">&#9632;</div>
-<br /><br />
+<br /><br /> -->
 
 
 

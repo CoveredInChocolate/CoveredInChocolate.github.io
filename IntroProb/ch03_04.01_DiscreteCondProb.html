@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styling.css">
+    <script>
+        MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        svg: {
+            fontCache: 'global'
+        }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
+    <title>Chapter 4 - 4.1</title> <!-- #################### TITLE #################### -->
+</head>
+\(
+   \def\R{\mathbb{R}}
+   \def\N{\mathbb{N}}
+   \def\Z{\mathbb{Z}}
+   \def\Q{\mathbb{Q}}
+   \def\eps{\varepsilon}
+   \def\epsilon{\varepsilon}
+   \renewcommand{\geq}{\geqslant}
+   \renewcommand{\leq}{\leqslant}
+\)
+<body>
+    <div class="page">
+<h1>Chapter 4 - Conditional Probability</h1>
+
+<h2>4.1 Discrete Conditional Probability</h2>
+<br />
+<table border="0">
+    <tr>
+        <td><b>Main</b>:</td>
+        <td><a href="index.html">Index</a></td>
+    </tr>
+    <tr>
+        <td><b>Previous</b>:</td>
+        <td><a href="ch03_03.02_Combinations.html">3.2 Combinations</a></td>
+    </tr>
+    <tr>
+        <td><b>Next</b>:</td>
+        <td><a href="_TEMPLATE.html">4.2 Continuous Conditional Probability</a></td>
+    </tr>
+</table>
+<br /><br />
+
+<h3>Results</h3>
+
+<div class="thm">Conditional Probability</div><br />
+We call P(F|E) the <i>conditional probability of F given E</i>, and compute it using the formula
+$$
+P(F|E) = \frac{P(F\cap E)}{P(E)}.
+$$
+<br /><br /><br /><br />
+
+<div class="thm">Definition 4.1</div><br />
+Le E and F be two events. We say that they are <i>independent</i> if
+both events have positive probability and,
+$$
+P(E|F) = E \;\;\text{and}\;\; P(F|E) = P(F).
+$$
+(Or at least one of the events has probability 0 or 1).
+<br /><br /><br /><br />
+
+<div class="thm">Theorem 4.1</div><br />
+Two events E and F are independent if and only if
+$$
+P(E\cap F) = P(E)P(F).
+$$
+<br /><br /><br /><br />
+
+<div class="thm">Definition 4.2</div><br />
+A set of events A<sub>1</sub>, A<sub>2</sub>, ..., A<sub>n</sub> are said to
+be <i>mutually independent</i> if for any subset
+{A<sub>i</sub>, A<sub>j</sub>, ..., A<sub>m</sub>}, we have
+$$
+P(A_i\cap A_j\cap\ldots\cap A_m) = P(A_i)P(A_j)\cdots P(A_m),
+$$
+or equivalently, if for any sequence A<sup>c</sup><sub>1</sub>, A<sup>c</sup><sub>2</sub>, ..., A<sup>c</sup><sub>n</sub>
+with A<sup>c</sup><sub>j</sub> = A<sub>j</sub> 
+$$
+P(A_i^c\cap A_j^c\cap\ldots\cap A^c_m) = P(A_i^c)P(A_j^c)\cdots P(A_m^c).
+$$
+<br /><br /><br /><br />
+
+<div class="thm">Definition 4.3</div><br />
+Let X<sub>1</sub>,X<sub>2</sub>, ..., X<sub>n</sub> be random variables associated with an experiment. Suppose
+that the sample space of X<sub>i</sub> is the set R<sub>i</sub>. Then the joint random variable
+<span style="text-decoration:overline">X</span> = (X<sub>1</sub>,X<sub>2</sub>, ..., X<sub>n</sub>)
+is defined to be the random variable whose outcomes consist of ordered n-tuples of outcomes, with the
+<i>i</i>th coordinate lying in the set R<sub>i</sub>. The sample space Ω of <span style="text-decoration:overline">X</span>
+is the cartesian product of the sets R<sub>i</sub>:
+$$
+\Omega = R_1\times R_2\times \ldots \times R_n.
+$$
+The joint distribution function of <span style="text-decoration:overline">X</span> is the function which gives the
+probability of each of the outcomes of <span style="text-decoration:overline">X</span>.
+<br /><br /><br /><br />
+
+<div class="thm">Definition 4.4</div><br />
+The random variables X<sub>1</sub>,X<sub>2</sub>, ..., X<sub>n</sub> are said to be <i>mutually independent</i>
+if
+$$
+P(X_1 = r_1, \ldots, X_n = r_n) = 
+P(X_1 = r_1)\cdots P(X_n = r_n)
+$$
+for any choice of $r_1, \ldots, r_n$. Thus if X<sub>1</sub>,X<sub>2</sub>, ..., X<sub>n</sub> are 
+mutually independent, then the joint distribution function of the random variable
+$$
+\overline{X} = (X_1, X_2, \ldots, X_n)
+$$
+is just the product of the individual distribution functions. When two random variables are mutually independent,
+we shall say more briefly that they are <i>independent</i>.
+<br /><br /><br /><br />
+
+
+
+<br /><br /><br /><br />
+
+
+<!-- ########################### EXERCISES ########################### -->
+
+<!-- · ≥ ≤ -->
+
+<!--
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+
+</pre>
+-->
+
+<!-- p 158 -->
+<h3>Exercise 1</h3>
+Assume E and F are two events with positive probabilities. Show that
+if P(E|F) = P(E), then P(F|E) = P(F).
+<br /><br />
+<i>Answer</i><br />
+By assumption and definition of the conditional probability.
+$$
+P(E) = P(E|F) = \frac{P(E\cap F)}{P(F)}
+\;\;\Longrightarrow\;\;
+P(E)P(F) = P(E\cap F).
+$$
+Using this, 
+$$
+P(F|E) = \frac{P(F\cap E)}{P(E)} = \frac{P(F)P(E)}{P(E)} = P(F).
+$$
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 2</h3>
+A coin is tossed three times. What is the probability that exactly two heads
+occur, given that
+<br /><br />
+<b>(a)</b> the first outcome was a head?
+<br /><br />
+<b>(b)</b> the first outcome was a tail?
+<br /><br />
+<b>(c)</b> the first two outcomes were heads?
+<br /><br />
+<b>(d)</b> the first two outcomes were tails?
+<br /><br />
+<b>(e)</b> the first outcome was a head and the third outcome was a head?
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+Image below displays a helpful tree structure of all possible outcomes.
+<br /><br />
+<b>(a)</b><br />
+Let F be the event that the first toss is H, and note that P(F) = 1/2, and according to the tree structure below,
+the new sample space will be the top half of the tree. Given this new information, we can log the new outcomes,
+and the total number of Hs in parenthesis.
+<pre style="font-family: monospace; background: #eee;">
+HH 1/8   (3)
+HT 1/8   (2)
+TH 1/8   (2)
+TT 1/8   (1)
+</pre>
+We already have one H from the first toss F, so the probability of getting exactly two heads, an even we call H, is 1/2.
+So P(F∩H) = 1/4. Calculating the conditional probability:
+$$
+P(H|F) = \frac{P(F\cap H)}{P(F)} = \frac{1/4}{1/2} = 1/2.
+$$
+<br /><br />
+<b>(b)</b><br />
+Let G be the event that we get T on the first toss, with P(G) = 1/2. The part of the tree we are restricted to, with number of Hs:
+<pre style="font-family: monospace; background: #eee;">
+HH 1/8   (2)
+HT 1/8   (1)
+TH 1/8   (1)
+TT 1/8   (0)
+</pre>
+Now P(G∩H) = 1/8. Calculating the conditional probability:
+$$
+P(H|F) = \frac{P(F\cap H)}{P(F)} = \frac{1/8}{1/2} = 1/4.
+$$
+<br /><br />
+<b>(c)</b><br />
+Let K be the event that the first two tosses are H, so P(K) = 1/4. The restricted tree:
+<pre style="font-family: monospace; background: #eee;">
+H 1/8   (3)
+T 1/8   (2)
+</pre>
+Only one possible outcome has 2 Hs, P(K∩H) = 1/8.
+$$
+P(H|K) = \frac{P(H\cap K)}{P(K)} = \frac{1/8}{1/4} = 1/2.
+$$
+<br /><br />
+<b>(d)</b><br />
+Let M be the event that the first two tosses are T, so P(M) = 1/4. The restricted tree:
+<pre style="font-family: monospace; background: #eee;">
+H 1/8   (1)
+T 1/8   (0)
+</pre>
+Now no outcome has 2 Hs, P(M∩H) = 0. By independence P(M∩H) = P(M)P(H) = 0.
+<br /><br />
+<b>(e)</b><br />
+A more tricky event, which we call L: first toss is a head, and the third toss is a head.
+Reading from the tree, P(L) = 1/8 + 1/8 = 1/4.
+<br /><br />
+Getting H or T in the second toss have equal probability, so divide the new sample space
+into two parts each with probability 1/8. The only way to get exactly two H is if the second toss is T.
+$$
+P(H|L) = \frac{P(H\cap L)}{P(L)} = \frac{1/8}{1/4} = 1/2.
+$$
+<br /><br />
+<img src="img/chapter04/04.01_Ex02_01.png" />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 3</h3>
+A die is rolled twice. What is the probability that the sum of the faces is
+greater than 7, given that
+<br /><br />
+<b>(a)</b> the first outcome was a 4?
+<br /><br />
+<b>(b)</b> the first outcome was greater than 3?
+<br /><br />
+<b>(c)</b> the first outcome was a 1?
+<br /><br />
+<b>(d)</b> the first outcome was less than 5?
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+Let S be the event that the sum of the die is greater than 7.
+<br /><br />
+<b>(a)</b><br />
+Event A: first roll is a 4. P(A) = 1/6. Restricted tree with sum of values in parenthesis.
+<pre style="font-family: monospace; background: #eee;">
+1 1/36   (5)
+2 1/36   (6)
+3 1/36   (7)
+4 1/36   (8)
+5 1/36   (9)
+6 1/36   (10)
+</pre>
+The probability that we get greater than 7 is P(A∩S) = 1/36 + 1/36 + 1/36 = 3/36 = 1/12.
+$$
+P(S|A) = \frac{P(S\cap A)}{P(A)} = \frac{1/12}{1/6} = 1/2.
+$$
+<br /><br />
+<b>(b)</b><br />
+Event B: first roll is greater than 3. P(B) = 1/2. Restricted tree with sum of values in parenthesis.
+<pre style="font-family: monospace; background: #eee;">
+# 4
+1 1/36   (5)
+2 1/36   (6)
+3 1/36   (7)
+4 1/36   (8)
+5 1/36   (9)
+6 1/36   (10)
+
+# 5
+1 1/36   (6)
+2 1/36   (7)
+3 1/36   (8)
+4 1/36   (9)
+5 1/36   (10)
+6 1/36   (11)
+
+# 6
+1 1/36   (7)
+2 1/36   (8)
+3 1/36   (9)
+4 1/36   (10)
+5 1/36   (11)
+6 1/36   (12)
+</pre>
+Adding up all events that give a value greater than 7 gives us P(B∩S) = 12/36 = 1/3.
+$$
+P(S|A) = \frac{P(S\cap B)}{P(B)} = \frac{1/3}{1/2} = 2/3.
+$$
+<br /><br />
+<b>(c)</b><br />
+Event C: first roll is a 1. P(C) = 1/6. Restricted tree with sum of values in parenthesis.
+<pre style="font-family: monospace; background: #eee;">
+1 1/36   (2)
+2 1/36   (3)
+3 1/36   (4)
+4 1/36   (5)
+5 1/36   (6)
+6 1/36   (7)
+</pre>
+No values are greater than 7. The probability then becomes P(C∩S) = P(C)P(S) = 0.
+<br /><br />
+<b>(d)</b><br />
+Event D: first roll is smaller than 5, i.e. 1-4. P(D) = 2/3. Restricted tree with sum of values in parenthesis.
+<pre style="font-family: monospace; background: #eee;">
+# 1
+1 1/36   (2)
+2 1/36   (3)
+3 1/36   (4)
+4 1/36   (5)
+5 1/36   (6)
+6 1/36   (7)
+
+# 2
+1 1/36   (3)
+2 1/36   (4)
+3 1/36   (5)
+4 1/36   (6)
+5 1/36   (7)
+6 1/36   (8)
+
+# 3
+1 1/36   (4)
+2 1/36   (5)
+3 1/36   (6)
+4 1/36   (7)
+5 1/36   (8)
+6 1/36   (9)
+
+# 4
+1 1/36   (5)
+2 1/36   (6)
+3 1/36   (7)
+4 1/36   (8)
+5 1/36   (9)
+6 1/36   (10)
+</pre>
+Counting all occurrences greater than 7 gives P(D∩S) = 6/36 = 1/6.
+$$
+P(S|D) = \frac{P(S\cap D)}{P(D)} = \frac{1/6}{2/3} = 1/4.
+$$
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 4</h3>
+A card is drawn at random from a deck of cards. What is the probability that
+<br /><br />
+<b>(a)</b> it is a heart, given that it is red?
+<br /><br />
+<b>(b)</b> it is higher than a 10, given that it is a heart? (Interpret J, Q, K, A as
+11, 12, 13, 14.)
+<br /><br />
+<b>(c)</b> it is a jack, given that it is red?
+<br /><br />
+<i>Answer</i><br />
+Informally!
+<br /><br />
+<b>(a)</b><br />
+P(Red) = 1/2. P(Heart ∩ Red) = 1/4 ==> P(Heart | Red) = 1/2. (Independent events)
+<br /><br />
+<b>(b)</b><br />
+P(Heart) = 1/4. P(Greater than 10 ∩ Heart) = 1/13 ==> P(Gt10 | Heart) = 4/13.
+<br /><br />
+P(Red) = 1/2. P(Jack ∩ Red) = 1/13 ==> P(Jack | Red) = 2/13.
+<b>(c)</b><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 5</h3>
+A coin is tossed three times. Consider the following events
+<br /><br />
+A: Heads on the first toss.
+<br /><br />
+B: Tails on the second.
+<br /><br />
+C: Heads on the third toss.
+<br /><br />
+D: All three outcomes the same (HHH or TTT).
+<br /><br />
+E: Exactly one head turns up.
+<br /><br />
+<b>(a)</b> Which of the following pairs of these events are independent?
+<div class="indent">
+(1) A, B<br />
+(2) A, D<br />
+(3) A, E<br />
+(4) D, E
+</div>
+<b>(b)</b> Which of the following triples of these events are independent?
+<div class="indent">
+(1) A, B, C<br />
+(2) A, B, D<br />
+(3) C, D, E
+</div>
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<b>(a)</b><br />
+A, B and 
+<br /><br />
+<b>(b)</b><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 6</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 7</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 8</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 9</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 10</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 11</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 12</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 13</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 14</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 15</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 16</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 17</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 18</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 19</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 20</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 21</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 22</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 23</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 24</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 25</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 26</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 27</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 28</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 29</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 30</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 31</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 32</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 33</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 34</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 35</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 36</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 37</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 38</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 39</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 40</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 41</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 42</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 43</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 44</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 45</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 46</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 47</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 48</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 49</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 50</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 51</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 52</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 53</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 54</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 55</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 56</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 57</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 58</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 59</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+<!-- ≥ ≤ -->
+
+<!--
+
+<b>Code</b>:<br />
+<div class="rcode">
+
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+
+</pre>
+<br /><br />
+-->
+
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+</div><!-- End page div-->
+</body>
+</html>
+
