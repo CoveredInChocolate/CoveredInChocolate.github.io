@@ -389,13 +389,13 @@ A card is drawn at random from a deck of cards. What is the probability that
 Informally!
 <br /><br />
 <b>(a)</b><br />
-P(Red) = 1/2. P(Heart ∩ Red) = 1/4 ==> P(Heart | Red) = 1/2. (Independent events)
+P(Red) = 1/2. P(Heart ∩ Red) = 1/4 ==> P(Heart | Red) = 1/2.
 <br /><br />
 <b>(b)</b><br />
-P(Heart) = 1/4. P(Greater than 10 ∩ Heart) = 1/13 ==> P(Gt10 | Heart) = 4/13.
+P(Heart) = 1/4. P(Greater than 10 ∩ Heart) = 4/52 ==> P(Gt10 | Heart) = 4/13.
 <br /><br />
-P(Red) = 1/2. P(Jack ∩ Red) = 1/13 ==> P(Jack | Red) = 2/13.
 <b>(c)</b><br />
+P(Red) = 1/2. P(Jack ∩ Red) = 1/13 ==> P(Jack | Red) = 2/13.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -404,7 +404,7 @@ P(Red) = 1/2. P(Jack ∩ Red) = 1/13 ==> P(Jack | Red) = 2/13.
 
 
 
-
+<!-- p. 159 -->
 <h3>Exercise 5</h3>
 A coin is tossed three times. Consider the following events
 <br /><br />
@@ -435,9 +435,37 @@ E: Exactly one head turns up.
 <i>Answer</i><br />
 <br /><br />
 <b>(a)</b><br />
-A, B and 
+(1) A, B. Clearly <b>independent</b>, both have a probability of 1/2 and both happening has a probability of 1/4.
+<br /><br />
+(2) A, D. <b>Independent</b>!<br />
+P(D) = P({HHH}) + P({TTT}) = 1/4. P(A) = P({HTT}) + P({HTH}) + P({HHT}) + P({HHH}) = 1/2.
+So the intersection is, P(A∩D) = P({HHH}) = 1/8. And P(D|A) = P(A∩D)/P(A) = (1/8)/(1/2) = 1/4 which is equal to P(D).
+<br /><br />
+(3) A, E. Dependent. A is a subset of E.<br />
+P(A) = 1/2. P(E) = P({HTT}) + P({THT}) + P({TTH}) = 3/8. The intersection becomes, P(A∩E) = P({HTT}) = 1/8.
+And so, P(E|A) = P(A∩E)/P(A) = (1/8)/(1/2) = 1/4, so the conditional probability is changed.
+<br /><br />
+(4) D, E. Dependent.<br />
+As shown before, P(D) = 2/8 and P(E) = 3/8.
+<br /><br />
+Writing out the sets.<br />
+D = {HHH, TTT} and E = {HTT, THT, TTH}. The interscetion is empty, so P(D∩E) = P(∅) = 0 which is different from the
+product; P(D)P(E) = (2/8)(3/8) = 6/64 = 3/32.
 <br /><br />
 <b>(b)</b><br />
+Now we need to check that all pair of subsets are mutually independent.
+<br /><br />
+(1) A, B, C. We have already established that A and B are independent, so we have to check that A, C and B, C are independent.
+But all these sets are obviously pairwise <b>independent</b> and since P(A∩B∩C) = 1/8 and P(A)P(B)P(C) = 1/8 so are A, B, C.
+<br /><br />
+(2) A, B, D. We have shown that A, B and A, D are independent, so we check if B, D are independent.
+<br /><br />
+P(D) = P({HHH}) + P({TTT}) = 1/4. P(B) = P({HTH}) + P({HTT}) + P({TTH}) + P({TTT}) = 1/2.
+So the intersection is, P(B∩D) = P({TTT}) = 1/8. And P(D|B) = P(B∩D)/P(B) = (1/8)/(1/2) = 1/4 which is equal to P(D).
+<br /><br />
+Finally: P(A)P(B)P(D) = (1/2)(1/2)(1/4) = 1/16. and P(A∩B∩D) = P(∅) = 0. These probabilities are not equal, so A, B, D are not independent.
+<br /><br />
+(3) C, D, E. As shown earlier, D and E are dependent, so this is not independent.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -448,10 +476,24 @@ A, B and
 
 
 <h3>Exercise 6</h3>
-asd
+From a deck of five cards numbered 2, 4, 6, 8, and 10, respectively, a card
+is drawn at random and replaced. This is done three times. What is the
+probability that the card numbered 2 was drawn exactly two times, given
+that the sum of the numbers on the three draws is 12?
 <br /><br />
 <i>Answer</i><br />
+If we count all possible outcomes, we get a total of 5<sup>3</sup> = 125 possible draws, and each of them have
+equal probability of 1/125.
 <br /><br />
+The possible ways of getting 12 with three cards are:<br />
+{4, 4, 4}, 6 possible permutations of {6, 4, 2}, 3 possible permutations of {2, 2, 8}, which gives 10 possible outcomes.
+So if we define the event T as getting 12, we get P(T) = 10/125 = 2/25.
+<br /><br />
+Out of these, there are 3 possible ways of getting 12 when we draw 2 twice. We define this outcome as Q, so P(Q) = 3/125.
+Since Q is a subset of T, we get P(Q∩T) = 3/125. So,
+$$
+P(Q|T) = \frac{P(Q\cap T)}{P(T)} = \frac{3/125}{2/25} = 75/250 = 3/10 = 0.3.
+$$
 <div class="exend">&#9632;</div>
 <br /><br />
 
@@ -461,9 +503,35 @@ asd
 
 
 <h3>Exercise 7</h3>
-asd
+A coin is tossed twice. Consider the following events.<br />
+<b>A</b>: Heads on the first toss.<br />
+<b>B</b>: Heads on the second toss.<br />
+<b>C</b>: The two tosses come out the same.
+<br /><br />
+<b>(a)</b> Show that A, B, C are pairwise independent but not independent.<br />
+<b>(b)</b> Show that C is independent of A and B but not of A ∩ B.<br />
 <br /><br />
 <i>Answer</i><br />
+<br /><br />
+The outcome for this problem: Ω = {HH, HT, TH, TT}, each with probability 1/4.<br />
+A = {HT, HH} and P(A) = 1/2.<br />
+B = {TH, HH} and P(B) = 1/2.<br />
+C = {TT, HH} and P(C) = 1/2.<br />
+<br /><br />
+<b>(a)</b><br />
+So, A∩B = {HH} and P(A∩B) = 1/4, and P(A)P(B) = 1/4, so A, B are independent.
+<br /><br />
+A∩C = {HH} and P(A∩C) = 1/4, and P(A)P(C) = 1/4, so A, C are independent.
+<br /><br />
+B∩C = {HH} and P(B∩C) = 1/4, and P(B)P(C) = 1/4, so B, C are independent.
+<br /><br />
+However, A∩B∩C = {HH}, and P(A∩B∩C) = 1/4, but P(A)P(B)P(C) = 1/8, so all sets are pairwise independent, but
+all three sets are not.
+<br /><br />
+<b>(b)</b><br />
+As shown in (a), C is independent of A and B. The event A∩B = {HH} so P(A∩B) = 1/4.
+We also get A∩B∩C = {HH} so P(A∩B∩C) = 1/4 and P(A∩B)P(C) = 1/8. Since these probabilities are not
+equal, the events are not independent.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -474,7 +542,10 @@ asd
 
 
 <h3>Exercise 8</h3>
-asd
+Let Ω = {a, b, c, d, e, f}. Assume that m(a) = m(b) = 1/8 and m(c) =
+m(d) = m(e) = m(f ) = 3/16. Let A, B, and C be the events A = {d, e, a},
+B = {c, e, a}, C = {c, d, a}. Show that P (A ∩ B ∩ C) = P(A)P(B)P(C) but
+no two of these events are independent.
 <br /><br />
 <i>Answer</i><br />
 <br /><br />
