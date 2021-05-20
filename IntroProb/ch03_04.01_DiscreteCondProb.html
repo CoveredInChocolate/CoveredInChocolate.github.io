@@ -543,11 +543,21 @@ equal, the events are not independent.
 
 <h3>Exercise 8</h3>
 Let Ω = {a, b, c, d, e, f}. Assume that m(a) = m(b) = 1/8 and m(c) =
-m(d) = m(e) = m(f ) = 3/16. Let A, B, and C be the events A = {d, e, a},
+m(d) = m(e) = m(f) = 3/16. Let A, B, and C be the events A = {d, e, a},
 B = {c, e, a}, C = {c, d, a}. Show that P (A ∩ B ∩ C) = P(A)P(B)P(C) but
 no two of these events are independent.
 <br /><br />
 <i>Answer</i><br />
+<br /><br />
+First we calculate the set probabilities.<br />
+P(A) = m(d) + m(e) + m(a) = 3/16 + 3/16 + 2/16 = 1/2<br />
+P(B) = m(c) + m(e) + m(a) = 3/16 + 3/16 + 2/16 = 1/2<br />
+P(C) = m(c) + m(d) + m(a) = 3/16 + 3/16 + 2/16 = 1/2.
+<br /><br />
+A ∩ B ∩ C = {a}  ==>  P(A ∩ B ∩ C) = 1/8. Also, P(A)P(B)P(C) = 1/8, so these probabilities are the same.
+<br /><br />
+Note that P(A)P(B) = 1/4. But A ∩ B = {e, a} and P(A ∩ B) = 5/16 - so A, B are note independent.<br />
+The argument is exactly the same for A, C and B, C.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -558,9 +568,32 @@ no two of these events are independent.
 
 
 <h3>Exercise 9</h3>
-asd
+What is the probability that a family of two children has<br />
+(a) two boys given that it has at least one boy?<br />
+(b) two boys given that the first child is a boy?
 <br /><br />
 <i>Answer</i><br />
+Assuming that the probability for B (boy) and G (girl) are both 1/2. The full outcome:<br />
+Ω = {BB, BG, GB, GG}, each with probability 1/4.
+<br /><br />
+Let S be the event that the family has two boys. Let F be the event that the first is a boy,
+and let E be the event that either child is a boy. Writing out the sets. (S; sons, F: first is boy, E: either is boy)
+<br /><br />
+S = {BB}, and P(S) = 1/4<br />
+F = {BG, BB}, and P(F) = 1/2<br />
+E = {GB, BB, BG}, and P(E) = 3/4<br />
+<br /><br />
+(a) We want to calculate P(S|E).
+<br /><br />
+S∩E = {BB}, so P(S∩E) = 1/4.
+<br /><br />
+P(S|E) = P(S∩E)/P(E) = (1/4)/(3/4) = 4/12 = 1/3.
+<br /><br />
+(b) We want to calculate P(S|F).
+<br /><br />
+S∩F = {BB}, so P(S∩F) = 1/4.
+<br /><br />
+P(S|F) = P(S∩F)/P(F) = (1/4)/(1/2) = 2/4 = 1/2.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -571,12 +604,8 @@ asd
 
 
 <h3>Exercise 10</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
+<i>Skipped - data unavailable</i><br />
+<br /><br /><br /><br />
 
 
 
@@ -584,7 +613,9 @@ asd
 
 
 <h3>Exercise 11</h3>
-asd
+Simulate the Monty Hall problem. Carefully state any assumptions that you
+have made when writing the program. Which version of the problem do you
+think that you are simulating?
 <br /><br />
 <i>Answer</i><br />
 <br /><br />
