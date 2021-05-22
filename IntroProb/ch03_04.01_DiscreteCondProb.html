@@ -618,6 +618,102 @@ have made when writing the program. Which version of the problem do you
 think that you are simulating?
 <br /><br />
 <i>Answer</i><br />
+Do not make any particular assumptions? The winning door is a random sample from {1, 2, 3}. Then the initial door choice
+is another random sample of {1, 2, 3}. Then there are two strategies the contestant can select: stay with the initial choice
+or switch to another door. After simulating 1000 games, the winning rate for staying is roughly 1/3, and the win rate for
+switching is roughly 2/3. (As described in the text, this simulation reflects the standard choice that Marilyin assumed).
+<br /><br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 04.01 - Exercise 11 - Monty Hall</span>
+
+RunMonty &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>(strat=<span class="hljs-string" style="color: rgb(163, 21, 21);">"stay"</span>, report = <span class="hljs-literal" style="color: rgb(163, 21, 21);">FALSE</span>) {
+    <span class="hljs-comment" style="color: green;"># Draw winning door</span>
+    winDoor = sample(<span class="hljs-number">1</span>:<span class="hljs-number">3</span>, size=<span class="hljs-number">1</span>)
+    
+    <span class="hljs-comment" style="color: green;"># Contestant door selection</span>
+    contDoor = sample(<span class="hljs-number">1</span>:<span class="hljs-number">3</span>, size=<span class="hljs-number">1</span>)
+    
+    altDoor = <span class="hljs-number">0</span>
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (winDoor == contDoor) {
+        <span class="hljs-comment" style="color: green;"># Contestant has currently selected the right door</span>
+        <span class="hljs-comment" style="color: green;"># Host opens a door at random</span>
+        <span class="hljs-comment" style="color: green;"># Contestant can switch to altDoor (remaining closed)</span>
+        altDoor = sample(setdiff(<span class="hljs-number">1</span>:<span class="hljs-number">3</span>, winDoor), size=<span class="hljs-number">1</span>)
+    } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> {
+        <span class="hljs-comment" style="color: green;"># Contestant selects wrong door</span>
+        <span class="hljs-comment" style="color: green;"># Host opens remaining door</span>
+        <span class="hljs-comment" style="color: green;"># altDoor becomes winDoor</span>
+        altDoor = winDoor
+    }
+    
+    <span class="hljs-comment" style="color: green;"># Contestant strategy</span>
+    win = <span class="hljs-number">0</span>
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (strat == <span class="hljs-string" style="color: rgb(163, 21, 21);">"stay"</span>) {
+        <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (contDoor == winDoor) {
+            win = <span class="hljs-number">1</span>
+        }
+    } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> {
+        <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (altDoor == winDoor) {
+            win = <span class="hljs-number">1</span>
+        }
+    }
+    
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span>(report) {
+    cat(sprintf(<span class="hljs-string" style="color: rgb(163, 21, 21);">"Winning  door: %d \n"</span>, winDoor))
+    cat(sprintf(<span class="hljs-string" style="color: rgb(163, 21, 21);">"First select.: %d \n"</span>, contDoor))
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (strat == <span class="hljs-string" style="color: rgb(163, 21, 21);">"stay"</span>) {
+        cat(sprintf(<span class="hljs-string" style="color: rgb(163, 21, 21);">"Final select.: %d \n"</span>, contDoor))
+    } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> {
+        cat(sprintf(<span class="hljs-string" style="color: rgb(163, 21, 21);">"Final select.: %d \n"</span>, altDoor))
+    }
+    cat(sprintf(<span class="hljs-string" style="color: rgb(163, 21, 21);">"-------\n"</span>))
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (win == <span class="hljs-number">1</span>) {
+        cat(sprintf(<span class="hljs-string" style="color: rgb(163, 21, 21);">"OUTCOME      : WIN\n"</span>))
+    } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> {
+        cat(sprintf(<span class="hljs-string" style="color: rgb(163, 21, 21);">"OUTCOME      : LOSS\n"</span>))
+    }
+    }
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(win)
+}
+
+
+RunMonty(strat = <span class="hljs-string" style="color: rgb(163, 21, 21);">"stay"</span>, report = <span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>)
+RunMonty(strat = <span class="hljs-string" style="color: rgb(163, 21, 21);">"switch"</span>, report = <span class="hljs-literal" style="color: rgb(163, 21, 21);">TRUE</span>)
+
+<span class="hljs-comment" style="color: green;"># Run 1000 times with both strategies</span>
+NGAMES = <span class="hljs-number">1000</span>
+stratStay = rep(<span class="hljs-number">0</span>, NGAMES)
+stratSwitch = rep(<span class="hljs-number">0</span>, NGAMES)
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span>(n <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:NGAMES) {
+    stratStay[n] = RunMonty(strat = <span class="hljs-string" style="color: rgb(163, 21, 21);">"stay"</span>)
+    stratSwitch[n] = RunMonty(strat = <span class="hljs-string" style="color: rgb(163, 21, 21);">"switch"</span>)
+}
+mean(stratStay)
+mean(stratSwitch)
+</pre>
+</div>
+<br /><br />
+<pre class="rcode">
+> RunMonty(strat = "stay", report = TRUE)
+Winning  door: 2 
+First select.: 1 
+Final select.: 1 
+-------
+OUTCOME      : LOSS
+
+> RunMonty(strat = "switch", report = TRUE)
+Winning  door: 3 
+First select.: 2 
+Final select.: 3 
+-------
+OUTCOME      : WIN
+
+# Simulating 1000 games
+> mean(stratStay)
+[1] 0.338
+> mean(stratSwitch)
+[1] 0.676
+</pre>
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -626,11 +722,111 @@ think that you are simulating?
 
 
 
-
+<!-- p. 159 -->
 <h3>Exercise 12</h3>
-asd
+In Example 4.17, how large must the prior probability of cancer be to give a
+posterior probability of .5 for cancer given a positive test?
 <br /><br />
 <i>Answer</i><br />
+Repeating the example here.
+<br /><br />
+    <div class="indent">
+        <i>
+        <b>Example 4.17</b> A doctor gives a patient a test for a particular cancer. Before the
+        results of the test, the only evidence the doctor has to go on is that 1 woman
+        in 1000 has this cancer. Experience has shown that, in 99 percent of the cases in
+        which cancer is present, the test is positive; and in 95 percent of the cases in which
+        it is not present, it is negative. If the test turns out to be positive, what probability
+        should the doctor assign to the event that cancer is present? An alternative form
+        of this question is to ask for the relative frequencies of false positives and cancers.
+        We are given that prior(cancer) = .001 and prior(not cancer) = .999. We
+        know also that P (+|cancer) = .99, P (−|cancer) = .01, P (+|not cancer) = .05,
+        and P (−|not cancer) = .95. Using this data gives the result shown in Figure 4.5.
+        We see now that the probability of cancer given a positive test has only increased
+        from .001 to .019. While this is nearly a twenty-fold increase, the probability that
+        the patient has the cancer is still small. Stated in another way, among the positive
+        results, 98.1 percent are false positives, and 1.9 percent are cancers. When a group
+        of second-year medical students was asked this question, over half of the students
+        incorrectly guessed the probability to be greater than .5.
+        </i>
+    </div>
+<br /><br />
+Solving this numerically and finding that a prior(cancer) = 0.048 leads to a probability of 0.5.
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 04.01 - Exercise 12 - Achieving 0.5</span>
+
+<span class="hljs-comment" style="color: green;">### Initial tree</span>
+c = <span class="hljs-number">0.001</span>
+n = <span class="hljs-number">1</span> - c
+
+cPos = <span class="hljs-number">0.99</span>
+cNeg = <span class="hljs-number">0.01</span>
+
+nPos = <span class="hljs-number">0.05</span>
+nNeg = <span class="hljs-number">0.95</span>
+
+P_pos_g_c = round(c*cPos,<span class="hljs-number">3</span>)
+P_neg_g_c = round(c*cNeg,<span class="hljs-number">3</span>)
+
+P_pos_g_n = round(n*nPos,<span class="hljs-number">3</span>)
+P_neg_g_n = round(n*nNeg,<span class="hljs-number">3</span>)
+
+P_pos_g_c
+P_neg_g_c
+P_pos_g_n
+P_neg_g_n
+
+<span class="hljs-comment" style="color: green;">### Initial reverse tree</span>
+posRate = P_pos_g_c + P_pos_g_n
+negRate = <span class="hljs-number">1</span> - posRate
+
+<span class="hljs-comment" style="color: green;">### Reverse tree</span>
+P_pos_g_c/posRate
+
+
+
+<span class="hljs-comment" style="color: green;">### Adjusted tree</span>
+c = <span class="hljs-number">0.048</span>
+n = <span class="hljs-number">1</span> - c
+
+cPos = <span class="hljs-number">0.99</span>
+cNeg = <span class="hljs-number">0.01</span>
+
+nPos = <span class="hljs-number">0.05</span>
+nNeg = <span class="hljs-number">0.95</span>
+
+P_pos_g_c = round(c*cPos,<span class="hljs-number">3</span>)
+P_neg_g_c = round(c*cNeg,<span class="hljs-number">3</span>)
+
+P_pos_g_n = round(n*nPos,<span class="hljs-number">3</span>)
+P_neg_g_n = round(n*nNeg,<span class="hljs-number">3</span>)
+
+P_pos_g_c
+P_neg_g_c
+P_pos_g_n
+P_neg_g_n
+
+<span class="hljs-comment" style="color: green;">### Initial reverse tree</span>
+posRate = P_pos_g_c + P_pos_g_n
+negRate = <span class="hljs-number">1</span> - posRate
+
+<span class="hljs-comment" style="color: green;">### Reverse tree</span>
+P_pos_g_c/posRate
+</pre>
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+> ### Reverse tree [c = 0.001]
+> P_pos_g_c/posRate
+[1] 0.01960784
+
+> ### Reverse tree [c = 0.048]
+> P_pos_g_c/posRate
+[1] 0.5
+</pre>
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -641,9 +837,20 @@ asd
 
 
 <h3>Exercise 13</h3>
-asd
+Two cards are drawn from a bridge deck. What is the probability that the
+second card drawn is red?
 <br /><br />
 <i>Answer</i><br />
+Assuming this is a standard deck of cards.
+<br /><br />
+There are two cases that must be considered. The first card can either be black or red, each with 1/2 probability.
+We define R as the event that the second card is red. A is the event that the first card is black, and B is the
+event that the first card is red. Then P(A) = P(B) = 1/2.
+<br /><br />
+If the first card is black, then P(R|A) = 26/51. If the first card is red, then P(R|B) = 25/51.
+<br /><br />
+By the law of total probability,<br />
+P(R) = P(A)P(R|A) + P(B)P(R|B) = (1/2)(26/51) + (1/2)(25/51) = (51/102) = 0.5.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -652,12 +859,19 @@ asd
 
 
 
-
+<!-- p. 160 -->
 <h3>Exercise 14</h3>
-asd
+If P(B<sup>c</sup>) = 1/4 and P(A|B) = 1/2, what is P(A ∩ B)?
 <br /><br />
 <i>Answer</i><br />
+By law of complement, P(B) = 1 - P(B<sup>c</sup>) = 3/4.
 <br /><br />
+By definition of conditional probability,
+$$
+P(A|B) = \frac{P(A\cap B)}{P(B)}
+\;\;\Longrightarrow\;\;
+P(A\cap B) = P(A|B)P(B) = (1/2)(3/4) = 3/8.
+$$
 <div class="exend">&#9632;</div>
 <br /><br />
 
@@ -667,9 +881,36 @@ asd
 
 
 <h3>Exercise 15</h3>
-asd
+<b>(a)</b> What is the probability that your bridge partner has exactly two aces,
+given that she has at least one ace?
+<br /><br />
+<b>(b)</b> What is the probability that your bridge partner has exactly two aces,
+given that she has the ace of spades?
 <br /><br />
 <i>Answer</i><br />
+<br /><br />
+<b>(a)</b><br />
+In a game of bridge there are 4 players that each get 13 cards. So our partner has 13 cards, excluding our two opponents'
+cards as well as our cards. As I later found out, I calculated the probability of having exactly two aces, given that you
+have one ace. Let F be the event that the player gets one ace, and S the event that the player gets two aces.
+<br /><br />
+In this case, S is a subset of F, so P(F|S) = P(F∩S)/P(F) = P(S)/P(F).
+$$
+P(F) = \frac{\binom{4}{1}\binom{48}{12}}{\binom{52}{13}} \approx 0.43887
+$$
+$$
+P(S) = \frac{\binom{4}{2}\binom{48}{11}}{\binom{52}{13}} \approx 0.2134
+$$
+So, P(S|F) = P(S)/P(F) ≈ 0.2134/0.43887 ≈ 0.4864.
+<br /><br />
+Instead, we want to find the probability of exactly two aces, given that the player has at least one ace.
+Counting all possible draws of getting at least one ace: binom(52, 13) - binom(48, 13), i.e. all possible draws
+minus all possible draws that don't contain any of the aces. Then for T: exactly two aces, the probability becomes:
+$$
+P(T) = \frac{\binom{4}{2}\binom{48}{11}}{\binom{52}{13} - \binom{48}{13}} \approx 0.307.
+$$
+<br /><br />
+<b>(b)</b><br />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -680,9 +921,21 @@ asd
 
 
 <h3>Exercise 16</h3>
-asd
+Prove that for any three events A, B, C, each having positive probability, and
+with the property that P(A ∩ B) > 0,<br />
+P(A ∩ B ∩ C) = P(A)P(B|A)P(C|A ∩ B).
 <br /><br />
 <i>Answer</i><br />
+Define Q = A ∩ B, so P(Q) = P(A ∩ B) > 0.
+<br /><br />
+By definition of conditional probability,<br />
+P(C|Q) = P(Q ∩ C)/P(Q)  ==>  P(Q ∩ C) = P(Q)P(C|Q).<br />
+P(A|B) = P(A ∩ B)/P(B)  ==>  P(Q) = P(A ∩ B) = P(A)P(B|A).
+<br /><br />
+Then, using both of these,
+$$
+P(A\cap B\cap C) = P(Q\cap C) = P(Q)P(C|Q) = P(A)P(B|A)P(C|A\cap B).
+$$
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -693,9 +946,44 @@ asd
 
 
 <h3>Exercise 17</h3>
-asd
+Prove that if A and B are independent so are
+<br /><br />
+<b>(a)</b> A and B<sup>c</sup>
+<br /><br />
+<b>(b)</b> A<sup>c</sup> and B<sup>c</sup>
 <br /><br />
 <i>Answer</i><br />
+<br /><br />
+By independence, P(A ∩ B) = P(A)P(B). Also, by law of complements, P(B<sup>c</sup>) = 1 - P(B).
+<br /><br />
+<b>(a)</b><br />
+\begin{align}
+P(A) &= P(A\cap B) + P(A\cap B^c)
+\\&\\
+P(A\cap B^c) &= P(A) - P(A\cap B)
+\\&\\
+P(A\cap B^c) &= P(A) - P(A)P(B)
+\\&\\
+P(A\cap B^c) &= P(A)[1 - P(B)]
+\\&\\
+P(A\cap B^c) &= P(A)P(B^c),
+\end{align}
+which by Theorem 4.1 shows that A and B<sup>c</sup> are independent.
+<br /><br />
+<b>(b)</b><br />
+We can apply the result from (a) to A<sup>c</sup> and B. Then,
+\begin{align}
+P(A^c) &= P(A^c\cap B) + P(A^c\cap B^c)
+\\&\\
+P(A^c\cap B^c) &= P(A^c) - P(A^c\cap B)
+\\&\\
+P(A^c\cap B^c) &= P(A^c) - P(A^c)P(B)
+\\&\\
+P(A^c\cap B^c) &= P(A^c)[1 - P(B)]
+\\&\\
+P(A^c\cap B^c) &= P(A^c)P(B^c),
+\end{align}
+which by Theorem 4.1 shows that A<sup>c</sup> and B<sup>c</sup> are independent.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -706,9 +994,20 @@ asd
 
 
 <h3>Exercise 18</h3>
-asd
+A doctor assumes that a patient has one of three diseases d<sub>1</sub>, d<sub>2</sub>, or d<sub>3</sub>. Before
+any test, he assumes an equal probability for each disease. He carries out a
+test that will be positive with probability 0.8 if the patient has d<sub>1</sub>, 0.6 if he has
+disease d<sub>2</sub>, and 0.4 if he has disease d<sub>3</sub>. Given that the outcome of the test was
+positive, what probabilities should the doctor now assign to the three possible diseases?
 <br /><br />
 <i>Answer</i><br />
+Based on the information, we construct the following tree.<br />
+<img src="img/chapter04/04.01_Ex18_01.png" />
+<br /><br />
+And then we get the following reverse tree.<br />
+<img src="img/chapter04/04.01_Ex18_02.png" />
+<br /><br />
+The new probabilities are P(d<sub>1</sub>|+) = 4/9, P(d<sub>2</sub>|+) = 3/9 and P(d<sub>3</sub>|+) = 2/9.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -719,9 +1018,31 @@ asd
 
 
 <h3>Exercise 19</h3>
-asd
+In a poker hand, John has a very strong hand and bets 5 dollars. The probability
+that Mary has a better hand is 0.04. If Mary had a better hand she
+would raise with probability 0.9, but with a poorer hand she would only raise
+with probability 0.1. If Mary raises, what is the probability that she has a
+better hand than John does?
 <br /><br />
 <i>Answer</i><br />
+Let B be the event that Mary has a better hand than John. We know that P(B) = 0.04,
+and then the probability that Mary has a worse hand is<br />
+P(B<sup>c</sup>) = 1 - P(B) = 0.96.
+<br /><br />
+Next, we define R as the event that Mary raises. As given, P(R|B) = 0.9 and P(R|B<sup>c</sup>) = 0.1.
+<br /><br />
+We are going to calculate P(B|R). And for that we use Bayes' Theorem.
+\begin{align}
+P(B|R) &= \frac{P(R|B)P(B)}{P(R|B)P(B) + P(R|B^c)P(B^c)}
+\\&\\
+&= \frac{(0.9)(0.04)}{(0.9)(0.04) + (0.1)(0.96)}
+\\&\\
+&= \frac{0.036}{0.036 + 0.096}
+\\&\\
+&= \frac{0.036}{0.132}
+\\&\\
+&\approx 0.272727\ldots
+\end{align}
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -732,9 +1053,51 @@ asd
 
 
 <h3>Exercise 20</h3>
-asd
+The Polya urn model for contagion is as follows: We start with an urn which
+contains one white ball and one black ball. At each second we choose a ball
+at random from the urn and replace this ball and add one more of the color
+chosen. Write a program to simulate this model, and see if you can make
+any predictions about the proportion of white balls in the urn after a large
+number of draws. Is there a tendency to have a large fraction of balls of the
+same color in the long run?
 <br /><br />
 <i>Answer</i><br />
+It's impossible to make any predictions. Sometimes a very high proportion
+of the balls are either white or black after 1000 draws, which all depends on
+the outcome of the first draws. If by chance a lot of black balls are drawn,
+it will be a self-perpetuating result to get more black etc.
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 04.01 - Exercise 20 - Simulating the Polya Urn</span>
+
+NDRAWS = <span class="hljs-number">1000</span>
+
+<span class="hljs-comment" style="color: green;"># 1 is white, 0 is black</span>
+urn = c(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>)
+
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span>(k <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:NDRAWS) {
+    draw = sample(urn, size = <span class="hljs-number">1</span>)
+    urn = c(urn, draw)
+}
+
+mean(urn)
+</pre>
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+> mean(urn)
+[1] 0.9351297
+
+
+> mean(urn)
+[1] 0.5828343
+
+
+> mean(urn)
+[1] 0.09580838
+</pre>
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -745,7 +1108,13 @@ asd
 
 
 <h3>Exercise 21</h3>
-asd
+It is desired to find the probability that in a bridge deal each player receives an
+ace. A student argues as follows. It does not matter where the first ace goes.
+The second ace must go to one of the other three players and this occurs with
+probability 3/4. Then the next must go to one of two, an event of probability
+1/2, and finally the last ace must go to the player who does not have an ace.
+This occurs with probability 1/4. The probability that all these events occur
+is the product (3/4)(1/2)(1/4) = 3/32. Is this argument correct?
 <br /><br />
 <i>Answer</i><br />
 <br /><br />
@@ -1239,6 +1608,58 @@ asd
 
 
 <h3>Exercise 59</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 60</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 61</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 62</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 63</h3>
 asd
 <br /><br />
 <i>Answer</i><br />
