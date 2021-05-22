@@ -1117,6 +1117,9 @@ This occurs with probability 1/4. The probability that all these events occur
 is the product (3/4)(1/2)(1/4) = 3/32. Is this argument correct?
 <br /><br />
 <i>Answer</i><br />
+No, this argument is not correct, though the reasoning is understandable.
+The probability of distributing the aces will be conditional probabilities
+and the calculations will be a little more involved.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -1127,9 +1130,30 @@ is the product (3/4)(1/2)(1/4) = 3/32. Is this argument correct?
 
 
 <h3>Exercise 22</h3>
-asd
+One coin in a collection of 65 has two heads. The rest are fair. If a coin,
+chosen at random from the lot and then tossed, turns up heads 6 times in a
+row, what is the probability that it is the two-headed coin?
 <br /><br />
 <i>Answer</i><br />
+Let F be the event that we pick a fair coin, so P(F) = 64/65.
+And if G is the event we pick the two headed coin, then P(G) = 1/65.
+<br /><br />
+Now we let H be the event that we toss 6 heads in a row. Then
+P(H|F) = 1/2<sup>6</sup> = 1/64, while P(H|F) = 1.
+<br /><br />
+Based on this information, we want to find P(G|H). Using Bayes' Theorem.
+\begin{align}
+P(G|H) &=
+\frac{P(H|G)P(G)}{P(H|G)P(G) + P(H|F)P(F)}
+\\&\\
+&= \frac{(1)(1/65)}{(1)(1/65) + (1/64)(64/65)}
+\\&\\
+&= \frac{1/65}{1/65 + 1/65}
+\\&\\
+&= \frac{1/65}{2/65}
+\\&\\
+&= \frac{1}{2}
+\end{align}
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -1140,9 +1164,41 @@ asd
 
 
 <h3>Exercise 23</h3>
-asd
+You are given two urns and fifty balls. Half of the balls are white and half
+are black. You are asked to distribute the balls in the urns with no restriction
+placed on the number of either type in an urn. How should you distribute
+the balls in the urns to maximize the probability of obtaining a white ball if
+an urn is chosen at random and a ball drawn out at random? Justify your
+answer.
 <br /><br />
 <i>Answer</i><br />
+Call the urns U and V, and drawing a white/black ball as the events W and B.
+We need to find the probabilities that maximizes P(W|U) and P(W|V).
+Since V = U<sup>c</sup>, we get<br />
+P(W) = P(W|U) + P(W|V)
+<br /><br />
+Using Bayes' Theorem, we can write this expressions like this:
+$$
+P(W|U) = \frac{P(U|W)P(W)}{P(U|W)P(W) + P(U|B)P(B)}
+$$
+$$
+P(W|V) = \frac{P(V|W)P(W)}{P(V|W)P(W) + P(V|B)P(B)}
+$$
+Since P(U) = P(V) = 1/2, and P(B) = P(W) = 1/2, we get:
+$$
+P(W|U) = \frac{0.5P(U|W)}{0.5P(U|W) + 0.5P(U|B)}
+= \frac{P(U|W)}{P(U|W) + P(U|B)}
+$$
+$$
+P(W|V) = \frac{0.5P(V|W)}{0.5P(V|W) + 0.5P(V|B)}
+= \frac{P(V|W)}{P(V|W) + P(V|B)}
+$$
+The probabilities are 'symmetric' so too many white balls in one will reduce the change in other.
+If U is all white and V is all black, it will give a 0.5 chance of getting W. If there is an even
+distribution, it will be a 0.5 of getting W. We can't do any better than that.
+<br /><br />
+<b>NOTE</b>: This is incorrect. The best solution is to put one white ball and the rest of the black in
+one urn, and then all white in another. That gives a probability of nearly 3/4 of getting white!
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -1153,9 +1209,13 @@ asd
 
 
 <h3>Exercise 24</h3>
-asd
+A fair coin is thrown n times. Show that the conditional probability of a head
+on any specified trial, given a total of k heads over the n trials, is k/n (k > 0).
 <br /><br />
 <i>Answer</i><br />
+They want us to calculate P(H|T<sub>i</sub>) for some arbitrary i = 1,...,n.
+<br /><br />
+I don't understand what is meant by P(T<sub>i</sub>|H)...
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -1166,9 +1226,16 @@ asd
 
 
 <h3>Exercise 25</h3>
-asd
+A coin with probability p for heads is tossed n times. Let E
+be the event 'a head is obtained on the first toss' and F<sub>k</sub> the event 'exactly k
+heads are obtained.' For which pairs (n, k) are E and F<sub>k</sub> independent?
 <br /><br />
 <i>Answer</i><br />
+From solutions manager. This is satisfied when
+$$
+p\binom{n}{k}p^kq^{n-k} = p\binom{n-1}{k-1}p^{k-1}q^{n-k}
+$$
+which is satisfied if and only if np = k, so p = k/n.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -1179,9 +1246,24 @@ asd
 
 
 <h3>Exercise 26</h3>
-asd
+Suppose that A and B are events such that P(A|B) = P(B|A) and P(A ∪ B) =
+1 and P(A ∩ B) > 0. Prove that P(A) > 1/2.
 <br /><br />
 <i>Answer</i><br />
+P(A|B) = P(A ∩ B)/P(B) and P(B|A) = P(A ∩ B)/P(A). Since these are equal, we
+can deduce that P(A) = P(B).
+<br /><br />
+Next we use that P(A ∪ B) = 1 and the set identity to get:
+\begin{align}
+1 = P(A\cup B) &= P(A) + P(B) - P(A\cap B)
+\\&\\
+1 &= P(A) + P(A) - P(A\cap B)
+\\&\\
+1 + P(A\cap B) &= 2P(A)
+\\&\\
+\frac{1}{2} + \frac{P(A\cap B)}{2} &= P(A)
+\end{align}
+Since P(A ∩ B) > 0, it follows that P(A) = 1/2 + P(A ∩ B)/2 > 1/2, so P(A) > 1/2.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -1192,9 +1274,31 @@ asd
 
 
 <h3>Exercise 27</h3>
-asd
+In London, half of the days have some rain. The weather forecaster
+is correct 2/3 of the time, i.e., the probability that it rains, given that she has
+predicted rain, and the probability that it does not rain, given that she has
+predicted that it won’t rain, are both equal to 2/3. When rain is forecast,
+Mr. Pickwick takes his umbrella. When rain is not forecast, he takes it with
+probability 1/3. Find
+<br /><br />
+<b>(a)</b> the probability that Pickwick has no umbrella, given that it rains.
+<br /><br />
+<b>(b)</b> the probability that he brings his umbrella, given that it doesn’t rain.
 <br /><br />
 <i>Answer</i><br />
+<br />
+Defining some events.
+<br /><br />
+R: Rain<br />
+N: No rain<br />
+F: Rain forecast<br />
+G: No rain forecast<br />
+U: Umbrella taken<br />
+U<sup>c</sup>: Umbrella not brought<br />
+<br /><br />
+<b>(a)</b><br />
+<br /><br />
+<b>(b)</b><br />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -1205,9 +1309,22 @@ asd
 
 
 <h3>Exercise 28</h3>
-asd
+(See book for full explanation)
+<br /><br />
+If you were the lawyer for the Collins couple how would you have countered
+the above argument?
 <br /><br />
 <i>Answer</i><br />
+The prosecution are treating all of these conditions as completely independent. Take 'girl with blonde hair'
+with probability 1/3 and 'girl with ponytail' with probability 1/10. As mentioned in the text, wearing hair in
+a ponytail is a choice that might change from day to day, so treating it as a full, independent probability is
+an oversimplification.
+<br /><br />
+Treating 'man with mustache' with probability 1/4 and 'black man with beard' with probability 1/10 are also
+almost certainly not independent events, as a person with a beard is very likely to also have a mustache.
+Having both is maybe closer to a probability of 1/12 instead of 1/40.
+<br /><br />
+Combining things like this will give a much lower overall probability.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -1218,9 +1335,23 @@ asd
 
 
 <h3>Exercise 29</h3>
-asd
+A student is applying to Harvard and Dartmouth. He estimates that he has
+a probability of 0.5 of being accepted at Dartmouth and 0.3 of being accepted
+at Harvard. He further estimates the probability that he will be accepted by
+both is 0.2. What is the probability that he is accepted by Dartmouth if he is
+accepted by Harvard? Is the event “accepted at Harvard” independent of the
+event “accepted at Dartmouth”?
 <br /><br />
-<i>Answer</i><br />
+<i>Answer</i><br /><br />
+Defining some events.
+<br /><br />
+D: Accepted at Dartmouth, P(D) = 1/2<br />
+H: Accepted at Harvard, P(H) = 3/10<br />
+P(D ∩ H) = 1/5
+<br /><br />
+P(D|H) = P(D ∩ H)/P(H) = (1/5)/(3/10) = 10/15 = 2/3
+<br /><br />
+If these events had been independent, then P(D|H) = P(D), which we see is not true.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -1231,35 +1362,87 @@ asd
 
 
 <h3>Exercise 30</h3>
-asd
+Luxco, a wholesale lightbulb manufacturer, has two factories. Factory A sells
+bulbs in lots that consists of 1000 regular and 2000 softglow bulbs each. Ran-
+dom sampling has shown that on the average there tend to be about 2 bad
+regular bulbs and 11 bad softglow bulbs per lot. At factory B the lot size is
+reversed—there are 2000 regular and 1000 softglow per lot—and there tend
+to be 5 bad regular and 6 bad softglow bulbs per lot.
+<br /><br />
+The manager of factory A asserts, “We’re obviously the better producer; our
+bad bulb rates are .2 percent and .55 percent compared to B’s .25 percent and
+.6 percent. We’re better at both regular and softglow bulbs by half of a tenth
+of a percent each.”
+<br /><br />
+“Au contraire,” counters the manager of B, “each of our 3000 bulb lots con-
+tains only 11 bad bulbs, while A’s 3000 bulb lots contain 13. So our .37
+percent bad bulb rate beats their .43 percent.”
+Who is right?
 <br /><br />
 <i>Answer</i><br />
+We normalize the error rates to per 1000 lightbulbs.
+<br /><br />
+Factory A - error rates.<br />
+Regular: 2/1000<br />
+Softglow: 5.5/1000
+<br /><br />
+Factory B - error rates.<br />
+Regular: 2.5/1000<br />
+Softglow: 6/1000
+<br /><br />
+From this we can see that Factory A is having fewer faulty bulbs. Since softglow bulbs
+have a higher error rate, it can look like Factory B is doing better since they are producing
+fewer of the error prone type.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
-
 
 
 
 
 
 <h3>Exercise 31</h3>
-asd
+<i>Skipped... Still do not have data</i>
 <br /><br />
-<i>Answer</i><br />
 <br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
 
 
 
 
 
 <h3>Exercise 32</h3>
-asd
+Reference image for the exercise.<br />
+<img src="img/chapter04/04.01_Ex32.png" />
 <br /><br />
-<i>Answer</i><br />
+<b>(a)</b> There has been a blizzard and Helen is trying to drive from Woodstock
+to Tunbridge, which are connected like the top graph in Figure 4.6. Here
+p and q are the probabilities that the two roads are passable. What is
+the probability that Helen can get from Woodstock to Tunbridge?
+<br /><br />
+<b>(b)</b> Now suppose that Woodstock and Tunbridge are connected like the middle
+graph in Figure 4.6. What now is the probability that she can get
+from W to T ? Note that if we think of the roads as being components
+of a system, then in (a) and (b) we have computed the reliability of a
+system whose components are (a) in series and (b) in parallel.
+<br /><br />
+<b>(c)</b> Now suppose W and T are connected like the bottom graph in Figure 4.6.
+Find the probability of Helen’s getting from W to T. <i>Hint</i>: If the road
+from C to D is impassable, it might as well not be there at all; if it is
+passable, then figure out how to use part (b) twice.
+<br /><br />
+<i>Answer</i><br /><br />
+<b>(a)</b><br />
+This is simply pq.
+<br /><br />
+<b>(b)</b><br />
+The probability is either p or q. If we want the maximum probability it is max(p, q).
+<br /><br />
+<b>(c)</b><br />
+Going from W to T can be done in several ways. The way with the highest probability is
+(W,D), (D,C) and (C,T) which has a (0.9)(0.95)(0.9) = 0.7695. If one road is impassable,
+there are alternatives...
+<br /><br />
+<b>Note</b>: poorly formulated exercise! What was the point of this??
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -1270,7 +1453,13 @@ asd
 
 
 <h3>Exercise 33</h3>
-asd
+Let A<sub>1</sub>, A<sub>2</sub>, and A<sub>3</sub> be events, and let B<sub>i</sub> represent either A<sub>i</sub> or its complement
+A<sup>c</sup><sub>i</sub> . Then there are eight possible choices for the triple (B<sub>1</sub>, B<sub>2</sub>, and B<sub>3</sub>). Prove
+that the events A<sub>1</sub>, A<sub>2</sub>, and A<sub>3</sub> are independent if and only if
+<br /><br />
+P(B<sub>1</sub> ∩ B<sub>2</sub> ∩ B<sub>3</sub> ) = P(B<sub>1</sub>)P(B<sub>2</sub>)P(B<sub>3</sub>),
+<br /><br />
+for all eight of the possible choices for the triple (B<sub>1</sub>, B<sub>2</sub>, and B<sub>3</sub>).
 <br /><br />
 <i>Answer</i><br />
 <br /><br />
