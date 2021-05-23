@@ -52,14 +52,109 @@
 
 <h3>Results</h3>
 
-<div class="thm">Definition 4.1</div><br />
-Le E and F be two events. We say that they are <i>independent</i> if
-both events have positive probability and,
+<div class="thm">Conditional Probability</div><br />
+If X is a continuous random variable
+with density function f(x), and if E is an event with positive probability, we define
+a conditional density function by the formula
 $$
-P(E|F) = E \;\;\text{and}\;\; P(F|E) = P(F).
+f(x|E) = 
+\left\{
+\begin{matrix}
+ f(x)/P(E) & x\in E, \\
+ 0 & x\not\in E.
+\end{matrix}
+\right.
 $$
-(Or at least one of the events has probability 0 or 1).
+Then, for any event F, we have
+$$
+P(F|E) = \int_F f(x|E)dx.
+$$
+Alternative expression:
+$$
+P(F|E) = \int_F f(x|E)dx = \int_{E\cap F} \frac{f(x)}{P(E)} dx = \frac{P(E\cap F)}{P(E)}.
+$$
 <br /><br /><br /><br />
+
+
+
+
+<div class="thm">Independent Events</div><br />
+Just as in the discrete case, independence is defined in the same way.
+The events E and F are independent if,
+$$
+P(E|F) = P(E),
+\qquad
+P(E\cap F) = P(E)P(F).
+$$
+<br /><br /><br /><br />
+
+
+
+
+<div class="thm">Definition 4.6</div><br />
+Let X<sub>1</sub>, X<sub>2</sub>, ..., X<sub>n</sub> be continuous random variables associated with
+an experiment, and let X = (X<sub>1</sub>, X<sub>2</sub>, ..., X<sub>n</sub>). Then the joint cumulative
+distribution function of X is defined by,
+$$
+F(x_1, x_2, \ldots, x_n) = P(X_1\leq x_1, X_2\leq x_2, \ldots, X_n\leq x_n).
+$$
+The joint density function of X satisfies the following equation:
+$$
+F(x_1, x_2, \ldots, x_n) =
+\int_{-\infty}^{x_1}\int_{-\infty}^{x_2} \cdots\int_{-\infty}^{x_n}
+f(t_1, t_2, \ldots, t_n)dt_n dt_{n-1}\ldots dt_1.
+$$
+<br /><br /><br /><br />
+
+
+
+
+<div class="thm">Definition 4.7</div><br />
+Let X<sub>1</sub>, X<sub>2</sub>, ..., X<sub>n</sub> be continuous random variables
+with cumulative distribution functions F<sub>1</sub>(x), F<sub>2</sub>(x), ..., F<sub>n</sub>(x).
+Then these variables are <i>mutually independent</i> if
+$$
+F(x_1, x_2, \ldots, x_n) = F_1(x_1)F_2(x_2)\cdots F_n(x_n)
+$$
+for any choice of x<sub>i</sub>. Thus, if
+X<sub>1</sub>, X<sub>2</sub>, ..., X<sub>n</sub>
+are mutually independent, then the joint cumulative distribution function of the random variable
+X = (X<sub>1</sub>, X<sub>2</sub>, ..., X<sub>n</sub>) is just the product of the individual
+CDFs. When two variables are mutually independent, we just say that they are <i>independent</i>.
+<br /><br /><br /><br />
+
+
+
+
+<div class="thm">Theorem 4.2</div><br />
+Let X<sub>1</sub>, X<sub>2</sub>, ..., X<sub>n</sub> be continuous random variables
+with PDFs f<sub>1</sub>(x), f<sub>2</sub>(x), ..., f<sub>n</sub>(x).
+Then these random variables are <i>mutually independent</i> if and only if
+$$
+f(x_1, x_2, \ldots, x_n) = f_1(x_1)f_2(x_2)\cdots f_n(x_n)
+$$
+for any choice of x<sub>i</sub>.
+<br /><br /><br /><br />
+
+
+
+
+<div class="thm">Theorem 4.3</div><br />
+Let X<sub>1</sub>, X<sub>2</sub>, ..., X<sub>n</sub> be mutually independent random variables
+and let φ<sub>1</sub>(x), φ<sub>2</sub>(x), ..., φ<sub>n</sub>(x) be continuous functions.
+Then φ<sub>1</sub>(X<sub>1</sub>), φ<sub>2</sub>(X<sub>2</sub>), ..., φ<sub>1n</sub>(X<sub>n</sub>)
+are mutually independent.
+<br /><br /><br /><br />
+
+
+
+
+<div class="thm">Definition 4.8</div><br />
+A sequence X<sub>1</sub>, X<sub>2</sub>, ..., X<sub>n</sub> of random variables X<sub>i</sub> that
+are mutually independent and have the same density is called an <i>independent trials process</i>.
+<br /><br /><br /><br />
+
+
 
 <br /><br /><br /><br />
 
@@ -82,9 +177,68 @@ $$
 
 <!-- p. 180 -->
 <h3>Exercise 1</h3>
-asd
+Pick a point x at random (with uniform density) in the interval [0, 1]. Find
+the probability that x > 1/2, given that
+<br /><br />
+<b>(a)</b> x > 1/4.<br />
+<b>(b)</b> x < 3/4.<br />
+<b>(c)</b> |x − 1/2| < 1/4.<br />
+<b>(d)</b> x<sup>2</sup> − x + 2/9 < 0.
 <br /><br />
 <i>Answer</i><br />
+We are using the uniform distribution on [0, 1], so f(x) = 1. In the exercises we define the event x > 1/2 as F, and
+the given event as E.
+<br /><br />
+<b>(a)</b><br />
+Here E = {x | x > 1/4}. We calculate the probability of E:
+$$
+P(E) = \int_E f(t)dt = \int_{1/4}^1 1 dt = \Big[t\Big]_{1/4}^1 = 1 - 1/4 = 3/4.
+$$
+So, since F ⊂ E;
+$$
+P(F|E) = \int_F f(t)/P(E) dt = \int_{1/2}^1 \frac{4}{3}dt = \Big[\frac{4t}{3}\Big]_{1/2}^1
+= \frac{4}{3}\Big[t\Big]_{1/2}^1 = \frac{4}{3}[1 - 1/2] = \frac{4}{3}\cdot \frac{1}{2} = \frac{4}{6} = \frac{2}{3}.
+$$
+(We are scaling up the probability, since we are restricting the condition to a smaller area. Makes sense!)
+<br /><br />
+<b>(b)</b><br />
+E = {x | x < 3/4}. We calculate the probability of E:
+$$
+P(E) = \int_E f(t)dt = \int_{0}^{3/4} 1 dt = \Big[t\Big]_{0}^{3/4} = 3/4 - 0 = 3/4.
+$$
+In this case, F = {x | x > 1/2}, so E ∩ F = {x | x ∊ [1/2, 3/4]}.
+$$
+P(F|E) = \int_F f(t)/P(E) dt = \frac{4}{3}\int_{1/2}^{3/4} 1dt = \frac{4}{3}\Big[t\Big]_{1/2}^{3/4}
+= \frac{4}{3}[3/4 - 2/4] = \frac{4}{3}\cdot \frac{1}{4} = \frac{1}{3}.
+$$
+<br /><br />
+<b>(c)</b><br />
+Reformulating:<br />
+|x − 1/2| < 1/4 ==> −1/4 < x − 1/2 < 1/4  ==>  1/4 < x < 3/4. So in this case, E = {x | x ∊ [1/4, 3/4]}.
+Calculating the probability of E:
+$$
+P(E) = \int_E f(t)dt = \int_{1/4}^{3/4} 1 dt = \Big[t\Big]_{1/4}^{3/4} = 3/4 - 1/4 = 1/2.
+$$
+F = {x | x > 1/2}, so E ∩ F = {x | x ∊ [2/4, 3/4]}.
+$$
+P(F|E) = \int_F f(t)/P(E) dt = 2\int_{2/4}^{3/4} 1dt = 2\Big[t\Big]_{2/4}^{3/4}
+= 2[3/4 - 2/4] = 2\cdot \frac{1}{4} = \frac{1}{2}.
+$$
+<br /><br />
+<b>(d)</b><br />
+Reformulating.<br />
+x<sup>2</sup> − x + 2/9 < 0  ==>  (x - 1/3)(x - 2/3) < 0. Zero points when x=1/3 or x=2/3. When inserting x=0 or x=1
+it is positive, but it is negative for values between 1/3 and 2/3.<br />
+Hence, E = {x | x ∊ [1/3, 2/3]}.
+Calculating the probability of E:
+$$
+P(E) = \int_E f(t)dt = \int_{1/3}^{2/3} 1 dt = \Big[t\Big]_{1/3}^{2/3} = 2/3 - 1/3 = 1/3.
+$$
+F = {x | x > 1/2}, so E ∩ F = {x | x ∊ [1/2, 2/3]}, or E = {x | x ∊ [3/6, 4/6]}.
+$$
+P(F|E) = \int_F f(t)/P(E) dt = 3\int_{3/6}^{4/6} 1dt = 3\Big[t\Big]_{3/6}^{4/6}
+= 3[4/6 - 3/6] = 3\cdot \frac{1}{6} = \frac{1}{2}.
+$$
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
