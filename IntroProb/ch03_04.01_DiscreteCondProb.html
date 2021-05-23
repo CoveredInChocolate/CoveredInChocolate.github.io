@@ -1462,6 +1462,14 @@ P(B<sub>1</sub> ∩ B<sub>2</sub> ∩ B<sub>3</sub> ) = P(B<sub>1</sub>)P(B<sub>
 for all eight of the possible choices for the triple (B<sub>1</sub>, B<sub>2</sub>, and B<sub>3</sub>).
 <br /><br />
 <i>Answer</i><br />
+Solved this in a different way then intended. But if we assume that the A<sub>i</sub> are independent, then by repeatedly
+using the result in Exercise 17, we can show that all possible permutations of complements are independent, from which it
+follows that we can always calculate
+<br /><br />
+P(B<sub>1</sub> ∩ B<sub>2</sub> ∩ B<sub>3</sub> ) = P(B<sub>1</sub>)P(B<sub>2</sub>)P(B<sub>3</sub>).
+<br /><br />
+Conversely, if we can always represent the probability of the intersection as a product, then it follows that A<sub>i</sub>
+are independent.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -1472,9 +1480,82 @@ for all eight of the possible choices for the triple (B<sub>1</sub>, B<sub>2</su
 
 
 <h3>Exercise 34</h3>
-asd
+Four women, A, B, C, and D, check their hats, and the hats are returned in a
+random manner. Let Ω be the set of all possible permutations of A, B, C, D.
+Let X<sub>j</sub> = 1 if the jth woman gets her own hat back and 0 otherwise. What
+is the distribution of X<sub>j</sub>? Are the X<sub>j</sub>’s mutually independent?
 <br /><br />
 <i>Answer</i><br />
+There are a total of 4·3·2·1 = 24 permutations. In all of these, there are 6 permutations where
+a woman gets her own hat back (refer to all outcomes in the output below). This gives us the
+distribution:
+$$
+X_j =
+\left\{
+\begin{matrix}
+ 1, & 3/8 \\
+ 0, & 5/8
+\end{matrix}
+\right.
+$$
+Let A be the event that X<sub>i</sub> = 1 and B the event that X<sub>j</sub> = 1, and let i ≠ j. Then,
+P(X<sub>i</sub>)P(X<sub>j</sub>) = 9/64.
+<br /><br />
+Now consider a specific case, when A and C are in the same place. There are only two possible outcomes out of 24 total:
+{A, B, C, D} and {A, D, C, B}, so P(X<sub>i</sub> ∩ X<sub>j</sub>) = 1/12. Since these values are not equal, the
+X<sub>j</sub>s are NOT independent.
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 04.01 - Exercise 34 - Women and Hats</span>
+
+permutations &lt;- <span class="hljs-keyword" style="color: rgb(0, 0, 255);">function</span>(n){
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span>(n==<span class="hljs-number">1</span>){
+        <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(matrix(<span class="hljs-number">1</span>))
+    } <span class="hljs-keyword" style="color: rgb(0, 0, 255);">else</span> {
+        sp &lt;- permutations(n-<span class="hljs-number">1</span>)
+        p &lt;- nrow(sp)
+        A &lt;- matrix(nrow=n*p,ncol=n)
+        <span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span>(i <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:n){
+            A[(i-<span class="hljs-number">1</span>)*p+<span class="hljs-number">1</span>:p,] &lt;- cbind(i,sp+(sp&gt;=i))
+        }
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">return</span>(A)
+    }
+}
+
+outcomes = matrix(LETTERS[permutations(<span class="hljs-number">4</span>)],ncol=<span class="hljs-number">4</span>)
+
+
+<span class="hljs-comment" style="color: green;"># Output</span>
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span>(row <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:<span class="hljs-number">12</span>) {
+    cat(outcomes[row,<span class="hljs-number">1</span>:<span class="hljs-number">4</span>],<span class="hljs-string" style="color: rgb(163, 21, 21);">" | "</span>, outcomes[row+<span class="hljs-number">12</span>,<span class="hljs-number">1</span>:<span class="hljs-number">4</span>] ,<span class="hljs-string" style="color: rgb(163, 21, 21);">"\n"</span>)
+}
+
+
+<span class="hljs-comment" style="color: green;"># Check outcomes where e.g. A and C are correct</span>
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span>(row <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:<span class="hljs-number">24</span>) {
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">if</span> (outcomes[row, <span class="hljs-number">1</span>] == <span class="hljs-string" style="color: rgb(163, 21, 21);">"A"</span> &amp; outcomes[row, <span class="hljs-number">3</span>] == <span class="hljs-string" style="color: rgb(163, 21, 21);">"C"</span>) {
+        cat(outcomes[row,<span class="hljs-number">1</span>:<span class="hljs-number">4</span>],<span class="hljs-string" style="color: rgb(163, 21, 21);">"\n"</span>)
+    }
+}
+</pre>
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+A B C D  |  C A B D 
+A B D C  |  C A D B 
+A C B D  |  C B A D 
+A C D B  |  C B D A 
+A D B C  |  C D A B 
+A D C B  |  C D B A 
+B A C D  |  D A B C 
+B A D C  |  D A C B 
+B C A D  |  D B A C 
+B C D A  |  D B C A 
+B D A C  |  D C A B 
+B D C A  |  D C B A 
+</pre>
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -1485,9 +1566,24 @@ asd
 
 
 <h3>Exercise 35</h3>
-asd
+A box has numbers from 1 to 10. A number is drawn at random. Let X<sub>1</sub> be
+the number drawn. This number is replaced, and the ten numbers mixed. A
+second number X<sub>2</sub> is drawn. Find the distributions of X<sub>1</sub> and X<sub>2</sub>. Are X<sub>1</sub>
+and X<sub>2</sub> independent? Answer the same questions if the first number is not
+replaced before the second is drawn.
 <br /><br />
 <i>Answer</i><br />
+Define S = {1, 2, ..., 10} as all numbers in the box. For the first draw, each number has the same probability of being drawn.
+We can specify the distribution.<br />
+P(X<sub>1</sub> = k) = 1/10, for k∊S.<br />
+Since all numbers are replaced, the second distribution becomes the same.<br />
+P(X<sub>2</sub> = k) = 1/10, for k∊S.<br />
+<br /><br />
+Any combination of numbers drawn will have a probability of 1/100 (this is completely analogous with a standard dice toss).
+For any k,m∊S<br />
+P(X<sub>1</sub> = k ∩ X<sub>1</sub> = m) = 1/100 = (1/10)(1/10) = P(X<sub>1</sub> = k)P(X<sub>2</sub> = m).
+<br /><br />
+Hence, these results are independent. This is NOT true in the case where the numbers are not replaced.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -1498,9 +1594,59 @@ asd
 
 
 <h3>Exercise 36</h3>
-asd
+A die is thrown twice. Let X<sub>1</sub> and X<sub>2</sub> denote the outcomes. Define X =
+min(X<sub>1</sub>, X<sub>2</sub>). Find the distribution of X.
 <br /><br />
 <i>Answer</i><br />
+Here are all outcomes of two dice tosses.
+<pre class="rcode">
+(1,1) (1,2) (1,3) (1,4) (1,5) (1,6) 
+(2,1) (2,2) (2,3) (2,4) (2,5) (2,6) 
+(3,1) (3,2) (3,3) (3,4) (3,5) (3,6) 
+(4,1) (4,2) (4,3) (4,4) (4,5) (4,6) 
+(5,1) (5,2) (5,3) (5,4) (5,5) (5,6) 
+(6,1) (6,2) (6,3) (6,4) (6,5) (6,6) 
+</pre>
+And here are the corresponding minimum values.
+<pre class="rcode">
+(1) (1) (1) (1) (1) (1) 
+(1) (2) (2) (2) (2) (2) 
+(1) (2) (3) (3) (3) (3) 
+(1) (2) (3) (4) (4) (4) 
+(1) (2) (3) (4) (5) (5) 
+(1) (2) (3) (4) (5) (6) 
+</pre>
+Reading off from this, we can specify the distribution of X.
+<br /><br />
+P(X = 1) = 11/36<br />
+P(X = 2) = 9/36<br />
+P(X = 3) = 7/36<br />
+P(X = 4) = 5/36<br />
+P(X = 5) = 3/36<br />
+P(X = 6) = 1/36<br />
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 04.01 - Exercise 36 - Minimal of dice toss</span>
+
+<span class="hljs-comment" style="color: green;"># Original dice toss</span>
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span>(k <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:<span class="hljs-number">6</span>) {
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span>(m <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:<span class="hljs-number">6</span>) {
+    cat(sprintf(<span class="hljs-string" style="color: rgb(163, 21, 21);">"(%d,%d) "</span>, k, m))
+    }
+    cat(<span class="hljs-string" style="color: rgb(163, 21, 21);">"\n"</span>)
+}
+cat(<span class="hljs-string" style="color: rgb(163, 21, 21);">"\n\n"</span>)
+
+<span class="hljs-comment" style="color: green;"># Minimal dice toss</span>
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span>(k <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:<span class="hljs-number">6</span>) {
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span>(m <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">1</span>:<span class="hljs-number">6</span>) {
+    minVal = min(k, m)
+    cat(sprintf(<span class="hljs-string" style="color: rgb(163, 21, 21);">"(%d) "</span>,minVal))
+    }
+    cat(<span class="hljs-string" style="color: rgb(163, 21, 21);">"\n"</span>)
+}</pre>
+</div>
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -1511,9 +1657,26 @@ asd
 
 
 <h3>Exercise 37</h3>
-asd
+Given that P(X = a) = r, P(max(X, Y) = a) = s, and P(min(X, Y) = a) = t,
+show that you can determine u = P(Y = a) in terms of r, s, and t.
 <br /><br />
 <i>Answer</i><br />
+Using some tricks related to join distributions.
+$$
+P(\max(X, Y) = a) = P(X=a, Y\leq a) + P(X\leq a, Y=a) - P(X=a, Y=a)
+$$
+$$
+P(\min(X, Y) = a) = P(X=a, Y> a) + P(X> a, Y=a) + P(X=a, Y=a)
+$$
+Adding these together:
+$$
+P(\max(X, Y) = a) + P(\min(X, Y) = a) = P(X=a) + P(Y=a)
+$$
+Where the last term is canceled, and $P(X=a, Y\leq a) + P(X=a, Y>a) = P(X=a)$
+since we are summing over all available Y values, which basically becomes 1.
+$$
+s + t = r + u \;\;\Longrightarrow\;\; u = s + t - u
+$$
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -1524,9 +1687,57 @@ asd
 
 
 <h3>Exercise 38</h3>
-asd
+A fair coin is tossed three times. Let X be the number of heads that turn up
+on the first two tosses and Y the number of heads that turn up on the third
+toss. Give the distribution of
+<br /><br />
+<b>(a)</b> the random variables X and Y.<br />
+<b>(b)</b> the random variable Z = X + Y.<br />
+<b>(c)</b> the random variable W = X − Y.
 <br /><br />
 <i>Answer</i><br />
+<br /><br />
+<b>(a)</b><br />
+Defining all possible outcomes of the two first coin tosses.
+<pre class="rcode">
+{HH}, {HT}, {TH}, {TT}
+</pre>
+From this we can specify the distribution for X.<br />
+P(X=0) = 1/4 <br />
+P(X=1) = 1/2 <br />
+P(X=2) = 1/4 <br />
+<br /><br />
+And for the last coin toss.
+<pre class="rcode">
+{H}, {T}
+</pre>
+From this we can specify the distribution for Y.<br />
+P(Y=0) = 1/2 <br />
+P(Y=1) = 1/2 <br />
+<br /><br />
+<b>(b)</b><br />
+For Z = X+Y we can symbolize all outcomes like this:
+<pre class="rcode">
+{HH}{H}, {HT}{H}, {TH}{H}, {TT}{H}
+{HH}{T}, {HT}{T}, {TH}{T}, {TT}{T}
+</pre>
+There are 8 possible outcomes. We specify the probability distribution.<br />
+P(Z = 0) = 1/8<br />
+P(Z = 1) = 3/8<br />
+P(Z = 2) = 3/8<br />
+P(Z = 3) = 1/8<br />
+<br /><br />
+<b>(c)</b><br />
+For W = X-Y has the same possible outcomes:
+<pre class="rcode">
+{HH}{H}, {HT}{H}, {TH}{H}, {TT}{H}
+{HH}{T}, {HT}{T}, {TH}{T}, {TT}{T}
+</pre>
+There are 8 possible outcomes. We specify the probability distribution.<br />
+P(W = -1) = 1/8<br />
+P(W = 0) = 3/8<br />
+P(W = 1) = 3/8<br />
+P(W = 2) = 1/8<br />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -1537,9 +1748,88 @@ asd
 
 
 <h3>Exercise 39</h3>
-asd
+Assume that the random variables X and Y have the joint distribution given
+in Table 4.6:<br />
+<img src="img/chapter04/04.01_Ex39.png" />
+<br /><br />
+<b>(a)</b> What is P(X ≥ 1 and Y ≤ 0)?<br />
+<b>(b)</b> What is the conditional probability that Y ≤ 0 given that X = 2?<br />
+<b>(c)</b> Are X and Y independent?<br />
+<b>(d)</b> What is the distribution of Z = XY ?
 <br /><br />
 <i>Answer</i><br />
+<br /><br />
+<b>(a)</b><br />
+Both the conditions P(X ≥ 1 and Y ≤ 0) applies to these outcomes.
+<pre class="rcode">
+  | -1       0 
+--|--------------   
+1 |  0       1/36
+2 |  1/12    0
+</pre>
+By summing these, we get P(X ≥ 1 and Y ≤ 0) = 4/36 = 1/9.
+<br /><br />
+<b>(b)</b><br />
+The conditional distribution can be read from the table.<br />
+P(Y = -1 | X = 2) = P(Y=-1 ∩ X = 2)/P(X=2) = (1/12)/(1/3) = 1/4<br />
+P(Y = 0 | X = 2) = 0
+<br /><br />
+So, P(Y ≤ 0 | X = 2) = P(Y = 0 | X = 2) + P(Y = -1 | X = 2) = 0 + 1/4 = 1/4.
+<br /><br />
+<b>(c)</b><br />
+X and Y since we can find an example where P(X ∩ Y) ≠ P(X)P(Y). For instance,
+$$
+P(X=1)P(Y=1) = (1/36 + 1/6 + 1/12)(1/6 + 1/18 + 1/6 + 1/12) = (10/36)(17/36) = 170/1296 = 85/648 \approx 0.131172
+$$
+whereas, P(X=1 ∩ Y=1) = 1/6. These are different, so X and Y are not independent.
+<br /><br />
+<b>(d)</b><br />
+Below is a list of all combinations of X and Y, and an overview of their product. From it, we add all the values
+associated with the different values and construct the probability distribution.<br />
+P(Z = -2) = 1/6<br />
+P(Z = -1) = 1/6<br />
+P(Z = 0) = 1/6<br />
+P(Z = 1) = 1/6<br />
+P(Z = 2) = 1/6<br />
+P(Z = 4) = 1/6<br />
+<br /><br />
+<b>Output</b>:<br />
+<pre class="rcode">
+# X, Y
+(-1,-1) (-1, 0) (-1, 1) (-1, 2) 
+( 0,-1) ( 0, 0) ( 0, 1) ( 0, 2) 
+( 1,-1) ( 1, 0) ( 1, 1) ( 1, 2) 
+( 2,-1) ( 2, 0) ( 2, 1) ( 2, 2) 
+
+# Z
+( 1) ( 0) (-1) (-2) 
+( 0) ( 0) ( 0) ( 0) 
+(-1) ( 0) ( 1) ( 2) 
+(-2) ( 0) ( 2) ( 4) 
+</pre>
+<br />
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 04.01 - Exercise 39 - Z = XY</span>
+
+<span class="hljs-comment" style="color: green;"># Original dice toss</span>
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span>(k <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> -<span class="hljs-number">1</span>:<span class="hljs-number">2</span>) {
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span>(m <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> -<span class="hljs-number">1</span>:<span class="hljs-number">2</span>) {
+        cat(sprintf(<span class="hljs-string" style="color: rgb(163, 21, 21);">"(%2d,%2d) "</span>, k, m))
+    }
+    cat(<span class="hljs-string" style="color: rgb(163, 21, 21);">"\n"</span>)
+}
+cat(<span class="hljs-string" style="color: rgb(163, 21, 21);">"\n\n"</span>)
+
+<span class="hljs-comment" style="color: green;"># Minimal dice toss</span>
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span>(k <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> -<span class="hljs-number">1</span>:<span class="hljs-number">2</span>) {
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span>(m <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> -<span class="hljs-number">1</span>:<span class="hljs-number">2</span>) {
+        newVal = k*m
+        cat(sprintf(<span class="hljs-string" style="color: rgb(163, 21, 21);">"(%2d) "</span>,newVal))
+    }
+    cat(<span class="hljs-string" style="color: rgb(163, 21, 21);">"\n"</span>)
+}</pre>
+</div>
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -1549,39 +1839,9 @@ asd
 
 
 
-<h3>Exercise 40</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 41</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 42</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
+<h3>Exercise 40-42</h3>
+<i>Skipped...</i>
+<br /><br /><br /><br />
 
 
 
@@ -1589,9 +1849,17 @@ asd
 
 
 <h3>Exercise 43</h3>
-asd
+The Yankees are playing the Dodgers in a world series. The Yankees win each
+game with probability 0.6. What is the probability that the Yankees win the
+series? (The series is won by the first team to win four games.)
 <br /><br />
 <i>Answer</i><br />
+In other words, best out of 7 games. This can be considered a binomial experiment
+where the success probability is 0.6. Counting the number of ways that the Dodgers can win:
+$$
+P(X = 4) = \binom{7}{3}(0.6)^4(0.4)^3 = 0.290304
+$$
+(Solutions manual has 1 minus this probability. Mistake?)
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -1601,26 +1869,9 @@ asd
 
 
 
-<h3>Exercise 44</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 45</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
+<h3>Exercise 44-45</h3>
+<i>Skipped...</i>
+<br /><br /><br /><br />
 
 
 
@@ -1628,7 +1879,9 @@ asd
 
 
 <h3>Exercise 46</h3>
-asd
+A poker hand consists of 5 cards dealt from a deck of 52 cards. Let X and
+Y be, respectively, the number of aces and kings in a poker hand. Find the
+joint distribution of X and Y .
 <br /><br />
 <i>Answer</i><br />
 <br /><br />
@@ -1705,156 +1958,10 @@ asd
 
 
 
-<h3>Exercise 52</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
+<h3>Exercise 52-63</h3>
+<i>All remaining exercises skipped...</i>
+<br /><br /><br /><br />
 
-
-
-
-
-
-<h3>Exercise 53</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 54</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 55</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 56</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 57</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 58</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 59</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 60</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 61</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 62</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 63</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
 
 <!-- ≥ ≤ -->
 
