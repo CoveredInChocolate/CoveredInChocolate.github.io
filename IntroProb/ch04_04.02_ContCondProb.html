@@ -460,6 +460,71 @@ probability that
 <b>(e)</b> x > y.
 <br /><br />
 <i>Answer</i><br />
+This exercise is quite similar to exercise 2.2.8.
+<br /><br />
+For x,y ∊ [0, 1], we have the event S = {x + y ∊ [0, 1]}. A few points:<br />
+If x = 0, then y = 1.<br />
+If x = 1, then y = 0.<br />
+If x = 1/2, then y = 1/2.<br />
+Together these form the boundary line, and every point below this line is included in the set S.
+The set S takes up half the unit square, which we use to visualize the area. P(S) = 1/2.
+<br /><br />
+Sketch image.<br />
+<img src="img/chapter04/04.02.Ex5.0.png" />
+<br /><br />
+<b>(a)</b><br />
+We found the area for |B-C| < 1/2 in 2.2.8(d). Now we have |x-y| < 1 which will take up the entire unit square.
+If we call this W = {x,y ∊ [0, 1] : |x-y| < 1}, then P(W) = 1.
+<br /><br />
+Since S ⊂ W, then S ∩ W = S. So, we can calculate the area:
+$$
+P(W|S) = \frac{P(W\cap S)}{P(S)} = \frac{P(S)}{P(S)} = 1.
+$$
+Sketch image.<br />
+<img src="img/chapter04/04.02.Ex5.a.png" />
+<br /><br />
+<b>(b)</b><br />
+Define the event Q = {x,y ∊ [0, 1] | xy < 1/2}. We found this area in 2.2.8(c)
+and as we found, it forms an area constrained by a curve in the top right.
+We can see that S ⊂ Q, so S ∩ Q = S.
+$$
+P(Q|S) = \frac{P(Q\cap S)}{P(S)} = \frac{P(S)}{P(S)} = 1.
+$$
+Sketch image.<br />
+<img src="img/chapter04/04.02.Ex5.b.png" />
+<br /><br />
+<b>(c)</b><br />
+As found in 2.2.8, the area R = {x,y ∊ [0, 1] | max(x,y) < 1/2} is the lower quarter area of the unit square.
+So, P(R) = 1/4. Also, we see that R ⊂ S, so R ∩ S = R, so P(R ∩ S) = 1/4.
+$$
+P(R|S) = \frac{P(R\cap S)}{P(S)} = \frac{P(R)}{P(S)} = \frac{1/4}{1/2} = 1/2.
+$$
+Sketch image.<br />
+<img src="img/chapter04/04.02.Ex5.c.png" />
+<br /><br />
+<b>(d)</b><br />
+This is a new area, but it is a quarter of the circle centered at (0,0) with a radius of 1/2. Let us define
+the area as C = {x,y ∊ [0, 1] | x<sup>2</sup> + y<sup>2</sup> < 1/4}. The probability of C is one fourth the
+area of the circle. Denote the area function as A().
+$$
+P(C) = \frac{A(C)}{4} = \frac{\pi(1/2)^2}{4} = \frac{\pi}{16}.
+$$
+Since C ⊂ S, so C ∩ S = C, so P(C ∩ S) = π/16.
+$$
+P(C|S) = \frac{P(C\cap S)}{P(S)} = \frac{P(C)}{P(S)} = \frac{\pi/16}{1/2} = \pi/8.
+$$
+Sketch image.<br />
+<img src="img/chapter04/04.02.Ex5.d.png" />
+<br /><br />
+<b>(e)</b><br />
+Define L = {x,y ∊ [0, 1] | x > y}. The area where x=y is the diagonal line from (0,0) to (1,1). Everything
+to the right of this line is the area where x > y. From the sketch image below, we note that
+P(L ∩ S) = 1/4 as it makes up one fourth of the total area.
+$$
+P(L|S) = \frac{P(L\cap S)}{P(S)} = \frac{1/4}{1/2} = 1/2.
+$$
+Sketch image.<br />
+<img src="img/chapter04/04.02.Ex5.e.png" />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -470,9 +535,79 @@ probability that
 
 
 <h3>Exercise 6</h3>
-asd
+Find the conditional density functions for the following experiments.
+<br /><br />
+<b>(a)</b> A number x is chosen at random in the interval [0, 1], given that x > 1/4.<br />
+<b>(b)</b> A number t is chosen at random in the interval [0, ∞) with exponential
+density e<sup>−t</sup> , given that 1 < t < 10.<br />
+<b>(c)</b> A dart is thrown at a circular target of radius 10 inches, given that it
+falls in the upper half of the target.<br />
+<b>(d)</b> Two numbers x and y are chosen at random in the interval [0, 1], given
+that x > y.
 <br /><br />
 <i>Answer</i><br />
+<br />
+<b>(a)</b><br />
+Assuming that this is the uniform distribution, so f(x) = 1 on the interval [0, 1].
+The distribution will be conditioned on the set E = {x | x > 1/4}. We calculate the probability:
+$$
+P(E) = \int_E f(x)dx = \int_{1/4}^1 1 dx = \Big[x\Big]_{1/4}^1 = 1 - 1/4 = 3/4.
+$$
+So, f(x)/P(E) = 1/(3/4) = 4/3.
+Using the definition of conditional probability as mentioned on the top.
+$$
+f(x|E) =
+\left\{
+\begin{matrix}
+ 4/3, & x\in E \\
+ 0, & x\not\in E.
+\end{matrix}
+\right.
+$$
+(Probabilities are scaled up since we are restricting it to a smaller area).
+<br /><br />
+<b>(b)</b><br />
+Here, f(t) = e<sup>-t</sup>, and the set E = {t | t ∊ (1, 10)}. Calculating P(E).
+$$
+P(E) = \int_E f(t)dt = \int_1^{10} e^{-t}dt = \Big[-e^{-t}\Big]_1^{10} = e^{-1} - e^{-10} \approx 0.3678.
+$$
+Specifying the conditional distribution function.
+$$
+f(t|E) =
+\left\{
+\begin{matrix}
+\frac{\exp\{-t\}}{0.3678}, & x\in E \\
+ 0, & x\not\in E.
+\end{matrix}
+\right.
+$$
+<br /><br />
+<b>(c)</b><br />
+As found in exercise 2.2.4, the total area of the dart board is 100π. So, the pdf is f(x,y) = 1/100π.
+The event E is the top half of the dart board and so P(E) = 1/2, so 1/P(E) = 2.
+$$
+f((x,y)|E) =
+\left\{
+\begin{matrix}
+\frac{1}{50\pi}, & x\in E \\
+ 0, & x\not\in E.
+\end{matrix}
+\right.
+$$
+<br /><br />
+<b>(d)</b><br />
+This is part (e) from the previous exercise. Assuming a uniform distribution, so f(x) = 1.
+When represented in the unit square, we found that E = {x,y ∊ [0,1] | x > y} has a probability of 1/2.
+So 1/P(E) = 2.
+$$
+f(x|E) =
+\left\{
+\begin{matrix}
+2, & x\in E \\
+0, & x\not\in E.
+\end{matrix}
+\right.
+$$
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -483,9 +618,35 @@ asd
 
 
 <h3>Exercise 7</h3>
-asd
+Let x and y be chosen at random from the interval [0, 1]. Show that the events
+x > 1/3 and y > 2/3 are independent events.
 <br /><br />
 <i>Answer</i><br />
+First we consider f(x) and f(y) as two separate uniform distributions on [0,1], so f(x) = 1 = f(y).
+Define the sets A = {x | x > 1/3} and B = {y | y > 2/3}.
+$$
+P(A) = \int_{1/3}^1 1dx = \Big[x\Big]_{1/3}^1 = 1 - 1/3 = 2/3.
+$$
+$$
+P(B) = \int_{2/3}^1 1dy = \Big[y\Big]_{2/3}^1 = 1 - 2/3 = 1/3.
+$$
+When multiplying these, we get (2/3)(1/3) = 2/9.
+<br /><br />
+Considering it as a two-dimensional PDF, f(x,y) = 1.
+\begin{align}
+P(A\cap B) &= \int_{2/3}^1\int_{1/3}^1 1 dx dy 
+\\&\\
+&= \int_{2/3}^1 \Big[x\Big]_{1/3}^1 dy
+\\&\\
+&= \int_{2/3}^1 2/3 dy
+\\&\\
+&= 2/3\Big[y\Big]_{2/3}^1
+\\&\\
+&= (2/3)(1/3)
+\\&\\
+&= 2/9
+\end{align}
+As we can see, P(A ∩ B) = P(A)P(B), which shows that A and B are independent.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -496,7 +657,8 @@ asd
 
 
 <h3>Exercise 8</h3>
-asd
+Let x and y be chosen at random from the interval [0, 1]. Which pairs of the
+following events are independent?
 <br /><br />
 <i>Answer</i><br />
 <br /><br />
