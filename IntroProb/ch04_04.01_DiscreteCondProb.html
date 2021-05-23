@@ -45,7 +45,7 @@
     </tr>
     <tr>
         <td><b>Next</b>:</td>
-        <td><a href="_TEMPLATE.html">4.2 Continuous Conditional Probability</a></td>
+        <td><a href="ch04_04.02_ContCondProb.html">4.2 Continuous Conditional Probability</a></td>
     </tr>
 </table>
 <br /><br />
@@ -1884,6 +1884,39 @@ Y be, respectively, the number of aces and kings in a poker hand. Find the
 joint distribution of X and Y .
 <br /><br />
 <i>Answer</i><br />
+Result from running the calculations in R.
+$$
+\begin{array}{||c|c|c|c|c|}
+\hline
+& 0 & 1 & 2 & 3 & 4 \\
+\hline
+0 & 0.417863 & 0.208931 & 0.030575 & 0.001456 & 0.000017 \\ 
+1 & 0.208931 & 0.081534 & 0.008736 & 0.000271 & 0.000002 \\ 
+2 & 0.030575 & 0.008736 & 0.000609 & 0.000009 & 0.000000 \\ 
+3 & 0.001456 & 0.000271 & 0.000009 & 0.000000 & 0.000000 \\ 
+4 & 0.000017 & 0.000002 & 0.000000 & 0.000000 & 0.000000 \\
+\hline
+\end{array}
+$$
+<b>Code</b>:<br />
+<div class="rcode">
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; color: rgb(0, 0, 0);"><span class="hljs-comment" style="color: green;"># 04.01 - Exercise 46 - Joint Distribution of Cards</span>
+
+<span class="hljs-comment" style="color: green;"># 4 aces, 0 kings</span>
+choose(<span class="hljs-number">4</span>, <span class="hljs-number">4</span>)*choose(<span class="hljs-number">4</span>,<span class="hljs-number">0</span>)*choose(<span class="hljs-number">44</span>,<span class="hljs-number">1</span>)/choose(<span class="hljs-number">52</span>,<span class="hljs-number">5</span>)
+
+<span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span>(K <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">0</span>:<span class="hljs-number">4</span>) {
+    <span class="hljs-keyword" style="color: rgb(0, 0, 255);">for</span>(A <span class="hljs-keyword" style="color: rgb(0, 0, 255);">in</span> <span class="hljs-number">0</span>:<span class="hljs-number">4</span>) {
+        <span class="hljs-comment" style="color: green;"># Other</span>
+        RST = <span class="hljs-number">5</span> - K - A
+        prb = choose(<span class="hljs-number">4</span>, K)*choose(<span class="hljs-number">4</span>,A)*choose(<span class="hljs-number">44</span>,RST)/choose(<span class="hljs-number">52</span>,<span class="hljs-number">5</span>)
+        cat(sprintf(<span class="hljs-string" style="color: rgb(163, 21, 21);">" &amp; %2.6f"</span>, round(prb, <span class="hljs-number">6</span>)))
+    }
+    cat(<span class="hljs-string" style="color: rgb(163, 21, 21);">" \\\\ \n"</span>)
+}
+</pre>
+</div>
+<br />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -1893,72 +1926,7 @@ joint distribution of X and Y .
 
 
 
-<h3>Exercise 47</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 48</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 49</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 50</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 51</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 52-63</h3>
+<h3>Exercise 47-63</h3>
 <i>All remaining exercises skipped...</i>
 <br /><br /><br /><br />
 
