@@ -397,14 +397,48 @@ the dart lands in the upper half of the target, find the probability that
 <b>(d)</b> it lands within 5 inches of the point (0, 5).
 <br /><br />
 <i>Answer</i><br />
-<br />
+In all that follows, we will define the event U as the dart landing in the upper half of the target.<br />
+U = {(x,y) | y ≥ 0}.<br />
+Calculating the probability, using a geometric argument. The area is half the dart area, specifically the top
+half, so P(U) = 1/2.
+<br /><br />
 <b>(a)</b><br />
+The event E is the dart landing in the right hand side of the target. So, the area F ∩ M becomes the
+top right quadrant of the map, and P(F ∩ M) = 1/4.
+$$
+P(E|U) = \frac{P(E\cap U)}{P(U)} = \frac{1/4}{1/2} = 1/2.
+$$
+Sketch of area.<br />
+<img src="img/chapter04/04.02.Ex4a.png" />
 <br /><br />
 <b>(b)</b><br />
+The event E is the dart landing within 5 inches of the center, sp Area(E) = π(5)<sup>2</sup> = 25π,
+and then the probability is P(E) = 25π/100π = 1/4. When finding E ∩ U it will be half this circle, so Area(E ∩ U) = (25/2)π,
+and so P(E ∩ U) = (25π/2)/(100π) = 25/100 = 5/40 = 1/8.
+$$
+P(E|U) = \frac{P(E\cap U)}{P(U)} = \frac{1/8}{1/2} = 1/4.
+$$
+Sketch of area.<br />
+<img src="img/chapter04/04.02.Ex4b.png" />
 <br /><br />
 <b>(c)</b><br />
+Now the area is at least 5 inches from the center, so this is the complement to the area in (b), so
+Area(E) = 100π - 25π = 75π. Again, when restricting this to the upper half, this area is halfed, so
+Area(E ∩ U) = 75π/2, and so P(E ∩ U) = (75π/2)/(100π) = 75/200 = 15/40 = 3/8.
+$$
+P(E|U) = \frac{P(E\cap U)}{P(U)} = \frac{3/8}{1/2} = 3/4.
+$$
+Sketch of area.<br />
+<img src="img/chapter04/04.02.Ex4c.png" />
 <br /><br />
 <b>(d)</b><br />
+The region of E is the circle with center in (0, 5) and with radius 5. Area(E) = 25π. Since E ⊂ U,
+Area(E ∩ U) = Area(E) = 25π. So P(E ∩ U) = P(E) = 25π/100π = 1/4.
+$$
+P(E|U) = \frac{P(E\cap U)}{P(U)} = \frac{1/4}{1/2} = 1/2.
+$$
+Sketch of area.<br />
+<img src="img/chapter04/04.02.Ex4d.png" />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -415,7 +449,15 @@ the dart lands in the upper half of the target, find the probability that
 
 
 <h3>Exercise 5</h3>
-asd
+Suppose you choose two numbers x and y, independently at random from
+the interval [0, 1]. Given that their sum lies in the interval [0, 1], find the
+probability that
+<br /><br />
+<b>(a)</b> |x − y| < 1.<br />
+<b>(b)</b> xy < 1/2.<br />
+<b>(c)</b> max{x, y} < 1/2.<br />
+<b>(d)</b> x 2 + y 2 < 1/4.<br />
+<b>(e)</b> x > y.
 <br /><br />
 <i>Answer</i><br />
 <br /><br />
@@ -518,25 +560,8 @@ asd
 
 
 
-<h3>Exercise 13</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 14</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
+<h3>Exercise 13-14</h3>
+<i>Skipped... Just some programming exercises</i>
 <br /><br />
 
 <!--
