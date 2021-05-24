@@ -71,10 +71,24 @@
 </pre>
 -->
 
+<!-- p. 205 -->
 <h3>Exercise 1</h3>
-asd
+For which of the following random variables would it be appropriate to assign
+a uniform distribution?
+<br /><br />
+A Let X represent the roll of one die.<br />
+B Let X represent the number of heads obtained in three tosses of a coin.<br />
+C A roulette wheel has 38 possible outcomes: 0, 00, and 1 through 36. Let
+X represent the outcome when a roulette wheel is spun.<br />
+D Let X represent the birthday of a randomly chosen person.<br />
+E Let X represent the number of tosses of a coin necessary to achieve a
+head for the first time.
 <br /><br />
 <i>Answer</i><br />
+A, C and D are appropriate for a uniform distribution, since each outcome is equally likely.
+This is not true for number of heads in three tosses, since e.g. getting 0 or 3 heads has a lower probability
+than getting 1 or 2 heads. The number of tosses needed to get the first head also changes with number of tosses,
+so it is not a uniform distribution. 
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -85,9 +99,14 @@ asd
 
 
 <h3>Exercise 2</h3>
-asd
+Let n be a positive integer. Let S be the set of integers between 1 and n.
+Consider the following process: We remove a number from S at random and
+write it down. We repeat this until S is empty. The result is a permutation
+of the integers from 1 to n. Let X denote this permutation. Is X uniformly
+distributed?
 <br /><br />
 <i>Answer</i><br />
+Yes, provided that the number which is removed is selected completely randomly.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -98,9 +117,13 @@ asd
 
 
 <h3>Exercise 3</h3>
-asd
+Let X be a random variable which can take on countably many values. Show
+that X cannot be uniformly distributed.
 <br /><br />
 <i>Answer</i><br />
+If we assume that there is some p > 0 for each outcome, then when we sum them up
+the probability becomes infinite which breaks the assumption that the sum of all outcomes
+is 1 in a probability distribution. (Not showing the formal argument, but that is the gist of it).
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -111,9 +134,32 @@ asd
 
 
 <h3>Exercise 4</h3>
-asd
+Suppose we are attending a college which has 3000 students. We wish to
+choose a subset of size 100 from the student body. Let X represent the subset,
+chosen using the following possible strategies. For which strategies would it
+be appropriate to assign the uniform distribution to X? If it is appropriate,
+what probability should we assign to each outcome?
+<br /><br />
+<b>(a)</b> Take the first 100 students who enter the cafeteria to eat lunch.<br />
+<b>(b)</b> Ask the Registrar to sort the students by their Social Security number,
+and then take the first 100 in the resulting list.<br />
+<b>(c)</b> Ask the Registrar for a set of cards, with each card containing the name
+of exactly one student, and with each student appearing on exactly one
+card. Throw the cards out of a third-story window, then walk outside
+and pick up the first 100 cards that you find.
 <br /><br />
 <i>Answer</i><br />
+<br />
+<b>(a)</b><br />
+This will not be a proper uniform distribution. People who are sick, away, that never eat in the cafeteria etc.
+will not be in the pool.
+<br /><br />
+<b>(b)</b><br />
+SSN has some geographical and other logic ingrained in the number, so it is not completely random.
+<br /><br />
+<b>(c)</b><br />
+This seems appropriate for a uniform distribution. Each of the 100 cards will have a 1/3000 probability
+at the beginning.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -124,9 +170,20 @@ asd
 
 
 <h3>Exercise 5</h3>
-asd
+Under the same conditions as in the preceding exercise, can you describe
+a procedure which, if used, would produce each possible outcome with the
+same probability? Can you describe such a procedure that does not rely on a
+computer or a calculator?
 <br /><br />
 <i>Answer</i><br />
+Not going into simulation details, but in R:
+<pre style="background-color: #eee;">sample(1:3000, size=100, replace=FALSE)</pre>
+<br /><br />
+For a method not requiring a computer, we make numbered cards of all students from 0 to 2999.
+We use a 3-sided and a 10-sided die for the randomness. Which are tossed
+1 times and 3 times. The values 3, 10 become 0. So if we get: 2, 7, 2, 5, this points to 2725. 
+<br /><br />
+Alternatively, we could put all the numbered cards in an urn and draw 100 at random.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -137,7 +194,9 @@ asd
 
 
 <h3>Exercise 6</h3>
-asd
+Let X<sub>1</sub>, X<sub>2</sub>, ..., X<sub>n</sub> be n mutually independent random variables, each of
+which is uniformly distributed on the integers from 1 to k. Let Y denote the
+minimum of the X<sub>i</sub>’s. Find the distribution of Y .
 <br /><br />
 <i>Answer</i><br />
 <br /><br />
