@@ -5,8 +5,9 @@ import sys
 # First and last objects are tied to operators
 # Other operators are separate objects in the equation
 eq = """
-1 - 2 = -1
--1 + 3 = 3
+1 - 2 + 1 = 0
+0 0 2 - 8 = 8
+-4 + 5 + 9 = -9
 """
 
 class bcolors:
@@ -61,6 +62,8 @@ def MatrixToLaTex(ss):
     print(align, end='}\n')
     for i in range(numrow):
         for j in range(numcols):
+            if mat[i][j] == '0':
+                mat[i][j] = ''
             if j < numcols - 1:
                 print(mat[i][j], end = " & ")
             elif i == numrow - 1:

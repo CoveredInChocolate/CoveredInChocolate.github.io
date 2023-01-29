@@ -2,9 +2,9 @@
 import sys
 
 mat = """
-1 0 0
-0 1 0
-0 0 1
+1 -2 1
+0 2 -8
+-4 5 9
 """
 
 class bcolors:

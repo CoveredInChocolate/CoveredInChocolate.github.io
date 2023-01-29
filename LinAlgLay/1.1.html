@@ -129,16 +129,47 @@ This can be summarised as follows:
 
 <div class="thm">Theorem</div><br />
 A system of linear equations has either:
-<li>
-    <item>no solutions</item>
-    <item>exactly one solution</item>
-    <item>infinite solutions</item>
-</li>
+<ol>
+    <li>no solutions</li>
+    <li>exactly one solution</li>
+    <li>infinite solutions</li>
+</ol>
 <br /><br /><br /><br />
 
 
+<h3>Matrix Notation</h3>
 
+Systems of linear equations can be represented as a matrix. For instance,
+the system:
 
+$$
+\begin{tabular}{rcccccr}
+1 & - & 2 & + & 1 & = &  \\ 
+ &  & 2 & - & 8 & = & 8 \\ 
+-4 & + & 5 & + & 9 & = & -9
+\end{tabular}
+$$
+
+Can be represented as the following matrix - called the
+<b>coefficient matrix</b>:
+
+$$
+\begin{bmatrix}
+1 & -2 & 1 \\ 
+0 & 2 & -8 \\ 
+-4 & 5 & 9
+\end{bmatrix}
+$$
+
+Or, when including the right hand side, as the <b>augmented matrix</b>:
+
+$$
+\begin{bmatrix}
+1 & -2 & 1 & 0\\ 
+0 & 2 & -8 & 8\\ 
+-4 & 5 & 9 & -9
+\end{bmatrix}
+$$
 
 
 
