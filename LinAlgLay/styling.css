@@ -1,0 +1,46 @@
+.page {
+    max-width: 1200px;
+    font-size: medium;
+}
+
+.proofend {
+    text-align: right;
+    font-size: large;
+    background-color: #ffffff;
+}
+
+img {
+    border: 1px solid #000;
+}
+
+h3 {
+    background-color: #d8daf5;
+}
+.thm {
+    font-variant: small-caps;
+    font-weight: 600;
+    background-color: #f3f3f3;
+}
+.indent {
+    padding-left: 20px;
+}
+
+/* Link styling */
+ a:link {
+    color: blue;
+  }
+  
+  /* visited link */
+  a:visited {
+    color: blue;
+  }
+  
+  /* mouse over link */
+  a:hover {
+    color: red;
+  }
+  
+  /* selected link */
+  a:active {
+    color: red;
+  } 
