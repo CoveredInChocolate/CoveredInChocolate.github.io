@@ -5,9 +5,8 @@ import sys
 # First and last objects are tied to operators
 # Other operators are separate objects in the equation
 eq = """
-1 - 2 + 1 = 0
-0 0 2 - 8 = 8
--4 + 5 + 9 = -9
+1 + 5 = 7
+-2 - 7 = -5
 """
 
 class bcolors:
@@ -61,13 +60,26 @@ def MatrixToLaTex(ss):
     print("\\begin{array}{", end='')
     print(align, end='}\n')
     for i in range(numrow):
+        index = 1 # index value for x_i
         for j in range(numcols):
             # If 0, we don't write it, unless it's the last element
             if mat[i][j] == '0' and j < numcols - 1:
+                # Empty cell
                 mat[i][j] = ''
-            if j < numcols - 1:
-                print(mat[i][j], end = " & ")
+                index = index + 1
+            elif mat[i][j] == '+' or mat[i][j] == '-' or mat[i][j] == '=':
+                # Operation (+/-/=)
+                print(f"{mat[i][j]}", end = " & ")
+                #index = index + 1
+            elif mat[i][j] == '1' and j < numcols - 1:
+                # Operators
+                print(f"x_{index}", end = " & ")
+                index = index + 1
+            elif j < numcols - 1:
+                print(f"{mat[i][j]}x_{index}", end = " & ")
+                index = index + 1
             elif i == numrow - 1:
+                # Solution (b)
                 print(mat[i][j], end = "")
             else:
                 print(mat[i][j], end = " \\\\ ")
