@@ -62,7 +62,8 @@ def MatrixToLaTex(ss):
     print(align, end='}\n')
     for i in range(numrow):
         for j in range(numcols):
-            if mat[i][j] == '0':
+            # If 0, we don't write it, unless it's the last element
+            if mat[i][j] == '0' and j < numcols - 1:
                 mat[i][j] = ''
             if j < numcols - 1:
                 print(mat[i][j], end = " & ")
