@@ -58,7 +58,7 @@ def MatrixToLaTex(ss):
     a[-1] = 'r'
     align = ''.join(a)
 
-    print("\\begin{tabular}{", end='')
+    print("\\begin{array}{", end='')
     print(align, end='}\n')
     for i in range(numrow):
         for j in range(numcols):
@@ -71,7 +71,7 @@ def MatrixToLaTex(ss):
             else:
                 print(mat[i][j], end = " \\\\ ")
         print("")
-    print("\\end{tabular}")
+    print("\\end{array}")
 
 
 MatrixToLaTex(eq)
