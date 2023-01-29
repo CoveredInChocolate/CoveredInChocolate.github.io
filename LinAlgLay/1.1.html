@@ -4,12 +4,18 @@
     <link rel="stylesheet" href="styling.css">
     <script>
         MathJax = {
-        tex: {
-            inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        svg: {
-            fontCache: 'global'
-        }
+            loader: {
+                load: ['[tex]/mathtools']
+            },
+            tex: {
+                packages: {'[+]': ['mathtools']}
+            },
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
         };
     </script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
