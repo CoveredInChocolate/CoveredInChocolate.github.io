@@ -2,9 +2,9 @@
 import sys
 
 mat = """
-1 -2 1
-0 2 -8
--4 5 9
+2 -3 2 1
+0 1 -4 8
+0 0 0 5/2
 """
 
 class bcolors:
@@ -48,9 +48,14 @@ def MatrixToLaTex(ss):
     mat = TrimWhite(ss)
     numrow, numcols = FindDim(mat)
 
+    # Create align string based on number of columns
+    a = ['r' for i in range(numcols)]
+    align = ''.join(a)
+
     #print(mat)
 
-    print("\\begin{bmatrix}")
+    print("\\begin{bmatrix*}", end='')
+    print(f"[{align}]")
     for i in range(numrow):
         for j in range(numcols):
             if j < numcols - 1:
@@ -60,7 +65,7 @@ def MatrixToLaTex(ss):
             else:
                 print(mat[i][j], end = " \\\\ ")
         print("")
-    print("\\end{bmatrix}")
+    print("\\end{bmatrix*}")
 
 
 MatrixToLaTex(mat)
