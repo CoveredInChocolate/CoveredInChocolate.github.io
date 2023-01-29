@@ -130,6 +130,7 @@ $$
 <br /><br />
 
 This can be summarised as follows:
+<br /><br />
 
 <div class="thm">Theorem</div><br />
 A system of linear equations has either:
@@ -148,9 +149,9 @@ the system:
 
 $$
 \begin{array}{rcccccr}
-1 & - & 2 & + & 1 & = & 0  \\ 
- &  & 2 & - & 8 & = & 8 \\ 
--4 & + & 5 & + & 9 & = & -9
+x_1 & - & 2x_2 & + & x_3 & = & 0  \\ 
+ &  & 2x_2 & - & 8x_3 & = & 8 \\ 
+-4x_1 & + & 5x_2 & + & 9x_3 & = & -9
 \end{array}
 $$
 
@@ -168,11 +169,73 @@ $$
 Or, when including the right hand side, as the <b>augmented matrix</b>:
 
 $$
-\begin{bmatrix}{rrrr}
+\begin{bmatrix*}[rrrr]
 1 & -2 & 1 & 0\\ 
 0 & 2 & -8 & 8\\ 
 -4 & 5 & 9 & -9
-\end{bmatrix}
+\end{bmatrix*}
+$$
+
+Matrices are said to have dimensions $m\times p$, with $m$ rows
+and $n$ columns.
+
+
+<h3>Solving a Linear System</h3>
+
+The process of isolating one variable and replacing the solution
+in another equation can be generalized by <b>elementary row operations</b>
+on the matrix.
+
+<div class="thm">Elementary Row Operations</div><br />
+<ol>
+    <li>(Replacement) Replace one row by the sum of itself
+        and a multiple of another row.
+    </li>
+    <li>(Interchange) Interchange two rows</li>
+    <li>(Scaling) Multiply all entries in a row by a
+        nonzero constant.
+    </li>
+</ol>
+<br /><br /><br /><br />
+
+As an example. We start with the following system of equations:
+
+$$
+\begin{array}{rcccccr}
+x_1 & - & 2x_2 & + & x_3 & = & 0  \\ 
+ &  & 2x_2 & - & 8x_3 & = & 8 \\ 
+-4x_1 & + & 5x_2 & + & 9x_3 & = & -9
+\end{array}
+$$
+
+Which has the following augmented matrix representation:
+
+$$
+\begin{bmatrix*}[rrrr]
+1 & -2 & 1 & 0\\ 
+0 & 2 & -8 & 8\\ 
+-4 & 5 & 9 & -9
+\end{bmatrix*}
+$$
+
+By a series of elementary row operations, we end up with:
+
+$$
+\begin{bmatrix*}[rrrr]
+1 & 0 & 0 & 29\\ 
+0 & 1 & 0 & 16\\ 
+0 & 0 & 1 & 3
+\end{bmatrix*}
+$$
+
+Which we can translate back into the following solution:
+
+$$
+\begin{array}{rcccccr}
+x_1 &  &  &  &  & = & 29  \\ 
+ & & x_2 & & & = & 16 \\ 
+ & & & & x_3 & = & 3
+\end{array}
 $$
 
 
