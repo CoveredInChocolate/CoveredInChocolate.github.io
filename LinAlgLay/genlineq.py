@@ -5,9 +5,22 @@ import sys
 # First and last objects are tied to operators
 # Other operators are separate objects in the equation
 eq = """
-1 + 5 = 7
--2 - 7 = -5
+1 + 3 = f
+c + d = g
 """
+
+# Ex:
+# eq = """
+# 1 - 2 = -2
+# 1 + 5 = 7
+# """
+
+# # Does not support 0s very well
+# eq = """
+# 1 0 0 - 3 = 8
+# 2 + 2 + 9 = 7
+# 0 0 1 + 5 = -2
+# """
 
 class bcolors:
     HEADER = '\033[95m'
