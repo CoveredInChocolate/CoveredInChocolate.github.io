@@ -5,10 +5,10 @@
     <script>
         MathJax = {
             loader: {
-                load: ['[tex]/mathtools']
+                load: ['[tex]/mathtools', '[tex]/boldsymbol']
             },
             tex: {
-                packages: {'[+]': ['mathtools']},
+                packages: {'[+]': ['mathtools', 'boldsymbol']},
                 inlineMath: [['$', '$'], ['\\(', '\\)']]
             },
             svg: {
@@ -20,7 +20,7 @@
     <script type="text/javascript" id="MathJax-script" async
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
     </script>
-    <title>Chapter 1 - Linear Equations in Linear Algebra</title> <!-- #################### TITLE #################### -->
+    <title>1.3 - Vector Equations</title> <!-- #################### TITLE #################### -->
 </head>
 \(
    \def\R{\mathbb{R}}
@@ -29,6 +29,7 @@
    \def\Q{\mathbb{Q}}
    \def\eps{\varepsilon}
    \def\epsilon{\varepsilon}
+   \newcommand\bs[1]{\boldsymbol{#1}}
    \renewcommand{\geq}{\geqslant}
    \renewcommand{\leq}{\leqslant}
 \)
@@ -36,7 +37,7 @@
     <div class="page">
 <h2>Chapter 1 - Linear Equations in Linear Algebra</h2>
 
-<h1>1.1 - Systems of Linear Equations</h1>
+<h1>1.3 - Vector Equations</h1>
 <br />
 <table border="0">
     <tr>
@@ -45,297 +46,304 @@
     </tr>
     <tr>
         <td><b>Previous</b>:</td>
-        <td><a href="index.html">Index</a></td>
+        <td><a href="1.2.html">1.2 - Row Reduction and Echelon Forms</a></td>
     </tr>
     <tr>
         <td><b>Next</b>:</td>
-        <td><a href="1.2.html">1.2 - Row Reduction and Echelon Forms</a></td>
+        <td><a href="1.4.html">1.4 - The matrix equation A<b>x</b> = <b>b</b></a></td>
     </tr>
 </table>
 <br /><br />
 
 <h2>Results</h2>
 
+<h3>Vectors</h3>
 
-<h3>Linear Equation</h3>
-A <b>linear equation</b> is an equation on the form:
-
+Properties of linear systems can be described using concepts and notations of vectors.
+A matrix with one row is called a <b>column vector</b> or just a <b>vector</b>.
+Examples of vectors:
 $$
-a_1x_1 + a_2x_2 + \ldots + a_nx_n = b
-\tag{1.1.1}
+\bs{u} =
+\begin{bmatrix*}[r]
+3 \\ 
+-1
+\end{bmatrix*},
+\quad
+\bs{v} =
+\begin{bmatrix*}[r]
+.2 \\ 
+.3
+\end{bmatrix*},
+\quad
+\bs{w} =
+\begin{bmatrix*}[r]
+w_1 \\ 
+w_2
+\end{bmatrix*}
 $$
-where the coefficients $a_i\in\R$ and $b\in\R$ (or they are complex). 
-
-
-<h4>Linear Equation</h4>
-A <b>solution</b> $(s_1, \ldots, s_n)$ is a list of numbers that make the equation a true
-statement when replacing the variables $(x_1,\ldots, x_n)$. The set of
-all solutions is called the <b>solution set</b>
-
+The space of all 2-element vectors is denoted by $\R^2$.
+<br /><br />
+Adding and scaling vectors:
+$$
+\begin{bmatrix*}[r]
+1 \\ 
+-2
+\end{bmatrix*}
++
+\begin{bmatrix*}[r]
+2 \\ 
+5
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+1 + 2 \\ 
+-2 + 5
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+3 \\ 
+3
+\end{bmatrix*}
+$$
+$$
+c = 5,\quad\bs{u} = 
+\begin{bmatrix*}[r]
+3 \\ 
+-1
+\end{bmatrix*}
+\quad\text{then}\quad
+c\bs{u} = 
+5
+\begin{bmatrix*}[r]
+3 \\ 
+-1
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+15 \\ 
+-5
+\end{bmatrix*}
+$$
+In this case we call c a <i>scalar</i>.
+<br /><br />
+Vectors can be visualized by drawing an arrow from the origin to
+the point. For instance, for vectors:
+$$
+\begin{bmatrix*}[r]
+2 \\ 
+2
+\end{bmatrix*},\quad
+\begin{bmatrix*}[r]
+-2 \\ 
+-1
+\end{bmatrix*},\quad
+\begin{bmatrix*}[r]
+3 \\ 
+-1
+\end{bmatrix*}
+$$
+we get:
+<br /><br />
+<img src="img/R1.3.1.png" />
 <br /><br />
 
-Finding a solution set of a system of two linear equations:
+Vectors work in the same way in $\R^3$ and more generally to $\R^n$.
+$$
+\bs{a} = 
+\begin{bmatrix*}[r]
+2 \\ 
+3 \\
+4
+\end{bmatrix*},\quad
+\bs{u} = 
+\begin{bmatrix*}[r]
+u_1 \\ 
+u_2 \\
+\vdots \\
+u_n
+\end{bmatrix*}
+$$
+<br /><br />
+<div class="thm">Algebraic Properties of $\R^n$</div>
+<ul>
+    <li>(i) $\bs{u} + \bs{v} = \bs{v} + \bs{u}$</li>
+    <li>(ii) $(\bs{u} + \bs{v}) + \bs{w} = \bs{u} + (\bs{v} + \bs{w})$</li>
+    <li>(iii) $\bs{u} + \bs{0} = \bs{0} + \bs{u} = \bs{u}$</li>
+    <li>(iv) $\bs{u} + (-\bs{u}) = -\bs{u} + \bs{u} = \bs{0}$</li>
+    <li>(v) $c(\bs{u} + \bs{v}) = c\bs{u} + c\bs{v}$</li>
+    <li>(vi) $(c + d)\bs{u} = c\bs{u} + d\bs{u}$</li>
+    <li>(vii) $c(d\bs{u}) = (cd)\bs{u}$</li>
+    <li>(viii) $1\bs{u} = \bs{u}$</li>
+</ul>
+<br /><br />
+
+<h3>Linear Combinations</h3>
+For vectors $\bs{v}_1, \ldots, \bs{v}_p$ in $\R^n$ and scalars
+$c_1,\ldots,c_p$, the vector defined by:
+$$
+\bs{y} = c_1\bs{v}_1 + \ldots + c_p\bs{v}_p
+$$
+is called a <b>linear combination</b> of the vectors with
+the scalars called <b>weights</b>.
+<br /><br />
+<br /><br />
+
+<b>Example</b>
+<br /><br />
+Given the vectors:
+$$
+\bs{a_1} = 
+\begin{bmatrix*}[r]
+1 \\ 
+-2 \\
+-5
+\end{bmatrix*},\quad
+\bs{a_2} = 
+\begin{bmatrix*}[r]
+2 \\ 
+5 \\
+6
+\end{bmatrix*},\quad
+\bs{b} = 
+\begin{bmatrix*}[r]
+7 \\ 
+4 \\
+-3
+\end{bmatrix*}.
+$$
+Can we write <b>b</b> as a linear combination of the two
+other vectors? In other words, can we find weights $x_1, x_2$
+such that:
+$$
+x_1\bs{a}_1 + x_2\bs{a}_2 = \bs{b}.
+$$
+By replacing in the vectors, we can write this as:
+$$
+x_1
+\begin{bmatrix*}[r]
+1 \\ 
+-2 \\
+-5
+\end{bmatrix*}
++
+x_2
+\begin{bmatrix*}[r]
+2 \\ 
+5 \\
+6
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+7 \\ 
+4 \\
+-3
+\end{bmatrix*}
+$$
+Which can be written as:
+$$
+\begin{bmatrix*}[r]
+x_1 \\ 
+-2x_1 \\
+-5x_1
+\end{bmatrix*}
++
+\begin{bmatrix*}[r]
+2x_2 \\ 
+5x_2 \\
+6x_2
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+7 \\ 
+4 \\
+-3
+\end{bmatrix*}
+$$
+$$
+\begin{bmatrix*}[r]
+x_1 + 2x_2 \\ 
+-2x_1 + 5x_2 \\
+-5x_1 + 6x_2
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+7 \\ 
+4 \\
+-3
+\end{bmatrix*}
+$$
+Which in turn can be represented as the linear system:
 $$
 \begin{array}{rcccr}
-x_1 & - & 2x_2 & = & -1 \\ 
--x_1 & + & 3x_2 & = & 3
+x_1 & + & 2x_2 & = & 7 \\ 
+-2x_1 & + & 5x_2 & = & 4 \\ 
+-5x_1 & + & 6x_2 & = & -3
 \end{array}
 $$
-
-A solution is any pair of numbers that satisfy both equations.
-Graphically this means finding where the two lines intersect.
-As shown below, this happens when $x=3$ and $y=2$.
-
-<br /><br />
-<img src="img/R1.1.1.png" />
-<br /><br />
-
-Verifying that (3, 2) is a solution by checking that the equations are satisfied:
-$$
-(3) - 2(2) = 3 - 4 = -1
-$$
-$$
--(3) + 3(2) = -3 + 6 = 3 
-$$
-
-<br /><br />
-
-There are two other possibilities. A system of equations can have
-no solutions, or an infinite number of solutions.
-
-
-Consider the following two systems of equations
-and the graphical representation:
-
-$$
-\begin{array}{rcccr}
-x_1 & - & 2x_2 & = & -1 \\ 
--x_1 & + & 2x_2 & = & 3
-\end{array}
-$$
-
-<br /><br />
-<img src="img/R1.1.2.png" />
-<br /><br />
-
-$$
-\begin{array}{rcccr}
-x_1 & - & 2x_2 & = & -1 \\ 
--x_1 & + & 2x_2 & = & 1
-\end{array}
-$$
-
-<br /><br />
-<img src="img/R1.1.3.png" />
-<br /><br />
-
-This can be summarised as follows:
-
-<br /><br />
-<div class="thm">Theorem</div><br />
-A system of linear equations has either:
-<ol>
-    <li>no solutions</li>
-    <li>exactly one solution</li>
-    <li>infinite solutions</li>
-</ol>
-<br /><br /><br /><br />
-
-
-<h3>Matrix Notation</h3>
-
-Systems of linear equations can be represented as a matrix. For instance,
-the system:
-
-$$
-\begin{array}{rcccccr}
-x_1 & - & 2x_2 & + & x_3 & = & 0  \\ 
- &  & 2x_2 & - & 8x_3 & = & 8 \\ 
--4x_1 & + & 5x_2 & + & 9x_3 & = & -9
-\end{array}
-$$
-
-Can be represented as the following matrix - called the
-<b>coefficient matrix</b>:
-
+The problem essentially becomes solving this system for $x_i$.
+We write the augmented matrix and find RREF.
 $$
 \begin{bmatrix*}[rrr]
-1 & -2 & 1 \\ 
-0 & 2 & -8 \\ 
--4 & 5 & 9
+1 & 2 & 7 \\ 
+-2 & 5 & 4 \\ 
+-5 & 6 & -3
+\end{bmatrix*}
+\sim
+\begin{bmatrix*}[rrr]
+1 & 0 & 3 \\ 
+0 & 1 & 2 \\ 
+0 & 0 & 0
 \end{bmatrix*}
 $$
-
-Or, when including the right hand side, as the <b>augmented matrix</b>:
-
+This has a solution, so <b>b</b> is a linear combination of the vectors.
+Verifying:
 $$
-\begin{bmatrix*}[rrrr]
-1 & -2 & 1 & 0\\ 
-0 & 2 & -8 & 8\\ 
--4 & 5 & 9 & -9
+3
+\begin{bmatrix*}[r]
+1 \\ 
+-2 \\
+-5
+\end{bmatrix*}
++
+2
+\begin{bmatrix*}[r]
+2 \\ 
+5 \\
+6
+\end{bmatrix*}
+\;=\;
+\begin{bmatrix*}[r]
+3 \\ 
+-6 \\
+-15
+\end{bmatrix*}
++
+\begin{bmatrix*}[r]
+4 \\ 
+10 \\
+12
+\end{bmatrix*}
+\;=\;
+\begin{bmatrix*}[r]
+7 \\ 
+4 \\
+-3
 \end{bmatrix*}
 $$
+Note: to highlight the columns as vectors, we can represent the
+augmented matrix as:
+$$
+[\bs{a}_1\quad \bs{a}_2\quad \bs{b}]
+$$
 
-Matrices are said to have dimensions $m\times p$, with $m$ rows
-and $n$ columns.
 
 
-<h3>Solving a Linear System</h3>
-
-The process of isolating one variable and replacing the solution
-in another equation can be generalized by <b>elementary row operations</b>
-on the matrix.
-
-<br /><br />
-<div class="thm">Elementary Row Operations</div>
-<ol>
-    <li>(Replacement) Replace one row by the sum of itself
-        and a multiple of another row.
-    </li>
-    <li>(Interchange) Interchange two rows</li>
-    <li>(Scaling) Multiply all entries in a row by a
-        nonzero constant.
-    </li>
-</ol>
 <br /><br /><br /><br />
-
-As an example. We start with the following system of equations:
-
-$$
-\begin{array}{rcccccr}
-x_1 & - & 2x_2 & + & x_3 & = & 0  \\ 
- &  & 2x_2 & - & 8x_3 & = & 8 \\ 
--4x_1 & + & 5x_2 & + & 9x_3 & = & -9
-\end{array}
-$$
-
-Which has the following augmented matrix representation:
-
-$$
-\begin{bmatrix*}[rrrr]
-1 & -2 & 1 & 0\\ 
-0 & 2 & -8 & 8\\ 
--4 & 5 & 9 & -9
-\end{bmatrix*}
-$$
-
-By a series of elementary row operations, we end up with:
-
-$$
-\begin{bmatrix*}[rrrr]
-1 & 0 & 0 & 29\\ 
-0 & 1 & 0 & 16\\ 
-0 & 0 & 1 & 3
-\end{bmatrix*}
-$$
-
-Which we can translate back into the following solution:
-
-$$
-\begin{array}{rcccccr}
-x_1 &  &  &  &  & = & 29  \\ 
- & & x_2 & & & = & 16 \\ 
- & & & & x_3 & = & 3
-\end{array}
-$$
-
-<br /><br />
-Two matrices are <b>row equivalent</b> if we can use row operations
-to transform one into the other. If two matrices are equivalent,
-they have the same solution sets.
-
-
-<h3>Existence and Uniqueness</h3>
-
-Since there are three possible outcomes regarding solutions. We ask
-the following two questions:
-
-<ol>
-    <li>
-        Is the system <i>consistent</i>? That is, does at least one
-        solution exist?
-    </li>
-    <li>
-        If a solutione xists, is it unique?
-    </li>
-</ol>
-
-We can determine the outcomes by looking at the results of the
-row operations.
-<br /><br />
-
-<b>Example</b>
-
-Going back to this system:
-
-$$
-\begin{array}{rcccccr}
-x_1 & - & 2x_2 & + & x_3 & = & 0  \\ 
- &  & 2x_2 & - & 8x_3 & = & 8 \\ 
--4x_1 & + & 5x_2 & + & 9x_3 & = & -9
-\end{array}
-$$
-
-This was found to be row equivalent to this system:
-
-$$
-\begin{array}{rcccccr}
-x_1 &  &  &  &  & = & 29  \\ 
- & & x_2 & & & = & 16 \\ 
- & & & & x_3 & = & 3
-\end{array}
-$$
-
-Hence, this system has a unique solution.
-(If there are infinitely many solutions, we get a <i>free variable</i>).
-
-<br /><br />
-
-<b>Example</b>
-
-Say we start with the following system:
-
-$$
-\begin{array}{rcccccr}
- & & x_2 & - & 4x_3 & = & 8  \\ 
- 2x_1 & - & 3x_2 & + & 2x_3 & = & 1 \\ 
-5x_1 & - & 8x_2 & + & 7x_3 & = & 1
-\end{array}
-$$
-
-Written as an augmented matrix:
-
-$$
-\begin{bmatrix*}[rrrr]
-0 & 1 & -4 & 8 \\ 
-2 & -3 & 2 & 1 \\ 
-5 & -8 & 7 & 1
-\end{bmatrix*}
-$$
-
-Which is row requivalent to:
-
-$$
-\begin{bmatrix*}[rrrr]
-2 & -3 & 2 & 1 \\ 
-0 & 1 & -4 & 8 \\ 
-0 & 0 & 0 & 5/2
-\end{bmatrix*}
-$$
-
-The last row in the matrix translates to: $0 = 5/2$ which is
-a contradiction. Hence, this system is inconsistent, so there are
-no solutions.
 
 
 <!--
 <br /><br />
 -->
-
-
-<br /><br /><br /><br />
-
-
 <!-- ########################### EXERCISES ########################### -->
 
 
@@ -1117,7 +1125,7 @@ asd
 <!--
     ∩ · ≥ ≤
     Ω λ π ≠ ∊ −
-    ∅ φ ⇒
+    ∅ φ ⇒ ↔	
     ≈ ⊂
 -->
 

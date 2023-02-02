@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styling.css">
+    <script>
+        MathJax = {
+            loader: {
+                load: ['[tex]/mathtools']
+            },
+            tex: {
+                packages: {'[+]': ['mathtools']},
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
+    <title>1.2 Row Reduction and Echelon Forms</title> <!-- #################### TITLE #################### -->
+</head>
+\(
+   \def\R{\mathbb{R}}
+   \def\N{\mathbb{N}}
+   \def\Z{\mathbb{Z}}
+   \def\Q{\mathbb{Q}}
+   \def\eps{\varepsilon}
+   \def\epsilon{\varepsilon}
+   \renewcommand{\geq}{\geqslant}
+   \renewcommand{\leq}{\leqslant}
+\)
+<body>
+    <div class="page">
+<h2>Chapter 1 - Linear Equations in Linear Algebra</h2>
+
+<h1>1.2 Row Reduction and Echelon Forms</h1>
+<br />
+<table border="0">
+    <tr>
+        <td><b>Main</b>:</td>
+        <td><a href="index.html">Index</a></td>
+    </tr>
+    <tr>
+        <td><b>Previous</b>:</td>
+        <td><a href="1.1.html">1.1 - Systems of Linear Equations</a></td>
+    </tr>
+    <tr>
+        <td><b>Next</b>:</td>
+        <td><a href="1.3.html">1.3 Vector Equations</a></td>
+    </tr>
+</table>
+<br /><br />
+
+<h2>Results</h2>
+
+<h3>Echelon and Reduced Echelon form</h3>
+
+Echelon means "steplike". An example of a matrix one echelon form:
+$$
+\begin{bmatrix*}[rrrr]
+2 & -3 & 2 & 1 \\ 
+0 & 1 & -4 & 8 \\ 
+0 & 0 & 0 & 5/2
+\end{bmatrix*}
+$$
+
+For every nonzero, leading elements, all elements below are 0.
+
+<br /><br />
+
+Reduced row echelon form (RREF) or just reduced echelon form
+takes it one step further:
+$$
+\begin{bmatrix*}[rrrr]
+1 & 0 & 0 & 29\\ 
+0 & 1 & 0 & 16\\ 
+0 & 0 & 1 & 3
+\end{bmatrix*}
+$$
+Now all values above leading elements are also 0, and the leading numbers
+are set to 1.
+
+<br /><br />
+<div class="thm">Theorem 1.1: Uniqueness of the RREF</div>
+Each matrix is row equivalent to one and only one reduced echelon matrix.
+<i>(Note: my numbering. Book refers to this as Theorem 1, but starts a new counter
+    in each chapter).</i>
+<br /><br /><br /><br />
+
+Some terminology: a <b>pivot position</b> in a matrix A is a location
+in A that corresponds to a leading 1 in the RREF. A <b>pivot column</b>
+is a column of A that contains a pivot position. The leading non-zero
+elements in echelon matrices are called <b>pivots</b>.
+
+<h3>Solutions of Linear Systems</h3>
+
+As we have already seen, if we start with some augmented matrix we
+can find the RREF which might look like this:
+$$
+\begin{bmatrix*}[rrrr]
+1 & 0 & -5 & 1 \\ 
+0 & 1 & 1 & 4 \\ 
+0 & 0 & 0 & 0
+\end{bmatrix*}
+$$
+There are three variables because the augmented matrix has four columns.
+The associated system of linear equations is:
+$$
+\begin{array}{rcccccr}
+x_1 & & & - & 5x_3 & = & 1 \\ 
+ & & x_2 & + & x_3 & = & 4 \\ 
+ & & & & 0 & = & 0
+\end{array}
+$$
+
+Variables $x_1, x_2$ are called <b>basic variables</b> while $x_3$
+is called a <b>free variable</b>. This means that the solution is
+true for any value of $x_3$, and so there are an infinite number
+of solutions.
+
+<br /><br />
+
+We can write the parametric description of the solution set as follows:
+$$
+\left\{
+\begin{array}{l}
+x_1 = 1 + 5x_3 \\ 
+x_2 = 4 - x_3 \\
+x_3 \;\text{is free}
+\end{array}
+\right.
+$$
+
+<br /><br /><br /><br />
+
+
+<!-- ########################### EXERCISES ########################### -->
+
+
+<!--
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+
+</pre>
+-->
+
+
+<h3>Exercise 4</h3>
+Find the RREF and list the pivot columns.
+$$
+\begin{bmatrix*}[rrrr]
+1 & 3 & 5 & 7 \\ 
+3 & 5 & 7 & 9 \\ 
+5 & 7 & 9 & 1
+\end{bmatrix*}
+$$
+<br /><br />
+<i>Answer</i><br />
+Applying row operations. II = II - 3I, III = III - 5I
+$$
+\begin{bmatrix*}[rrrr]
+1 & 3 & 5 & 7 \\ 
+0 & -4 & -8 & -12 \\ 
+0 & -8 & -16 & -34
+\end{bmatrix*}
+$$
+(-1/4)II, (-1/8)III
+$$
+\begin{bmatrix*}[rrrr]
+1 & 3 & 5 & 7 \\ 
+0 & 1 & 2 & 3 \\ 
+0 & 1 & 2 & 4.25
+\end{bmatrix*}
+$$
+III = III - II
+$$
+\begin{bmatrix*}[rrrr]
+1 & 3 & 5 & 7 \\ 
+0 & 1 & 2 & 3 \\ 
+0 & 0 & 0 & 1.25
+\end{bmatrix*}
+$$
+Obviously row equivalent to:
+$$
+\begin{bmatrix*}[rrrr]
+1 & 0 & 5 & 0 \\ 
+0 & 1 & 2 & 0 \\ 
+0 & 0 & 0 & 1
+\end{bmatrix*}
+$$
+The pivot columns are 1, 2 and 4. This system appears to be inconsistent.
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+<h3>Exercise 7</h3>
+Find the general solution for the augmented matrix:
+$$
+\begin{bmatrix*}[rrrr]
+1 & 3 & 4 & 7 \\ 
+3 & 9 & 7 & 6
+\end{bmatrix*}
+$$
+<br /><br />
+<i>Answer</i><br />
+II - 3I
+$$
+\begin{bmatrix*}[rrrr]
+1 & 3 & 4 & 7 \\ 
+0 & 0 & -5 & -15
+\end{bmatrix*}
+$$
+(-1/5)II
+$$
+\begin{bmatrix*}[rrrr]
+1 & 3 & 4 & 7 \\ 
+0 & 0 & 1 & 3
+\end{bmatrix*}
+$$
+I - 4II
+$$
+\begin{bmatrix*}[rrrr]
+1 & 3 & 0 & -5 \\ 
+0 & 0 & 1 & 3
+\end{bmatrix*}
+$$
+Solution set:
+$$
+\left\{
+\begin{array}{l}
+x_1 = -5 - 3x_2 \\ 
+x_2 \;\text{is free} \\
+x_3 = 3
+\end{array}
+\right.
+$$
+Verifying, using $x_2 = 0$, so $x_1 = -5$ and $x_3 = 3$.
+$$
+(-5) + 3(0) + 4(3) = -5 + 12 = 7
+$$
+$$
+3(-5) + 9(0) + 7(3) = -15 + 21 = 6
+$$
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+<h3>Exercise 12</h3>
+Find the general solution for the augmented matrix:
+$$
+\begin{bmatrix*}[rrrrr]
+1 & -7 & 0 & 6 & 5 \\ 
+0 & 0 & 1 & -2 & -3 \\ 
+-1 & 7 & -4 & 2 & 7
+\end{bmatrix*}
+$$
+<br /><br />
+<i>Answer</i><br />
+III + I
+$$
+\begin{bmatrix*}[rrrrr]
+1 & -7 & 0 & 6 & 5 \\ 
+0 & 0 & 1 & -2 & -3 \\ 
+0 & 0 & -4 & 8 & 12
+\end{bmatrix*}
+$$
+(-1/4)III
+$$
+\begin{bmatrix*}[rrrrr]
+1 & -7 & 0 & 6 & 5 \\ 
+0 & 0 & 1 & -2 & -3 \\ 
+0 & 0 & 1 & -2 & -3
+\end{bmatrix*}
+$$
+III - II
+$$
+\begin{bmatrix*}[rrrrr]
+1 & -7 & 0 & 6 & 5 \\ 
+0 & 0 & 1 & -2 & -3 \\ 
+0 & 0 & 0 & 0 & 0
+\end{bmatrix*}
+$$
+Solution set:
+$$
+\left\{
+\begin{array}{l}
+x_1 = 5 + 7x_2 - 6x_4 \\ 
+x_2 \;\text{is free} \\
+x_3 = -3 + 2x_4 \\ 
+x_4 \;\text{is free}
+\end{array}
+\right.
+$$
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+<h3>Exercise 14</h3>
+Find the general solution for the augmented matrix:
+$$
+\begin{bmatrix*}[rrrrrr]
+1 & 2 & -5 & -6 & 0 & -5 \\ 
+0 & 1 & -6 & -3 & 0 & 2 \\ 
+0 & 0 & 0 & 0 & 1 & 0 \\ 
+0 & 0 & 0 & 0 & 0 & 0
+\end{bmatrix*}
+$$
+<br /><br />
+<i>Answer</i><br />
+I - 2II
+$$
+\begin{bmatrix*}[rrrrrr]
+1 & 0 & 7 & 0 & 0 & -9 \\ 
+0 & 1 & -6 & -3 & 0 & 2 \\ 
+0 & 0 & 0 & 0 & 1 & 0 \\ 
+0 & 0 & 0 & 0 & 0 & 0
+\end{bmatrix*}
+$$
+RREF. Solution set:
+$$
+\left\{
+\begin{array}{l}
+x_1 = -9 - 7x_3 \\ 
+x_2 = 2 + 6x_3 + 3x_4 \\
+x_3 \;\text{is free} \\ 
+x_4 \;\text{is free} \\ 
+x_5 = 0
+\end{array}
+\right.
+$$
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+
+<h3>Exercise 21</h3>
+Verifying statements
+<br /><br />
+(a)
+<i>
+    In some cases, a matrix may be row reduced to more than one matrix in RREF, using
+    different sequences of operations.
+</i><br />
+Answer: False. By theorem 1.1, all matrices have a completely unique RREF.
+<br /><br />
+(b)
+<i>
+    The row reduction algorithm applies only to augmented matrices for a linear system.
+</i><br />
+Answer: False. To solve a linear system, yes, but it can also be used on a coefficient matrix
+to see certaint properties of the matrix.
+<br /><br />
+(c)
+<i>
+    A basic variable in a linear system is a variable that corresponds to a pivot
+    column in the coefficient matrix.
+</i><br />
+Answer: Yes, this is true. Free variables will never be pivots.
+<br /><br />
+(d)
+<i>
+    Finding a parametric description of the solution set of a linear system
+    is the same as <i>solving</i> the system.
+</i><br />
+Answer: True. We find a set of values that satisfy the original system.
+<br /><br />
+(e)
+<i>
+    If one row in an echelon form of an augmented matrix is [0 0 0 5 0], then
+    the associated system is inconsistent.
+</i><br />
+Answer: False. This row simply means that $x_5 = 0$ is part of the solution.
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 22</h3>
+Verifying statements
+<br /><br />
+(a)
+<i>
+    The echelon form of a matrix is unique.
+</i><br />
+Answer: False. The RREF is unique, but there are many ways to have an echelon form.
+<br /><br />
+(b)
+<i>
+    The pivot positions in a matrix depend on whether row interchanges are used in
+the row reduction process.
+</i><br />
+Answer: False. The pivot position is linked to the RREF which by Thm 1.1 is unqiue.
+<br /><br />
+(c)
+<i>
+    Reducing a matrix to echelon form is called the <i>forward phase</i> of the row
+    reduction process.
+</i><br />
+Answer: True. The backwards phase is going from echelon to RREF.
+<br /><br />
+(d)
+<i>
+    Whenever a system has free variables, the solution set contains many solutions.
+</i><br />
+Answer: True. A free variable means it can be anything and will have a unique, associated
+solution set.
+<br /><br />
+(e)
+<i>
+    A general solution of a system is an explicit description all solutions of the system.
+</i><br />
+Answer: True. This is correct. :)
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+
+<h3>Exercise 23</h3>
+Suppose a 3x5 coefficient matrix for a system has three pivot columns.
+Is the system consistent?
+<br /><br />
+<i>Answer</i><br />
+Yes, but it also has free variables and an infinite number of solutions.
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 24</h3>
+Suppose a 3x5 augmented matrix whose fifth column is a pivot column.
+Is the system consistent?
+<br /><br />
+<i>Answer</i><br />
+No, this means that there is a contradiction. The system is inconsistent.
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+<br /><br />
+<br /><br />
+<i>The rest of the exercises are skipped.</i>
+
+
+<!--
+    ∩ · ≥ ≤
+    Ω λ π ≠ ∊ −
+    ∅ φ ⇒ ↔	
+    ≈ ⊂
+-->
+
+<!--
+
+<b>Code</b>:<br />
+<div class="rcode">
+
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+
+</pre>
+<br /><br />
+-->
+
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+</div><!-- End page div-->
+</body>
+</html>
+
