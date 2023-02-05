@@ -336,18 +336,49 @@ $$
 [\bs{a}_1\quad \bs{a}_2\quad \bs{b}]
 $$
 
-
+<br /><br />
+This can be summarized as follows. A vector equation
+$$
+x_1\bs{a}_1 + x_2\bs{a}_2 + \ldots + x_n\bs{a}_n = \bs{b}
+$$
+has the same solution set as the linear system whose augmented matrix is:
+$$
+[\bs{a}_1\quad \bs{a}_2\quad \cdots \quad \bs{a}_n\quad \bs{b}]
+$$
 
 <br /><br />
-<img src="img/R1.3.2.png" />
+<div class="thm">Definition: span</div>
+If $\bs{v}_1, \ldots, \bs{v}_p$ are in $\R^n$, then the set of all linear combinations
+of $\bs{v}_1, \ldots, \bs{v}_p$ is denoted by Span$\{\bs{v}_1, \ldots, \bs{v}_p\}$
+and is called the subset of $\R^n$ <b>spanned</b> or <b>generated</b> by
+$\bs{v}_1, \ldots, \bs{v}_p$. It is the colletion of all vectors that can be written on
+the form
+$$
+c_1\bs{v}_1 + \ldots c_p\bs{v}_p
+$$
+where $c_i$ are scalars.
 <br /><br />
 
-<br /><br /><br /><br />
+
+Illustration of Span$\{\bs{v}_1\}$ and Span$\{\bs{v}_1, \bs{v}_2\}$.
+<br /><br />
+<img width="400px" src="img/span1d.png" />
+<img width="400px" src="img/span2d.png" />
+<br /><br />
 
 
 <!--
 <br /><br />
+\bs{v}_1, \ldots, \bs{v}_p
 -->
+
+
+
+<br /><br /><br /><br />
+
+
+
+
 <!-- ########################### EXERCISES ########################### -->
 
 
@@ -363,6 +394,62 @@ $$
 
 </pre>
 -->
+
+<h3>Practice Problem</h3>
+Prove that $\bs{u} + \bs{v} = \bs{v} + \bs{u}$ for any $\bs{u}, \bs{v}$ in  $\R^4$.
+<br /><br />
+<i>Answer</i><br />
+$$
+\bs{u} + \bs{v}
+=
+\begin{bmatrix*}[c]
+u_1 \\ 
+u_2 \\ 
+\vdots \\ 
+u_n
+\end{bmatrix*}
++
+\begin{bmatrix*}[c]
+v_1 \\ 
+v_2 \\ 
+\vdots \\ 
+v_n
+\end{bmatrix*}
+=
+\begin{bmatrix*}[c]
+u_1 + v_1 \\ 
+u_2 + v_2 \\ 
+\vdots \\ 
+u_n + v_n
+\end{bmatrix*}
+=
+\begin{bmatrix*}[c]
+v_1 + u_1 \\ 
+v_2 + u_2 \\ 
+\vdots \\ 
+v_n + u_n
+\end{bmatrix*}
+=
+\begin{bmatrix*}[c]
+v_1 \\ 
+v_2 \\ 
+\vdots \\ 
+v_n
+\end{bmatrix*}
++
+\begin{bmatrix*}[c]
+u_1 \\ 
+u_2 \\ 
+\vdots \\ 
+u_n
+\end{bmatrix*}
+=
+\bs{v} + \bs{u}
+$$
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
 
 <h3>Exercise 1</h3>
 asd
