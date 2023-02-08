@@ -2,10 +2,9 @@
 import sys
 
 mat = """
-u_1
-u_2
-\\vdots
-u_n
+1 -4 2 3
+0 3 5 -7
+-2 8 -4 -3
 """
 
 # Example2

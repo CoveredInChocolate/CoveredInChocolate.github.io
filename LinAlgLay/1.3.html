@@ -452,152 +452,246 @@ $$
 
 
 <h3>Exercise 1</h3>
-asd
+Calculate $\bs{u} + \bs{v}$ and $\bs{u} - 2\bs{v}$:
+$$
+\bs{u} =
+\begin{bmatrix*}[r]
+-1 \\ 
+2
+\end{bmatrix*},
+\qquad
+\bs{v} =
+\begin{bmatrix*}[r]
+-3 \\ 
+-1
+\end{bmatrix*}
+$$
 <br /><br />
 <i>Answer</i><br />
+$$
+\bs{u} + \bs{v} = 
+\begin{bmatrix*}[r]
+-1 \\ 
+2
+\end{bmatrix*}
++
+\begin{bmatrix*}[r]
+-3 \\ 
+-1
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+-1 - 3 \\ 
+2 -1
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+-4 \\ 
+1
+\end{bmatrix*}
+$$
+$$
+\bs{u} - 2\bs{v} =
+\begin{bmatrix*}[r]
+-1 \\ 
+2
+\end{bmatrix*}
+-
+2
+\begin{bmatrix*}[r]
+-3 \\ 
+-1
+\end{bmatrix*} =
+\begin{bmatrix*}[r]
+-1 \\ 
+2
+\end{bmatrix*}
++
+\begin{bmatrix*}[r]
+6 \\ 
+2
+\end{bmatrix*} =
+\begin{bmatrix*}[r]
+-1 + 6 \\ 
+2 + 2
+\end{bmatrix*} =
+\begin{bmatrix*}[r]
+5 \\ 
+4
+\end{bmatrix*}
+$$
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
-
-
-
-
-
-
-<h3>Exercise 2</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 3</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 4</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 5</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 6</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 7</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 8</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 9</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 10</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
 
 
 
 
 <h3>Exercise 11</h3>
-asd
+Is <b>b</b> a linear combination of <b>a</b><sub>1</sub>,
+<b>a</b><sub>2</sub> and <b>a</b><sub>3</sub>?
+$$
+\bs{a}_1 =
+\begin{bmatrix*}[r]
+1 \\ 
+-2 \\ 
+0
+\end{bmatrix*},
+\quad
+\bs{a}_2 =
+\begin{bmatrix*}[r]
+0 \\ 
+1 \\ 
+2
+\end{bmatrix*},
+\quad
+\bs{a}_3 =
+\begin{bmatrix*}[r]
+5 \\ 
+-6 \\ 
+8
+\end{bmatrix*},
+\quad
+\bs{b} =
+\begin{bmatrix*}[r]
+2 \\ 
+-1 \\ 
+6
+\end{bmatrix*},
+$$
 <br /><br />
 <i>Answer</i><br />
+We can write this as an augmented matrix and see if it has a solution.
+$$
+\begin{align}
+\big[\bs{a}_1\;\; \bs{a}_2\;\; \bs{a}_3\;\; \bs{b}\big]
+\;&=\;
+\begin{bmatrix*}[rrrr]
+1 & 0 & 5 & 2 \\ 
+-2 & 1 & -6 & -1 \\ 
+0 & 2 & 8 & 6
+\end{bmatrix*}
+\\
+&\;
+\\
+II + 2I
+&\sim\;
+\begin{bmatrix*}[rrrr]
+1 & 0 & 5 & 2 \\ 
+0 & 1 & 4 & 3 \\ 
+0 & 2 & 8 & 6
+\end{bmatrix*}
+\\
+&\;
+\\
+III - 2II
+&\sim\;
+\begin{bmatrix*}[rrrr]
+1 & 0 & 5 & 2 \\ 
+0 & 1 & 4 & 3 \\ 
+0 & 0 & 0 & 0
+\end{bmatrix*}
+\end{align}
+$$
+We have the following solution set:
+$$
+\left\{
+\begin{array}{l}
+x_1 = 2 - 5x_3 \\ 
+x_2 = 3 - 4x_3 \\
+x_3 \;\text{is free}
+\end{array}
+\right.
+$$
+In other words, there are an infinite number of solutions. Let's fix $x_1 = 0$,
+then $x_1 = 2$ and $x_2 = 3$. Verifying:
+$$
+2\bs{a}_1 + 3\bs{a}_2
+=
+2
+\begin{bmatrix*}[r]
+1 \\ 
+-2 \\ 
+0
+\end{bmatrix*},
++
+3
+\begin{bmatrix*}[r]
+0 \\ 
+1 \\ 
+2
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+2 \\ 
+-4 \\ 
+0
+\end{bmatrix*}
++
+\begin{bmatrix*}[r]
+0 \\ 
+3 \\ 
+6
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+2 \\ 
+-1 \\ 
+6
+\end{bmatrix*}
+=
+\bs{b}
+$$
 <br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 12</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
+If $x_3 = 1$, then $x_1 = 2 - 5 = -3$ and $x_2 = 3 - 4 = -1$, so:
+$$
+(-3)\bs{a}_1 + (-1)\bs{a}_2 + \bs{a}_2
+=
+(-3)
+\begin{bmatrix*}[r]
+1 \\ 
+-2 \\ 
+0
+\end{bmatrix*}
++
+(-1)
+\begin{bmatrix*}[r]
+0 \\ 
+1 \\ 
+2
+\end{bmatrix*}
++
+\begin{bmatrix*}[r]
+5 \\ 
+-6 \\ 
+8
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+-3 \\ 
+6 \\ 
+0
+\end{bmatrix*}
++
+\begin{bmatrix*}[r]
+0 \\ 
+-1 \\ 
+-2
+\end{bmatrix*}
++
+\begin{bmatrix*}[r]
+5 \\ 
+-6 \\ 
+8
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+2 \\ 
+-1 \\ 
+6
+\end{bmatrix*}
+= \bs{b}
+$$
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -608,77 +702,130 @@ asd
 
 
 <h3>Exercise 13</h3>
-asd
+Determine if <b>b</b> is a linear combination of the columns in matrix A.
+$$
+A = 
+\begin{bmatrix*}[rrr]
+1 & -4 & 2 \\ 
+0 & 3 & 5 \\ 
+-2 & 8 & -4
+\end{bmatrix*},
+\quad
+\bs{b} = 
+\begin{bmatrix*}[r]
+3 \\ 
+-7 \\ 
+-3
+\end{bmatrix*}
+$$
 <br /><br />
 <i>Answer</i><br />
+We start with the augmented matrix.
+$$
+\begin{bmatrix*}[rrrr]
+1 & -4 & 2 & 3 \\ 
+0 & 3 & 5 & -7 \\ 
+-2 & 8 & -4 & -3
+\end{bmatrix*}
+$$
+III + 2I
+$$
+\begin{bmatrix*}[rrrr]
+1 & -4 & 2 & 3 \\ 
+0 & 3 & 5 & -7 \\ 
+0 & 0 & 0 & 3
+\end{bmatrix*}
+$$
+Here we can see that we have an inconsistent system, so there are no solutions.
+So, we can conclude that <b>b</b> is not a linear combinations of the matrix
+columns.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
-
-
-
-
-
-
-<h3>Exercise 14</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
 
 
 
 
 
 <h3>Exercise 15</h3>
-asd
+List five vectors in Span$\{\bs{v}_1, \bs{v}_2\}$ and list the associated weights.
+$$
+\bs{v}_1 =
+\begin{bmatrix*}[r]
+7 \\ 
+1 \\ 
+-6
+\end{bmatrix*},
+\quad
+\bs{v}_2 =
+\begin{bmatrix*}[r]
+-5 \\ 
+3 \\ 
+0
+\end{bmatrix*}
+$$
 <br /><br />
 <i>Answer</i><br />
+We are working in $\R^3$, so the span of two vectors will be
+a 2D plane.
+I'll list two. Set weights c<sub>1</sub> = 1, c<sub>2</sub> = 1.
+$$
+\bs{v}_1 + \bs{v}_2 = 
+\begin{bmatrix*}[r]
+7 \\ 
+1 \\ 
+-6
+\end{bmatrix*}
++
+\begin{bmatrix*}[r]
+-5 \\ 
+3 \\ 
+0
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+2 \\ 
+4 \\ 
+-6
+\end{bmatrix*}
+$$
+Set weights c<sub>1</sub> = 2, c<sub>2</sub> = -1.
+$$
+2\bs{v}_1 - \bs{v}_2 = 
+2\begin{bmatrix*}[r]
+7 \\ 
+1 \\ 
+-6
+\end{bmatrix*}
+-
+\begin{bmatrix*}[r]
+-5 \\ 
+3 \\ 
+0
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+14 \\ 
+2 \\ 
+-12
+\end{bmatrix*}
+-
+\begin{bmatrix*}[r]
+-5 \\ 
+3 \\ 
+0
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+24 \\ 
+-1 \\ 
+-12
+\end{bmatrix*}
+$$
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
-
-
-
-
-
-<h3>Exercise 16</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 17</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 18</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
 
 
 
@@ -686,561 +833,47 @@ asd
 
 
 <h3>Exercise 19</h3>
-asd
+Give a geometric description of Span$\{\bs{v}_1, \bs{v}_2\}$ for the vectors
+$$
+\bs{v}_1 = 
+\begin{bmatrix*}[r]
+8 \\ 
+2 \\ 
+-6
+\end{bmatrix*},\quad
+\bs{v}_2 = 
+\begin{bmatrix*}[r]
+12 \\ 
+3 \\ 
+-9
+\end{bmatrix*}
+$$
 <br /><br />
 <i>Answer</i><br />
+To start off, we can simplify them. Since we are scaling both vectors belong to the same
+span, and in turn spans the same plane. So we divide them by 2 and 3 respectively and
+remame to u.
+$$
+\bs{u}_1 = 
+\begin{bmatrix*}[r]
+4 \\ 
+1 \\ 
+-3
+\end{bmatrix*},\quad
+\bs{u}_2 = 
+\begin{bmatrix*}[r]
+4\\ 
+1 \\ 
+-3
+\end{bmatrix*}
+$$
+Now we see that they lie on the same line, and so this does not span a plane in $\R^3$,
+but instead it spans a line going through the origin and the point (4, 1, -3).
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
 
-
-
-
-
-<h3>Exercise 20</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 21</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 22</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 23</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 24</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 25</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 26</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 27</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 28</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 29</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 30</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 31</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 32</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 33</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 34</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 35</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 36</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 37</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 38</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 39</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 40</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 41</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 42</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 43</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 44</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 45</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 46</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 47</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 48</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 49</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 50</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 51</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 52</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 53</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 54</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 55</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 56</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 57</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 58</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 59</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-<!--
-    ∩ · ≥ ≤
-    Ω λ π ≠ ∊ −
-    ∅ φ ⇒ ↔	
-    ≈ ⊂
--->
-
-<!--
-
-<b>Code</b>:<br />
-<div class="rcode">
-
-</div>
-<br />
-<b>Output</b>:<br />
-<pre class="rcode">
-
-</pre>
-<br /><br />
--->
-
-<br /><br />
-<br /><br />
-<br /><br />
-<br /><br />
-<br /><br />
-<br /><br />
-<br /><br />
 <br /><br />
 <br /><br />
 <br /><br />
