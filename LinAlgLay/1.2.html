@@ -95,6 +95,19 @@ in A that corresponds to a leading 1 in the RREF. A <b>pivot column</b>
 is a column of A that contains a pivot position. The leading non-zero
 elements in echelon matrices are called <b>pivots</b>.
 
+<br /><br />
+<div class="thm">Theorem 1.2: Existence and Uniqueness Theorem</div>
+A linear system is consistent if and only if the rightmost column of
+the augmented matrix is <i>not</i> a pivot column. That is, if and
+only if the RREF matrix has <b>no</b> row of the form
+$$
+[\;0\;\;\cdots\;\;0\;\; 1\;]
+$$
+If a linear system is consistent, then the solution set has either (i)
+a unique solution, when there are no free variables, or (ii) infinitely
+many solutions, when there is at least one free variable.
+<br /><br /><br /><br />
+
 <h3>Solutions of Linear Systems</h3>
 
 As we have already seen, if we start with some augmented matrix we

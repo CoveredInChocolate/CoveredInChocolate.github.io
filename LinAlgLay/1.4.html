@@ -5,10 +5,10 @@
     <script>
         MathJax = {
             loader: {
-                load: ['[tex]/mathtools']
+                load: ['[tex]/mathtools', '[tex]/boldsymbol']
             },
             tex: {
-                packages: {'[+]': ['mathtools']},
+                packages: {'[+]': ['mathtools', 'boldsymbol']},
                 inlineMath: [['$', '$'], ['\\(', '\\)']]
             },
             svg: {
@@ -29,6 +29,7 @@
    \def\Q{\mathbb{Q}}
    \def\eps{\varepsilon}
    \def\epsilon{\varepsilon}
+   \newcommand\bs[1]{\boldsymbol{#1}}
    \renewcommand{\geq}{\geqslant}
    \renewcommand{\leq}{\leqslant}
 \)
@@ -56,24 +57,25 @@
 
 <h2>Results</h2>
 
-<!-- Explainable Proxy Model - algorithm
-<div class="thm">Algorithm</div>
-<div style="margin-left: 30px; margin-top: 10px;">
-Input: some black box model $B$<br />
-1. Determine a grid $G$ and some threshold $T>0$<br />
-2. Predict points in $G$ with model $B$ to get <b>bbpred</b><br />
-3. Fit a linear regression model $m_0$ on $G$ and predict <b>xpred</b><br />
-4. while max(abs(<b>bbpred</b> - <b>xpred</b>)) $> T$:
-<div style="margin-left: 30px; margin-top: 8px;">
-    5. Calculate residuals: <b>res</b> = <b>bbpred</b> - <b>xpred</b><br />
-    6. Define dataset $d^+$ where <b>res</b> $\geq 0$<br />
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fit model $m^+$ on $d^+$ and get predictions $p^+$<br />
-    7. Define dataset $d^-$ where <b>res</b> $< 0$<br />
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fit model $m^-$ on $d^-$ and get predictions $p^-$<br />
-    8. Update predictions: <b>xpred</b> = <b>xpred</b> + combine($p^+, p^-$)
-</div> 
-</div>
--->
+<h3>Homogeneous Linear Systems</h3>
+
+A system of linear equations is <b>homogeneous</b> if it can be written as:
+$A\bs{x} = \bs{0}$. This system always has a solution which is simply
+$\bs{x} = \bs{0}$. This is called the <i>trivial</i> solution.
+
+<br /><br />
+
+Any nontrivial solution is when there is a nonzero vector $\bs{x}$ that satisfies
+the system. From the Existence and Uniqueness theorem in 1.2, we get the following:
+
+<br /><br />
+<div class="thm">THM 1.2 &rArr; Result</div>
+    The homogeneous equation $A\bs{x} = \bs{0}$ has a nontrivial solution
+    if and only if the equation has at least one free variable.
+<br /><br />
+
+<b>NOTE</b>: Unclear to me why this is true. Imagine $\R^3$
+
 
 <br /><br /><br /><br />
 

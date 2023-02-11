@@ -5,10 +5,10 @@
     <script>
         MathJax = {
             loader: {
-                load: ['[tex]/mathtools']
+                load: ['[tex]/mathtools', '[tex]/boldsymbol']
             },
             tex: {
-                packages: {'[+]': ['mathtools']},
+                packages: {'[+]': ['mathtools', 'boldsymbol']},
                 inlineMath: [['$', '$'], ['\\(', '\\)']]
             },
             svg: {
@@ -29,6 +29,7 @@
    \def\Q{\mathbb{Q}}
    \def\eps{\varepsilon}
    \def\epsilon{\varepsilon}
+   \newcommand\bs[1]{\boldsymbol{#1}}
    \renewcommand{\geq}{\geqslant}
    \renewcommand{\leq}{\leqslant}
 \)
