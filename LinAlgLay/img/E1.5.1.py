@@ -28,15 +28,15 @@ layout = go.Layout(
 # Axes
 minA = -5
 maxA = 5
-xaxisX=np.linspace(minA, maxA, 1000)
-xaxisY=0* np.linspace(minA, maxA, 1000)
-xaxisZ=0* np.linspace(minA, maxA, 1000)
-yaxisX=0* np.linspace(minA, maxA, 1000)
-yaxisY=np.linspace(minA, maxA, 1000)
-yaxisZ=0* np.linspace(minA, maxA, 1000)
-zaxisX=0* np.linspace(minA, maxA, 1000)
-zaxisY=0* np.linspace(minA, maxA, 1000)
-zaxisZ=np.linspace(minA, maxA, 1000)
+xaxisX = np.linspace(minA, maxA, 1000)
+xaxisY = 0*np.linspace(minA, maxA, 1000)
+xaxisZ = 0*np.linspace(minA, maxA, 1000)
+yaxisX = 0*np.linspace(minA, maxA, 1000)
+yaxisY = np.linspace(minA, maxA, 1000)
+yaxisZ = 0*np.linspace(minA, maxA, 1000)
+zaxisX = 0*np.linspace(minA, maxA, 1000)
+zaxisY = 0*np.linspace(minA, maxA, 1000)
+zaxisZ = np.linspace(minA, 25, 1000)
 fig=go.Figure(data=[
     go.Surface (x=x, y=y, z=Z1, opacity = 1.0, colorscale='purp', showscale=False),
     go.Surface (x=x, y=y, z=Z2, opacity = 1.0, colorscale='blues', showscale=False),

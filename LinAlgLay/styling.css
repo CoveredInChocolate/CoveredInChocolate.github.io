@@ -17,12 +17,13 @@ h3 {
     background-color: #d8daf5;
 }
 .thm {
+    padding: 5px;
     font-variant: small-caps;
     font-weight: 600;
     background-color: #f3f3f3;
 }
 .thmtext {
-  padding: 10px;;
+  padding: 10px;
   border: 1px solid #b4b4b4;
   background-color: #fdfdfd;
 }

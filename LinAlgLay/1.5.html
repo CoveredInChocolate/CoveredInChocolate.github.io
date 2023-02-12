@@ -20,7 +20,7 @@
     <script type="text/javascript" id="MathJax-script" async
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
     </script>
-    <title>1.4 - The Matrix Equations A<b>x</b> = <b>b</b></title> <!-- #################### TITLE #################### -->
+    <title>1.5 - Solution Sets of Linear Systems</title> <!-- #################### TITLE #################### -->
 </head>
 \(
    \def\R{\mathbb{R}}
@@ -37,7 +37,7 @@
     <div class="page">
 <h2>Chapter 1 - Linear Equations in Linear Algebra</h2> <!-- Chapter -->
 
-<h1>1.4 - The Matrix Equations A<b>x</b> = <b>b</b></h1> <!-- Section -->
+<h1>1.5 - Solution Sets of Linear Systems</h1> <!-- Section -->
 <br />
 <table border="0">
     <tr>
@@ -46,265 +46,233 @@
     </tr>
     <tr>
         <td><b>Previous</b>:</td>
-        <td><a href="1.3.html">1.3 - Vector Equations</a></td>
+        <td><a href="1.4.html">1.4 - The matrix equation A<b>x</b> = <b>b</b></a></td>
     </tr>
     <tr>
         <td><b>Next</b>:</td>
-        <td><a href="1.5.html">1.5 - Solution Sets of Linear Systems</a></td>
+        <td><a href="1.7.html">1.7 - Linear Independence</a></td>
     </tr>
 </table>
 <br /><br />
 
 <h2>Results</h2>
 
-A fundamental idea in linear algebra is to view linear combinations of vectors
-as the product of a matrix and a vector.
+<h3>Homogeneous Linear Systems</h3>
+
+A system of linear equations is <b>homogeneous</b> if it can be written as:
+$A\bs{x} = \bs{0}$. This system always has a solution which is simply
+$\bs{x} = \bs{0}$. This is called the <i>trivial</i> solution.
 
 <br /><br />
 
-<div class="thm">Definition</div>
+Any nontrivial solution is when there is a nonzero vector $\bs{x}$ that satisfies
+the system. From the Existence and Uniqueness theorem in 1.2, we get the following:
+
+<br /><br />
+<div class="thm">THM 1.2 &rArr; Result</div>
 <div class="thmtext">
-    If A is a $m\times n$ matrix with columns <b>a</b><sub>1</sub>,...,<b>a</b><sub>n</sub>
-    and if $\bs{x}\in\R^n$, then the <b>product of x and $A$</b>, denoted by $A\bs{x}$,
-    is the <b>linear combination of the columns of $A$ using the corresponding entries
-        in x as weights</b>. That is:
-$$
-A\bs{x}
-\;=\;
-\big[\;\bs{a}_1 \;\; \bs{a}_2 \;\; \cdots \;\; \bs{a}_1 \; \big]
-\begin{bmatrix*}[r]
-x_1 \\ 
-\vdots \\ 
-x_n
-\end{bmatrix*}
-\;=\;
-x_1\bs{a}_1 + x_2\bs{a}_2 + \ldots + x_n\bs{a}_n
-$$
+    The homogeneous equation $A\bs{x} = \bs{0}$ has a nontrivial solution
+    if and only if the equation has at least one free variable.
 </div>
-(Note that this is only defined if the number of columns in A correspond to the
-number of elements/rows in <b>x</b>).
-
 <br /><br />
 
-<b>Example</b><br />
-Calculating results in two different ways. Linear combination way:
+<b>NOTE</b>: Unclear to me why this is true. We will create an example in $\R^3$
+with a free variable and investigate the plots.
 $$
-\begin{bmatrix*}[rrr]
-1 & 2 & -1 \\ 
-0 & -5 & 3
+A = 
+\begin{bmatrix*}[rrrr]
+1 & 0 & -1 & 2 \\ 
+0 & 1 & -1 & 3 \\ 
+0 & 0 & 0 & 0
 \end{bmatrix*}
-\begin{bmatrix*}[r]
-4 \\ 
-3 \\ 
-7
-\end{bmatrix*}
-\;=\;
-4
-\begin{bmatrix*}[r]
-1 \\ 
-0
-\end{bmatrix*}
-+
-3
-\begin{bmatrix*}[r]
-2 \\ 
--5
-\end{bmatrix*}
-+
-7
-\begin{bmatrix*}[r]
--1 \\ 
-3
-\end{bmatrix*}
-\;=\;
-\begin{bmatrix*}[r]
-4 \\ 
-0
-\end{bmatrix*}
-+
-\begin{bmatrix*}[r]
-6 \\ 
--15
-\end{bmatrix*}
-+
-\begin{bmatrix*}[r]
--7 \\ 
-21
-\end{bmatrix*}
-\;=\;
-\begin{bmatrix*}[r]
-3 \\ 
-6
+\sim
+\begin{bmatrix*}[rrrr]
+2 & 3 & -5 & 13 \\ 
+1 & 1 & -2 & 5 \\ 
+3 & 1 & -4 & 9
 \end{bmatrix*}
 $$
-With the "row-vector rule":
+This corresponds to the linear system:
 $$
-\begin{bmatrix*}[rrr]
-1 & 2 & -1 \\ 
-0 & -5 & 3
-\end{bmatrix*}
-\begin{bmatrix*}[r]
-4 \\ 
-3 \\ 
-7
-\end{bmatrix*}
-\;=\;
-\begin{bmatrix*}[c]
-1(4) + 2(3) + (-1)(7) \\ 
-0(4) + (-5)(3) + 3(7)
-\end{bmatrix*}
-\;=\;
-\begin{bmatrix*}[c]
-4 + 6 -7 \\ 
-0 - 15 + 21
-\end{bmatrix*}
-\;=\;
-\begin{bmatrix*}[c]
-3 \\ 
-6
-\end{bmatrix*}
-$$
-<br /><br />
-
-We can express a linear system as a <b>matrix equation</b>. Take the linear system:
-$$
-\begin{array}{rcccrcr}
-x_1 & + & 2x_2 & - & x_3 & = & 4 \\ 
-& - & 5x_2 & + & 3x_3 & = & 1
+\begin{array}{rcccccr}
+2x_1 & + & 3x_2 & - & 5x_3 & = & 13 \\ 
+x_1 & + & x_2 & - & 2x_3 & = & 5 \\ 
+3x_1 & + & x_2 & - & 4x_3 & = & 9
 \end{array}
 $$
-We can write this as:
+Solving for one of the variables, say $x_2$.
 $$
-x_1\begin{bmatrix*}[r]
+\begin{array}{rcccccr}
+x_2 & = & 13/3 & - & (2/3)x_1 & + & (5/3)x_3 \\
+x_2 & = & 5 & - & x_1 & + & 2x_3 \\
+x_2 & = & 9 & - & 3x_1 & + & 4x_3
+\end{array}
+$$
+
+Here is a plot of the three planes:
+
+<br /><br />
+<img src="img/E1.5.1.png" />
+<br /><br />
+
+As we can see, there is an infinite number of solutions as the three planes
+intersect on a line in the space.
+
+<br /><br />
+
+Now, what exactly does it mean that $A\bs{x} = \bs{0}$? The matrix $A$ transforms
+points in $\R^3$, or maps from one point to another. For instance for some
+vector $\bs{v} = (1, 2, 3)$:
+$$
+A\bs{v} =
+\begin{bmatrix*}[rrr]
+2 & 3 & -5 \\ 
+1 & 1 & -2 \\ 
+3 & 1 & -4
+\end{bmatrix*}
+\begin{bmatrix*}[r]
 1 \\ 
-0
-\end{bmatrix*}
-+
-x_2\begin{bmatrix*}[r]
 2 \\ 
--5
-\end{bmatrix*}
-+
-x_3\begin{bmatrix*}[r]
--1 \\ 
 3
 \end{bmatrix*}
-=
-\begin{bmatrix*}[r]
-4 \\ 
-1
-\end{bmatrix*}
-$$
-And this can be re-expressed as a matrix equation on the form $A\bs{x} = \bs{b}$:
-$$
-\begin{bmatrix*}[rrr]
-1 & 2 & -1 \\ 
-0 & -5 & 3
-\end{bmatrix*}
-\begin{bmatrix*}[r]
-x_1 \\ 
-x_2 \\
-x_3
+\;=\;
+\begin{bmatrix*}[c]
+2(1) + 3(2) - 5(3) \\ 
+1(1) + 1(2) - 2(3) \\ 
+3(1) + 1(2) - 4(3)
 \end{bmatrix*}
 \;=\;
+\begin{bmatrix*}[c]
+2 + 6 - 15 \\ 
+1 + 2 - 6 \\ 
+3 + 2 - 12
+\end{bmatrix*}
+\;=\;
+\begin{bmatrix*}[c]
+-7 \\ 
+-3 \\ 
+-7
+\end{bmatrix*}
+$$
+Now it is more clear: we are looking for the set of points in $\R^3$ that are mapped to
+$\bs{0}$ when multiplied by the matrix $A$. And this is only non-trivial when we have
+free variables. In the cases where we have a unique solution, i.e. all the columns are
+linearly independent, the only point that gives $\bs{0}$ is the zero vector itself.
+Hard to work out why, geometrically. But it makes sense algebraically when looking at
+the equations.
+
+<br /><br />
+
+The planes plotted above are simply the input sets that map to the point we arbitrarily
+selected: $(13, 5, 9)$. As an example, if we fix $x_3 = 1$ and, which gives
+$$
+\begin{align*}
+x_1 &= 2 + x_3 = 2 + 1 = 3 \\
+x_2 &= 3 + x_3 = 3 + 1 = 4
+\end{align*}
+$$
+which becomes the vector $(3, 4, 1)$. Calculating $A\bs{v}$:
+$$
+A\bs{v} =
+\begin{bmatrix*}[rrr]
+2 & 3 & -5 \\ 
+1 & 1 & -2 \\ 
+3 & 1 & -4
+\end{bmatrix*}
 \begin{bmatrix*}[r]
+3 \\ 
 4 \\ 
 1
+\end{bmatrix*}
+\;=\;
+\begin{bmatrix*}[c]
+2(3) + 3(4) - 5(1) \\ 
+1(3) + 1(4) - 2(1) \\ 
+3(3) + 1(4) - 4(1)
+\end{bmatrix*}
+\;=\;
+\begin{bmatrix*}[c]
+6 + 12 - 5 \\ 
+3 + 4 - 2 \\ 
+9 + 4 - 4
+\end{bmatrix*}
+\;=\;
+\begin{bmatrix*}[c]
+13 \\ 
+5 \\ 
+9
 \end{bmatrix*}
 $$
 
 <br /><br />
 
-<div class="thm">Theorem 1.3</div>
+In essence, when we solve an augmented matrix, the solution set is a subset of $\R^n$
+with the points that - when multiplied by $A$ - map to the point of interest.
+Graphical illustration of the solution set:
+
+<br /><br />
+<img src="img/E1.5.2.png" />
+<br /><br />
+
+And finally - finding the solution set that maps to <b>0</b> is trivial when there are
+no free variables, because the end results becomes:
+$$
+\begin{bmatrix*}[rrrr]
+1 & 0 & 0 & 0 \\ 
+0 & 1 & 0 & 0 \\ 
+0 & 0 & 1 & 0
+\end{bmatrix*}
+\;\;\Longrightarrow\;\;
+\left\{
+\begin{array}{l}
+    x_1 = 0 \\ 
+    x_2 = 0 \\
+    x_3 = 0
+\end{array}
+\right.
+$$
+which is the trivial solution. When there is a free variable, we get an infinite number of
+solutions that map to <b>0</b>.
+
+<br /><br />
+
+Any solution set can be expressed as Span$\{\bs{v}_1,\ldots,\bs{v}_p\}$ for suitable
+vectors. If the solution set is <b>0</b>, we can write Span$\{\bs{0}\}$.
+
+<br /><br />
+
+
+<h3>Solutions of Nonhomogeneous Systems</h3>
+
+When solving a nonhomogeneous linear system that has an infinite number of solutions,
+the general solution can be written in parametric form as one vector plus an arbitrary
+linear combination of vectors that satisfy the corresponding homogeneous system.
+
+<br /><br />
+
+This is all summarized in the following theorem.
+
+<br /><br />
+
+
+<div class="thm">Theorem 1.6</div>
 <div class="thmtext">
-If A is an m&times;n matrix with columns <b>a</b><sub>1</sub>, ..., <b>a</b><sub>n</sub>
-and if <b>b</b> is in $\R^n$, the matrix equation
-$$
-A\bs{x} = \bs{b}
-$$
-has the same solution set as the vector equation
-$$
-x_1\bs{a}_1 + x_2\bs{a}_2 + \ldots + x_n\bs{a}_n = \bs{b}
-$$
-which, in turn, has the same solutuion set as the system of linear equations
-whose augmented matrix is:
-$$
-\big[\;\bs{a}_1 \;\; \bs{a}_2 \;\; \ldots \;\; \bs{a}_n \;\; \bs{b} \;\big]
-$$
+    Suppose the equation $A\bs{x} = \bs{b}$ is consistent for some given <b>b</b>
+    and let <b>p</b> be a solution. Then the solution set of $A\bs{x} = \bs{b}$
+    is the set of vectors of the form <b>w</b> = <b>p</b> + <b>v</b><sub>h</sub>,
+    where <b>v</b><sub>h</sub> is any solution to the homogeneous equation
+    $A\bs{x} = \bs{0}$.
 </div>
 <br /><br />
 
-Any problem can be viewed in three different ways: as a matrix equation,
-as a vector equation, or as a system of linear equations. 
-    
-<br /><br />
-
-<h3>Existence of Solutions</h3>
-
-Let's begin with a stated fact.
-<br /><br />
-
-<div class="thm">Fact</div>
-<div class="thmtext">
-The equation $A\bs{x} = \bs{b}$ has a solution if and only if <b>b</b> is
-a linear combination of the columns of A.
-</div>
-<br /><br />
-
-When we say that the columns of $A$ span $\R^m$, we mean that every element in
-$\R^m$ is a linear combination of the columns of $A$. Note that the following
-theorem only applies to the coefficient matrix (not the augmented matrix).
-
-<br /><br />
-<div class="thm">Theorem 1.4</div>
-<div class="thmtext">
-Let A be an m&times;n matrix. Then the following statements are logically
-equivalent. That is, for a particular A, either they are all true or they
-are all false.
-<ul>
-    <li>For each <b>b</b> in $\R^m$, thee equation $A\bs{x} = \bs{b}$
-    has a solution.</li>
-    <li>Each <b>b</b> in $\R^m$ is a linear combination of the columns in A</li>
-    <li>The columns of A span $\R^m$</li>
-    <li>A has a pivot position in every row</li>
-</ul>
-</div>
-<br /><br />
-
-<h3>Properties of the Matrix-Vector Product Ax</h3>
-
-These facts will be important throughout the book.
-
-<br /><br />
-<div class="thm">Theorem 1.5</div>
-<div class="thmtext">
-If A is an m&times;n matrix, <b>u</b> and <b>v</b> are vectors in $\R^n$ and
-$c$ is a scalar, then:
-<ul>
-    <li>$A(\bs{u} + \bs{v}) = A\bs{u} + A\bs{v}$</li>
-    <li>$A(c\bs{u}) = c(A\bs{u})$</li>
-</ul>
-
-</div>
-<br /><br />
-
+The theorem says that if $A\bs{x} = \bs{b}$ has a solution, then the solution set is
+obtained by taking the solution set of $A\bs{x} = \bs{0}$ and translating it by using
+any particular solution <b>p</b> of the nonhomogeneous equation.
 
 <br /><br /><br /><br />
 
 <!--
-
 <br /><br />
--->
-
-<!--
-
-<br /><br />
-<div class="thm">XXXX_NAME_XXXX</div>
-<div class="thmtext">
-Resulttextgoeshere
-</div>
-<br /><br />
-
 -->
 
 
