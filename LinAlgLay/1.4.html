@@ -70,12 +70,96 @@ the system. From the Existence and Uniqueness theorem in 1.2, we get the followi
 
 <br /><br />
 <div class="thm">THM 1.2 &rArr; Result</div>
+<div class="thmtext">
     The homogeneous equation $A\bs{x} = \bs{0}$ has a nontrivial solution
     if and only if the equation has at least one free variable.
+</div>
 <br /><br />
 
-<b>NOTE</b>: Unclear to me why this is true. Imagine $\R^3$
+<b>NOTE</b>: Unclear to me why this is true. We will create an example in $\R^3$
+with a free variable and investigate the plots.
+$$
+A = 
+\begin{bmatrix*}[rrrr]
+1 & 0 & -1 & 2 \\ 
+0 & 1 & -1 & 3 \\ 
+0 & 0 & 0 & 0
+\end{bmatrix*}
+\sim
+\begin{bmatrix*}[rrrr]
+2 & 3 & -5 & 13 \\ 
+1 & 1 & -2 & 5 \\ 
+3 & 1 & -4 & 9
+\end{bmatrix*}
+$$
+This corresponds to the linear system:
+$$
+\begin{array}{rcccccr}
+2x_1 & + & 3x_2 & - & 5x_3 & = & 13 \\ 
+x_1 & + & x_2 & - & 2x_3 & = & 5 \\ 
+3x_1 & + & x_2 & - & 4x_3 & = & 9
+\end{array}
+$$
+Solving for one of the variables, say $x_2$.
+$$
+\begin{array}{rcccccr}
+x_2 & = & 13/3 & - & (2/3)x_1 & + & (5/3)x_3 \\
+x_2 & = & 5 & - & x_1 & + & 2x_3 \\
+x_2 & = & 9 & - & 3x_1 & + & 4x_3
+\end{array}
+$$
 
+Here is a plot of the three planes:
+
+<br /><br />
+<img src="img/E1.4.1.png" />
+<br /><br />
+
+As we can see, there is an infinite number of solutions as the three planes
+intersect on a line in the space.
+
+<br /><br />
+
+Now, what exactly does it mean that $A\bs{x} = \bs{0}$? The matrix $A$ transforms
+points in $\R^3$, or maps from one point to another. For instance for some
+vector $\bs{v} = (1, 2, 3)$:
+$$
+A\bs{v} =
+\begin{bmatrix*}[rrr]
+2 & 3 & -5 \\ 
+1 & 1 & -2 \\ 
+3 & 1 & -4
+\end{bmatrix*}
+\begin{bmatrix*}[r]
+1 \\ 
+2 \\ 
+3
+\end{bmatrix*}
+\;=\;
+\begin{bmatrix*}[c]
+2(1) + 3(2) - 5(3) \\ 
+1(1) + 1(2) - 2(3) \\ 
+3(1) + 1(2) - 4(3)
+\end{bmatrix*}
+\;=\;
+\begin{bmatrix*}[c]
+2 + 6 - 15 \\ 
+1 + 2 - 6 \\ 
+3 + 2 - 12
+\end{bmatrix*}
+\;=\;
+\begin{bmatrix*}[c]
+-7 \\ 
+-3 \\ 
+-7
+\end{bmatrix*}
+$$
+Now it is more clear: we are looking for the set of points in $\R^3$ that are mapped to
+$\bs{0}$ when multiplied by the matrix $A$. And this is only non-trivial when we have
+free variables. In the cases where we have a unique solution, i.e. all the columns are
+linearly independent, the only point that gives $\bs{0}$ is the zero vector itself.
+Hard to work out why, geometrically. But it makes sense algebraically when looking at
+the equations.
 
 <br /><br /><br /><br />
 

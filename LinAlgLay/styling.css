@@ -21,6 +21,11 @@ h3 {
     font-weight: 600;
     background-color: #f3f3f3;
 }
+.thmtext {
+  padding: 10px;;
+  border: 1px solid #b4b4b4;
+  background-color: #fdfdfd;
+}
 
 .exend {
   width:100%;
