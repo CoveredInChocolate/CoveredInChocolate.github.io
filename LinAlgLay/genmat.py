@@ -2,8 +2,8 @@
 import sys
 
 mat = """
-1 2 -1
-0 -5 3
+2 -1
+-6 3
 """
 
 # Example2

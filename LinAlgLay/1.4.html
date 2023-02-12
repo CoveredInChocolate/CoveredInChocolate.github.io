@@ -262,7 +262,7 @@ Let A be an m&times;n matrix. Then the following statements are logically
 equivalent. That is, for a particular A, either they are all true or they
 are all false.
 <ul>
-    <li>For each <b>b</b> in $\R^m$, thee equation $A\bs{x} = \bs{b}$
+    <li>For each <b>b</b> in $\R^m$, the equation $A\bs{x} = \bs{b}$
     has a solution.</li>
     <li>Each <b>b</b> in $\R^m$ is a linear combination of the columns in A</li>
     <li>The columns of A span $\R^m$</li>
@@ -324,36 +324,47 @@ Resulttextgoeshere
 </pre>
 -->
 
-<h3>Exercise 1</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 2</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
 
 
 <h3>Exercise 3</h3>
-asd
+Calculate the product.
+$$
+\begin{bmatrix*}[rr]
+6 & 5 \\ 
+-4 & -3 \\ 
+7 & 6
+\end{bmatrix*}
+\begin{bmatrix*}[r]
+2 \\ 
+-3
+\end{bmatrix*}
+$$
 <br /><br />
 <i>Answer</i><br />
+$$
+\begin{align*}
+A\bs{x} &=
+\begin{bmatrix*}[rcr]
+6(2) & + & 5(-3) \\ 
+-4(2) & + & (-3)(-3) \\ 
+7(2) & + & 6(-3)
+\end{bmatrix*}\\
+&\\
+&= 
+\begin{bmatrix*}[c]
+12 - 15 \\ 
+-8 + 9 \\ 
+14 - 18
+\end{bmatrix*}\\
+&\\
+&=
+\begin{bmatrix*}[r]
+-3 \\ 
+1 \\ 
+-4
+\end{bmatrix*}
+\end{align*}
+$$
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -364,259 +375,257 @@ asd
 
 
 <h3>Exercise 4</h3>
-asd
+Calculate the product.
+$$
+\begin{bmatrix*}[rrr]
+8 & 3 & -4 \\ 
+5 & 1 & 2
+\end{bmatrix*}
+\begin{bmatrix*}[r]
+1 \\ 
+1 \\ 
+1
+\end{bmatrix*}
+$$
 <br /><br />
 <i>Answer</i><br />
+$$
+\begin{align*}
+A\bs{x} &=
+\begin{bmatrix*}[rcrcr]
+8(1) &+& 3(1) &+& (-4)(1) \\ 
+5(1) &+& 1(1) &+& 2(1)
+\end{bmatrix*}\\
+&\\
+&= 
+\begin{bmatrix*}[c]
+8 + 3 - 4 \\ 
+5 + 1 + 2
+\end{bmatrix*}\\
+&\\
+&=
+\begin{bmatrix*}[r]
+7 \\ 
+8
+\end{bmatrix*}
+\end{align*}
+$$
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
-
-
-
-
-
-
-<h3>Exercise 5</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 6</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 7</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 8</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 9</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 10</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 11</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 12</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
 
 
 
 
 <h3>Exercise 13</h3>
-asd
+Is <b>u</b> in the plane spanned by the columns of A?
+$$
+\bs{u} =
+\begin{bmatrix*}[r]
+0 \\ 
+4 \\ 
+4
+\end{bmatrix*},
+\qquad
+A =
+\begin{bmatrix*}[rr]
+3 & -5 \\ 
+-2 & 6 \\ 
+1 & 1
+\end{bmatrix*}
+$$
 <br /><br />
 <i>Answer</i><br />
+Represent this as an augmented matrix. We will check if <b>u</b> is a linear combination
+of the columns in A.
+$$
+\begin{bmatrix*}[rrr]
+3 & -5 & 0\\ 
+-2 & 6 & 4 \\ 
+1 & 1 & 4
+\end{bmatrix*}
+$$
+Removing 3 and -2 from column 1. I - 3III, II + 2II
+$$
+\begin{bmatrix*}[rrr]
+0 & -8 & -12\\ 
+0 & 8 & 12 \\ 
+1 & 1 & 4
+\end{bmatrix*}
+$$
+Replacing I and III.
+$$
+\begin{bmatrix*}[rrr]
+1 & 1 & 4\\
+0 & 8 & 12 \\ 
+0 & -8 & -12
+\end{bmatrix*}
+$$
+III + II
+$$
+\begin{bmatrix*}[rrr]
+1 & 1 & 4\\
+0 & 8 & 12 \\ 
+0 & 0 & 0
+\end{bmatrix*}
+$$
+(1/8)II
+$$
+\begin{bmatrix*}[rrr]
+1 & 1 & 4\\
+0 & 1 & 3/2 \\ 
+0 & 0 & 0
+\end{bmatrix*}
+$$
+I - II
+$$
+\begin{bmatrix*}[rrr]
+1 & 0 & 5/2\\
+0 & 1 & 3/2 \\ 
+0 & 0 & 0
+\end{bmatrix*}
+$$
+Here we can see that <b>u</b> is in fact a linear combination of the columns in A
+and is therefore included in the plane spanned by those columns.
+Verifying:
+$$
+\left(\frac{5}{2}\right)
+\begin{bmatrix*}[r]
+3 \\ 
+-2 \\ 
+1
+\end{bmatrix*}
++
+\left(\frac{3}{2}\right)
+\begin{bmatrix*}[r]
+-5 \\ 
+6 \\ 
+1
+\end{bmatrix*}
+\;=\;
+\begin{bmatrix*}[r]
+15/2 \\ 
+-5 \\ 
+5/2
+\end{bmatrix*}
++
+\begin{bmatrix*}[r]
+-15/2 \\ 
+9 \\ 
+3/2
+\end{bmatrix*}
+\;=\;
+\begin{bmatrix*}[r]
+0 \\ 
+4 \\ 
+4
+\end{bmatrix*}
+$$
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
-
-
-
-
-
-
-<h3>Exercise 14</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
 
 
 
 
 
 <h3>Exercise 15</h3>
-asd
+Show that the equation A<b>x</b> = <b>b</b> does not have a solution for all possible <b>b</b>
+when:
+$$
+A = 
+\begin{bmatrix*}[rr]
+2 & -1 \\ 
+-6 & 3
+\end{bmatrix*},
+\qquad
+\bs{b} = 
+\begin{bmatrix*}[r]
+b_1 \\
+b_2
+\end{bmatrix*}
+$$
 <br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 16</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 17</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 18</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
+Writing the augmented matrix and finding the RREF.
+$$
+\begin{bmatrix*}[rrr]
+2 & -1 & b_1\\ 
+-6 & 3 & b_2
+\end{bmatrix*}
+$$
+II + 3I
+$$
+\begin{bmatrix*}[rrc]
+2 & -1 & b_1\\ 
+0 & 0 & b_2 + 3b_1
+\end{bmatrix*}
+$$
+(1/2)I
+$$
+\begin{bmatrix*}[rrc]
+1 & -1/2 & b_1/2\\ 
+0 & 0 & b_2 + 3b_1
+\end{bmatrix*}
+$$
+This system is consistent if $b_2 + 3b_1 \not= 0$ or in another way: $b_2 \not= -3b_1$.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
-
-
-
-
-
-
-<h3>Exercise 19</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 20</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 21</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 22</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
 
 
 
 
 
 <h3>Exercise 23</h3>
-asd
+Verifying statements. Answer True or False and justify the answer.
 <br /><br />
-<i>Answer</i><br />
+(a)
+<i>
+    The equation A<b>x</b> = <b>b</b> is referred to as a <i>vector equation</i>.
+</i><br />
+Answer: False. This is the matrix equation form.
+<br /><br />
+(b)
+<i>
+    A vector <b>b</b> is a linear combination of the columns of a matrix A
+    if and only if the equation A<b>x</b> = <b>b</b> has at least one solution.
+</i><br />
+Answer: True. If <b>b</b> is not a linear combination of the columns in A, the
+system has no solution. If it is consistent, there are one or an infinite amount of
+solutions. 
+<br /><br />
+(c)
+<i>
+    The equation A<b>x</b> = <b>b</b> is consistent if every augmented matrix
+    $[A \; \bs{b}]$ has a pivot position in every row.
+</i><br />
+Answer: False. This statement would be true for the coefficient matrix. If the augmented
+matrix has a pivot position in every row, it is inconsistent.
+<br /><br />
+(d)
+<i>
+    The first entry of the product A<b>x</b> is a sum of products.
+</i><br />
+Answer: True. This follows from the matrix multiplication methods.
+<br /><br />
+(e)
+<i>
+    If the columns of an m&times;n matrix A span $\R^m$, then the equation
+    A<b>x</b> = <b>b</b> is consistent for every <b>b</b> in $\R^m$.
+</i><br />
+Answer: True. By Theorem 1.4. It has a pivot position in each row.
+<br /><br />
+(f)
+<i>
+    If A is an m&times;n matrix and if the equation A<b>x</b> = <b>b</b>
+    is inconsistent for some <b>b</b> in $\R^m$, then A cannot have a pivot position
+    in every row.
+</i><br />
+Answer: True. Follows from Theorem 1.4.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
+
 
 
 
@@ -624,467 +633,94 @@ asd
 
 
 <h3>Exercise 24</h3>
-asd
+Verifying statements. Answer True or False and justify the answer.
 <br /><br />
-<i>Answer</i><br />
+(a)
+<i>
+    Every matrix equation A<b>x</b> = <b>b</b> corresponds to a vector
+    equation with the same solution set.
+</i><br />
+Answer: True. By Theorem 1.3.
 <br /><br />
-<div class="exend">&#9632;</div>
+(b)
+<i>
+    Any linear combination of vectors can always be written in the form
+    A<b>x</b> for a suitable matrix A and vector <b>b</b>.
+</i><br />
+Answer: True. By Theorem 1.3.
 <br /><br />
-
-
-
-
-
-
-<h3>Exercise 25</h3>
-asd
+(c)
+<i>
+    The solution set of a linear system whose augmented matrix is
+    [<b>a</b><sub>1</sub> <b>a</b><sub>2</sub> <b>a</b><sub>3</sub> <b>b</b>]
+    is the same as the solution set of A<b>x</b> = <b>b</b>, if
+    A = [<b>a</b><sub>1</sub> <b>a</b><sub>2</sub> <b>a</b><sub>3</sub>].
+</i><br />
+Answer: True. By Theorem 1.3.
 <br /><br />
-<i>Answer</i><br />
+(d)
+<i>
+    If the equation A<b>x</b> = <b>b</b> is inconsistent, then <b>b</b> is not in
+    the set spanned by the columns of A.
+</i><br />
+Answer: True. By Theorem 1.4.
 <br /><br />
-<div class="exend">&#9632;</div>
+(e)
+<i>
+    If the augmented matrix [A <b>b</b>] has a pivot position in every row,
+    then the equation A<b>x</b> = <b>b</b> is inconsistent.
+</i><br />
+Answer: True. A consistent system has a pivot position in every row in the coefficient matrix.
 <br /><br />
-
-
-
-
-
-
-<h3>Exercise 26</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 27</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 28</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
+(f)
+<i>
+    If A is an m&times;n matrix whose columns do not span $\R^m$, then the equation
+    A<b>x</b> = <b>b</b> is inconsistent for some <b>b</b> in $\R^m$.
+</i><br />
+Answer: True. Example in $\R^3$: the matrix spans the x-y plane and <b>b</b> has a positive z value.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
-
-
-
-
-
-
-<h3>Exercise 29</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 30</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 31</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 32</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 33</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 34</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
 
 
 
 
 
 <h3>Exercise 35</h3>
-asd
+Let A be a 3&times;4 matrix, let <b>y</b><sub>1</sub> and <b>y</b><sub>2</sub>
+be vectors in &#8477;<sup>3</sup>, and let <b>w</b> = <b>y</b><sub>1</sub> + <b>y</b><sub>2</sub>.
+Suppose <b>y</b><sub>1</sub> = A<b>x</b><sub>1</sub> and <b>y</b><sub>2</sub> = A<b>x</b><sub>2</sub>
+for some vectors in &#8477;<sup>4</sup>. What fact allows you to conclude that the system
+A<b>x</b> = <b>w</b> is consistent?
 <br /><br />
 <i>Answer</i><br />
+A<b>x</b> = <b>w</b> is consistent if there exists some vector in &#8477;<sup>4</sup> which
+satisfies the equation. We are given that A<b>x</b><sub>1</sub> = <b>y</b><sub>1</sub>
+and A<b>x</b><sub>2</sub> = <b>y</b><sub>2</sub>, which are consistent because we have
+the vectors <b>x</b><sub>1</sub>, <b>x</b><sub>2</sub> in &#8477;<sup>4</sup>.
+<br /><br />
+Observe that by Theorem 1.5:
+$$
+A\bs{x}_1 + A\bs{x}_2 = A(\bs{x}_1 + \bs{x}_2) = A\bs{x}_s.
+$$
+where  <b>x</b><sub>s</sub> in &#8477;<sup>4</sup>.
+Now, by assumptions:
+$$
+A\bs{x}_1 + A\bs{x}_2 = \bs{y}_1 + \bs{y}_2 = \bs{w}.
+$$
+Combining these, we get:
+$$
+A\bs{x}_s = \bs{w}
+$$
+which is consistent because we know we have at least one solution: <b>x</b><sub>s</sub>.
+
+
+
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
 
-
-
-
-
-<h3>Exercise 36</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 37</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 38</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 39</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 40</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 41</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 42</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 43</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 44</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 45</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 46</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 47</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 48</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 49</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 50</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 51</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 52</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 53</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 54</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 55</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 56</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 57</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 58</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 59</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
 
 <!--
     ∩ · ≥ ≤
