@@ -523,9 +523,35 @@ Here is an illustration of the line:
 
 
 <h3>Exercise 27</h3>
-asd
+Suppose A is the 3&times;3 <i>zero</i> matrix (with all zero entries).
+Describe the solution set of the equation A<b>x</b> = <b>0</b>.
 <br /><br />
 <i>Answer</i><br />
+Rephrased: what is the set of vectors <b>y</b> so that A<b>y</b> = <b>0</b>?
+In this case, the matrix maps any vector to the zero space. Take some vector
+<b>y</b> =  (a, b, c) for some arbitrary a,b,c &isin; ℝ.
+$$
+A\bs{y} = 
+\begin{bmatrix*}[rrr]
+0 & 0 & 0 \\ 
+0 & 0 & 0 \\ 
+0 & 0 & 0
+\end{bmatrix*}
+\begin{bmatrix*}[r]
+a \\ 
+b \\ 
+c
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+0 \\ 
+0 \\ 
+0
+\end{bmatrix*}
+=
+\bs{0}.
+$$
+In short, the null space is the entire space ℝ<sup>3</sup>.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -536,25 +562,104 @@ asd
 
 
 <h3>Exercise 28</h3>
-asd
+If $\bs{b}\not=\bs{0}$, can the solution set of A<b>x</b> = <b>b</b>
+be a plane through the origin? Explain.
 <br /><br />
 <i>Answer</i><br />
+Assuming that we are working in ℝ<sup>4</sup> and working our way backwards.
+In order for the solution to be a plane through the origin, one solution would be
+on the form:
+$$
+\bs{x} =
+\begin{bmatrix*}[r]
+0 \\ 
+0 \\ 
+0 \\ 
+0
+\end{bmatrix*}
++
+x_3
+\begin{bmatrix*}[r]
+a \\ 
+b \\ 
+1 \\
+0
+\end{bmatrix*}
++
+x_4
+\begin{bmatrix*}[r]
+c \\ 
+d \\
+0 \\ 
+1
+\end{bmatrix*}
+$$
+Since $x_3 = x_4 = 0$ gives us a point in the origin.
+The corresponding solution set is expressed as:
+$$
+\left\{
+    \begin{array}{l}
+        x_1 = -ax_3 - bx_4 \\ 
+        x_2 = -cx_3 - dx_4 \\
+        x_3\text{ is free} \\
+        x_4\text{ is free} 
+    \end{array}
+\right.
+$$
+The corresponding matrix:
+$$
+\begin{bmatrix*}[rrrrr]
+1 & 0 & a & b & 0 \\ 
+0 & 1 & c & d & 0 \\ 
+0 & 0 & 0 & 0 & 0 \\ 
+0 & 0 & 0 & 0 & 0
+\end{bmatrix*}
+$$
+But now we identify a problem: no matter how many row operations we perform, we still
+have only 0s in the rightmost column. We cannot go back to the case with <b>b</b>.
+
+<br /><br />
+
+Trying another approach. What if we assume the following solution set:
+$$
+\bs{x} =
+\begin{bmatrix*}[r]
+2 \\ 
+3 \\ 
+1 \\ 
+1
+\end{bmatrix*}
++
+x_3
+\begin{bmatrix*}[r]
+2 \\ 
+0 \\ 
+1 \\
+0
+\end{bmatrix*}
++
+x_4
+\begin{bmatrix*}[r]
+0 \\ 
+3 \\
+0 \\ 
+1
+\end{bmatrix*}
+$$
+Now we have another problem: the first column (2,3,1,1) cannot have any values in the
+last two rows, because this does not work with the free variables. So this case is also
+impossible.
+
+<br /><br />
+
+In conclusion: no, we cannot have a plane through the origin if <b>b</b> &ne; <b>0</b>.
+This ties together with the notions of a particular and general solution of nonhomogeneous
+systems.
+
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
-
-
-
-
-
-<h3>Exercise 37</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
 
 
 
