@@ -57,6 +57,211 @@
 
 <h2>Results</h2>
 
+The difference between a matrix equation A<b>x</b> = <b>b</b> and the associated vector
+equation
+$$
+x_1\bs{a}_1 + \cdots + x_n\bs{a}_n = \bs{b}
+$$
+is merely a matter of notation. However, a matrix equation can arise in linear algebra
+in a way that is not directly connected with linear combination of vectors.
+In this case we think of the matrix A as an object that <i>acts</i> on a vector <b>x</b>
+by multiplication to produce a new vector called A<b>x</b>.
+
+<br /><br />
+<img src="img/R1.8.1.png" />
+<br /><br />
+
+From this perspective, solving the equation A<b>x</b> = <b>b</b> amounts to finding
+all vectors <b>x</b> in ℝ<sup>4</sup> that are transformed into the vector <b>b</b>
+in ℝ<sup>2</sup> under the "action" of multiplication by A. (Similar to note made earlier).
+
+<br /><br />
+
+This correspondence from <b>x</b> to A<b>x</b> is a <i>function</i> from one set of vectors
+to another. A <b>transformation</b> (or <b>function</b> or <b>mapping</b>) T from 
+ℝ<sup>n</sup> to ℝ<sup>m</sup> is a rule that assigns to each vector <b>x</b> in ℝ<sup>n</sup>
+a vector T(<b>x</b>) in ℝ<sup>m</sup>. The set ℝ<sup>n</sup> is called the <b>domain</b>
+of T, and ℝ<sup>m</sup> is called the <b>codomain</b> of T.
+
+<h3>Matrix Transformations</h3>
+
+In the rest of this section T(<b>x</b>) is computed as A<b>x</b>, where A is an m&times;n matrix.
+
+<br /><br />
+
+<b>Example</b><br />
+Given the following:
+$$
+A = 
+\begin{bmatrix*}[rr]
+1 & -3 \\ 
+3 & 5 \\ 
+-1 & 7
+\end{bmatrix*},\quad
+\bs{u} =
+\begin{bmatrix*}[r]
+2 \\ 
+-1
+\end{bmatrix*},\quad
+\bs{b} =
+\begin{bmatrix*}[r]
+3 \\
+2 \\ 
+-5
+\end{bmatrix*},\quad
+\bs{c} =
+\begin{bmatrix*}[r]
+3 \\
+2 \\ 
+5
+\end{bmatrix*}
+$$
+and define the transformation T: ℝ<sup>2</sup> &rarr; ℝ<sup>3</sup> by T(<b>x</b>) = A<b>x</b>.
+
+<br /><br />
+(a) Find T(<b>u</b>), the image under <b>u</b> under the transformation T.<br />
+(b) Find an <b>x</b> in ℝ<sup>2</sup> whose image under T is <b>b</b>.<br />
+(c) Is there more than one <b>x</b> whose image under T is <b>b</b>?<br />
+(d) Determine if <b>c</b> is in the range of the transformation T.<br />
+<br /><br />
+<i>Solutions</i>
+<br /><br />
+(a) <br />
+Compute:
+$$
+T(\bs{u}) = A\bs{u} =
+\begin{bmatrix*}[rr]
+1 & -3 \\ 
+3 & 5 \\ 
+-1 & 7
+\end{bmatrix*}
+\begin{bmatrix*}[r]
+2 \\ 
+-1
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+2 + 3 \\
+6 - 5 \\ 
+-2 - 7
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+5 \\
+1 \\ 
+-9
+\end{bmatrix*}
+$$
+<br /><br />
+(b)<br />
+Solve T(<b>x</b>) = <b>b</b> for <b>x</b>, or solve A<b>x</b> = <b>b</b>:
+$$
+\begin{bmatrix*}[rr]
+1 & -3 \\ 
+3 & 5 \\ 
+-1 & 7
+\end{bmatrix*}
+\begin{bmatrix*}[r]
+x_1 \\ 
+x_2
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+3 \\
+2 \\ 
+-5
+\end{bmatrix*}
+$$
+Writing the augmented matrix and solving:
+$$
+\begin{bmatrix*}[rr]
+1 & -3 & 3\\ 
+3 & 5 & 2\\ 
+-1 & 7 & -5
+\end{bmatrix*}
+\sim
+\begin{bmatrix*}[rrr]
+1 & 0 & 1.5 \\ 
+0 & 1 & -0.5 \\ 
+0 & 0 & 0
+\end{bmatrix*}
+$$
+Hence the solution is $x_1 = 1.5$ and $x_2 = -0.5$.
+<br /><br />
+(c)<br />
+From (b) we can see that there is a unique solution, so there is only one <b>x</b> that maps
+to the vector <b>b</b>.
+<br /><br />
+(d)<br />
+The vector <b>c</b> is in range of T if <b>c</b> is the image of some <b>x</b> in ℝ<sup>2</sup>.
+That is, if <b>c</b> = T(<b>x</b>) for some <b>x</b>. This is another way of asking if
+A<b>x</b> = <b>c</b> is consistent. Checking the augmented matrix:
+$$
+\begin{bmatrix*}[rrr]
+1 & -3 & 3 \\ 
+3 & 5 & 2 \\ 
+-1 & 7 & 5
+\end{bmatrix*}
+\sim
+\begin{bmatrix*}[rrr]
+1 & -3 & 3 \\ 
+0 & 1 & 2 \\ 
+0 & 0 & -35
+\end{bmatrix*}
+$$
+This system is inconsistent, so <b>c</b> is <i>not</i> in the range of T.
+
+<h3>Linear Transformations</h3>
+
+Theorem 1.5 shows that an m&times;n matrix has the properties
+$$
+A(\bs{u} + \bs{v}) = A\bs{u} + A\bs{v}
+\quad\text{and}\quad
+A(c\bs{u}) = cA\bs{u}
+$$
+for all $\bs{u}, \bs{v}\in\R^n$ and all scalars $c\in\R$. These properties, written in
+function notation, identify the most important class of transformations in linear algebra.
+
+
+<br /><br />
+
+<div class="thm">Definition</div>
+<div class="thmtext">
+A transformation (or mapping) T is <b>linear</b> if:
+<br />
+$$
+\begin{align*}
+&(i)\qquad T(\bs{u} + \bs{v}) = T(\bs{u}) + T(\bs{v}) \\
+&(ii)\qquad T(c\bs{u}) = cT(\bs{u})
+\end{align*}
+$$
+</div>
+
+<br /><br />
+
+Every matrix transformation is a linear transformation, and they <i>preserve
+the operation of vector addition and scalar multiplication</i>.
+Some immediate facts that follows from the definition:
+
+<br /><br />
+
+<div class="thm">Fact</div>
+<div class="thmtext">
+If T is a linear transformation, then
+$$
+T(\bs{0}) = \bs{0}
+$$
+and
+$$
+T(c\bs{u} + d\bs{v}) = cT(\bs{u}) + dT(\bs{v})
+$$
+This generalizes to:
+$$
+T(c_1\bs{u}_1 + \ldots c_p\bs{u}_p) = c_1T(\bs{u}_1) + \ldots + c_pT(\bs{u}_p).
+$$
+</div>
+
+
 <br /><br /><br /><br />
 
 <!-- -----------------PARAGRAPH MEDSKIP
@@ -65,10 +270,18 @@
 
 
 ----------------------THM/DEF/RESULT
+
+<br /><br />
+
 <div class="thm">XXX</div>
 <div class="thmtext">
     asdasd
 </div>
+
+----------------------THM/DEF/RESULT
+ℝ<sup>3</sup>
+ℝ<sup>4</sup>
+ℝ<sup>n</sup>
 -->
 
 
