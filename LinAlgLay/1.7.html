@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styling.css">
+    <script>
+        MathJax = {
+            loader: {
+                load: ['[tex]/mathtools', '[tex]/boldsymbol']
+            },
+            tex: {
+                packages: {'[+]': ['mathtools', 'boldsymbol']},
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
+    <title>1.7 - Linear Independence</title> <!-- #################### TITLE #################### -->
+</head>
+\(
+   \def\R{\mathbb{R}}
+   \def\N{\mathbb{N}}
+   \def\Z{\mathbb{Z}}
+   \def\Q{\mathbb{Q}}
+   \def\eps{\varepsilon}
+   \def\epsilon{\varepsilon}
+   \newcommand\bs[1]{\boldsymbol{#1}}
+   \renewcommand{\geq}{\geqslant}
+   \renewcommand{\leq}{\leqslant}
+\)
+<body>
+    <div class="page">
+<h2>Chapter 1 - Linear Equations in Linear Algebra</h2> <!-- Chapter -->
+
+<h1>1.7 - Linear Independence</h1> <!-- Section -->
+<br />
+<table border="0">
+    <tr>
+        <td><b>Main</b>:</td>
+        <td><a href="index.html">Index</a></td>
+    </tr>
+    <tr>
+        <td><b>Previous</b>:</td>
+        <td><a href="1.5.html">1.5 - Solution Sets of Linear Systems</a></td>
+    </tr>
+    <tr>
+        <td><b>Next</b>:</td>
+        <td><a href="1.8.html">1.8 - Introduction to Linear Transformations</a></td>
+    </tr>
+</table>
+<br /><br />
+
+<h2>Results</h2>
+
+<br /><br /><br /><br />
+
+<!--
+<br /><br />
+-->
+
+
+<!-- ########################### EXERCISES ########################### -->
+
+
+<!--
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+
+</pre>
+-->
+
+<h3>Exercise 1</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 2</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 3</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 4</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 5</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 6</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 7</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 8</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 9</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 10</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 11</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 12</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 13</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 14</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 15</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 16</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 17</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 18</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 19</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 20</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+<!--
+# True/False questions
+
+<h3>Exercise 24</h3>
+Verifying statements. Answer True or False and justify the answer.
+<br /><br />
+(a)
+<i>
+    xxx.
+</i><br />
+Answer: xxx.
+<br /><br />
+(b)
+<i>
+    xxx.
+</i><br />
+Answer: xxx.
+<br /><br />
+(c)
+<i>
+    xxx.
+</i><br />
+Answer: xxx.
+<br /><br />
+(d)
+<i>
+    xxx.
+</i><br />
+Answer: xxx.
+<br /><br />
+(e)
+<i>
+    xxx.
+</i><br />
+Answer: xxx.
+<br /><br />
+(f)
+<i>
+    xxx.
+</i><br />
+Answer: xxx.
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+-->
+
+
+
+
+<h3>Exercise 21</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 22</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 23</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 24</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 25</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 26</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 27</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 28</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 29</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 30</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 31</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 32</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 33</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 34</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 35</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 36</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 37</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 38</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 39</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 40</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 41</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 42</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 43</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 44</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 45</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 46</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 47</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 48</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 49</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 50</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 51</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 52</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 53</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 54</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 55</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 56</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 57</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 58</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+
+
+
+
+
+<h3>Exercise 59</h3>
+asd
+<br /><br />
+<i>Answer</i><br />
+<br /><br />
+<div class="exend">&#9632;</div>
+<br /><br />
+
+<!--
+    ∩ · ≥ ≤
+    Ω λ π ≠ ∊ −
+    ∅ φ ⇒ ↔	
+    ≈ ⊂
+-->
+
+<!--
+
+<b>Code</b>:<br />
+<div class="rcode">
+
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+
+</pre>
+<br /><br />
+-->
+
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+<br /><br />
+</div><!-- End page div-->
+</body>
+</html>
+

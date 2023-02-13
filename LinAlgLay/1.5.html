@@ -268,10 +268,22 @@ This is all summarized in the following theorem.
 The theorem says that if $A\bs{x} = \bs{b}$ has a solution, then the solution set is
 obtained by taking the solution set of $A\bs{x} = \bs{0}$ and translating it by using
 any particular solution <b>p</b> of the nonhomogeneous equation.
+    
+<br /><br />
 
+<div class="thm">Algorithm: Writing a solution set in Parametric Vector Form</div>
+<div class="thmtext">
+    <b>1</b>. Row reduce the augmented matrix to RREF<br />
+    <b>2</b>. Express each basic variable in terms of any free variables in the equation<br />
+    <b>3</b>. Write a typical solution <b>x</b> as a vector whose entries depend on
+    the free variable<br />
+    <b>4</b>. Decompose <b>x</b> into a linear combination of vectors (with numeric entries)
+    using the free variable as a parameter.<br />
+</div>
 <br /><br /><br /><br />
 
 <!--
+
 <br /><br />
 -->
 
@@ -293,338 +305,218 @@ any particular solution <b>p</b> of the nonhomogeneous equation.
 -->
 
 <h3>Exercise 1</h3>
-asd
+Determine if the system has nontrivial solutions. Use as few row operations as possible.
+$$
+\begin{array}{rccccrr}
+2x_1 & - & 5x_2 & + & 8x_3 & = & 0 \\ 
+-2x_1 & - & 7x_2 & + & x_3 & = & 0 \\ 
+4x_1 & + & 2x_2 & + & 7x_3 & = & 0
+\end{array}
+$$
 <br /><br />
 <i>Answer</i><br />
+There are only nontrivial solutions if the system has free variables. Augmented matrix:
+$$
+\begin{bmatrix*}[rrrr]
+2 & -5 & 8 & 0 \\ 
+-2 & -7 & 1 & 0 \\ 
+4 & 2 & 7 & 0
+\end{bmatrix*}
+$$
+II + I
+$$
+\begin{bmatrix*}[rrrr]
+2 & -5 & 8 & 0 \\ 
+0 & -12 & 9 & 0 \\ 
+4 & 2 & 7 & 0
+\end{bmatrix*}
+$$
+III - 2I
+$$
+\begin{bmatrix*}[rrrr]
+2 & -5 & 8 & 0 \\ 
+0 & -12 & 9 & 0 \\ 
+0 & 12 & -9 & 0
+\end{bmatrix*}
+$$
+Here we see that the system has free variables, and so it must have non-trivial solutions.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
-
-
-
-
-
-
-<h3>Exercise 2</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 3</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 4</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 5</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 6</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 7</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
 
 
 
 
 
 <h3>Exercise 8</h3>
-asd
+Describe all solutions of A<b>x</b> = <b>0</b>
+in parametric vector form when:
+$$
+A =
+\begin{bmatrix*}[rrrr]
+1 & -2 & -9 & 5 \\ 
+0 & 1 & 2 & -6
+\end{bmatrix*}
+$$
 <br /><br />
 <i>Answer</i><br />
+Using the algorithm. Step 1: Finding the RREF. Augmented form:
+$$
+\begin{bmatrix*}[rrrrr]
+1 & -2 & -9 & 5 & 0\\ 
+0 & 1 & 2 & -6 & 0
+\end{bmatrix*}
+$$
+Only need one row operation: I + 2II
+$$
+\begin{bmatrix*}[rrrrr]
+1 & 0 & -5 & -7 & 0 \\ 
+0 & 1 & 2 & -6 & 0
+\end{bmatrix*}
+$$
+There are two free variables. Step 2: Specifying the solution set:
+$$
+\left\{
+\begin{array}{l}
+x_1 = 5x_3 + 7x_4 \\ 
+x_2 = -2x_3 + 6x_4 \\
+x_3 \;\text{is free}\\
+x_4 \;\text{is free}
+\end{array}
+\right.
+$$
+Step 3:
+$$
+\bs{x} = 
+\begin{bmatrix*}[r]
+x_1 \\ 
+x_2 \\ 
+x_3 \\ 
+x_4
+\end{bmatrix*}
+=
+\begin{bmatrix*}[c]
+5x_3 + 7x_4 \\ 
+-2x_3 + 6x_4 \\ 
+x_3 \\ 
+x_4
+\end{bmatrix*}
+$$
+Step 4: Decomposing into vectors.
+$$
+\bs{x} =
+x_3
+\begin{bmatrix*}[r]
+5 \\ 
+-2 \\ 
+1 \\ 
+0
+\end{bmatrix*}
++
+x_4
+\begin{bmatrix*}[c]
+7 \\ 
+6 \\ 
+0 \\ 
+1
+\end{bmatrix*}
+$$
+Verifying: fixing $x_3 = x_4 = 1$, so the non-trivial solution vector becomes:
+$$
+\begin{bmatrix*}[c]
+12 \\ 
+4 \\ 
+1 \\ 
+1
+\end{bmatrix*}
+$$
+Multiplying with A.
+$$
+\begin{bmatrix*}[rrrrr]
+1 & -2 & -9 & 5 & 0\\ 
+0 & 1 & 2 & -6 & 0
+\end{bmatrix*}
+\begin{bmatrix*}[c]
+12 \\ 
+4 \\ 
+1 \\ 
+1
+\end{bmatrix*}
+\;=\;
+\begin{bmatrix*}[c]
+1(12) + (-2)(4) + (-9)(1) + 5(1)\\ 
+0(12) + 1(4) + 2(1) + (-6)(1)
+\end{bmatrix*}
+\;=\;
+\begin{bmatrix*}[c]
+12 - 8 - 9 + 5\\ 
+0 + 4 + 2 - 6
+\end{bmatrix*}
+\;=\;
+\begin{bmatrix*}[c]
+0\\
+0
+\end{bmatrix*}
+$$
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
-
-
-
-
-
-
-<h3>Exercise 9</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 10</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 11</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 12</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
 
 
 
 
 <h3>Exercise 13</h3>
-asd
+Suppose the solution set of a certain system of linear equations
+can be described as
+$$
+\begin{align*}
+x_1 &= 5 + 4x_3 \\
+x_2 &= -2 -7x_3
+\end{align*}
+$$
+where $x_3$ is free. Use vectors to describe this set as a line in &#8477;<sup>3</sup>.
 <br /><br />
 <i>Answer</i><br />
+$$
+\bs{x} = 
+\begin{bmatrix*}[r]
+x_1 \\ 
+x_2 \\ 
+x_3
+\end{bmatrix*}
+=
+\begin{bmatrix*}[c]
+5 + 4x_3 \\ 
+-2 -7x_3 \\ 
+x_3
+\end{bmatrix*}
+$$
+Parametric vector form:
+$$
+\bs{x} = 
+\begin{bmatrix*}[r]
+5 \\ 
+-2 \\ 
+0
+\end{bmatrix*}
++
+x_3
+\begin{bmatrix*}[r]
+4 \\ 
+-7 \\ 
+1
+\end{bmatrix*}
+$$
+When $x_3 = 0$ the line passes through the x-y plane in the point $(5, -2)$. After that
+it follows the line described by the vector $(4, -7, 1)$. 
+<br /><br />
+Here is an illustration of the line:
+<br /><br />
+<img src="img/R1.5.2.png" />
+<br /><br />
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
-
-
-
-
-
-
-<h3>Exercise 14</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 15</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 16</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 17</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 18</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 19</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 20</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 21</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 22</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 23</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 24</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 25</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 26</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
 
 
 
@@ -656,110 +548,6 @@ asd
 
 
 
-<h3>Exercise 29</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 30</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 31</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 32</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 33</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 34</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 35</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 36</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
 <h3>Exercise 37</h3>
 asd
 <br /><br />
@@ -771,288 +559,6 @@ asd
 
 
 
-
-
-<h3>Exercise 38</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 39</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 40</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 41</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 42</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 43</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 44</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 45</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 46</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 47</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 48</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 49</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 50</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 51</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 52</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 53</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 54</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 55</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 56</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 57</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 58</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 59</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
 
 <!--
     ∩ · ≥ ≤

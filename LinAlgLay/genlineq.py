@@ -5,8 +5,9 @@ import sys
 # First and last objects are tied to operators
 # Other operators are separate objects in the equation
 eq = """
-1 + 2 - 1 = 4
-0 - 5 + 3 = 1
+2 - 5 + 8 = 0
+-2 - 7 + 1 = 0
+4 + 2 + 7 = 0
 """
 
 # Ex:
