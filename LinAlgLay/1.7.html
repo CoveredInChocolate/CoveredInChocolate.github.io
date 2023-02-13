@@ -57,10 +57,190 @@
 
 <h2>Results</h2>
 
+We can re-express the homogeneous problems A<b>x</b> = <b>0</b> from 1.5 as follows:
+$$
+x_1
+\begin{bmatrix*}[r]
+1 \\ 
+2 \\ 
+3
+\end{bmatrix*}
++
+x_2
+\begin{bmatrix*}[r]
+4 \\ 
+5 \\ 
+6
+\end{bmatrix*}
++
+x_3
+\begin{bmatrix*}[r]
+2 \\ 
+1 \\ 
+0
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+0 \\ 
+0 \\ 
+0
+\end{bmatrix*}
+$$
+This has a trivial solution, but again the question is whether this is the only solution.
+
+<br /><br />
+
+<div class="thm">Definition</div>
+<div class="thmtext">
+    An indexed set of vectors {<b>v</b><sub>1</sub>,...,<b>v</b><sub>p</sub>} in ℝ<sup>n</sup>
+    is said to be <b>linearly independent</b> if the vector equation
+$$
+x_1\bs{v}_1 + x_2\bs{v}_2 + \ldots + x_p\bs{v}_p = \bs{0} 
+$$
+has only the trivial solution. The set {<b>v</b><sub>1</sub>,...,<b>v</b><sub>p</sub>} is
+said to be <b>linearly dependent</b> if there exists weights $c_1,\ldots,c_p$, not all 0,
+such that
+$$
+c_1\bs{v}_1 + c_2\bs{v}_2 + \ldots + c_p\bs{v}_p = \bs{0}.
+$$
+</div>
+
+<br /><br />
+
+<h3>Linear Independence of Matrix Columns</h3>
+
+Suppose that we have the matrix
+[<b>a</b><sub>1</sub> ... <b>a</b><sub>n</sub>]. The matrix equation
+A<b>x</b> = <b>0</b> can be written as:
+$$
+x_1\bs{a}_1 + x_2\bs{a}_2 + \ldots + x_n\bs{a}_2 = \bs{0}.
+$$
+From the definition: each linear dependence relation among the columns of A corresponds to
+a nontrivial solution of A<b>x</b> = <b>0</b>. This can be summarized as the fact:
+
+<br /><br />
+
+<div class="thm">Fact</div>
+<div class="thmtext">
+    The columns of a matrix A are linearly independent if and only if the equation
+    A<b>x</b> = <b>0</b> has <i>only</i> the trivial solution.
+</div>
+
+<br /><br />
+
+<h3>Sets of One or Two Vectors</h3>
+
+A vector <b>v</b> is linearly independent iff <b>v</b>&ne;<b>0</b> because
+the vector equation $x_1\bs{v} = \bs{0}$ only has the trivial solution
+when <b>v</b>&ne;<b>0</b>. The zero vector <b>0</b> is linearly dependent
+because $x_1\bs{0} = \bs{0}$ has many nontrivial solutions; $x_1 = 2$ or $x_1 = 5$ for instance.
+
+<br /><br />
+
+<b>Example</b>
+
+The following are linearly dependent:
+$$
+\bs{v}_1 =
+\begin{bmatrix*}[r]
+3 \\
+1
+\end{bmatrix*},
+\quad
+\bs{v}_2 =
+\begin{bmatrix*}[r]
+6 \\
+2
+\end{bmatrix*}
+$$
+because $\bs{v}_2 = 2\bs{v}_1$ which means $-2\bs{v}_1 + \bs{v}_2 = \bs{0}$.
+The following are linearly independent:
+$$
+\bs{v}_1 =
+\begin{bmatrix*}[r]
+3 \\
+2
+\end{bmatrix*},
+\quad
+\bs{v}_2 =
+\begin{bmatrix*}[r]
+6 \\
+2
+\end{bmatrix*}
+$$
+because there are no factor c such that $c\bs{v}_1 = \bs{v}_2$.
+
+<br /><br />
+
+This shows that we can determine by inspection if two vectors are linearly independent
+or not: just check if they are a multiple of each other.
+
+<br /><br />
+
+<div class="thm">Fact</div>
+<div class="thmtext">
+    A set of two vectors {<b>v</b><sub>1</sub>, <b>v</b><sub>2</sub>} is linearly dependent
+    if at least one of the vectors is a multiple of the other. The set is linearly independent
+    iff neither of the vectors is a multiple of the other.
+</div>
+
+<br /><br />
+
+<h3>Sets of One or Two VectorsTwo or More Vectors</h3>
+
+Some results relating to linear independent vectors.
+
+<br /><br />
+
+<div class="thm">Theorem 1.7 - Characterization of Linearly Dependent Sets</div>
+<div class="thmtext">
+    An indexed set S = {<b>v</b><sub>1</sub>, ..., <b>v</b><sub>p</sub>} of two or more
+    vectors is <b>linearly dependent</b> iff at least one of the vectors in S is a linear
+    combination of the others. In fact, if S is linearly dependent and <b>v</b><sub>1</sub>
+    &ne; <b>0</b>, then some <b>v</b><sub>j</sub> (j > 1) is a linear combination of
+    the preceding vectors <b>v</b><sub>1</sub>, ..., <b>v</b><sub>j-1</sub>.
+</div>
+
+<br /><br />
+
+<div class="thm">Theorem 1.8</div>
+<div class="thmtext">
+    If a set contains more vectors than there are entries in each vector, then
+    the set is linearly dependent. That is, any set {<b>v</b><sub>1</sub>, ..., <b>v</b><sub>p</sub>}
+    in ℝ<sup>n</sup> is linearly dependent if p > n.
+</div>
+
+<br /><br />
+
+<div class="thm">Theorem 1.9</div>
+<div class="thmtext">
+    If a set S = {<b>v</b><sub>1</sub>, ..., <b>v</b><sub>p</sub>} in ℝ<sup>n</sup> contains
+    the zero vector, then the set is linearly dependent.
+</div>
+
+
+
+
 <br /><br /><br /><br />
 
-<!--
+<!-- -----------------PARAGRAPH MEDSKIP
+
 <br /><br />
+
+
+----------------------THM/DEF/RESULT
+
+<br /><br />
+
+<div class="thm">XXX</div>
+<div class="thmtext">
+    asdasd
+</div>
+
+----------------------THM/DEF/RESULT
+ℝ<sup>3</sup>
+ℝ<sup>4</sup>
+ℝ<sup>n</sup>
 -->
 
 
@@ -81,256 +261,113 @@
 -->
 
 <h3>Exercise 1</h3>
-asd
+Determine if the vectors are linearly independent.
+$$
+\begin{bmatrix*}[r]
+5 \\ 
+0 \\
+0
+\end{bmatrix*},
+\begin{bmatrix*}[r]
+7 \\ 
+2 \\
+-6
+\end{bmatrix*},
+\begin{bmatrix*}[r]
+9 \\ 
+4 \\
+-8
+\end{bmatrix*}
+$$
 <br /><br />
 <i>Answer</i><br />
+Neither of column 2 or 3 are multiples of column 1. Column 3 is not a multiple of columns 1 and 2.
+By inspection, we see that these vectors are linearly independent. Verifying with row operations:
+$$
+\begin{bmatrix*}[rrr]
+5 & 7 & 9 \\ 
+0 & 2 & 4 \\ 
+0 & -6 & -8
+\end{bmatrix*}
+\sim
+\begin{bmatrix*}[rrr]
+1 & 0 & 0 \\ 
+0 & 1 & 0 \\ 
+0 & 0 & 1
+\end{bmatrix*}
+$$
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
-
-
-
-
-
-
-<h3>Exercise 2</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 3</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 4</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 5</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 6</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
 
 
 
 
 <h3>Exercise 7</h3>
-asd
+Determine if the columns form a linearly independent set.
+$$
+\begin{bmatrix*}[rrrr]
+1 & 4 & -3 & 0 \\ 
+-2 & -7 & 5 & 1 \\ 
+-4 & -5 & 7 & 5
+\end{bmatrix*}
+$$
 <br /><br />
 <i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 8</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 9</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 10</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 11</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 12</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 13</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 14</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 15</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 16</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 17</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 18</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 19</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 20</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
+Here we see that we have 4 columns and only 3 entries in each vector.
+By Theorem 1.8, the set of columns is linearly dependent. Verifying with
+row operations:
+$$
+\begin{bmatrix*}[rrrr]
+1 & 4 & -3 & 0 \\ 
+-2 & -7 & 5 & 1 \\ 
+-4 & -5 & 7 & 5
+\end{bmatrix*}
+\sim
+\begin{bmatrix*}[rrrr]
+1 & 0 & 0 & -3 \\ 
+0 & 1 & 0 & 0 \\ 
+0 & 0 & 1 & -1
+\end{bmatrix*}
+$$
+Now checking this result:
+$$
+(-3)\bs{a}_1 + (-1)\bs{a}_3
+=
+(-3)
+\begin{bmatrix*}[r]
+1 \\ 
+-2 \\
+-4
+\end{bmatrix*}
++
+(-1)
+\begin{bmatrix*}[r]
+-3 \\ 
+5 \\
+7
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+-3 \\ 
+6 \\
+12
+\end{bmatrix*}
++
+\begin{bmatrix*}[r]
+3 \\ 
+-5 \\
+-7
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+0 \\ 
+1 \\
+5
+\end{bmatrix*}
+=
+\bs{a}_4
+$$
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -339,59 +376,39 @@ asd
 
 <!--
 # True/False questions
+-->
 
-<h3>Exercise 24</h3>
+<h3>Exercise 21</h3>
 Verifying statements. Answer True or False and justify the answer.
 <br /><br />
 (a)
 <i>
-    xxx.
+    The columns of a matrix A are linearly independent if the equation
+    A<b>x</b> = <b>0</b> has the trivial solution.
 </i><br />
-Answer: xxx.
+Answer: False. This would be true if we knew that was the only trivial solution.
 <br /><br />
 (b)
 <i>
-    xxx.
+    If S is a linearly dependent set, then each vector is a linear combination of
+    the other vectors in S.
 </i><br />
-Answer: xxx.
+Answer: False. Not necessarily true for every vector. Only needs to be true for a single one.
 <br /><br />
 (c)
 <i>
-    xxx.
+    The columns of any 4&times;5 matrix are linearly independent.
 </i><br />
-Answer: xxx.
+Answer: True. The number of vectors outnumber the number of entries, so by Theorem 1.8 this is
+linearly independent.
 <br /><br />
 (d)
 <i>
-    xxx.
+    If <b>x</b> and <b>y</b> are linearly independent, and if {<b>x</b>, <b>y</b>, <b>z</b>}
+    is linearly independent, then <b>z</b> is in Span{<b>x</b>, <b>y</b>}.
 </i><br />
-Answer: xxx.
-<br /><br />
-(e)
-<i>
-    xxx.
-</i><br />
-Answer: xxx.
-<br /><br />
-(f)
-<i>
-    xxx.
-</i><br />
-Answer: xxx.
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
--->
-
-
-
-
-<h3>Exercise 21</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
+Answer: True. The vector <b>z</b> can be written as <b>z</b> = a<b>x</b> + b<b>y</b>, which by
+definition means it is included in the plane spanned by the vectors.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -402,220 +419,41 @@ asd
 
 
 <h3>Exercise 22</h3>
-asd
+Verifying statements. Answer True or False and justify the answer.
 <br /><br />
-<i>Answer</i><br />
+(a)
+<i>
+    Two vectors are linearly dependent iff they lie on a line through the origin.
+</i><br />
+Answer: True. Since they lie on the same line, they are multiples of each other.
 <br /><br />
-<div class="exend">&#9632;</div>
+(b)
+<i>
+    If a set contains fewer vectors than there are entries in the vectors,
+    then the set is linearly independent.
+</i><br />
+Answer: False. Counterexample: (1, 0, 0, 0) and (2, 0, 0, 0). Only two vectors with four
+entries, but they are linearly dependent.
 <br /><br />
-
-
-
-
-
-
-<h3>Exercise 23</h3>
-asd
+(c)
+<i>
+    If <b>x</b> and <b>y</b> are linearly independent, and if <b>z</b> is in Span{<b>x</b>, <b>y</b>}
+    then {<b>x</b>, <b>y</b>, <b>z</b>} is linearly dependent.
+</i><br />
+Answer: True. If <b>z</b> is in Span{<b>x</b>, <b>y</b>}, then <b>z</b> = a<b>x</b> + b<b>y</b>
+which in turn means {<b>x</b>, <b>y</b>, <b>z</b>} is linearly dependent.
 <br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 24</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 25</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
+(d)
+<i>
+    If a set in ℝ<sup>n</sup> is linearly dependent, then the set contains more vectors than
+    there are entries in each vector.
+</i><br />
+Answer: False. Counter example: (1, 0, 0), (0, 1, 0), (1, 1, 0). Linear dependence, but there
+are an equal number of vectors and entries in each vector.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
-
-
-
-
-
-<h3>Exercise 26</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 27</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 28</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 29</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 30</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 31</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 32</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 33</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 34</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 35</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 36</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 37</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 38</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
 
 
 
@@ -623,9 +461,16 @@ asd
 
 
 <h3>Exercise 39</h3>
-asd
+Suppose A is an m&times;n matrix with the property that for all
+<b>b</b> in ℝ<sup>m</sup>, the equation A<b>x</b> = <b>b</b> has at most
+one solution. Use the definition of linear independence to explain why
+the columns of A must be linearly independent.
 <br /><br />
 <i>Answer</i><br />
+This holds for any vector, including <b>0</b>, so: A<b>x</b> = <b>0</b> has at most
+one solution. Furthermore, since <b>x</b> = <b>0</b> is a solution,
+we can conlcude that the trivial solution is the only solution! Hence the columns of A are
+linearly independent.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -636,259 +481,48 @@ asd
 
 
 <h3>Exercise 40</h3>
-asd
+Suppose an m&times;n matrix A has <i>n</i> pivot columns. Explain why for each
+<b>b</b> in ℝ<sup>m</sup> the equation A<b>x</b> = <b>b</b> has at most one solution.<br />
+[<i>Hint</i>: Explain why A<b>x</b> = <b>b</b> cannot have infinitely many solutions.]
 <br /><br />
 <i>Answer</i><br />
+Since we have n pivot columns, we can conclude that m &ge; n. (If we have 2 pivot columns,
+we must have at least 2 rows).
+<br /><br />
+In the case m = n, then we have one pivot column for each column and row, which means that it
+is linearly independent, and so we have exactly one solution.
+<br /><br />
+In the case m > n, we have more entries than vectors. Illustratory example:
+$$
+\begin{bmatrix*}[r]
+1 \\ 
+0 \\ 
+0 \\ 
+0 \\ 
+0
+\end{bmatrix*},
+\begin{bmatrix*}[r]
+0 \\ 
+0 \\ 
+1 \\ 
+0 \\ 
+0
+\end{bmatrix*},
+\begin{bmatrix*}[r]
+0 \\ 
+0 \\ 
+0 \\ 
+0 \\ 
+1
+\end{bmatrix*}
+$$
+Using the converse statement of Theorem 1.8: if a set is not linearly dependent, the number of entries
+is greater or equal to the number of vectors. If a set is not linearly dependent, it must be
+linearly independent. Hence, we can have at most one solution.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
-
-
-
-
-
-<h3>Exercise 41</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 42</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 43</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 44</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 45</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 46</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 47</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 48</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 49</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 50</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 51</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 52</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 53</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 54</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 55</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 56</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 57</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 58</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 59</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
 
 <!--
     ∩ · ≥ ≤
