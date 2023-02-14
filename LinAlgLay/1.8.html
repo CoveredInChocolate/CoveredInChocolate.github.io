@@ -302,51 +302,63 @@ $$
 -->
 
 <h3>Exercise 1</h3>
-asd
+Let
+$$
+A = \begin{bmatrix*}[rr]
+2 & 0 \\ 
+0 & 2
+\end{bmatrix*},
+$$
+and define $T: \R^2 \rightarrow \R^2$ by $T(\bs{x}) = A\bs{x}$.
+Find the images under T of <b>u</b> = (1, -3) and <b>v</b> = (a, b).
 <br /><br />
 <i>Answer</i><br />
+$$
+T(\bs{u}) = A\bs{u} = 
+\begin{bmatrix*}[rr]
+2 & 0 \\ 
+0 & 2
+\end{bmatrix*}
+\begin{bmatrix*}[r]
+1 \\ 
+-3
+\end{bmatrix*}
+=
+\begin{bmatrix*}[c]
+2(1) + 0(-3) \\ 
+0(1) + 2(-3)
+\end{bmatrix*}
+=
+\begin{bmatrix*}[c]
+2 + 0 \\ 
+0 - 6
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+2 \\ 
+-6
+\end{bmatrix*}
+$$
+$$
+T(\bs{v}) = A\bs{v} = 
+\begin{bmatrix*}[rr]
+2 & 0 \\ 
+0 & 2
+\end{bmatrix*}
+\begin{bmatrix*}[r]
+a \\ 
+b
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+2a \\ 
+2b
+\end{bmatrix*}
+$$
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
-
-
-
-
-
-<h3>Exercise 2</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 3</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 4</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
 
 
 
@@ -354,48 +366,117 @@ asd
 
 
 <h3>Exercise 5</h3>
-asd
+With T defined as $T(\bs{x}) = A\bs{x}$, find a vector <b>x</b> whose image under T is <b>b</b>
+and determine whether <b>x</b> is unique.
+$$
+A = 
+\begin{bmatrix*}[rrr]
+1 & -5 & -7 \\ 
+-3 & 7 & 5
+\end{bmatrix*},
+\bs{b} =
+\begin{bmatrix*}[r]
+-2 \\ 
+-2
+\end{bmatrix*}
+$$
 <br /><br />
 <i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 6</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 7</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 8</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
+So, we need to find an <b>x</b> so A<b>x</b> = <b>b</b>. Writing out the augmented matrix.
+We already see that there are more vectors than entries, so we will have a linear dependence
+between the coefficient columns and therefore not a unique solution.
+$$
+\begin{bmatrix*}[rrrr]
+1 & -5 & -7 & -2 \\ 
+-3 & 7 & 5 & -2
+\end{bmatrix*}
+$$
+II + 3I
+$$
+\begin{bmatrix*}[rrrr]
+1 & -5 & -7 & -2 \\ 
+0 & -8 & -16 & -8
+\end{bmatrix*}
+$$
+(-1/8)II
+$$
+\begin{bmatrix*}[rrrr]
+1 & -5 & -7 & -2 \\ 
+0 & 1 & 2 & 1
+\end{bmatrix*}
+$$
+I + 5II
+$$
+\begin{bmatrix*}[rrrr]
+1 & 0 & 3 & 3 \\ 
+0 & 1 & 2 & 1
+\end{bmatrix*}
+$$
+Solution set:
+$$
+\left\{
+    \begin{array}{l}
+        x_1 = 3 - 3x_3 \\ 
+        x_2 = 1 - 2x_3 \\
+        x_3 \text{ free}
+    \end{array}
+\right.
+$$
+Fixing $x_3 = 0$ so $x_1 = 3$ and $x_2 = 1$ and verifying:
+$$
+\begin{bmatrix*}[rrr]
+1 & -5 & -7\\ 
+-3 & 7 & 5
+\end{bmatrix*}
+\begin{bmatrix*}[r]
+3 \\ 
+1 \\ 
+0
+\end{bmatrix*}
+\;=\;
+\begin{bmatrix*}[rcrcr]
+1(3) &+& (-5)(1) &+& (-7)(0) \\ 
+(-3)(3) &+& 7(1) &+& 5(0)
+\end{bmatrix*}
+\;=\;
+\begin{bmatrix*}[c]
+3 - 5 + 0 \\ 
+-9 + 7 + 0
+\end{bmatrix*}
+\;=\;
+\begin{bmatrix*}[c]
+-2 \\
+-2
+\end{bmatrix*}
+$$
+And just to verify that the solution is not unique, set $x_3 = 1$ which gives
+$x_1 = 0$ and $x_2 = -1$.
+$$
+\begin{bmatrix*}[rrr]
+1 & -5 & -7\\ 
+-3 & 7 & 5
+\end{bmatrix*}
+\begin{bmatrix*}[r]
+0 \\ 
+-1 \\ 
+1
+\end{bmatrix*}
+\;=\;
+\begin{bmatrix*}[rcrcr]
+1(0) &+& (-5)(-1) &+& (-7)(1) \\ 
+(-3)(0) &+& 7(-1) &+& 5(1)
+\end{bmatrix*}
+\;=\;
+\begin{bmatrix*}[c]
+0 + 5 - 7 \\ 
+0 - 7 + 5
+\end{bmatrix*}
+\;=\;
+\begin{bmatrix*}[c]
+-2 \\
+-2
+\end{bmatrix*}
+$$
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -406,25 +487,110 @@ asd
 
 
 <h3>Exercise 9</h3>
-asd
+Find all <b>x</b> in ℝ<sup>4</sup> that are mapped into the zero vector by
+the transformation <b>b</b> &rarr; A<b>x</b> for the matrix A:
+$$
+A =
+\begin{bmatrix*}[rrrr]
+1 & -4 & 7 & -5 \\ 
+0 & 1 & -4 & 3 \\ 
+2 & -6 & 6 & -4
+\end{bmatrix*}
+$$
 <br /><br />
 <i>Answer</i><br />
+So, find all vectors <b>x</b> such that A<b>x</b> = <b>0</b>. Defining the augmented matrix
+with the zero vector.
+$$
+\begin{bmatrix*}[rrrrr]
+1 & -4 & 7 & -5 & 0 \\ 
+0 & 1 & -4 & 3 & 0 \\ 
+2 & -6 & 6 & -4 & 0
+\end{bmatrix*}
+$$
+III - 2I
+$$
+\begin{bmatrix*}[rrrrr]
+1 & -4 & 7 & -5 & 0 \\ 
+0 & 1 & -4 & 3 & 0 \\ 
+0 & 2 & -8 & 6 & 0
+\end{bmatrix*}
+$$
+(1/2)III
+$$
+\begin{bmatrix*}[rrrrr]
+1 & -4 & 7 & -5 & 0 \\ 
+0 & 1 & -4 & 3 & 0 \\ 
+0 & 1 & -4 & 3 & 0
+\end{bmatrix*}
+$$
+III - 2II
+$$
+\begin{bmatrix*}[rrrrr]
+1 & -4 & 7 & -5 & 0 \\ 
+0 & 1 & -4 & 3 & 0 \\ 
+0 & 0 & 0 & 0 & 0
+\end{bmatrix*}
+$$
+No pivot column in the third row - so there are at keast two free variables.
+We can see that there are pivot columns in rows 1 and 2, so there are two variables
+and two free variables. I + 4II
+$$
+\begin{bmatrix*}[rrrrr]
+1 & 0 & -9 & 7 & 0 \\ 
+0 & 1 & -4 & 3 & 0 \\ 
+0 & 0 & 0 & 0 & 0
+\end{bmatrix*}
+$$
+Solution set:
+$$
+\left\{
+    \begin{array}{l}
+        x_1 = 9x_3 - 7x_4 \\ 
+        x_2 = 4x_3 - 3x_3 \\
+        x_3 \text{ free} \\
+        x_4 \text{ free}
+    \end{array}
+\right.
+$$
+Verifying: setting $x_3 = x_4 = 1$ so $x_1 = 2$ and $x_2 = 1$. Checking that this
+gives the 0 vector:
+$$
+\begin{bmatrix*}[rrrr]
+1 & -4 & 7 & -5 \\ 
+0 & 1 & -4 & 3 \\ 
+2 & -6 & 6 & -4
+\end{bmatrix*}
+\begin{bmatrix*}[r]
+2 \\ 
+1 \\ 
+1 \\ 
+1
+\end{bmatrix*}
+=
+\begin{bmatrix*}[rcrcrcr]
+1(2) &+& (-4)(1) &+& 7(1) &+& (-5)(1) \\ 
+0(2) &+& 1(1) &+& (-4)(1) &+& 3(1) \\ 
+2(2) &+& (-6)(1) &+& 6(1) &+& (-4)(1)
+\end{bmatrix*}
+=
+\begin{bmatrix*}[c]
+2 - 4 + 7 - 5 \\ 
+0 + 1 - 4 + 3 \\ 
+4 - 6 + 6 - 4
+\end{bmatrix*}
+=
+\begin{bmatrix*}[c]
+0 \\ 
+0 \\ 
+0
+\end{bmatrix*}
+$$
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
 
-
-
-
-
-<h3>Exercise 10</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
 
 
 
@@ -432,103 +598,99 @@ asd
 
 
 <h3>Exercise 11</h3>
-asd
+Using the matrix from exercise 9. Check if <b>b</b> = (-1, 1, 0) is in the range
+of the linear transformation <b>x</b>&rarr;A<b>x</b>.
 <br /><br />
 <i>Answer</i><br />
+Writing the augmented matrix with <b>b</b> instead of the zero vector. We just repeat
+the row operations and check if we get a contradiction.
+$$
+\begin{bmatrix*}[rrrrr]
+1 & -4 & 7 & -5 & -1 \\ 
+0 & 1 & -4 & 3 & 1 \\ 
+2 & -6 & 6 & -4 & 0
+\end{bmatrix*}
+$$
+III - 2I
+$$
+\begin{bmatrix*}[rrrrr]
+1 & -4 & 7 & -5 & -1 \\ 
+0 & 1 & -4 & 3 & 1 \\ 
+0 & 2 & -8 & 6 & 2
+\end{bmatrix*}
+$$
+(1/2)III
+$$
+\begin{bmatrix*}[rrrrr]
+1 & -4 & 7 & -5 & -1 \\ 
+0 & 1 & -4 & 3 & 1 \\ 
+0 & 1 & -4 & 3 & 1
+\end{bmatrix*}
+$$
+III - 2II
+$$
+\begin{bmatrix*}[rrrrr]
+1 & -4 & 7 & -5 & -1 \\ 
+0 & 1 & -4 & 3 & 1 \\ 
+0 & 0 & 0 & 0 & 0
+\end{bmatrix*}
+$$
+I + 4II
+$$
+\begin{bmatrix*}[rrrrr]
+1 & 0 & -9 & 7 & 3 \\ 
+0 & 1 & -4 & 3 & 1 \\ 
+0 & 0 & 0 & 0 & 0
+\end{bmatrix*}
+$$
+This shows that <b>b</b> is in the range of A<b>x</b> and it has an infinite amount of
+solutions. The solution set:
+$$
+\left\{
+    \begin{array}{l}
+        x_1 = 3 + 9x_3 - 7x_4 \\ 
+        x_2 = 1 + 4x_3 - 3x_3 \\
+        x_3 \text{ free} \\
+        x_4 \text{ free}
+    \end{array}
+\right.
+$$
+Verifying: setting $x_3 = x_4 = 0$ so $x_1 = 3$ and $x_2 = 1$. Checking:
+$$
+\begin{bmatrix*}[rrrr]
+1 & -4 & 7 & -5 \\ 
+0 & 1 & -4 & 3 \\ 
+2 & -6 & 6 & -4
+\end{bmatrix*}
+\begin{bmatrix*}[r]
+3 \\ 
+1 \\ 
+0 \\ 
+0
+\end{bmatrix*}
+=
+\begin{bmatrix*}[rcrcrcr]
+1(3) &+& (-4)(1) &+& 7(0) &+& (-5)(0) \\ 
+0(3) &+& 1(1) &+& (-4)(0) &+& 3(0) \\ 
+2(3) &+& (-6)(1) &+& 6(0) &+& (-4)(0)
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+3 - 4 + 0 \\ 
+0 + 1 + 0 \\ 
+6 - 6 + 0
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+-1 \\ 
+1 \\ 
+0
+\end{bmatrix*}
+$$
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
-
-
-
-
-
-<h3>Exercise 12</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 13</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 14</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 15</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 16</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 17</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 18</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
 
 
 
@@ -536,86 +698,160 @@ asd
 
 
 <h3>Exercise 19</h3>
-asd
+Let:
+$$
+\bs{e}_1 =
+\begin{bmatrix*}[r]
+1 \\ 
+0
+\end{bmatrix*},\quad
+\bs{e}_2 =
+\begin{bmatrix*}[r]
+0 \\ 
+1
+\end{bmatrix*},\quad
+\bs{y}_1 =
+\begin{bmatrix*}[r]
+2 \\ 
+5
+\end{bmatrix*},\quad
+\bs{y}_2 =
+\begin{bmatrix*}[r]
+-1 \\ 
+6
+\end{bmatrix*}
+$$
+Let T: ℝ<sup>2</sup> &rarr;ℝ<sup>2</sup> be a linear transformation that maps
+<b>e</b><sub>1</sub> to <b>y</b><sub>1</sub> and
+<b>e</b><sub>2</sub> to <b>y</b><sub>2</sub>.
+Find the images of (5, -3) and (x<sub>1</sub>, x<sub>2</sub>).
 <br /><br />
 <i>Answer</i><br />
+We can see that the columns of the matrix A associated with the linear mapping is
+given in the <b>y</b> vectors. Then:
+$$
+A = 
+\begin{bmatrix*}[rr]
+2 & -1 \\ 
+5 & 6
+\end{bmatrix*}
+$$
+For instance:
+$$
+A\bs{e}_1 = 
+\begin{bmatrix*}[rr]
+2 & -1 \\ 
+5 & 6
+\end{bmatrix*}
+\begin{bmatrix*}[r]
+1 \\ 
+0
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+2 \\ 
+5
+\end{bmatrix*}
+$$
+First image:
+$$
+\begin{bmatrix*}[rr]
+2 & -1 \\ 
+5 & 6
+\end{bmatrix*}
+\begin{bmatrix*}[r]
+5 \\ 
+-3
+\end{bmatrix*}
+=
+\begin{bmatrix*}[rcr]
+2(5) &+& (-1)(-3) \\ 
+5(5) &+& 6(-3)
+\end{bmatrix*}
+=
+\begin{bmatrix*}[c]
+10 + 3 \\ 
+25 - 18
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+13 \\ 
+7
+\end{bmatrix*}
+$$
+First image:
+$$
+\begin{bmatrix*}[rr]
+2 & -1 \\ 
+5 & 6
+\end{bmatrix*}
+\begin{bmatrix*}[r]
+x_1 \\ 
+x_2
+\end{bmatrix*}
+=
+\begin{bmatrix*}[rcr]
+2(x_1) &+& (-1)(x_2) \\ 
+5(x_1) &+& 6(x_2)
+\end{bmatrix*}
+=
+\begin{bmatrix*}[c]
+2x_1 - x_2 \\ 
+5x_1 + 6x_2
+\end{bmatrix*}
+$$
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
-
-
-
-
-
-
-<h3>Exercise 20</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-<!--
-# True/False questions
-
-<h3>Exercise 24</h3>
-Verifying statements. Answer True or False and justify the answer.
-<br /><br />
-(a)
-<i>
-    xxx.
-</i><br />
-Answer: xxx.
-<br /><br />
-(b)
-<i>
-    xxx.
-</i><br />
-Answer: xxx.
-<br /><br />
-(c)
-<i>
-    xxx.
-</i><br />
-Answer: xxx.
-<br /><br />
-(d)
-<i>
-    xxx.
-</i><br />
-Answer: xxx.
-<br /><br />
-(e)
-<i>
-    xxx.
-</i><br />
-Answer: xxx.
-<br /><br />
-(f)
-<i>
-    xxx.
-</i><br />
-Answer: xxx.
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
--->
 
 
 
 
 <h3>Exercise 21</h3>
-asd
+Verifying statements. Answer True or False and justify the answer.
 <br /><br />
-<i>Answer</i><br />
+(a)
+<i>
+    A linear transformation is a special type of function.
+</i><br />
+Answer: True. It is a function that satisfies the definition mentioned earlier.
+<br /><br />
+(b)
+<i>
+    If A is a 3&times;5 matrix and t is a transformation defined by T(<b>x</b>) = A<b>x</b>,
+    then the domain of T is ℝ<sup>3</sup>.
+</i><br />
+Answer: False. The input to A is a vector with dimensions 5&times;1 and outputs a vector of
+3&times;1. So the domain is ℝ<sup>5</sup> and the codomain is ℝ<sup>3</sup>.
+<br /><br />
+(c)
+<i>
+    If A is an m&times;n matrix, then the range of the transformation <b>x</b>&rarr;A<b>x</b>
+    is ℝ<sup>m</sup>.
+</i><br />
+Answer: True. The range and codomain are the same thing, and as in (b) they correspond with the
+number of rows of the matrix. In this case, they coincide.
+<br /><br />
+(d)
+<i>
+    Every linear transformation is a matrix transformation.
+</i><br />
+Answer: False. There are linear transformations that are not matrix transformations (and as
+the text says they will be covered in chapters 4 and 5).
+<br /><br />
+(e)
+<i>
+A transformation T is linear iff
+$$
+T(c_1\bs{v}_1 + c_2\bs{v}_2) = c_1T(\bs{v}_1) + c_2T(\bs{v}_2)
+$$
+for all $\bs{v}_i$ in the domain of T for for all scalars $c_i$.
+</i><br />
+Answer: True. This is the precise definition of linear transformations.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
+
 
 
 
@@ -623,48 +859,41 @@ asd
 
 
 <h3>Exercise 22</h3>
-asd
+Verifying statements. Answer True or False and justify the answer.
 <br /><br />
-<i>Answer</i><br />
+(a)
+<i>
+    Every matrix transformation is a linear transformation.
+</i><br />
+Answer: True. Follows from Theorem 1.5. 
 <br /><br />
-<div class="exend">&#9632;</div>
+(b)
+<i>
+    The codomain of the transformation <b>x</b>&rarr;A<b>x</b> is the set
+    of all linear combinations of the columns of A.
+</i><br />
+Answer: True. Follows from the definition of how matrices are multiplied by vectors.
 <br /><br />
-
-
-
-
-
-
-<h3>Exercise 23</h3>
-asd
+(c)
+<i>
+    If T: ℝ<sup>n</sup>&rarr;ℝ<sup>m</sup> is a linear transformation and if <b>c</b>
+    is in ℝ<sup>m</sup>, then a uniqueness question is: "Is <b>c</b> in the range of T?".
+</i><br />
+Answer: False. If <b>c</b> was in the range a uniqueness question would be if it had a
+unique vector <b>x</b> in the domain.
 <br /><br />
-<i>Answer</i><br />
+(d)
+<i>
+    A linear transformation preserves the operations of vector addition and scalar
+    multiplication.
+</i><br />
+Answer: True. This follows from the definition.
 <br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 24</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 25</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
+(e)
+<i>
+    The superposition principle is a physical description of a linear transformation.
+</i><br />
+Answer: True. Particularly the more general statement for n terms.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -675,35 +904,31 @@ asd
 
 
 <h3>Exercise 26</h3>
-asd
+Let <b>u</b> and <b>v</b> be linearly independent vectors in ℝ<sup>3</sup>, and let
+P be the plane through <b>u</b>, <b>v</b>, and <b>0</b>. The parametric equation
+of P is
+$$
+\bs{x} = s\bs{u} + t\bs{v},\qquad s,t\in\R.
+$$
+Show that the linear transformation T:  ℝ<sup>3</sup>&rarr; ℝ<sup>3</sup> maps P
+onto a plane through <b>0</b>, or onto a line through <b>0</b>, or onto the just the
+origin of ℝ<sup>3</sup>. What must be true of T(<b>u</b>) and T(<b>v</b>) in order for the
+image of the plane P to be a plane?
 <br /><br />
 <i>Answer</i><br />
+If s, t can be any variable, we will get a 2D plane in  ℝ<sup>3</sup>. If we fix s=0, we are
+left with 
+$$
+\bs{x} = t\bs{v},\qquad t\in\R.
+$$
+which forms a line through the origin (same is true if we fix t = 0). And finally, if both
+s=t=0 are fixed, we get <b>x</b> = <b>0</b>, and we map all values to the origin.
 <br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 27</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 28</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
+Writing out the linear operation:
+$$
+T(\bs{u}) + T(\bs{v}) = T(\bs{u} + \bs{v}) = A(\bs{u} + \bs{v}).
+$$
+In order to preserve the mapping to a plane, one of the columns in A must be the 0 vector.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -714,9 +939,42 @@ asd
 
 
 <h3>Exercise 29</h3>
-asd
+Define f: ℝ&rarr;ℝ by $f(x) = mx + b$.<br />
+(a) Show that f is a linear transformation when b = 0.<br />
+(b) Find a property of a linear transformation that is violated when b&ne;0.<br />
+(c) Why is f called a linear transformation?
 <br /><br />
 <i>Answer</i><br />
+<br /><br />
+(a) Assuming that b = 0 and inputing variables w and y. Then:
+$$
+f(w) + f(y) = mw + 0 + my + 0 = mw + my
+$$
+$$
+f(w + y) = m(w + y) + 0 = mw + my
+$$
+So $f(w) + f(y) = f(w + y)$. This shows the first property of linear transformations is satisfied.
+For some c in ℝ:
+$$
+cf(w) = c(mw + 0) = cmw.
+$$
+$$
+f(cw) = m(cw) + 0 = cmw.
+$$
+So $cf(w) = f(cw)$ which verifies the second property of linear transformations.
+<br /><br />
+(b) If b&ne;0, then the second property is violated. Let's say b = 2 and c = 2.
+$$
+f(2w) = m(2w) + 2 = 2mw + 2
+$$
+$$
+2f(w) = 2(mw + 2) = 2mw + 4
+$$
+Now $f(2w)\not=2f(w)$.
+<br /><br />
+(c) A common misconception is to name the functions after the straight lines we get, but
+the true term refers to the linearity of the operations. We can have linear functions
+which are not straight lines or straight planes.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -727,389 +985,25 @@ asd
 
 
 <h3>Exercise 30</h3>
-asd
+An <i>affine transformation</i> T: ℝ<sup>n</sup>&rarr;ℝ<sup>m</sup> has the form
+A<b>x</b> + <b>b</b>, with A an m&times;n matrix and <b>b</b> in ℝ<sup>m</sup>.
+Show that T is <i>not</i> a linear transformation when <b>b</b>&ne;<b>0</b>.
 <br /><br />
 <i>Answer</i><br />
+This is compeltely analogous to part (b) of the previous exercise. Let's set c = 2,
+then the second property will be violated.
+$$
+T(2\bs{x}) = A(2\bs{x}) + \bs{b} = 2A\bs{x} + \bs{b}
+$$
+$$
+2T(\bs{x}) = 2(A\bs{x} + \bs{b}) = 2A\bs{x} + 2\bs{b}.
+$$
+Now $T(2\bs{x}) \not= 2T(\bs{x})$ if <b>b</b>&ne;<b>0</b>.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
 
-
-
-
-
-<h3>Exercise 31</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 32</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 33</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 34</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 35</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 36</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 37</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 38</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 39</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 40</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 41</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 42</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 43</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 44</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 45</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 46</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 47</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 48</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 49</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 50</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 51</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 52</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 53</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 54</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 55</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 56</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 57</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 58</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 59</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
 
 <!--
     ∩ · ≥ ≤
