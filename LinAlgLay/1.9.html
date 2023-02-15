@@ -57,6 +57,65 @@
 
 <h2>Results</h2>
 
+
+<div class="thm">Theorem 1.10</div>
+<div class="thmtext">
+Let T: ℝ<sup>n</sup>&rarr;ℝ<sup>m</sup> be a linear transformation. Then there
+exists a unique matrix A such that
+$$
+T(\bs{x}) = A\bs{x}\qquad \forall\bs{x}\in\R^n.
+$$
+In fact, A is the m&times;n matrix whose jth column is the vector T(<b>e</b><sub>j</sub>),
+where <b>e</b><sub>j</sub> is the jth column of the identity matrix in ℝ<sup>n</sup>:
+$$
+A = \big[T(\bs{e}_1) \;\; \cdots \;\;T(\bs{e}_n)\big]
+$$
+</div>
+
+<br /><br />
+
+<div class="thm">Definition: Onto [Surjective]</div>
+<div class="thmtext">
+    A mapping $T: \R^n\rightarrow \R^m$ is said to be <b>onto</b> ℝ<sup>m</sup> if each <b>b</b>
+    in ℝ<sup>m</sup> is the image of <i>at least one</i> <b>x</b> in ℝ<sup>n</sup>.
+</div>
+
+<br /><br />
+
+<div class="thm">Definition: One-to-one [Injective]</div>
+<div class="thmtext">
+    A mapping $T: \R^n\rightarrow \R^m$ is said to be <b>one-to-one</b> if each <b>b</b>
+    in ℝ<sup>m</sup> is the image of <i>at most one</i> <b>x</b> in ℝ<sup>n</sup>.
+</div>
+
+<br /><br />
+<img src="img/E1.9.1.png" />
+<br /><br />
+
+<ol>
+<li>Surjective, or onto, means that every point in B has some A. The set A 'fills' all of B.</li>
+<li>Injective, or one-to-one, means that no point in B can mapped to by many points in A.</li>
+<li>Bijective means both properties apply at the same time. Perfect pairing between sets.</li>
+</ol>
+
+<br /><br />
+
+<div class="thm">Theorem 1.11</div>
+<div class="thmtext">
+Let $T: \R^n\rightarrow\R^m$ be a linear transformation. Then T is one-to-one (injective) iff
+the equation T(<b>x</b>) = <b>0</b> has only the trivial solution.
+</div>
+
+<br /><br />
+
+<div class="thm">Theorem 1.12</div>
+<div class="thmtext">
+Let $T: \R^n\rightarrow\R^m$ be a linear transformation and let A be the standard matrix
+for T. Then:<br />
+a. T maps ℝ<sup>n</sup> onto ℝ<sup>m</sup> iff the columns of A span ℝ<sup>m</sup>.<br />
+b. T is one-to-one iff the columns of A are linearly independent.
+</div>
+
 <br /><br /><br /><br />
 
 <!-- -----------------PARAGRAPH MEDSKIP
@@ -78,6 +137,8 @@
 ℝ<sup>3</sup>
 ℝ<sup>4</sup>
 ℝ<sup>n</sup>
+ℝ<sup>m</sup>
+ℝ<sup>n</sup>&rarr;ℝ<sup>m</sup>
 -->
 
 
@@ -97,18 +158,6 @@
 </pre>
 -->
 
-<h3>Exercise 1</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
 
 <h3>Exercise 2</h3>
 asd
@@ -117,100 +166,6 @@ asd
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
-
-
-
-
-
-
-<h3>Exercise 3</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 4</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 5</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 6</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 7</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 8</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 9</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
 
 
 
@@ -225,112 +180,6 @@ asd
 
 
 
-
-
-<h3>Exercise 11</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 12</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 13</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 14</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 15</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 16</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 17</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 18</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
 <h3>Exercise 19</h3>
 asd
 <br /><br />
@@ -341,21 +190,42 @@ asd
 
 
 
-
-
-
-<h3>Exercise 20</h3>
-asd
+<h3>Exercise 23</h3>
+Verifying statements. Answer True or False and justify the answer.
 <br /><br />
-<i>Answer</i><br />
+(a)
+<i>
+    xxx.
+</i><br />
+Answer: xxx.
+<br /><br />
+(b)
+<i>
+    xxx.
+</i><br />
+Answer: xxx.
+<br /><br />
+(c)
+<i>
+    xxx.
+</i><br />
+Answer: xxx.
+<br /><br />
+(d)
+<i>
+    xxx.
+</i><br />
+Answer: xxx.
+<br /><br />
+(e)
+<i>
+    xxx.
+</i><br />
+Answer: xxx.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
 
-
-
-<!--
-# True/False questions
 
 <h3>Exercise 24</h3>
 Verifying statements. Answer True or False and justify the answer.
@@ -390,199 +260,8 @@ Answer: xxx.
 </i><br />
 Answer: xxx.
 <br /><br />
-(f)
-<i>
-    xxx.
-</i><br />
-Answer: xxx.
-<br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
-
-
--->
-
-
-
-
-<h3>Exercise 21</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 22</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 23</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 24</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 25</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 26</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 27</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 28</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 29</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 30</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 31</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 32</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 33</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 34</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
 
 
 
@@ -596,316 +275,6 @@ asd
 <br /><br />
 
 
-
-
-
-
-<h3>Exercise 36</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 37</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 38</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 39</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 40</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 41</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 42</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 43</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 44</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 45</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 46</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 47</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 48</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 49</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 50</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 51</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 52</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 53</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 54</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 55</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 56</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 57</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 58</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 59</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
 
 <!--
     ∩ · ≥ ≤
