@@ -2,9 +2,13 @@
 import sys
 
 mat = """
-a 0
-0 d
+1 1 1 1
+-3 5 -2 7
 """
+
+# Generate the multiplication version?
+CALC = 0
+TRANSPOSE = 1
 
 # Example2
 # mat = """
@@ -61,23 +65,57 @@ def MatrixToLaTex(ss):
     numrow, numcols = FindDim(mat)
 
     # Create align string based on number of columns
-    a = ['r' for i in range(numcols)]
-    align = ''.join(a)
+    if CALC == 0 and TRANSPOSE == 0:
+        a = ['r' for i in range(numcols)]
+        align = ''.join(a)
+    elif TRANSPOSE == 1:
+        a = ['r' for i in range(numrow)]
+        align = ''.join(a)
+    else:
+        a = ['rc' for i in range(numcols)]
+        align = ''.join(a)
+        align = align[:-1] # Remove last 'c'
 
     #print(mat)
-
-    print("\\begin{bmatrix*}", end='')
-    print(f"[{align}]")
-    for i in range(numrow):
+    if CALC == 0 and TRANSPOSE == 0:
+        print("\\begin{bmatrix*}", end='')
+        print(f"[{align}]")
+        for i in range(numrow):
+            for j in range(numcols):
+                if j < numcols - 1:
+                    print(mat[i][j], end = " & ")
+                elif i == numrow - 1:
+                    print(mat[i][j], end = "")
+                else:
+                    print(mat[i][j], end = " \\\\ ")
+            print("")
+        print("\\end{bmatrix*}")
+    elif TRANSPOSE == 1:
+        print("\\begin{bmatrix*}", end='')
+        print(f"[{align}]")
         for j in range(numcols):
-            if j < numcols - 1:
-                print(mat[i][j], end = " & ")
-            elif i == numrow - 1:
-                print(mat[i][j], end = "")
-            else:
-                print(mat[i][j], end = " \\\\ ")
-        print("")
-    print("\\end{bmatrix*}")
+            for i in range(numrow):
+                if i < numrow - 1:
+                    print(mat[i][j], end = " & ")
+                elif j == numcols - 1:
+                    print(mat[i][j], end = " \\\\ ")
+                else:
+                    print(mat[i][j], end = " \\\\ ")
+            print("")
+        print("\\end{bmatrix*}")
+    else:
+        print("\\begin{bmatrix*}", end='')
+        print(f"[{align}]")
+        for i in range(numrow):
+            for j in range(numcols):
+                if j < numcols - 1:
+                    print(f"({mat[i][j]})()", end = " &+& ")
+                elif i == numrow - 1:
+                    print(f"({mat[i][j]})()", end = "")
+                else:
+                    print(f"({mat[i][j]})()", end = " \\\\ ")
+            print("")
+        print("\\end{bmatrix*}")
 
 
 MatrixToLaTex(mat)

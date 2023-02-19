@@ -5,10 +5,10 @@
     <script>
         MathJax = {
             loader: {
-                load: ['[tex]/mathtools', '[tex]/boldsymbol']
+                load: ['[tex]/mathtools', '[tex]/boldsymbol', '[tex]/color']
             },
             tex: {
-                packages: {'[+]': ['mathtools', 'boldsymbol']},
+                packages: {'[+]': ['mathtools', 'boldsymbol', 'color']},
                 inlineMath: [['$', '$'], ['\\(', '\\)']]
             },
             svg: {
@@ -57,6 +57,571 @@
 
 <h2>Results</h2>
 
+Many calculations can be simplified if we do the calculations directly on
+the matrix. If A is a m&times;n matrix, the scalar entry in row i and column j of
+A is denoted by $a_{ij}$ and is called the (i,j)-entry.
+
+Matrix when highlighting columns:
+$$
+A =
+\big[\bs{a}_1 \;\; \cdots \;\; \bs{a}_j \;\; \cdots \;\; \bs{a}_n \big]
+$$
+Matrix with the elements:
+$$
+A =
+\begin{bmatrix*}[ccccc]
+a_{11} & \cdots & a_{1j} & \cdots & a_{1n} \\ 
+\vdots &  & \vdots &  & \vdots \\ 
+a_{i1} & \cdots & a_{ij} & \cdots & a_{in} \\ 
+\vdots &  & \vdots &  & \vdots \\ 
+a_{m1} & \cdots & a_{mj} & \cdots & a_{mn}
+\end{bmatrix*}
+$$
+<br />
+
+The <b>diagonal entries</b> $a_{11}, a_{22}, \ldots$ form the main diagonal.
+A diagonal matrix is a square matrix whose nondiagonal elements are nonzero:
+$$
+\begin{bmatrix*}[rrr]
+3 & 0 & 0 \\ 
+0 & 2 & 0 \\ 
+0 & 0 & 1
+\end{bmatrix*}.
+$$
+An important example of this is the identity matrix, which is a diagonal matrix
+where all elements are 1 and are referred to as $I_n$. For example, $I_3$:
+$$
+\begin{bmatrix*}[rrr]
+1 & 0 & 0 \\ 
+0 & 1 & 0 \\ 
+0 & 0 & 1
+\end{bmatrix*}.
+$$
+Finally we have the zero matrix, where all elements are 0. Denoted by <b>0</b> or O:
+$$
+\begin{bmatrix*}[rrr]
+0 & 0 & 0 \\ 
+0 & 0 & 0 \\ 
+0 & 0 & 0
+\end{bmatrix*}.
+$$
+
+<h3>Sums and Scalar Multiples</h3>
+
+The vector calculations can be extended to matrices. We say
+that two matrcies are <b>equal</b> if they have the same dimension.
+When adding two matrices, we simply add each corresponding entry in
+the matrix. From this definition, it only applies when the matrices
+are equal. We scale a matrix by muliplying with some scalar $r$.
+This is then multiplied to every entry of A.
+
+<br /><br />
+
+<div class="thm">Theorem 2.1</div>
+<div class="thmtext">
+Let A, B and C be matrices of equal size, and let <i>r</i> and <i>s</i>
+be some scalars.<br /><br />
+&nbsp;&nbsp;<i>(a)</i> $A + B = B + A$<br /><br />
+&nbsp;&nbsp;<i>(b)</i> $(A + B) + C = A + (B + C)$<br /><br />
+&nbsp;&nbsp;<i>(c)</i> $A + O = A$<br /><br />
+&nbsp;&nbsp;<i>(d)</i> $r(A + B) = rA + rB$<br /><br />
+&nbsp;&nbsp;<i>(e)</i> $(r + s)A = rA + sA$<br /><br />
+&nbsp;&nbsp;<i>(f)</i> $r(sA) = (rs)A$<br />
+</div>
+
+<h3>Matrix Multiplication</h3>
+
+When a matrix B is multiplied with a vector <b>x</b>, it is transformed into
+another vector B<b>x</b>. If this vector is multiplied by another matrix A,
+the result is a third vector A(B<b>x</b>).
+
+<br /><br />
+<img src="img/E2.1.1.png" />
+<br /><br />
+
+The vector is produced by a <i>composition</i> of mappings. We can represent
+this as a single matrix AB.
+
+<br /><br />
+
+If A is an m&times;n matrix, B is an n&times;p matrix, and <b>x</b> is some
+vector in ℝ<sup>p</sup>, we denote the columns of B as <b>b</b><sub>j</sub>
+and the entries of <b>x</b> by x<sub>j</sub>. Then:
+$$
+B\bs{x} = x_1\bs{b}_1 + \ldots + x_p\bs{b}_p.
+$$
+By the linearity of multiplication by A;
+$$
+\begin{align*}
+A(B\bs{x}) &= A\Big(x_1\bs{b}_1 + \ldots + x_p\bs{b}_p\Big)\\
+&\\
+&= A(x_1\bs{b}_1) + \ldots + A(x_p\bs{b}_p) \\
+&\\
+&= x_1A\bs{b}_1 + \ldots + x_pA\bs{b}_p
+\end{align*}
+$$
+So, the vector A(B<b>x</b>) is a linear combination of the vectors A<b>b</b><sub>j</sub>
+using the entries of <b>x</b> as weights. Expressing as vectors:
+$$
+A(B\bs{x}) = 
+\big[A\bs{b}_1 \;\; \ldots \;\; A\bs{b}_p\big]\bs{x}
+$$
+Or:
+$$
+AB = \big[A\bs{b}_1 \;\; \ldots \;\; A\bs{b}_p\big]
+$$
+
+<br /><br />
+<b>Example</b><br />
+<br />
+We will look at this in a more concrete setting.
+Let A be a 4&times;3 matrix, B a 3&times;2 matrix, and <b>x</b> a
+vector in ℝ<sup>2</sup>. Specifically:
+$$
+A = 
+\begin{bmatrix*}[rrr]
+3 & 1 & 0 \\ 
+1 & 2 & 0 \\ 
+1 & 0 & 2 \\ 
+2 & 2 & 1
+\end{bmatrix*},\qquad
+B =
+\begin{bmatrix*}[rr]
+3 & 1 \\ 
+2 & 2 \\ 
+1 & 2
+\end{bmatrix*},\qquad
+\bs{x} =
+\begin{bmatrix*}[r]
+3 \\ 
+2
+\end{bmatrix*}
+$$
+Calculating the two vectors individually. First B<b>x</b>:
+$$
+\begin{bmatrix*}[rr]
+3 & 1 \\ 
+2 & 2 \\ 
+1 & 2
+\end{bmatrix*}
+\begin{bmatrix*}[r]
+3 \\ 
+2
+\end{bmatrix*}
+=
+\begin{bmatrix*}[rcr]
+(3)(3) &+& (1)(2) \\ 
+(2)(3) &+& (2)(2) \\ 
+(1)(3) &+& (2)(2)
+\end{bmatrix*}
+=
+\begin{bmatrix*}[c]
+9 + 2 \\ 
+6 + 4 \\
+3 + 4
+\end{bmatrix*}
+=
+\begin{bmatrix*}[c]
+11 \\ 
+10 \\
+7
+\end{bmatrix*}
+$$
+Now, A(B<b>x</b>):
+$$
+\begin{bmatrix*}[rrr]
+3 & 1 & 0 \\ 
+1 & 2 & 0 \\ 
+1 & 0 & 2 \\ 
+2 & 2 & 1
+\end{bmatrix*}
+\begin{bmatrix*}[c]
+11 \\ 
+10 \\
+7
+\end{bmatrix*}
+=
+\begin{bmatrix*}[rcrcr]
+(3)(11) &+& (1)(10) &+& (0)(7) \\ 
+(1)(11) &+& (2)(10) &+& (0)(7) \\ 
+(1)(11) &+& (0)(10) &+& (2)(7) \\ 
+(2)(11) &+& (2)(10) &+& (1)(7)
+\end{bmatrix*}
+=
+\begin{bmatrix*}[c]
+33 + 10 + 0 \\
+11 + 20 + 0 \\
+11 + 0 + 14 \\
+22 + 20 + 7
+\end{bmatrix*}
+=
+\begin{bmatrix*}[c]
+43 \\
+31 \\
+25 \\
+49
+\end{bmatrix*}
+$$
+Next, we calculate AB as described. The matrix multiplication is:
+(4&times;3)&times;(3&times;2) = 4&times;2. The inner dimensions disappear, so the
+resulting matrix has 4 rows and 2 columns. Calculating each column of AB:
+$$
+A\bs{b}_1 =
+\begin{bmatrix*}[rrr]
+3 & 1 & 0 \\ 
+1 & 2 & 0 \\ 
+1 & 0 & 2 \\ 
+2 & 2 & 1
+\end{bmatrix*}
+\begin{bmatrix*}[c]
+3 \\ 
+2 \\
+1
+\end{bmatrix*}
+=
+\begin{bmatrix*}[rcrcr]
+(3)(3) &+& (1)(2) &+& (0)(1) \\ 
+(1)(3) &+& (2)(2) &+& (0)(1) \\ 
+(1)(3) &+& (0)(2) &+& (2)(1) \\ 
+(2)(3) &+& (2)(2) &+& (1)(1)
+\end{bmatrix*}
+=
+\begin{bmatrix*}[c]
+9 + 2 + 0 \\ 
+3 + 4 + 0 \\
+3 + 0 + 2 \\
+6 + 4 + 1
+\end{bmatrix*}
+=
+\begin{bmatrix*}[c]
+11 \\ 
+7 \\
+5 \\
+11
+\end{bmatrix*}
+$$
+$$
+A\bs{b}_2 =
+\begin{bmatrix*}[rrr]
+3 & 1 & 0 \\ 
+1 & 2 & 0 \\ 
+1 & 0 & 2 \\ 
+2 & 2 & 1
+\end{bmatrix*}
+\begin{bmatrix*}[c]
+1 \\ 
+2 \\
+2
+\end{bmatrix*}
+=
+\begin{bmatrix*}[rcrcr]
+(3)(1) &+& (1)(2) &+& (0)(2) \\ 
+(1)(1) &+& (2)(2) &+& (0)(2) \\ 
+(1)(1) &+& (0)(2) &+& (2)(2) \\ 
+(2)(1) &+& (2)(2) &+& (1)(2)
+\end{bmatrix*}
+=
+\begin{bmatrix*}[c]
+3 + 2 + 0 \\ 
+1 + 4 + 0 \\
+1 + 0 + 4 \\
+2 + 4 + 2
+\end{bmatrix*}
+=
+\begin{bmatrix*}[c]
+5 \\ 
+5 \\
+5 \\
+8
+\end{bmatrix*}
+$$
+Now we have AB:
+$$
+AB =
+\big[A\bs{b}_1 \;\; A\bs{b}_2 \big] =
+\begin{bmatrix*}[rr]
+11 & 5 \\ 
+7 & 5 \\ 
+5 & 5 \\ 
+11 & 8
+\end{bmatrix*}
+$$
+Verifying:
+$$
+AB\bs{x} =
+\begin{bmatrix*}[rr]
+11 & 5 \\ 
+7 & 5 \\ 
+5 & 5 \\ 
+11 & 8
+\end{bmatrix*}
+\begin{bmatrix*}[r]
+3 \\ 
+2
+\end{bmatrix*}
+=
+\begin{bmatrix*}[rcr]
+(11)(3) &+& (5)(2) \\ 
+(7)(3) &+& (5)(2) \\ 
+(5)(3) &+& (5)(2) \\ 
+(11)(3) &+& (8)(2)
+\end{bmatrix*}
+=
+\begin{bmatrix*}[c]
+33 + 10 \\ 
+21 + 10 \\
+15 + 10 \\
+33 + 16
+\end{bmatrix*}
+=
+\begin{bmatrix*}[c]
+43 \\ 
+31 \\
+25 \\
+49
+\end{bmatrix*}
+$$
+which is the same as A(B<b>x</b>).
+
+<br /><br />
+
+<div class="thm">Definition</div>
+<div class="thmtext">
+If A is an m&times;n matrix, and B is an n&times;p matrix with columns <b>b</b><sub>j</sub>,
+then the product AB is the m&times;p matrix whose columns are A<b>b</b><sub>j</sub>. That is,
+$$
+AB =
+A\big[\bs{b}_1 \;\; \ldots \;\; \bs{b}_p\big] =
+\big[A\bs{b}_1 \;\; \ldots \;\; A\bs{b}_p\big]
+$$
+</div>
+<br />
+
+As we can see, the columns of AB is a liner combintation of the columns of A using
+weights from the corresponding column if B.
+
+<br /><br />
+
+<div class="thm">Row-Column Rule for Computing AB</div>
+<div class="thmtext">
+If the product AB is defined, then the entry in row i and column j of AB
+is the sum of the products of corresponding entries from row i of A and
+column j of B. If $(AB)_{ij}$ denotes the (i, j)-entry in AB, and if
+A is m&times;n matrix, then:
+$$
+(AB)_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + \ldots + a_{n1}b_{nj}.
+$$
+</div>
+
+<br /><br />
+<b>Example</b><br />
+<br />
+Muliplying a 2&times;2 matrix with a 2&times;3 matrix.
+Finding the entry in AB positioned in row 1 and column 3. According to the formula above:
+$$
+(AB)_{13} = a_{11}b_{13} + a_{12}b_{23} 
+$$
+$$
+\begin{bmatrix*}[rr]
+\color{red}{2} & \color{red}{3} \\ 
+1 & -5
+\end{bmatrix*}
+\begin{bmatrix*}[rrr]
+4 & 3 & \color{blue}{6} \\ 
+1 & -2 & \color{blue}{3}
+\end{bmatrix*}
+=
+\begin{bmatrix*}[rrc]
+\square& \square& (\color{red}{2}\color{black}{)(}\color{blue}{6}\color{black}{) + (}\color{red}{3}\color{black}{)(}\color{blue}{3}) \\ 
+\square& \square& \square
+\end{bmatrix*}
+=
+\begin{bmatrix*}[rrc]
+\square& \square& 12 + 9 \\ 
+\square& \square& \square
+\end{bmatrix*}
+=
+\begin{bmatrix*}[rrc]
+\square& \square& 21 \\ 
+\square& \square& \square
+\end{bmatrix*}
+$$
+
+And for finding row 2 and column 2 of AB:
+$$
+(AB)_{22} = a_{21}b_{12} + a_{22}b_{22} 
+$$
+$$
+\begin{bmatrix*}[rr]
+2 & 3 \\ 
+\color{red}{1} & \color{red}{-5}
+\end{bmatrix*}
+\begin{bmatrix*}[rrr]
+4 & \color{blue}{3} & 6\\ 
+1 & \color{blue}{-2} & 3
+\end{bmatrix*}
+=
+\begin{bmatrix*}[rcc]
+\square& \square& 21 \\ 
+\square& (\color{red}{1}\color{black}{)(}\color{blue}{3}\color{black}{) + (}\color{red}{-5}\color{black}{)(}\color{blue}{-2}) & \square
+\end{bmatrix*}
+=
+\begin{bmatrix*}[rcc]
+\square& \square& 21 \\ 
+\square& 3 + 10& \square
+\end{bmatrix*}
+=
+\begin{bmatrix*}[rcc]
+\square& \square& 21 \\ 
+\square& 13 & \square
+\end{bmatrix*}
+$$
+The cell in AB determines what <b>row</b> from A we use, and what <b>column</b> in B.
+
+<br /><br />
+
+From the row-column rule, we can make the following observation:
+$$
+\text{row}_i(AB) = \text{row}_i(A)\cdot B
+$$
+
+<h3>Properties of Matrix Multiplication</h3>
+
+<br />
+
+<div class="thm">Theorem 2.2</div>
+<div class="thmtext">
+Let A be an m&times;n matrix and let B and C have sizes for which the indicated
+sums and products are defined. $I_m$ is the m&times;m identity matrix.
+<br /><br />
+<table>
+    <tr>
+        <td><i>&nbsp;&nbsp;(a)</i></td>
+        <td>&nbsp;$(AB)C = A(BC)$</td>
+        <td>&nbsp;&nbsp;&nbsp;</td>
+        <td>(Associative law of multiplication)</td>
+    </tr><tr><td height="5px"></td></tr>
+    <tr>
+        <td><i>&nbsp;&nbsp;(b)</i></td>
+        <td>&nbsp;$A(B + C) = AB + AC$</td>
+        <td>&nbsp;&nbsp;&nbsp;</td>
+        <td>(Left distributive law)</td>
+    </tr><tr><td height="5px"></td></tr>
+    <tr>
+        <td><i>&nbsp;&nbsp;(c)</i></td>
+        <td>&nbsp;$(B + C)A = BA + CA$</td>
+        <td>&nbsp;&nbsp;&nbsp;</td>
+        <td>(Right distributive law)</td>
+    </tr><tr><td height="5px"></td></tr>
+    <tr>
+        <td><i>&nbsp;&nbsp;(d)</i></td>
+        <td>&nbsp;$r(AB) = (rA)B = A(rB)$</td>
+        <td>&nbsp;&nbsp;&nbsp;</td>
+        <td>(For any scalar <i>r</i>)</td>
+    </tr><tr><td height="5px"></td></tr>
+    <tr>
+        <td><i>&nbsp;&nbsp;(e)</i></td>
+        <td>&nbsp;$I_mA = A = AI_n$</td>
+        <td>&nbsp;&nbsp;&nbsp;</td>
+        <td>(Identity for matrix multiplication)</td>
+    </tr><tr><td height="5px"></td></tr>
+</table>
+</div>
+<br />
+Some warnings. The left/right multiplication properties are important. In matrix multiplication
+AB is generally not the same as BA. We cannot cancel matrices either. If AB = AC, then it
+is not generally true that B = C. And finally, if AB = O, then we can't conclude that
+A or B is equal to O.
+
+<h3>Powers of a Matrix</h3>
+If A is an n&times;n matrix, and if <i>k</i> is a positive integer, then A<sup>k</sup> denotes
+the of <i>k</i> copies of A:
+$$
+A^k = \underbrace{A\;\cdots\; A}_{k\;\text{times}}
+$$
+
+<h3>The Transpose of a Matrix</h3>
+
+Given an m&times;n matrix A, the <b>transpose</b> of A is the n&times;m matrix, denoted by
+$A^T$, whose columns are formed from the corresponding rows of A. Examples:
+$$
+A =
+\begin{bmatrix*}[rr]
+a & b \\ 
+c & d
+\end{bmatrix*},\quad
+B =
+\begin{bmatrix*}[rr]
+-5 & 2 \\ 
+1 & -3 \\ 
+0 & 4
+\end{bmatrix*}
+,\quad
+C =
+\begin{bmatrix*}[rrrr]
+1 & 1 & 1 & 1 \\ 
+-3 & 5 & -2 & 7
+\end{bmatrix*}
+$$
+$$
+A^T =
+\begin{bmatrix*}[rr]
+a & c \\ 
+b & d
+\end{bmatrix*},\quad
+B^T =
+\begin{bmatrix*}[rrr]
+-5 & 1 & 0 \\ 
+2 & -3 & 4 \\ 
+\end{bmatrix*}
+,\quad
+C^T =
+\begin{bmatrix*}[rr]
+1 & -3 \\ 
+1 & 5 \\ 
+1 & -2 \\ 
+1 & 7 \\ 
+\end{bmatrix*}
+$$
+
+Informally, the transpose is a matter of "flipping" the matrix around the diagonal.
+<br /><br />
+<img src="img/Matrix_transpose.gif" />
+<br /><br />
+
+<br />
+
+<div class="thm">Theorem 2.3</div>
+<div class="thmtext">
+Let A and B denote matrices whose size are appropriate for the following
+sums and products.
+<br />
+<br />
+<table>
+    <tr>
+        <td><i>&nbsp;&nbsp;(a)</i></td>
+        <td>&nbsp;$(A^T)^T = A$</td>
+    </tr><tr><td height="5px"></td></tr>
+    <tr>
+        <td><i>&nbsp;&nbsp;(b)</i></td>
+        <td>&nbsp;$(A + B)^T = A^T + B^T$</td>
+    </tr><tr><td height="5px"></td></tr>
+    <tr>
+        <td><i>&nbsp;&nbsp;(c)</i></td>
+        <td>&nbsp;$(rA)^T = rA^T,\qquad \forall r\in\R$</td>
+    </tr><tr><td height="5px"></td></tr>
+    <tr>
+        <td><i>&nbsp;&nbsp;(d)</i></td>
+        <td>&nbsp;$(AB)^T = B^TA^T$</td>
+    </tr>
+</table>
+</div>
+<br />
+The last property carries over to several multiplications. We just reverse the order.
+$$
+(ABCD)^T = D^TC^TB^TA^T
+$$
+
 <br /><br /><br /><br />
 
 <!-- -----------------PARAGRAPH MEDSKIP
@@ -70,8 +635,9 @@
 
 <div class="thm">XXX</div>
 <div class="thmtext">
-    asdasd
+asdasd
 </div>
+<br />
 
 ----------------------THM/DEF/RESULT
 
@@ -112,46 +678,6 @@ asd
 
 
 
-
-<h3>Exercise 2</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 3</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 4</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
 <h3>Exercise 5</h3>
 asd
 <br /><br />
@@ -159,59 +685,6 @@ asd
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
-
-
-
-
-
-
-<h3>Exercise 6</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 7</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 8</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 9</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
 
 
 
@@ -243,124 +716,8 @@ asd
 
 
 
-<h3>Exercise 12</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 13</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 14</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
 
 <h3>Exercise 15</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 16</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 17</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 18</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 19</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 20</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-<!--
-# True/False questions
-
-<h3>Exercise 24</h3>
 Verifying statements. Answer True or False and justify the answer.
 <br /><br />
 (a)
@@ -403,32 +760,48 @@ Answer: xxx.
 <br /><br />
 
 
--->
 
-
-
-
-<h3>Exercise 21</h3>
-asd
+<h3>Exercise 16</h3>
+Verifying statements. Answer True or False and justify the answer.
 <br /><br />
-<i>Answer</i><br />
+(a)
+<i>
+    xxx.
+</i><br />
+Answer: xxx.
+<br /><br />
+(b)
+<i>
+    xxx.
+</i><br />
+Answer: xxx.
+<br /><br />
+(c)
+<i>
+    xxx.
+</i><br />
+Answer: xxx.
+<br /><br />
+(d)
+<i>
+    xxx.
+</i><br />
+Answer: xxx.
+<br /><br />
+(e)
+<i>
+    xxx.
+</i><br />
+Answer: xxx.
+<br /><br />
+(f)
+<i>
+    xxx.
+</i><br />
+Answer: xxx.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
-
-
-
-
-
-
-<h3>Exercise 22</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
 
 
 
@@ -446,20 +819,6 @@ asd
 
 
 
-
-<h3>Exercise 24</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
 <h3>Exercise 25</h3>
 asd
 <br /><br />
@@ -469,446 +828,6 @@ asd
 <br /><br />
 
 
-
-
-
-
-<h3>Exercise 26</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 27</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 28</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 29</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 30</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 31</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 32</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 33</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 34</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 35</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 36</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 37</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 38</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 39</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 40</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 41</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 42</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 43</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 44</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 45</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 46</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 47</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 48</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 49</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 50</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 51</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 52</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 53</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 54</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 55</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 56</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 57</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 58</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
-
-
-
-
-
-<h3>Exercise 59</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
 
 <!--
     ∩ · ≥ ≤
