@@ -409,7 +409,7 @@ is the sum of the products of corresponding entries from row i of A and
 column j of B. If $(AB)_{ij}$ denotes the (i, j)-entry in AB, and if
 A is m&times;n matrix, then:
 $$
-(AB)_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + \ldots + a_{n1}b_{nj}.
+(AB)_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + \ldots + a_{in}b_{nj}.
 $$
 </div>
 
@@ -667,9 +667,144 @@ asdasd
 -->
 
 <h3>Exercise 1</h3>
-asd
+Perform the given calculations for the following matrices:
+$$
+A =
+\begin{bmatrix*}[rrr]
+2 & 0 & -1 \\ 
+4 & -5 & 2
+\end{bmatrix*},\quad
+B = 
+\begin{bmatrix*}[rrr]
+7 & -5 & 1 \\ 
+1 & -4 & -3
+\end{bmatrix*},\quad
+C = 
+\begin{bmatrix*}[rr]
+1 & 2 \\ 
+-2 & 1
+\end{bmatrix*},\quad
+D = 
+\begin{bmatrix*}[rr]
+3 & 5 \\ 
+-1 & 4
+\end{bmatrix*}
+$$
+Calculate:
+$$
+-2A,\quad
+B - 2A,\quad
+AC,\quad
+CD
+$$
 <br /><br />
 <i>Answer</i><br />
+-2A. Simply multiplying each element in A with -2.
+$$
+-2A = 
+\begin{bmatrix*}[rrr]
+-4 & 0 & 2 \\ 
+-8 & 10 & -4
+\end{bmatrix*}
+$$
+B - 2A = B + (-2A)
+$$
+B + (-2A) = 
+\begin{bmatrix*}[rrr]
+7 & -5 & 1 \\ 
+1 & -4 & -3
+\end{bmatrix*}
++
+\begin{bmatrix*}[rrr]
+-4 & 0 & 2 \\ 
+-8 & 10 & -4
+\end{bmatrix*}
+=
+\begin{bmatrix*}[rrr]
+3 & -5 & 3 \\ 
+-7 & 6 & -7
+\end{bmatrix*}
+$$
+AC. This is not defined since A is a 2&times;3 and C is a 2&times;2 matrix. The
+rows of A and columns of C do not match, so the matrix multiplication is not defined.<br />
+<br />
+CD.
+$$
+CD = 
+\begin{bmatrix*}[rr]
+1 & 2 \\ 
+-2 & 1
+\end{bmatrix*}
+\begin{bmatrix*}[rr]
+3 & 5 \\ 
+-1 & 4
+\end{bmatrix*}
+=
+C[\bs{d}_1\;\bs{d}_2]
+=
+[C\bs{d}_1\;C\bs{d}_2]
+$$
+Intermediate calculations:
+$$
+C\bs{d}_1 =
+\begin{bmatrix*}[rr]
+1 & 2 \\ 
+-2 & 1
+\end{bmatrix*}
+\begin{bmatrix*}[rr]
+3 \\ 
+-1
+\end{bmatrix*}
+=
+\begin{bmatrix*}[rcr]
+(1)(3) &+& (2)(-1) \\ 
+(-2)(3) &+& (1)(-1)
+\end{bmatrix*}
+=
+\begin{bmatrix*}[c]
+3 - 2 \\ 
+-6 - 1
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+1 \\ 
+-7
+\end{bmatrix*}
+$$
+$$
+C\bs{d}_2 =
+\begin{bmatrix*}[rr]
+1 & 2 \\ 
+-2 & 1
+\end{bmatrix*}
+\begin{bmatrix*}[rr]
+5 \\ 
+4
+\end{bmatrix*}
+=
+\begin{bmatrix*}[rcr]
+(1)(5) &+& (2)(4) \\ 
+(-2)(5) &+& (1)(4)
+\end{bmatrix*}
+=
+\begin{bmatrix*}[c]
+5 + 8 \\ 
+-10 + 4
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+13 \\ 
+-6
+\end{bmatrix*}
+$$
+So:
+$$
+CD = 
+\begin{bmatrix*}[rr]
+1 & 13 \\ 
+-7 & -6
+\end{bmatrix*}
+$$
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -679,9 +814,96 @@ asd
 
 
 <h3>Exercise 5</h3>
-asd
+Compute the product AB in two ways: (a) by the definition where A<b>b</b><sub>j</sub>
+are computed seperately, and (b) by the row-column rule.
+$$
+A = 
+\begin{bmatrix*}[rr]
+-1 & 2 \\ 
+5 & 4 \\ 
+2 & -3
+\end{bmatrix*}
+,\quad
+B = 
+\begin{bmatrix*}[rr]
+3 & -2 \\ 
+-2 & 1
+\end{bmatrix*}
+$$
 <br /><br />
 <i>Answer</i><br />
+Intermediate calculations:
+$$
+A\bs{b}_1 =
+\begin{bmatrix*}[rr]
+-1 & 2 \\ 
+5 & 4 \\ 
+2 & -3
+\end{bmatrix*}
+\begin{bmatrix*}[r]
+3 \\ 
+-2
+\end{bmatrix*}
+=
+\begin{bmatrix*}[rcr]
+(-1)(3) &+& (2)(-2) \\ 
+(5)(3) &+& (4)(-2) \\ 
+(2)(3) &+& (-3)(-2)
+\end{bmatrix*}
+=
+\begin{bmatrix*}[c]
+-3 - 4 \\ 
+15 -8 \\ 
+6 + 6
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+-7 \\ 
+7 \\ 
+12
+\end{bmatrix*}
+$$
+$$
+A\bs{b}_2 =
+\begin{bmatrix*}[rr]
+-1 & 2 \\ 
+5 & 4 \\ 
+2 & -3
+\end{bmatrix*}
+\begin{bmatrix*}[r]
+-2 \\ 
+1
+\end{bmatrix*}
+=
+\begin{bmatrix*}[rcr]
+(-1)(-2) &+& (2)(1) \\ 
+(5)(-2) &+& (4)(1) \\ 
+(2)(-2) &+& (-3)(1)
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+2 + 2\\ 
+-10 + 4\\
+-4 - 3
+\end{bmatrix*}
+=
+\begin{bmatrix*}[r]
+4\\ 
+-6\\
+-7
+\end{bmatrix*}
+$$
+So:
+$$
+AB =
+\begin{bmatrix*}[rr]
+-7 &  4\\ 
+ 7 & -6\\
+12 & -7
+\end{bmatrix*}
+$$
+The calculations using the row-column rule will be the same calculations just set
+in a single matrix.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -691,26 +913,40 @@ asd
 
 
 <h3>Exercise 10</h3>
-asd
+Let
+$$
+A = 
+\begin{bmatrix*}[rr]
+2 & -3 \\ 
+-4 & 6
+\end{bmatrix*}
+,\quad
+B = 
+\begin{bmatrix*}[rr]
+8 & 4 \\ 
+5 & 5
+\end{bmatrix*}
+,\quad
+C = 
+\begin{bmatrix*}[rr]
+5 & -2 \\ 
+3 & 1
+\end{bmatrix*},
+$$
+verify that AB = AC, and yet B&ne;C.
 <br /><br />
 <i>Answer</i><br />
+Skipping all the intermediate calculations.
+$$
+AB = AC =
+\begin{bmatrix*}[rr]
+1 & -7 \\ 
+-2 & 14
+\end{bmatrix*}
+$$
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
-
-
-
-
-
-
-<h3>Exercise 11</h3>
-asd
-<br /><br />
-<i>Answer</i><br />
-<br /><br />
-<div class="exend">&#9632;</div>
-<br /><br />
-
 
 
 
@@ -718,43 +954,48 @@ asd
 
 
 <h3>Exercise 15</h3>
+Let A, B and C be arbitrary matrices where the indicated sums and products are defined.
 Verifying statements. Answer True or False and justify the answer.
 <br /><br />
 (a)
 <i>
-    xxx.
+    If A and B are 2&times;2 matrices with columns <b>a</b><sub>j</sub>
+    and <b>b</b><sub>j</sub>, then
+    A = [<b>a</b><sub>1</sub><b>b</b><sub>1</sub>  <b>a</b><sub>2</sub><b>b</b><sub>2</sub>]
 </i><br />
-Answer: xxx.
+Answer: False. Multiplying two columns would produce a scalar, so this result would be a
+2&times;1 matrix (vector).
 <br /><br />
 (b)
 <i>
-    xxx.
+    Each column of AB is a linear combination of the columns of
+    B using weights from the corresponding column of A.
 </i><br />
-Answer: xxx.
+Answer: False. The reverse is true:
+$$
+AB = A[\bs{b}_1 \; \cdots \; \bs{b}_n] = [A\bs{b}_1 \; \cdots \; A\bs{b}_n]
+$$
+Here we see that the columns of AB is a linear combination of the columns of A, using
+the columns of B as weights.
 <br /><br />
 (c)
 <i>
-    xxx.
+    AB + AC = A(B + C).
 </i><br />
-Answer: xxx.
+Answer: True. This is Theorem 2.2 (b) (switched).
 <br /><br />
 (d)
 <i>
-    xxx.
+    A<sup>T</sup> + B<sup>T</sup> = (A + B)<sup>T</sup>.
 </i><br />
-Answer: xxx.
+Answer: True. This is Theorem 2.3 (b) (switched).
 <br /><br />
 (e)
 <i>
-    xxx.
+    The transpose of a product of matrices equals the product
+    of their transposes in the same order.
 </i><br />
-Answer: xxx.
-<br /><br />
-(f)
-<i>
-    xxx.
-</i><br />
-Answer: xxx.
+Answer: False. It equals their product in <i>reversed</i> order.
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -762,43 +1003,43 @@ Answer: xxx.
 
 
 <h3>Exercise 16</h3>
+Let A, B and C be arbitrary matrices where the indicated sums and products are defined.
 Verifying statements. Answer True or False and justify the answer.
 <br /><br />
 (a)
 <i>
-    xxx.
+    If A and B are 3&times;3 matrices and
+    B = [<b>b</b><sub>1</sub>  <b>b</b><sub>2</sub>  <b>b</b><sub>3</sub>]
+    then AB = [A<b>b</b><sub>1</sub>  A<b>b</b><sub>2</sub>  A<b>b</b><sub>3</sub>].
 </i><br />
-Answer: xxx.
+Answer: True. This is basically the definition of matrix multiplication.
 <br /><br />
 (b)
 <i>
-    xxx.
+    The second row of AB is the second row of A multiplied on the right
+    by B.
 </i><br />
-Answer: xxx.
+Answer: True. This is mentioned after the introduction of the row-column rule.
 <br /><br />
 (c)
 <i>
-    xxx.
+    (AB)C = (AC)B.
 </i><br />
-Answer: xxx.
+Answer: False. This changes the order of the matrix multiplications. The correct statement
+would be (AB)C = A(BC).
 <br /><br />
 (d)
 <i>
-    xxx.
+    (AB)<sup>T</sup> = A<sup>T</sup>B<sup>T</sup>.
 </i><br />
-Answer: xxx.
+Answer: False. The order of matrices should be reversed. As it stands, this operation is
+in general not even defined.
 <br /><br />
 (e)
 <i>
-    xxx.
+    The tranpose of a sum of matrices equals the sum of their transposes.
 </i><br />
-Answer: xxx.
-<br /><br />
-(f)
-<i>
-    xxx.
-</i><br />
-Answer: xxx.
+Answer: True. This is the general statement of Theorem 2.3 (b).
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -808,9 +1049,33 @@ Answer: xxx.
 
 
 <h3>Exercise 23</h3>
-asd
+Suppose $CA = I_n$. Show that the equation A<b>x</b> = <b>0</b> only has the trivial
+solution. Explain why A cannot have more columns than rows.
 <br /><br />
 <i>Answer</i><br />
+Multiplying with <b>x</b> will give - due to the property
+of the identity matrix:
+$$
+CA\bs{x} = I_n\bs{x} = \bs{x}
+$$
+Assume now that <b>x</b>&ne;<b>0</b> and that A<b>x</b>=<b>0</b>,
+i.e. that A<b>x</b> = <b>0</b> has some nontrivial solution <b>x</b>.
+From our equation above, we have shown that:
+$$
+CA\bs{x} = I_n\bs{x} = \bs{x} \not= \bs{0}.
+$$
+However, using that A<b>x</b>=<b>0</b> and Theorem 2.2 property (a):
+$$
+CA\bs{x} = C(A\bs{x}) = C\bs{0} = \bs{0}.
+$$
+This is a contradiction! Hence, if <b>x</b>&ne;<b>0</b>
+then it must follow that A<b>x</b>&ne;<b>0</b>.<br />
+<br />
+Since A<b>x</b>=<b>0</b> only has the trivial solution, then by
+Theorem 1.2 (extended result in section 1.5), there are no free
+variables. This means that A has a pivot entry in every column, i.e.
+it has n pivot columns. As shown in exercise 40 in section 1.7,
+it must then have more rows than columns. 
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />
@@ -820,9 +1085,35 @@ asd
 
 
 <h3>Exercise 25</h3>
-asd
+Suppose A is an m&times;n matrix and there exists n&times;m matrices C and D
+such that $CA = I_n$ and $AD = I_m$. Prove that m = n and C = D.<br />
+[<i>Hint</i>: Think about the product CAD].
 <br /><br />
 <i>Answer</i><br />
+(Note: this is a reference to the inverted matrix). The statement in
+exercise 22 (not done) shows that if B is linearly dependent, then
+AB is linearly dependent. The converse of this statement is:
+if AB is linearly independent that means that B is linearly independent. In
+this exercise, CA = I<sub>n</sub> is linearly independent, and so
+A is linearly independent. This means it has pivot entries in each
+column, which means we can conclude that m&ge;n.
+<br /><br />
+By the same general argument, we can conclude that D is linearly independent,
+and so we can conclude n&ge;m. Combining these statements, we must
+have m = n.
+<br /><br />
+From this we can determine that $CA = I_n$ and $AD = I_n$. Using the
+hint:
+$$
+\begin{align*}
+CA &= I_n \\
+CAD &= I_nD \\
+CAD &= D \\
+C(AD) &= D \\
+CI_n &= D \\
+C &= D 
+\end{align*}
+$$
 <br /><br />
 <div class="exend">&#9632;</div>
 <br /><br />

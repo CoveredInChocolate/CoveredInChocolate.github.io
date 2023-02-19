@@ -2,13 +2,13 @@
 import sys
 
 mat = """
-1 1 1 1
--3 5 -2 7
+1 -7
+-2 14
 """
 
 # Generate the multiplication version?
 CALC = 0
-TRANSPOSE = 1
+TRANSPOSE = 0
 
 # Example2
 # mat = """
