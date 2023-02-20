@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styling.css">
+    <script>
+        MathJax = {
+            loader: {
+                load: ['[tex]/mathtools', '[tex]/boldsymbol']
+            },
+            tex: {
+                packages: {'[+]': ['mathtools', 'boldsymbol']},
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
+    <title>Lecture 2 - Markov Decision Processes</title> <!-- #################### TITLE #################### -->
+</head>
+\(
+   \def\R{\mathbb{R}}
+   \def\N{\mathbb{N}}
+   \def\Z{\mathbb{Z}}
+   \def\Q{\mathbb{Q}}
+   \def\eps{\varepsilon}
+   \def\epsilon{\varepsilon}
+   \newcommand\bs[1]{\boldsymbol{#1}}
+   \renewcommand{\geq}{\geqslant}
+   \renewcommand{\leq}{\leqslant}
+\)
+<body>
+    <div class="page">
+<h2>Introduction to Reinforcement Learning</h2> <!-- Chapter -->
+
+<h1>Lecture 2 - Markov Decision Processes</h1> <!-- Section -->
+<br />
+<table border="0">
+    <tr>
+        <td><b>Main</b>:</td>
+        <td><a href="index.html">Index</a></td>
+    </tr>
+    <tr>
+        <td><b>Previous</b>:</td>
+        <td><a href="L1.html">1 - Introduction to Reinforcement Learning</a></td>
+    </tr>
+    <tr>
+        <td><b>Next</b>:</td>
+        <td><a href="L3.html">3 - Planning by Dynamic Programming</a></td>
+    </tr>
+</table>
+<br /><br />
+
+<!-- ############################################################ -->
+<h3>Markov Process</h3>
+
+We will develop the formalism for MDPs. Recall the discussion on agents and environments.
+The agent is the algorithm/brain and the environment is the setting where the agent
+acts e.g. factor floor if we are training some robot. We need some description of that
+environment so we can understand it and apply some tools to it. That will be the
+<i>Markov Decision Process</i> (MDP) which formally describe an environment for RL.
+<br /><br />
+In this case the environment is fully observable; the current <i>state</i> completely
+characterises the process. Almost all RL problems can be formalised as MDPs.
+Even partially observable problems can be converted into MDPs.
+<br /><br />
+Bandits is a game where the agent is presented with a range of options, and where the game
+ends after a single choice. This is actually an MDP with one state.
+<br /><br />
+Recall the Markov Property. "The future is independent of the past given the present".
+<br /><br />
+
+<div class="thm">Defintion: Markov State</div>
+<div class="thmtext">
+A state S<sub>t</sub> is Markov iff
+$$
+P(S_{t+1}|S_t) = P(S_{t+1}|S_1,\ldots,S_t)
+$$
+</div>
+
+The central idea is that what happens next in the environment only depends on the current state,
+not the entire history. We can throw away the entire history.
+
+<h4>State Transition Matrix</h4>
+
+For a Markov state s and successor state s', the <i>state transition probability</i> is
+defined by:
+$$
+\mathcal{P}_{ss^\prime}(S_{t+1} = s'|S_t = s).
+$$
+The state transition matrix $P$ defines transition probabilities from all states s
+to all successor states s'.
+$$
+\mathcal{P} =
+\begin{bmatrix*}[ccc]
+\mathcal{P}_{11} & \cdots & \mathcal{P}_{1n} \\ 
+\vdots &  & \vdots \\ 
+\mathcal{P}_{n1} & \cdots & \mathcal{P}_{nn}
+\end{bmatrix*}
+$$
+Each row sums up to 1 and describes the transition from some state s to all possible future states.
+
+<h4>Markov Process</h4>
+
+A Markov process is a memoryless random process, i.e. a sequence of random states S<sub>1</sub>,
+S<sub>2</sub>,... with the Markov property.
+
+<br /><br />
+
+<div class="thm">Definition</div>
+<div class="thmtext">
+Markov Process (or Markov Chain) is a tuple $\langle S,\mathcal{P} \rangle$ where
+    <ul>
+        <li>S is a (finite) set of states</li>
+        <li>$\mathcal{P}$ is a state transition probability matrix:<br />
+        $\mathcal{P}_{ss^\prime}(S_{t+1} = s'|S_t = s)$.</li>
+    </ul>
+</div>
+<br />
+
+An example of a Markov Process is illustrated in this graph:
+<br /><br />
+<img src="img/RL005.png" />
+<br /><br />
+The 'Sleep' state in this graph is the terminal state. Examples of samples or episodes:
+<ul>
+    <li>C1, C2, C3, Pass, Sleep</li>
+    <li>C1, FB, FB, C1, C2, Sleep</li>
+    <li>C1, C2, C3, Pub, C2, C3, Pass, Sleep</li>
+    <li>C1, FB, FB, C1, C2, C3, Pub, C1, FB, FB, FB, C1, C2, C3, Pub, C2, Sleep</li>
+</ul>
+We can write out a full transition matrix for this graph:
+$$
+\mathcal{P} =
+\begin{bmatrix*}[cccccccc]
+& \text{C1} &\text{C2} &\text{C3} &\text{Pass} &\text{Pub} &\text{FB} &\text{Sleep} \\
+\text{C1} & & 0.5 & & & & 0.5 & \\ 
+\text{C2} & & & 0.8 & & & & 0.2 \\ 
+\text{C3} & & & & 0.6 & 0.4 & & \\ 
+\text{Pass} & & & & & & & 1.0\\ 
+\text{Pub} & 0.2 & 0.4 & 0.4 & & & & \\ 
+\text{FB} & 0.1 & & & & & 0.9 & \\ 
+\text{Sleep} & & & & & & & 1.0
+\end{bmatrix*}
+$$
+
+
+
+<br /><br />
+<!-- ############################################################ -->
+<h3>Markov Reward Processes</h3>
+
+So far we haven't talked about RL: there is no reward and no action.
+Let us start adding that machinery. We extend the definition and add rewards. 
+
+<br /><br />
+
+<div class="thm">Definition</div>
+<div class="thmtext">
+Markov Reward Process (or Markov Chain) is a tuple $\langle S,\mathcal{P}, \mathcal{R}, \gamma \rangle$ where
+    <ul>
+        <li>S is a (finite) set of states</li>
+        <li>$\mathcal{P}$ is a state transition probability matrix:<br />
+        $\mathcal{P}_{ss^\prime}(S_{t+1} = s'|S_t = s)$.</li>
+        <li>$\mathcal{R}$ is a reward function: $\mathcal{R}_s = E[R_{t+1}|S_t = s]$</li>
+        <li>$\gamma\in[0,1]$ is a discount factor.</li>
+    </ul>
+</div>
+<br />
+We can think of this as a Markov Process with some reward judgement: a value judgement
+saying how good it is to be in some sequence. The reward says how much the immediate
+reward is in a particular state. Adding them to the example:
+<br /><br />
+<img src="img/RL006.png" />
+<br /><br />
+
+What we care about is the total reward we get.
+
+<br /><br />
+
+<div class="thm">Definition</div>
+<div class="thmtext">
+The return G<sub>t</sub> is the total discounted reward from time step t.
+$$
+G_t = R_{t+1} + \gamma R_{t+2} + \ldots = \sum_{k=0}^\infty\gamma^k R_{t+k+1}
+$$
+where $\gamma\in[0,1]$ is the present value of future rewards.
+</div>
+<br />
+The G can be thought of as the "Goal" of RL. G<sub>t</sub> is currently just a random variable.
+We are really interested in the expected value. A discount of 0 maximizes short term gains, "myopic"
+evaluation. A discount of 1 maximizes future gains, a "far-sighted" evaluation.
+<br />
+<br />
+So why do we use a discount factor? The is more uncertainty of the future - because we will never
+have a perfect model of the future. Another reason can be to keep the mathematics bounded. Without
+a discount factor, we might get stuck in an infinite loop within the Markov chain.
+
+<h4>Value Function</h4>
+
+The value function gives the long-term value of the state s and is the quantity we really care
+about.
+<br /><br />
+
+<div class="thm">Definition</div>
+<div class="thmtext">
+The <i>state value function</i> v(s) of an MRP is the expected
+return starting from state s.
+$$
+v(s) = E[G_t\mid S_t = s]
+$$
+</div>
+<br />
+Starting from some state, what will our total reward be? From the example: how much
+reward will we get if we start in Class 2 until the end, when we terminate? It is an
+expectation because it is stochastic. We prefer states that give us a higher reward.
+<br /><br />
+
+Sample returns for Student Markov Chain. Starting from $S_1 = C1$ and using $\gamma = \frac{1}{2}$.
+Recall:
+$$
+G_1 = R_2 + \gamma R_3 + \ldots + \gamma^{T-2}R_T
+$$
+
+Returns:
+$$
+\begin{array}{lccc}
+\text{C1, C2, C3, Pass, Sleep} &
+v_1 = 2 - 2(1/2) - 2(1/4) + 10(1/8) & = & -2.25\\
+\text{C1, FB, FB, C1, C2, Sleep} &
+v_1 = -2 - 1(1/2) - 1(1/4) - 2(1/8) - 2(1/16) & = & -3.125\\
+\text{C1, C2, C3, Pub, C2, C3, Pass, Sleep} &
+v_1 = 2 - 2(1/2) - 2(1/4) + 1(1/8) - 2(1/16) \ldots & = & -3.41\\
+\text{C1, FB, FB, C1, C2, C3, Pub, C1, $\ldots$} &
+v_1 = -2 - 1(1/2) - 1(1/4) - 2(1/8) - 2(1/16)\ldots & = & -3.20\\
+\text{FB, FB, FB, C1, C2, C3, Pub, C2, Sleep} & & &
+\end{array}
+$$
+Each sample corresponds to a different sequence pass through the chain.
+We can estimate the value of a state by simulating paths through the Markov
+chain starting in the state and taking an average. The value function is
+the expectation of all samples starting from the state.
+
+<br /><br />
+
+Examples - state-value function for different discount values.
+
+<br /><br />
+<img width="480px" src="img/RL007.png" />
+<br />
+The short-sighted version. From Class 2 for instance, the immediate reward is -2
+no matter what happens in the next step.
+<br />
+
+<br /><br />
+<img width="480px" src="img/RL008.png" />
+<br />
+A more long-sighted discount factor changes all the values since we are looking into the
+(probably) future. The value function is the expectation/average of all future states.
+<br />
+
+<br /><br />
+<img width="480px" src="img/RL009.png" />
+<br /><br />
+
+
+<h4>Bellman Equation for MRPs</h4>
+
+This is perhaps the most fundamental relationship in RL: the Bellman equation.
+(Common in dynamic programming). It's the idea that the value function obeys
+these recursive decomposition. The general idea is quite simple: you can
+take your sequence of rewards from this timestep and onwards and break it
+up into two parts: the immediate reward, and the future reward.
+
+$$
+\begin{align*}
+v(s) &= E[G_t\mid S_t = s] \\
+&\\
+&= E[R_{t+1} + \gamma R_{t+2} + \gamma^2R_{t+3} + \ldots \mid S_t = s] \\
+&\\
+&= E[R_{t+1} + \gamma\big(R_{t+2} + \gamma R_{t+3} + \ldots \big) \mid S_t = s] \\
+&\\
+&= E[R_{t+1} + \gamma G_{t+1} \mid S_t = s] \\
+&\\
+&= E[R_{t+1} + \gamma v(S_{t+1})  \mid S_t = s]
+\end{align*}
+$$
+The value function tells us what the immediate reward is, and how good the future
+reward will be in the state we progress to. The last transition from G to v()
+is due to the law of iterated expectation.
+
+<br /><br />
+
+Let's try to understand the Bellman equation: our value function now equals the
+immediate rewards plus the expected future value of the next state. Any value
+function must obey the Bellman equation.
+$$
+v(s) = E[R_{t+1} + \gamma v(S_{t+1})  \mid S_t = s]
+$$
+
+One way to understand them is by using backup diagrams:
+
+<br /><br />
+<img src="img/RL010.png" />
+<br /><br />
+
+We can think of this as a one step look-ahead search. From state s we can look
+at the possible future cases after a single step. We see the current status,
+the status after the next step, factoring in some immediate reward r.
+
+<br /><br />
+From the current step we take the average of all possible future steps.
+(Lost audio). This can also be represented by the following equation:
+$$
+v(s) = \mathcal{R}_{s} + \gamma\sum_{s'\in S}\mathcal{P}_{ss'}v(s')
+$$
+
+<br /><br />
+Investigating the Bellman equation in our example in a
+non-discounted game. Starting from C3:
+
+<br /><br />
+<img width="480px" src="img/RL011.png" />
+<br /><br />
+
+We can use the Bellman equation to verify the value function calculations.
+The sum of probability multiplied by reward, as is denoted in the equation
+in the image.
+
+<br /><br />
+
+The Bellman equation can be expressed concisely using matrices.
+$$
+v = \mathcal{R} + \gamma\mathcal{P}v
+$$
+where v is a column vector with one entry per state. Written out more fully:
+$$
+\begin{bmatrix*}[c]
+v(1) \\ 
+\vdots \\ 
+v(n)
+\end{bmatrix*}
+=
+\begin{bmatrix*}[c]
+\mathcal{R}_1 \\ 
+\vdots \\ 
+\mathcal{R}_n
+\end{bmatrix*}
++
+\gamma
+\begin{bmatrix*}[ccc]
+\mathcal{P}_{11} & \cdots & \mathcal{P}_{1n} \\ 
+\vdots &  & \vdots \\ 
+\mathcal{P}_{n1} & \cdots & \mathcal{P}_{nn}
+\end{bmatrix*}
+\begin{bmatrix*}[c]
+v(1) \\ 
+\vdots \\ 
+v(n)
+\end{bmatrix*}
+$$
+Here there are n states.
+
+<br /><br />
+
+Solving the Bellman equation. It is a linear equation and can be solved directly:
+$$
+\begin{align*}
+v &= \mathcal{R} + \gamma\mathcal{P}v \\
+&\\
+(I - \gamma\mathcal{P})v &= \mathcal{R} \\
+&\\
+v &= (I - \gamma\mathcal{P})^{-1}\mathcal{R}
+\end{align*}
+$$
+Computational complexity: O(n<sup>3</sup>) for n states. A direct solution
+is only possible for small MRPs. There are many iterative methods for large MRPs:
+<ul>
+    <li>Dynamic programming</li>
+    <li>Monte-Carlo evaluation</li>
+    <li>Temporal-Difference learning</li>
+</ul>
+These are basically methods for solving the Bellman equation more efficiently.
+
+
+
+
+<br /><br /><br /><br />
+
+<!-- -----------------PARAGRAPH MEDSKIP
+
+<br /><br />
+
+
+----------------------THM/DEF/RESULT
+
+<br /><br />
+
+<div class="thm">XXX</div>
+<div class="thmtext">
+asdasd
+</div>
+<br />
+
+----------------------THM/DEF/RESULT
+
+ℝ<sup>2</sup>
+ℝ<sup>3</sup>
+ℝ<sup>4</sup>
+ℝ<sup>n</sup>
+ℝ<sup>m</sup>
+ℝ<sup>n</sup>&rarr;ℝ<sup>m</sup>
+-->
+
+
+<!-- ########################### EXERCISES ########################### -->
+
+
+<!--
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+
+</pre>
+-->
+
+
+<!--
+    ∩ · ≥ ≤
+    Ω λ π ≠ ∊ −
+    ∅ φ ⇒ ↔	
+    ≈ ⊂
+-->
+
+<!--
+
+<b>Code</b>:<br />
+<div class="rcode">
+
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+
+</pre>
+<br /><br />
+-->
+
+<br /><br />
+<br /><br />
+<br /><br />
+</div><!-- End page div-->
+</body>
+</html>
+

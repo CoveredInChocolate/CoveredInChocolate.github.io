@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styling.css">
+    <script>
+        MathJax = {
+            loader: {
+                load: ['[tex]/mathtools', '[tex]/boldsymbol']
+            },
+            tex: {
+                packages: {'[+]': ['mathtools', 'boldsymbol']},
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
+    <title>Lecture 1: Introduction to Reinforcement Learning</title> <!-- #################### TITLE #################### -->
+</head>
+\(
+   \def\R{\mathbb{R}}
+   \def\N{\mathbb{N}}
+   \def\Z{\mathbb{Z}}
+   \def\Q{\mathbb{Q}}
+   \def\eps{\varepsilon}
+   \def\epsilon{\varepsilon}
+   \newcommand\bs[1]{\boldsymbol{#1}}
+   \renewcommand{\geq}{\geqslant}
+   \renewcommand{\leq}{\leqslant}
+\)
+<body>
+    <div class="page">
+<h2>Introduction to Reinforcement Learning</h2> <!-- Chapter -->
+
+<h1>Lecture 1: Introduction to Reinforcement Learning</h1> <!-- Section -->
+<br />
+<table border="0">
+    <tr>
+        <td><b>Main</b>:</td>
+        <td><a href="index.html">Index</a></td>
+    </tr>
+    <tr>
+        <td><b>Next</b>:</td>
+        <td><a href="L2.html">2 - Markov Decision Processes</a></td>
+    </tr>
+</table>
+<br /><br />
+
+<h3>About Reinforcement Learning</h3>
+
+Reinforcement learning is different from other ML paradigms.
+<ul>
+    <li>The is no supervisor, only a <i>reward</i> signal. We do not fit a model to some data,
+    instead, we have an agent operating in some environment where it gets positive or negative
+    feedback based on its actions. It is a trial and error paradigm.</li>
+    <li>Feedback is delayed, not instantaneous. In RL a decision is made now, but the reward
+        can come a lot later.
+    </li>
+    <li>Time really matters in RL. This is sequential. Non iid data.</li>
+    <li>Perhaps the most important distinction: in RL an agent's action will influence
+        the subsequent data that it sees.
+    </li>
+</ul>
+
+<br /><br />
+<h3>The Reinforcement Learning Problem</h3>
+
+<ul>
+    <li>A <b>reward</b> $R_t$ is a scalar feedback signal</li>
+    <li>Indicates how well the agent is doing at step t</li>
+    <li>The agent's job is to maximise cumulative reward.</li>
+</ul>
+
+<br />
+
+<div class="thm">Definition: Reward Hypothesis</div>
+<div class="thmtext">
+All goals can be described by the maximisation of expected cumulative reward
+</div>
+<br />
+
+Some examples of rewards:
+<ul>
+    <li>Stunt helicopter
+        <ul>
+        <li>Positive reward: following desired trajectory</li>
+        <li>Negative rewar: crashin</li>
+        </ul>
+    </li>
+    <li>
+        Backgammon
+        <ul>
+        <li>Positive/negative rewards for winning/losing a game</li>
+        </ul>
+    </li>
+    <li>
+        Manage an investment portfolio
+        <ul>
+            <li>Positive reward for funds in the bank</li>
+        </ul>
+    </li>
+    <li>
+        Make a humanoid robot walk
+        <ul>
+            <li>Positive reward for forward motion</li>
+            <li>Negative reward for falling over</li>
+        </ul>
+    </li>
+</ul>
+
+<h4>Sequential Decision Making</h4>
+
+The goal is to <i>select actions to maximise total future reward</i>. What actions can we take
+that will give the largest future award? Because of the delayed reward, it might be beneficial
+to do a bad step now in order to gain a huge reward in the future. A greedy approach will typically
+not work.
+
+<h4>Agent and Environment</h4>
+
+We will illustrate the agent/environment setup with the following image:
+
+<br /><br />
+<img src="img/RL001.png" />
+<br /><br />
+
+The brain represents the agent. This is what we control and what we want to build.
+The brain is responsible for deciding what action to take. At each step the action
+is decided by the observation it sees, and it gets some reward signal of how good
+the step was. This is all the agent really sees.
+<br /><br />
+The trial/error loop is basically a time series of observations, rewards and actions
+which defines the experience of the agent - and this experience is the data we use
+in RL.
+
+<h4>History and State</h4>
+
+The <i>history</i> is a sequence of observations, actions and rewards:
+$$
+H_t = A_1,O_1,R_1, \ldots, A_t,O_t,R_t
+$$
+A collection of everything the agent has seen at time step t. All the <i>observable</i> variables.
+(There might be others, but since we can't see them they are irrelevant).
+<br /><br />
+What happens next depends on the history. We think of this as a mapping from history to some action.
+Making this mapping is the goal of RL. However, the entire history is not that useful, because it
+can become large. Instead, we focus on <b>state</b> which we use to replace the history.
+Formally, state is a function of history:
+$$
+S_t = f(H_t)
+$$
+We distinguish between the environment state $S_t^e$, which is mostly invisible to the agent, and the
+agent state: $S_t^a$. The agent state comprises whatever information the agent uses to pick the next
+action - so the information used by the RL agent. It can be any function of the history:
+$$
+S_t^a = f(H_t).
+$$
+
+<h4>Information State</h4>
+
+Here is a more mathematical definition of state.
+An <i>information state</i>, also known as the <i>Markov state</i> contains all useful
+information from the history.
+
+<br /><br />
+
+<div class="thm">Defintion: Markov State</div>
+<div class="thmtext">
+A state S<sub>t</sub> is Markov iff
+$$
+P(S_{t+1}|S_t) = P(S_{t+1}|S_1,\ldots,S_t)
+$$
+</div>
+<br />
+The probability of the next state given the current state, is the same as if we
+conditioned on all the history. The future is independent of the past, given the
+present. Informally: we can throw away the entire past. Expressed in another way,
+the current state is a sufficient statistic of the future.
+
+In a <b>fully observable environment</b>, the agent directly observes the environment
+state. So $O_t = S_t^a = S_t^e$. Formally, this is a <b>Markov decision process</b> (MDP).
+In <b>partially observability</b> (e.g. Robot with a camera, poker player agent), the agent
+indirectly observes the environment. Now the agent state is different from the environment
+state. This is a <b>partially observable Markov decision process</b> (POMDP). In this case,
+the agent must construct its own state representation $S_t^a$. For instance:
+<ul>
+    <li>Remember complete history: $S_t^a = H_t$</li>
+    <li><i>Belief</i> of environment state - a kind of Bayesian approach - which is a way
+        to "guess" what the environment state is.
+        $$
+S_t^a = (P(S_t^e = s^1), \ldots, P(S_t^e = s^n))
+        $$
+    </li>
+    <li>We can define an RNN, where we use a linear combination of the previous state
+        and the current observation, which gives a new state.
+    </li>
+    $$
+S_t^a = \sigma(S_{t-1}^aW_s + O_tW_o)
+    $$
+</ul>
+
+
+
+<br /><br />
+<h3>Inside an RL Agent</h3>
+
+An RL agent may include one or more of these components (note: this is not an exhaustive list,
+but these are most common components).
+<ul>
+    <li>Policy: agent's behavious function. Map from state to action</li>
+    <li>Value function: how good is each state and/or action. Prediction of future reward</li>
+    <li>Model: agent's representation of the environment. Predicts environments, transitions
+        to next state (dynamics) or predits the next, immediate reward.
+    </li>
+</ul>
+Model-free RL is very common, where the model is completely ommitted.
+
+<br /><br />
+Illustrating the different approaches with a simple maze example. The first is
+an example of a policy, which what action the agent should take in the different
+cells in the maze. Denoted by $\pi(s)$ for each state s.
+
+<br /><br />
+<img width="400px" src="img/RL002.png" />
+<br /><br />
+
+The following is an example of a value function, displaying the value for each state.
+For instance, in the cell next to the goal the value -1 (penalty for each step).
+Denoted by $v_\pi(s)$ where $\pi$ is some policy as the value function depends on it.
+With these values, it is easy to find an optimal policy.
+
+<br /><br />
+<img width="400px" src="img/RL003.png" />
+<br /><br />
+
+The model displays the immediate reward for each state s. A "map" of the environment
+as it is understood by the agent.
+
+<br /><br />
+<img width="400px" src="img/RL004.png" />
+<br /><br />
+
+The RL agents can be categorized in different ways, policy based, value based, a hybrid
+which is called an actor critic. These can be model free agents, and there is a model
+based RL agent, which can be policy and/or value based.
+
+
+<br /><br />
+<h3>Problems within Reinforcement Learning</h3>
+
+<h4>Learning and Planning</h4>
+
+There are two fundamental problems in sequential decision making.
+
+<ul>
+    <li>In Reinforcement Learning, the environment is initially unknown.
+        The agent interacts with the environment and through the feedback,
+        it figures out a policy to maximise reward.
+    </li>
+    <li>In Planning, we specify the environment, e.g. all the rules of the game.
+        The agent performs computations with its model, without any external interaction.
+        As a result, the agent improves its policy
+    </li>
+</ul>
+
+For building a gameplayer in Atari, we use RL. The Planning problem would be if we provided
+a perfect, transparent Atari emulator, the agent can find an optimal policy with, say, tree search.
+
+<br /><br />
+
+Another key part of RL is to balance exploration and exploitation. We must find the best possible
+policy, without losing too much reward along the way. Even if we have a good policy, it might not
+be the optimal policy, so we must explore to make sure we don't lose out.
+
+<br /><br /><br /><br />
+
+<!-- -----------------PARAGRAPH MEDSKIP
+
+<br /><br />
+
+
+----------------------THM/DEF/RESULT
+
+<br /><br />
+
+<div class="thm">XXX</div>
+<div class="thmtext">
+asdasd
+</div>
+<br />
+
+----------------------THM/DEF/RESULT
+
+ℝ<sup>2</sup>
+ℝ<sup>3</sup>
+ℝ<sup>4</sup>
+ℝ<sup>n</sup>
+ℝ<sup>m</sup>
+ℝ<sup>n</sup>&rarr;ℝ<sup>m</sup>
+-->
+
+
+<!-- ########################### EXERCISES ########################### -->
+
+
+<!--
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+
+</pre>
+-->
+
+
+<!--
+    ∩ · ≥ ≤
+    Ω λ π ≠ ∊ −
+    ∅ φ ⇒ ↔	
+    ≈ ⊂
+-->
+
+<!--
+
+<b>Code</b>:<br />
+<div class="rcode">
+
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+
+</pre>
+<br /><br />
+-->
+
+<br /><br />
+<br /><br />
+</div><!-- End page div-->
+</body>
+</html>
+
