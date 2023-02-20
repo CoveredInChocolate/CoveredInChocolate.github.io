@@ -30,6 +30,7 @@
    \def\eps{\varepsilon}
    \def\epsilon{\varepsilon}
    \newcommand\bs[1]{\boldsymbol{#1}}
+   \newcommand\mc[1]{\mathcal{#1}}
    \renewcommand{\geq}{\geqslant}
    \renewcommand{\leq}{\leqslant}
 \)
@@ -46,11 +47,11 @@
     </tr>
     <tr>
         <td><b>Previous</b>:</td>
-        <td><a href="_TEMPLATE.html">XXX</a></td>
+        <td><a href="L2.1.html">2 - Markov Processes</a></td>
     </tr>
     <tr>
         <td><b>Next</b>:</td>
-        <td><a href="_TEMPLATE.html">XXX</a></td>
+        <td><a href="L3.html">3 - Planning by Dynamic Programming</a></td>
     </tr>
 </table>
 <br /><br />
@@ -59,7 +60,227 @@
 <!-- ############################################################ -->
 <h3>Markov Decision Processes</h3>
 
+The Markov Proccess are the elementary building blocks.
+Now over to MDPs which is what is actually used in Reinforcement Learning.
+We start by extending our definition again:
 
+<br /><br />
+
+<div class="thm">Definition</div>
+<div class="thmtext">
+Markov Deccision Process is a tuple $\langle S,\mathcal{A},\mathcal{P}, \mathcal{R}, \gamma \rangle$ where
+    <ul>
+        <li>S is a (finite) set of states</li>
+        <li>𝓐 is a finite set of actions</li>
+        <li>𝓟 is a state transition probability matrix:<br />
+        $\mathcal{P}^a_{ss^\prime}(S_{t+1} = s'\mid S_t = s, A_t = a)$.</li>
+        <li>𝓡 is a reward function: $\mathcal{R}^a_s = E[R_{t+1}\mid S_t = s, A_t = a]$</li>
+        <li>$\gamma\in[0,1]$ is a discount factor.</li>
+    </ul>
+</div>
+<br />
+We now introduce the concept of actions. Up til now we had everything else, but the actions
+was just some given random sample. For now it is finite (but can be extended to continuous/infinite).
+The transition matrix now depends on what action we take.
+<br /><br />
+We extend our example and introduce the paths as decisions we can take:
+<br /><br />
+<img width="480px" src="img/RL012.png" />
+<br /><br />
+The decisions are the red labels on the arcs, and now we have some agency.
+Now we choose to study e.g. and decide what state to go to. In FB we can
+decide if we want to iterate back or go out. The only place where there
+is some randomness is if we go to the pub, denoted by a black dot instead
+of a circle. The goal is now to try to find the best goal.
+
+<br /><br />
+
+To formalize what it means to take a decision, we introduce the concept of a policy.
+(This is an example of a stochastic policy).
+
+<br /><br />
+<div class="thm">Definition</div>
+<div class="thmtext">
+A policy π is a distribution over actions given states:
+$$
+\pi(a\mid s) = P(A_t = a\mid S_t = s)
+$$
+</div>
+<br /><br />
+
+In other words, if you are in state s, the distribution gives you the mapping of
+the probability of transitioning to another state. In MDPs the policies only
+depend on the current state (due to the Markov property). In other words,
+the policy is <i>stationary</i> (time-independent).
+$$
+A_t\sim \pi(\cdot\mid S_t),\forall t > 0.
+$$
+It only depends on the current state, which by definition and the Markov property,
+is all that is needed to act optimally. We don't have rewards in the policy,
+because that is fully encapsulated by the state.
+
+<br /><br />
+
+An important thing to realize about the connection between Markov decision processes
+and Markov Reward processes, is that we can always recover a MRP from the MDP.
+Given an MDP 𝓜 = ⟨S, 𝓐, 𝓟, 𝓡, 𝛾⟩ and a policy π,
+the state sequence S<sub>1</sub>, S<sub>2</sub>, ... itself is a Markov process 
+⟨S,𝓟<sup>π</sup>⟩ or a Markov chain - no matter what policy we choose.
+
+<br /><br />
+
+The state and reward sequence 
+S<sub>1</sub>, R<sub>1</sub>, S<sub>2</sub>, R<sub>2</sub>, ... is a
+Markov reward process ⟨S, 𝓟<sup>π</sup>, 𝓡<sup>π</sup>, 𝛾⟩, where
+$$
+\mathcal{P}^\pi_{s, s'} = \sum_{a\in\mathcal{A}}\pi(a\mid s)\mathcal{P}_{s,s'}^a
+$$
+$$
+\mathcal{R}^\pi_{s} = \sum_{a\in\mathcal{A}}\pi(a\mid s)\mathcal{R}_{s}^a
+$$
+We define our transition dynamics and reward function by averaging over our policy.
+(The averaging comes from the transition probabilities that sum to 1 - so this is
+a weighted average). (Note: this is just a useful point - not central)
+
+<br /><br />
+
+What is central, is the concept of the value function.
+
+<br /><br />
+
+<div class="thm">Definition</div>
+<div class="thmtext">
+The <i>state-value</i> function $v_\pi(s)$ of an MDP is the expected return
+starting from state s, and then following policy π:
+$$
+v_\pi(s) = E_\pi[G_t\mid S_t = s]
+$$
+</div>
+<br />
+We had a value function for MRP, but now we have agency and can make decisions since
+we have a policy - some way to determine how to behave. The dependency on the policy
+is included as subscripts.
+
+
+<br /><br />
+
+We also define a second type of value function.
+<br /><br />
+<div class="thm">Definition</div>
+<div class="thmtext">
+The <i>action-value function</i> $q_\pi(s, a)$ is the expected return
+starting from state s, taking action a, and then following policy π:
+$$
+q_\pi(s, a) = E_\pi[G_t\mid S_t = s, A_t = a]
+$$
+</div>
+<br />
+This tells us how good it is to take a particular action in some state, which is
+what we care about when deciding on what action to take: when we are in state s,
+and perform action a, what is the expected return/total reward I get from that
+point onwards. This is the key quantity used to help us optimize our MDP and
+pick the best actions. Again, this depends on
+the policy, which is included as subscripts.
+
+<br /><br />
+
+State-value functions for the example. This is undiscounted, and the policy is
+simply selecting a future state by a coin flip. Uniform random behaviour.
+
+<br /><br />
+<img width="480px" src="img/RL013.png" />
+<br /><br />
+
+
+<h4>Bellman Expectation Equation</h4>
+
+We can now define a second Bellman equation for these value functions.
+$$
+v_\pi(s) = E_\pi[R_{r+t} + \gamma v_\pi(S_{t+1})\mid S_t = s]
+$$
+It's the same general idea. The value function can be decomposed into the immediate
+reward plus the discounted value of the next state. We know the future reward since
+we know the policy. The same is true for the action-value function.
+$$
+q_\pi(s,a) = E_\pi[R_{t+1} + \gamma q_\pi(S_{t+1}, A_{t+1})\mid S_t, A_t = a]
+$$
+We can study this further with the look-ahead search diagrams. White circles are states,
+black circles are actions.
+
+<br /><br />
+<img width="480px" src="img/RL014.png" />
+<br /><br />
+
+Calculating the value:
+$$
+v_\pi(s) = \sum_{a\in\mc{A}}\pi(a\mid s)q_\pi(s, a)
+$$
+
+When we are in the original state s, our value function averages over the actions we might take.
+The probability of each action is defined by our policy. For each action there is a q-value
+telling us how good it is to take that action from that state.
+
+<br /><br />
+
+Now the converse step. The root of the tree is a state and the specific action we select.
+So we are in a state and we ask the question: "How good is it to go right?".
+<br /><br />
+<img width="480px" src="img/RL015.png" />
+<br /><br />
+We average over the dynamics of the MDP, the environment might "blow" us to either of the
+possible outcomes. For each outcome, we want to know how good it is to be in that state.
+We average all possible future steps by using the probabilities in the transition matrix.
+$$
+q_\pi(s, a) = \mc{R}_s^a + \gamma\sum_{s\in\mc{S}}\mc{P}_{ss'}^a v_\pi(s')
+$$
+<br /><br />
+Stitching both of these charts together:
+<br /><br />
+<img width="480px" src="img/RL016.png" />
+<br /><br />
+We now get a recursion which helps us understand v in terms of itself.
+$$
+v_\pi(s) = \sum_{a\in\mc{A}}\pi(a\mid s)\Big(\mc{R}_s^a + \gamma\sum_{s'\in S} \mc{P}_{ss'}^a v_\pi(s')\Big)
+$$
+This is how we end up solving the MDPs.
+<br /><br />
+The root of the tree now is the value of being in a particular state. To determine that, we do
+a two step look-ahead. We consider all possible actions we can take; go left or go right.
+We then consider all the things the environment can do to us: blow us left, blow us right,
+which sends us to some successor state we end up in. And now we want to know how good it is
+to be in that state and then carry on with the usual policy. We average over the actions
+and we average the following states which tells us how good it is to be in a particular state.
+<br /><br />
+We can do the exact same thing for action-values.
+<br /><br />
+<img width="480px" src="img/RL017.png" />
+<br /><br />
+
+Now we stitch together the diagrams the other way around and look two steps forward. Now we
+start with a particular state and action, and we are subjected to the environment and where
+it might blow us, and from the resulting state, we determine what action we might take.
+We consider the value of the action and average back over the tree. With the previous
+recursion, we end up with a total of two recursions we can solve.
+
+$$
+q_\pi(s, a) = \mc{R}_s^a + \gamma\sum_{s'\in S}\mc{P}_{ss'}^a\sum_{a'\in\mc{A}}\pi(a'\mid s')q_\pi(s', a')
+$$
+
+<br /><br />
+
+Going back to the example where we have a uniform policy with probability 0.5 of taking
+different actions:
+
+<br /><br />
+<img width="480px" src="img/RL018.png" />
+<br /><br />
+
+Using the concepts of looking forward two steps, we can verify that the C3 node has a value
+of 7.4. The state value of 7.4 equals the steps: 0.5 probability of giong to sleep. There
+is a 0.5 chance that we go to the pub, where we have several options where we end up in
+a different state with a different value. The calculations are included in the image above.
+All values in each state can be verified in a similar manner. Now, this is all well and fine,
+but it does not tell us the best way to behave.
 
 
 

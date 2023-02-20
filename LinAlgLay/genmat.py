@@ -2,8 +2,9 @@
 import sys
 
 mat = """
-1 -7
--2 14
+\\mathcal{R}_1
+\\vdots
+\\mathcal{R}_n
 """
 
 # Generate the multiplication version?

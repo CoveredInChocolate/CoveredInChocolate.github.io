@@ -1,0 +1,39 @@
+# Using MathJax for every single character is very slow
+# Using these instead, when suitable:
+
+𝓐 https://www.compart.com/en/unicode/U+1D4D0
+𝓟 https://www.compart.com/en/unicode/U+1D4DF
+
+And in general:
+https://www.compart.com/en/unicode/search?q=Mathematical+Bold+Script+Capital#characters
+
+# Greek
+π
+
+# Mathscr
+𝓐
+𝓑
+𝓒
+𝓓
+𝓔
+𝓕
+𝓖
+𝓗
+𝓘
+𝓙
+𝓚
+𝓛
+𝓜
+𝓝
+𝓞
+𝓟
+𝓠
+𝓡
+𝓢
+𝓣
+𝓤
+𝓥
+𝓦
+𝓧
+𝓨
+𝓩

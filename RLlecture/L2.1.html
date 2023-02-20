@@ -50,7 +50,7 @@
     </tr>
     <tr>
         <td><b>Next</b>:</td>
-        <td><a href="L3.html">3 - Planning by Dynamic Programming</a></td>
+        <td><a href="L2.2.html">2 - Markov Decision Processes</a></td>
     </tr>
 </table>
 <br /><br />
@@ -116,7 +116,7 @@ S<sub>2</sub>,... with the Markov property.
 Markov Process (or Markov Chain) is a tuple $\langle S,\mathcal{P} \rangle$ where
     <ul>
         <li>S is a (finite) set of states</li>
-        <li>$\mathcal{P}$ is a state transition probability matrix:<br />
+        <li>𝓟 is a state transition probability matrix:<br />
         $\mathcal{P}_{ss^\prime}(S_{t+1} = s'|S_t = s)$.</li>
     </ul>
 </div>
@@ -161,12 +161,12 @@ Let us start adding that machinery. We extend the definition and add rewards.
 
 <div class="thm">Definition</div>
 <div class="thmtext">
-Markov Reward Process (or Markov Chain) is a tuple $\langle S,\mathcal{P}, \mathcal{R}, \gamma \rangle$ where
+Markov Reward Process is a tuple $\langle S,\mathcal{P}, \mathcal{R}, \gamma \rangle$ where
     <ul>
         <li>S is a (finite) set of states</li>
-        <li>$\mathcal{P}$ is a state transition probability matrix:<br />
+        <li>𝓟 is a state transition probability matrix:<br />
         $\mathcal{P}_{ss^\prime}(S_{t+1} = s'|S_t = s)$.</li>
-        <li>$\mathcal{R}$ is a reward function: $\mathcal{R}_s = E[R_{t+1}|S_t = s]$</li>
+        <li>𝓡 is a reward function: $\mathcal{R}_s = E[R_{t+1}|S_t = s]$</li>
         <li>$\gamma\in[0,1]$ is a discount factor.</li>
     </ul>
 </div>
