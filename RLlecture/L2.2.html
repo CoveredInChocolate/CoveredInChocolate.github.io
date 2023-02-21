@@ -51,14 +51,14 @@
     </tr>
     <tr>
         <td><b>Next</b>:</td>
-        <td><a href="L3.html">3 - Planning by Dynamic Programming</a></td>
+        <td><a href="L3.1.html">3 - Planning by Dynamic Programming</a></td>
     </tr>
 </table>
 <br /><br />
 
 
 <!-- ############################################################ -->
-<h3>Markov Decision Processes</h3>
+<h3>Markov Decision Process</h3>
 
 The Markov Proccess are the elementary building blocks.
 Now over to MDPs which is what is actually used in Reinforcement Learning.
@@ -280,33 +280,267 @@ of 7.4. The state value of 7.4 equals the steps: 0.5 probability of giong to sle
 is a 0.5 chance that we go to the pub, where we have several options where we end up in
 a different state with a different value. The calculations are included in the image above.
 All values in each state can be verified in a similar manner. Now, this is all well and fine,
-but it does not tell us the best way to behave.
+but it does not tell us the best way to behave - which is what we really care about in RL.
+
+<br /><br />
+
+Calculations:
+<table border="1px">
+    <th>Cell</th><th>Calculation</th><th>Eq</th><th>Value</th>
+    <tr>
+        <td>FB</td><td>0.5(-1.3) + 0.5(-3.3)</td><td>=</td><td>-2.3<a/td>
+    </tr>
+    <tr>
+        <td>C1</td><td>0.5(-3.3) + 0.5(0.7)</td><td>=</td><td>-1.3</td>
+    </tr>
+    <tr>
+        <td>C2</td><td>0.5(0) + 0.5(5.4)</td><td>=</td><td>2.7</td>
+    </tr>
+    <tr>
+        <td>C3</td><td>Above</td><td>=</td><td>7.4</td>
+    </tr>
+</table>
+
+<br /><br />
+
+Briefly, before we look into finding the best behaviour. We can also express the Bellman
+expectation equation in matrix form, using the induced MRP.
+$$
+v_\pi = \mc{R}^\pi + \gamma\mc{P}^\pi v_\pi
+$$
+Which has the direct solution:
+$$
+v_\pi = (I - \gamma\mc{P}^\pi)^{-1}\mc{R}^\pi
+$$
+This can also be much too complex, and is instead found with some kind of iterative process.
+The important thing to understand is that the Bellman equation gives us a description of
+the system that we can solve, and we find out exactly what the value function is.
 
 
+
+<br /><br />
+
+<h4>Optimal Value Function</h4>
+
+<div class="thm">Definition</div>
+<div class="thmtext">
+The <i>optimal state-value function</i> v<sub><sub>*</sub></sub>(s) is the maximum value
+function over all policies
+$$
+v_*(s) = \max_\pi v_\pi(s).
+$$
+The <i>optimal action-value function</i> q<sub><sub>*</sub></sub>(s, a) is the maximum
+action-value function over all policies
+$$
+q_*(s, a) = \max_\pi q_\pi(s, a).
+$$
+</div>
+<br />
+The optimal value function specifies the best possible performance in the MDP. The MDP
+is "solved" when we know the optimal value function q<sub><sub>*</sub></sub>(s, a).
+
+<br /><br />
+
+Going back to the example look at an undiscounted version and finding the optimal value function.
+
+<br /><br />
+<img width="480px" src="img/RL019.png" />
+<br /><br />
+
+If you are in C3 you can go to the pub, or study which gives +10 reward. From C2 we
+can go to sleep with R=0, or go to C3 which has a value of 10. In state C1 we have
+6, because it is -2 reward from C2 which has 8. The v<sub><sub>*</sub></sub>(s) tells
+us how good it is to be in each state. But even now it doesn't tell us how to behave.
+To find the behaviour, there are two things we can do. For instance by defining
+the q<sub><sub>*</sub></sub>(s, a) values.
+
+<br /><br />
+<img width="480px" src="img/RL020.png" />
+<br /><br />
+
+The action-value function labels each arc (or action). For instance, from C3, the optimal
+value is 10. From C2 there are two choices: one with reward 0 and one with reward 8,
+so now we can choose the optimal decision. Going from C3 to the pub, we get a reward of
+8.4, which is the average of all subsequent actions.
+<br /><br />
+Calculation for Pub cell: 0.4(10) + 0.4(8) + 0.2(6) = 4 + 3.2 + 1.2 = 8.4.
+<br /><br />
+
+
+<h4>Optimal Policy</h4>
+
+What we really care about is the optimal policy, which raises the question: what is the
+optimal policy? What is the best possible way to behave in an MDP? Now, a policy is just a stochastic
+mapping from state to actions, but what is the one? So far we have just talked about what the
+max reward we can get is. In order to find an optimal policy, we need to define a notion of
+optimality, which in turn means we need to define what it means that one policy is better than
+another.
+<br /><br />
+Define a partial ordering over all policies:
+$$
+\pi \geq \pi' \quad\text{if}\; v_\pi(s)\geq v_{\pi'}(s),\forall s
+$$
+From two policies: one poicy is better than the other if it has a higher value function
+in all states.
+
+<br /><br />
+The following is a very important Theorem which is present in all RL books. It shows that
+at least one optimal policy which is better than or equal to all other policies.
+For instance: the policy that always choses the maximum q<sub><sub>*</sub></sub>. It is possible
+to have several optimal policies.
+<br /><br />
+
+<div class="thm">Theorem</div>
+<div class="thmtext">
+For any Markov Decision Process,
+<ul>
+    <li>There exists an optimal policy $\pi_*$ that is better than or equal to all other
+    policies; $\pi_*\geq\pi,\forall\pi$.</li><br />
+    <li>All optimal policies achieve the optimal value function: $\pi_*(s) = v_*(s)$</li><br />
+    <li>All optimal policies achieve the optimal action-value function:
+        $q_{\pi_*}(s, a) = q_*(s,a)</li>
+</ul>
+</div>
+<br />
+How do we find the optimal policy?
+<br /><br />
+An optimal policy can be found by maximising over q<sub><sub>*</sub></sub>(s,a):
+$$
+\pi_*(a\mid s) =
+\left\{
+    \begin{array}{cl}
+    1 & \text{if}\; a=\underset{a\in\mc{A}}{\text{argmax}}\;q_*(s, a) \\
+    0 & \text{otherwise}
+    \end{array}
+\right.
+$$
+In words: we solve for q<sub><sub>*</sub></sub> and the policy chooses the best action.
+<br /><br />
+Demonstrating on our example. The red arrows signify the maximum q<sub><sub>*</sub></sub>
+from each state and also the optimal policy.
+
+<br /><br />
+<img width="480px" src="img/RL021.png" />
+<br /><br />
+
+How do we arrive at these q<sub><sub>*</sub></sub> values in practice? As we have seen time
+and again, they are the central quantity that we are trying to figure out. One way was to
+work our way backwards, starting in C3. And this is precisely what we get out of a Bellman
+equation.
+<br /><br />
+The optimal value functions are recursively related by the Bellman optimality equations:
+
+<br /><br />
+<img width="480px" src="img/RL022.png" />
+<br /><br />
+Where:
+$$
+v_*(s) = \max_a q_*(s, a)
+$$
+In most books when they talk about the Bellman equation for MDPs, they are referencing this,
+not the one we looked at earlier. This is the equation that tells you how to solve your MDP;
+how to relate the optimal value function to itself.
+<br /><br />
+Again, we do the one-step look-ahead. We startin some state and ask ourselves: what is the
+optimal value of being in some state, where you can consider each of the actions you can take
+which will take you to one of the chance nodes/action nodes. Now - instead of taking the
+average (or the expectation) that we took earlier, we now take the maximum value!
+<br /><br />
+And now we can do the other half, as we did earlier. We did v going to q, now we do q going to
+v. How good is one of those red arcs in the diagram?
+
+<br /><br />
+<img width="480px" src="img/RL023.png" />
+<br /><br />
+
+we do a one-step look-ahead, and we look at what the environment might do to us (just like
+going to the pub in the example). But each of the states we might end up in has an optimal
+value. We assume we know the optimal value in each state, and we do a weighted average
+according to the environment probabilities. In this case we can't take the maximum,
+because we don't decide which state we end up in.
+
+$$
+q_*(s, a) = \mc{R}_s^a + \gamma\sum_{s'\in S}\mc{P}_{ss'}^a v_*(s')
+$$
+The optimal action-value is the immediate reward, plus the weighted average of 
+all future states multiplied by the value of each state.
+
+<br /><br />
+
+By combining these charts we have a two-step look-ahead and we get the recursive relationship
+that relates v<sub><sub>*</sub></sub> to itself in and which gives us an equation we can solve.
+
+<br /><br />
+<img width="480px" src="img/RL024.png" />
+<br /><br />
+
+We look at the actions we can take and maximizing over those, we look at the "dice"
+the environment rolls and average over them, then we look at the value of where we end up,
+collect all the information and return to the root node, and get an idea of how good it
+is to be in that state. This is the Bellman Optimalit Equation.
+$$
+v_*(s) = \max_{a}\mc{R}_s^a + \gamma\sum_{s'\in S}\mc{P}_{ss'}^a v_*(s')
+$$
+<br /><br />
+Finally, here is the same thing in reverse. Starting with the action and find out how good
+the arcs are. We first consider what the environment does and average over the probabilities,
+and after we reach a state, we decide what the next decision should be. We backtrack and
+that tells us the q<sub><sub>*</sub></sub>value.
+<br /><br />
+<img width="480px" src="img/RL025.png" />
+<br /><br />
+$$
+q_*(s, a) = \mc{R}_s^a + \gamma\sum_{s'\in S}\mc{P}_{ss'}^aq_*(s, a)
+$$
+<br /><br />
+
+To make it more concrete, we can consider the updated example, starting from C1:
+<br /><br />
+<img width="480px" src="img/RL026.png" />
+<br /><br />
+There are two possible actions we can take: FB or Study. No noise or environment randomness.
+Looking ahead one step, we can calculate the value function of where we end up.
+(See equation in image). We maximize over all possible actions to get the value of the state.
+
+<br /><br />
+
+<h4>Solving the Bellman Optimality Equation</h4>
+
+How do we solve this in practice? Earlier we had Bellman equations with expectations where
+we could just solve it with some matrix algebra. However, that does not work for optimizing
+the Bellman Optimality Equation: it is non-linear: we have a max inside there for instance.
+In general, there is no general solution to the Bellman Optimality Equation.
+<br /><br />
+There are however, several iterative solution methods:
+<ul>
+    <li>Value iteration</li>
+    <li>Policy iteration</li>
+    <li>Q-learning</li>
+    <li>Sarsa</li>
+</ul>
+(Several of these will be covered throughout the lectures).
+
+
+<br /><br />
+<!-- ############################################################ -->
+<h3>Questions and Answers</h3>
+
+<b>Q</b>: What do we do when there are a million states and a million actions?
+How do model/represent the MDP?
+<br /><br />
+<b>A</b>: Typically the reward function is given by the environment dynamics.
+Take an Atari game for instance (160&times;192 pixels &approx; 30K pixels?). In total
+there are many more than a million states, but the score is just a function of the state.
+In this case we extract the score somewhere on the screen. Typically there is some function
+mapping state to reward. In a sense the score characterizes how much of the problem you
+have solved.
 
 
 <br /><br />
 <!-- ############################################################ -->
 <h3>Extensions to MDPs</h3>
+<i>Skipped for now...</i>
 
-
-
-
-
-
-
-<br /><br />
-<!-- ############################################################ -->
-<h3>XXX</h3>
-
-
-
-
-
-
-<br /><br />
-<!-- ############################################################ -->
-<h3>XXX</h3>
 
 
 
