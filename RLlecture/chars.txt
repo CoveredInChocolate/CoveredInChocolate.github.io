@@ -9,6 +9,9 @@ https://www.compart.com/en/unicode/search?q=Mathematical+Bold+Script+Capital#cha
 
 # Greek
 π
+λ
+μ
+γ ɣ
 
 # Mathscr
 𝓐

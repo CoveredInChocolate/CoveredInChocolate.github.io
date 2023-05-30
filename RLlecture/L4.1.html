@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styling.css">
+    <script>
+        MathJax = {
+            loader: {
+                load: ['[tex]/mathtools', '[tex]/boldsymbol']
+            },
+            tex: {
+                packages: {'[+]': ['mathtools', 'boldsymbol']},
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
+    <title>4 - Model-Free Prediction</title> <!-- #################### TITLE #################### -->
+</head>
+\(
+   \def\R{\mathbb{R}}
+   \def\N{\mathbb{N}}
+   \def\Z{\mathbb{Z}}
+   \def\Q{\mathbb{Q}}
+   \def\eps{\varepsilon}
+   \def\epsilon{\varepsilon}
+   \newcommand\bs[1]{\boldsymbol{#1}}
+   \newcommand\mc[1]{\mathcal{#1}}
+   \renewcommand{\geq}{\geqslant}
+   \renewcommand{\leq}{\leqslant}
+\)
+<body>
+    <div class="page">
+<h2>Introduction to Reinforcement Learning</h2> <!-- Chapter -->
+
+<h1>4 - Model-Free Prediction</h1> <!-- Section -->
+<br />
+<table border="0">
+    <tr>
+        <td><b>Main</b>:</td>
+        <td><a href="index.html">Index</a></td>
+    </tr>
+    <tr>
+        <td><b>Previous</b>:</td>
+        <td><a href="L3.2.html">3 - Planning by Dynamic Programming</a></td>
+    </tr>
+    <tr>
+        <td><b>Next</b>:</td>
+        <td><a href="L5.1.html">5 - Model-Free Control</a></td>
+    </tr>
+</table>
+<br /><br />
+
+
+<!-- ############################################################ -->
+<h3>Introduction</h3>
+
+Model-Free Prediction: this is when we have a problem, but we are not given an MDP
+and we still want to solve it. There are several methods that can be used:
+Monte-Carlo means we follow a trajectory of states until the end and estimates
+a value by looking at the samples. Another family method is Temporal-Difference learning,
+which can be significantly more efficient. It only looks one step ahead. These methods
+are at each end of a spectrum, and they can be combined in different ways, which we
+call the TD(λ) approach.
+
+<br /><br />
+
+Status on where we are:
+<ul>
+    <li><b>Last lecture</b>. Planning by dynamic programming: Solve a <i>known</i> MDP</li>
+    <li><b>This lecture</b>. Model-Free prediction: estimate the value function of an <i>unknown</i>
+    MDP</li>
+    <li><b>Next lecture</b>. Model-free control: optimize the value function of an  <i>unknown</i>
+        MDP</li>
+</ul>
+
+By 'solving' we mean finding the optimal behaviour in that MDP that maximizes the reward
+from any state. But it was a known MDP; where we know the dynamics and rewards which allows
+us to find the value function. We saw how to compare policies and in turn find the optimal
+policy.
+
+<br /><br />
+
+In model-free methods we do something similar: but now we give up on this major assumption that
+we know how an environment works (which is usually the case). Instead we go directly from the
+experience of the agent to a value function, and hence, a policy. Just like we did for DP
+we break it into two parts: first to evaluate policies, and then to solve for the optimal
+policy. The challenge is to do it without knowing the model (MDP).
+
+
+<br /><br />
+<!-- ############################################################ -->
+<h3>Monte-Carlo Learning</h3>
+
+Figuring out how the "world" works is quite straight forward, and MC methods are unefficient
+but still effective (it does solve many problems, but slowly) method and is widely used in
+practice. It learns from episodes of experience (so random, iterative search). MC learns
+from complete episodes (running a game to termination); with no bootstrapping. If we start
+in some state, run an episode and get 5, then start again and rerun and get 7, we simply
+calculate the mean and estimate the value to be 6. Caveat: only apply MC to <i>episodic</i>
+MDPs where the episodes terminate.
+
+<br /><br />
+
+Going into more detail. The <b>goal</b> is to learn v<sub><sub>π</sub></sub> from episodes
+of experience under policy π.
+$$
+S_1,A_1,R_2,\ldots,S_k\sim \pi
+$$
+We are trying to learn the value function, expected future return, from any state.
+We look at the reward we get from each timestep and onwards. The return is the total
+discounted reward:
+$$
+G_t = R_{t+1} + \gamma R_{t+2} + \ldots + \gamma^{T-1}R_T
+$$
+Recall that the value function is the expected return:
+$$
+v_\pi(s) = E_\pi[G_t\mid S_t = s].
+$$
+So, from any state, we are going to estimate the value function by calculating the mean of
+all returns to termination from that particular state. MC evaluation uses <i>empirical mean</i>
+return instead of <i>expedted</i>. There are two general approaches.
+<br /><br />
+<b>First Visit Monte-Carlo Policy evaluation</b>.
+<br /><br />
+To evaluate state s (in some loop). The <b>first</b> time-step t that state s is visited in an episode:
+<ul>
+    <li>We increment some counter: N(s) &larr; N(s) + 1</li>
+    <li>We increment total return: S(s) &larr; S(s) + G<sub>t</sub></li>
+    <li>The value is estimated by mean return: V(s) = S(s)/N(s)</li>
+    <li>By law of large numbers: V(s)&rarr;v<sub><sub>π</sub></sub> as N(s)&rarr;&infin;</li>
+</ul>
+To get an accurate estimate, we need to do many simulations. The procedure is only done
+the first time we visit a state. Any subsequent visits to the state after the first visit
+are ignored.
+<br /><br />
+<b>Every Visit Monte-Carlo Policy evaluation</b>.
+<br /><br />
+A subtly different approach. For <b>every</b> t that state s is visited in an episode:
+<ul>
+    <li>We increment some counter: N(s) &larr; N(s) + 1</li>
+    <li>We increment total return: S(s) &larr; S(s) + G<sub>t</sub></li>
+    <li>The value is estimated by mean return: V(s) = S(s)/N(s)</li>
+    <li>By law of large numbers: V(s)&rarr;v<sub><sub>π</sub></sub> as N(s)&rarr;&infin;</li>
+</ul>
+There are different cases where each might work better.
+<br /><br />
+Incremental mean: the mean μ<sub>1</sub>, μ<sub>2</sub>, ... of a sequence
+x<sub>1</sub>, x<sub>2</sub>, ... can be computed incrementally:
+$$
+\begin{align*}
+\mu_k &= \frac{1}{k}\sum_{j=1}^k x_j \\
+&\\
+&= \frac{1}{k}\bigg(x_k + \sum_{j=1}^{k-1}x_j\bigg) \\
+&\\
+&= \frac{1}{k}(x_k + (k-1)\mu_{k-1}) \\
+&\\
+&= \frac{1}{k}(x_k + k\mu_{k-1}-\mu_{k-1}) \\
+&\\
+&= \mu_{k-1} + \frac{1}{k}(x_k - \mu_{k-1})
+\end{align*}
+$$
+Even though many things in the environment affects the value, we don't need to know
+them explicitly. We just need to calculate their effects. This is the power of RL!
+The incremental calculations means that we can calculate things on the fly. An interesting
+interpretation is that when we compare x<sub>k</sub> to μ<sub>k-1</sub> we are looking
+at what happened, versus what we think the mean is, then we shrink this with 1/k, and then
+we add it to the current previous μ<sub>k-1</sub>. So when we calculate μ<sub>k</sub>, we
+are updating it in the direction of the error we found. This idea will be repeated, and
+every algorithm in this lecture will take this form.
+<br /><br />
+For the incremental Monte-Carlo updates: we update V(s) incrementally after episode
+S<sub>1</sub>, A<sub>1</sub>, R<sub>2</sub>, ..., S<sub>T</sub>. For each state S<sub>t</sub>
+with return G<sub>t</sub>:
+$$
+\begin{align*}
+N(S_t) &= N(S_t) + 1 \\
+&\\
+V(S_t) &= V(S_t) + \frac{1}{N(S_t)}\Big(G_t - V(S_t)\Big)
+\end{align*}
+$$
+We don't need to keep track of the value between episodes, just the visit counts. Every
+time we see the state, we see the "error" of what we thought the error would be, and
+correct the value a little bit in the direction of the error - just like we saw earlier.
+
+<br /><br />
+
+In non-stationary problems, it can be useful to track a running mean, i.e. forget old
+episodes.
+$$
+V(S_t) \leftarrow V(S_t) + \alpha\Big(G_t - V(S_t)\Big)
+$$
+(In real world examples, we don't want to care about very old information)
+
+
+<br /><br />
+<!-- ############################################################ -->
+<h3>Temporal-Difference Learning</h3>
+
+Here we break up episodes and use incomplete returns: Temporal-Difference (TD).
+TD methods learn directly from episodes of experience, not from given information
+about the environment. It is <i>model-free</i>. The main difference is that we learn
+from <i>incomplete</i> episodes, by <i>bootstrapping</i>.  TD does not rely on terminating states.
+In this case bootstrapping means substituting the remainder of the trajectory with an estimate
+of what will happen from that point onwards. In a sense, TD updates a guess towards a guess.
+<br /><br />
+<b>Comparing TD and MC</b><br />
+The common goal is to learn v<sub><sub>π</sub></sub> online from experience under policy π.
+<br /><br />
+Incremental every-visit Monte-Carlo: we update value V(S<sub>t</sub>) toward the actual
+return <span style="color: red;">G<sub>t</sub></span>.
+$$
+V(S_t) \leftarrow V(S_t) + \alpha\Big(\color{red}G_t\color{black} - V(S_t)\Big)
+$$
+In the simplest temporal-difference learning algorithm: TD(0): we update value
+V(S<sub>t</sub>) toward <i>estimated</i> return <span style="color: red;">R<sub>t+1</sub> + γV(S<sub>t+1</sub>)</span>:
+$$
+V(S_t) \leftarrow V(S_t) + \alpha\Big(\color{red}R_{t+1} + \gamma V(S_{t+1})\color{black} - V(S_t)\Big)
+$$
+<ul>
+    <li>$R_{t+1} + \gamma V(S_{t+1})$ is called the <i>TD target</i></li>
+    <li>$\delta_t = R_{t+1} + \gamma V(S_{t+1}) - V(S_t)$ is called the <i>TD error</i></li>
+</ul>
+In TD we are updating the value towards the immediate reward, and the discounted value of the
+next step. In TD we replace the real return with our estimate of the reward.
+
+<br /><br />
+
+<b>Advantages and Disadvantages of MC vs. TD</b><br />
+
+
+<ul>
+    <li>TD can learn <i>before</i> knowing the final outcome
+        <ul>
+            <li>TD learns online after every step</li>
+            <li>MC must wait until the end of an episode before return is known</li>
+        </ul>
+    </li>
+    <li>TD can learn <i>without</i> the final outcome
+        <ul>
+            <li>TD can learn from incomplete sequences</li>
+            <li>MC can only earn from complete</li>
+            <li>TD works in continuing (non-terminating) environments</li>
+            <li>MC only works for episodic (terminating) environments</li>
+        </ul>
+    </li>
+</ul>
+
+<br /><br />
+
+<b>The Bias/Variance Trade-off</b><br />
+The return used in MC,
+$$
+G_t = R_{t+1} + \gamma R_{t+2} + \ldots + \gamma^{T-1}R_T
+$$
+is an <i>unbiased</i> estimate of v<sub><sub>π</sub></sub>. The true TD target
+$$
+R_{t+1} + \gamma v_\pi(S_{t+1})
+$$
+is an <i>unbiased</i> estimate of v<sub><sub>π</sub></sub>(S<sub>t</sub>). (We see this
+from the Bellman equation).
+<br /><br />
+The TD target, which is used in practice,
+$$
+R_{t+1} + \gamma V(S_{t+1})
+$$
+is a <b>biased</b> estimate of v<sub><sub>π</sub></sub>(S<sub>t</sub>). The V is based on an
+estimate, which is where we introduce the bias.
+<br /><br />
+The benefit, is that we reduce the variance: TD target is much lower variance than the return:
+<ul>
+    <li>Return depends on <i>many</i> random actions, transitions and rewards.
+        (See expression for G<sub>t</sub> above)</li>
+    <li>TD target depends on <i>one</i> random action, transition and reward</li>
+</ul>
+
+<br />
+Further summary of the advantages/disadvantages:
+<ul>
+    <li> MC has high variance, zero bias
+        <ul>
+        <li>Good convergence properties</li>
+        <li>(Even with function approximation)</li>
+        <li>Not very sensitive to initial value</li>
+        <li>Very simple to understand and use</li>
+    </ul>
+    </li>
+    <li> TD has low variance, some bias
+        <ul>
+        <li>Usually more efficient than MC</li>
+        <li>TD(0) converges to $v_\pi(s)$</li>
+        <li>(But not always with function approximation)</li>
+        <li>More sensitive to initial value</li>
+        </ul>
+    </li>
+</ul>
+
+<b>Batch MC and TD</b><br />
+
+As we have established, both MC and td converge: V(s)&rarr;v<sub><sub>π</sub></sub>(s)
+as experience &rarr;&infin;. But what about batch solution for finite experience?
+Would they find the same solution?
+$$
+\begin{align*}
+&s_1^1, a_1^1, r_2^1, \ldots, s_{T_1}^1 \\
+&\quad\vdots \\
+&s_1^K, a_1^K, r_2^K, \ldots, s_{T_1}^K
+\end{align*}
+$$
+(That is, we repeatedly sample espides k&isin;[1, K]). We can compare them in a simple
+example. There are two states A, B, no discounting and 8 episodes of experience.
+<br />
+<table class="tab">
+    <tr><td class="tab">A,0,B,0</td></tr>
+    <tr><td class="tab">B, 1</td></tr>
+    <tr><td class="tab">B, 1</td></tr>
+    <tr><td class="tab">B, 1</td></tr>
+    <tr><td class="tab">B, 1</td></tr>
+    <tr><td class="tab">B, 1</td></tr>
+    <tr><td class="tab">B, 1</td></tr>
+    <tr><td class="tab">B, 0</td></tr> 
+</table>
+<br />
+What is V(A) and what is V(B)?<br />
+I think V(A) = 0 for both MC and TD. In MC we update the value of V(B) once everything
+is ended, so I'm guessing V(B) = 1. For TD we sum up and take an average, so V(B) = 6/8 = 3/4?
+(But I don't think this is correct! :))
+<br />
+<b>Answer</b>:<br />
+Both TD and MC will assign 3/4 to V(B). The difference is what V(A) is.
+
+<br /><br />
+<img src="img/RL034.png" />
+<br /><br />
+
+In all the episodes starting from A, we go to B and get a reward of 0. From B, 75% of the
+transitions gave a reward of 1, and 25% a reward of 0. This MDP gives the best description
+(the ML estimate) of the observed data. 
+<br /><br />
+MC converges to solution with minimum mean-squared error. Best fit to the observed returns:
+$$
+\sum_{k=1}^K\sum_{t=1}^{T_k}\Big(g_t^k - V(s_t^k)\Big)^2,
+$$
+which in the example corresponds to V(A) = 0.
+<br /><br />
+TD(0) converges to solution of max likelihood Markov model. The solution to the
+MDP ⟨𝓢, 𝓐, 𝓟, 𝓡, 𝛾⟩ (where 𝓟 and 𝓡 are estimates):
+$$
+\hat{\mc{P}}_{s,s'}^a =
+\frac{1}{N(s,a)}\sum_{k=1}^K\sum_{t=1}^{T_k}\bs{1}(s_t^k,a_t^k, s_{t+1}^k = s,a,s')
+$$
+$$
+\hat{\mc{R}}_{s}^a =
+\frac{1}{N(s,a)}\sum_{k=1}^K\sum_{t=1}^{T_k}\bs{1}(s_t^k,a_t^k = s,a)r_t^k,
+$$
+which in the example corresponds to V(A) = 0.75. The probability is simply counting
+all episodes that go from s to s' and divide by the number of visits to s. And
+the reward is the average observed reward.
+<br /><br />
+The third kind of Advantage/Disadvantage.
+<ul>
+    <li> TD exploits Markov property
+        <ul>
+        <li>Usually more efficient in Markov environments</li>
+        </ul>
+    </li>
+    <li> MC does not exploit Markov property
+        <ul>
+        <li>Usually more efficient in non-Markov environments</li>
+        </ul>
+    </li>
+</ul>
+
+<br /><br />
+<!-- ############################################################ -->
+<h3>TD(λ)</h3>
+
+
+
+<br /><br /><br /><br />
+
+<!-- -----------------PARAGRAPH MEDSKIP
+
+<br /><br />
+
+
+
+------------------------- BULLET LIST
+
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+------------------------- BULLET LIST ITERATED
+
+<ul>
+    <li>
+        <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        </ul>
+    </li>
+    <li>
+        <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        </ul>
+    </li>
+</ul>
+
+
+
+----------------------THM/DEF/RESULT
+
+<br /><br />
+
+<div class="thm">XXX</div>
+<div class="thmtext">
+asdasd
+</div>
+<br />
+
+----------------------THM/DEF/RESULT
+
+ℝ<sup>2</sup>
+ℝ<sup>3</sup>
+ℝ<sup>4</sup>
+ℝ<sup>n</sup>
+ℝ<sup>m</sup>
+ℝ<sup>n</sup>&rarr;ℝ<sup>m</sup>
+-->
+
+
+<!-- ########################### EXERCISES ########################### -->
+
+
+<!--
+<br /><br />
+<b>Code</b>:<br />
+<div class="rcode">
+
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+
+</pre>
+-->
+
+
+<!--
+    ∩ · ≥ ≤
+    Ω λ π ≠ ∊ −
+    ∅ φ ⇒ ↔	
+    ≈ ⊂
+-->
+
+<!--
+
+<b>Code</b>:<br />
+<div class="rcode">
+
+</div>
+<br />
+<b>Output</b>:<br />
+<pre class="rcode">
+
+</pre>
+<br /><br />
+-->
+
+<br /><br />
+<br /><br />
+</div><!-- End page div-->
+</body>
+</html>
+
