@@ -11,7 +11,8 @@ https://www.compart.com/en/unicode/search?q=Mathematical+Bold+Script+Capital#cha
 π
 λ
 μ
-γ ɣ
+γ 
+ɣ
 
 # Mathscr
 𝓐
